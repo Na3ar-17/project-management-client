@@ -9,6 +9,10 @@
   display: revert;
 }
 
+body {
+  @apply bg-primary;
+}
+
 /* Preferred box-sizing value */
 *,
 *::before,
