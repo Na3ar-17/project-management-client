@@ -13,18 +13,7 @@
       h1 {
         @apply text-4xl font-semibold mb-3;
       }
-      label {
-        @apply relative;
-        .InputIcon {
-          @apply absolute text-text2;
-          top: 50%;
-          right: 5px;
-          transform: translate(-50%, -50%);
-        }
-        input {
-          @apply border-border rounded-md border-solid py-[7px] w-[300px] pl-3 pr-9 text-left;
-        }
-      }
+
       p {
         @apply text-sm cursor-pointer mt-4;
       }

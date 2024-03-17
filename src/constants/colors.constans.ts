@@ -10,4 +10,5 @@ export const COLORS = {
   'green-light': '#58E598',
   'light-orange': '#FFC75F',
   border: '#373737',
+  red: '#880404',
 }

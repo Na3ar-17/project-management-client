@@ -39,30 +39,9 @@ const AuthForm: NextPage = () => {
           className={`${styles.form} ${styles.formLeft}`}
         >
           <h1>Sing In</h1>
-          <label>
-            <AtSign size={18} className={styles.InputIcon} />
-            <input
-              className={`${
-                errors.email ? 'border-[#880404] border-solid border-2' : ''
-              }`}
-              type="text"
-              placeholder="Email"
-              {...register('email', { required: true })}
-            />
-          </label>
-          <label>
-            <Lock size={18} className={styles.InputIcon} />
-            <input
-              className={`${
-                errors.password ? 'border-[#880404] border-solid border-2' : ''
-              }`}
-              type="password"
-              placeholder="Password"
-              {...register('password', { required: true })}
-            />
-          </label>
+          <AuthField placeholder="Email" type="email" Icon={AtSign} />
+          <AuthField placeholder="Password" type="password" Icon={Lock} />
           <p>Forget Your Password?</p>
-
           <button type="submit" className={styles.button}>
             Sing In
           </button>
@@ -74,47 +53,15 @@ const AuthForm: NextPage = () => {
           className={`${styles.form} ${styles.formRight}`}
         >
           <h1>Sign Up</h1>
-          <label>
-            <AtSign size={18} className={styles.InputIcon} />
-            <input
-              type="text"
-              placeholder="Email"
-              {...register('email', { required: true })}
-            />
-          </label>
-          {/* <AuthField placeholder="Email" type="text" Icon={AtSign} /> */}
-          <label>
-            <Lock size={18} className={styles.InputIcon} />
-            <input
-              type="password"
-              placeholder="Password"
-              {...register('password', { required: true })}
-            />
-          </label>
-          <label>
-            <Repeat2 size={18} className={styles.InputIcon} />
-            <input
-              type="password"
-              placeholder="Repet password"
-              {...register('repetPassword', { required: true })}
-            />
-          </label>
-          <label>
-            <User size={18} className={styles.InputIcon} />
-            <input
-              type="text"
-              placeholder="Full name"
-              {...register('fullName', { required: true })}
-            />
-          </label>
-          <label>
-            <Building2 size={18} className={styles.InputIcon} />
-            <input
-              type="text"
-              placeholder="Company Name"
-              {...register('companyName', { required: false })}
-            />
-          </label>
+          <AuthField placeholder="Email" type="email" Icon={AtSign} />
+          <AuthField placeholder="Password" type="password" Icon={Lock} />
+          <AuthField
+            placeholder="Repet password"
+            type="password"
+            Icon={Repeat2}
+          />
+          <AuthField placeholder="Full name" type="text" Icon={User} />
+          <AuthField placeholder="Company Name" type="text" Icon={Building2} />
           <button type="submit" className={styles.button}>
             Sign Up
           </button>
