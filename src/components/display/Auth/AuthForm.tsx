@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { AtSign, Building2, Github, Lock, Repeat2, User } from 'lucide-react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { TypeAuthForm } from '@/types/authForm.type'
+import AuthField from '@/components/ui/fields/auth-field/AuthField'
 
 const AuthForm: NextPage = () => {
   const [isActive, setIsActive] = useState<boolean>(false)
@@ -81,6 +82,7 @@ const AuthForm: NextPage = () => {
               {...register('email', { required: true })}
             />
           </label>
+          {/* <AuthField placeholder="Email" type="text" Icon={AtSign} /> */}
           <label>
             <Lock size={18} className={styles.InputIcon} />
             <input
