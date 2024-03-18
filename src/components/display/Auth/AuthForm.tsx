@@ -4,20 +4,33 @@ import styles from './AuthForm.module.scss'
 import { useState } from 'react'
 import FormLogin from './FormLogin/FormLogin'
 import FormRegister from './FormRegister/FormRegister'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import Loader from '@/components/ui/loader/Loader'
+
+type TypeIsFormActive = 'true' | 'false'
 
 const AuthForm: NextPage = () => {
-  const [isActive, setIsActive] = useState<boolean>(false)
+  const [isActive, setIsActive, isLoading] = useLocalStorage<TypeIsFormActive>({
+    defaultValue: 'false',
+    key: 'form-state',
+  })
 
   const handleRegister = () => {
-    setIsActive(!isActive)
+    setIsActive('true')
   }
 
   const handleLogin = () => {
-    setIsActive(!isActive)
+    setIsActive('false')
   }
 
+  if (isLoading) return <Loader size={80} />
+
   return (
-    <div className={`${styles.container} ${isActive ? styles.active : ''}`}>
+    <div
+      className={`${styles.container} ${
+        isActive === 'true' ? styles.active : ''
+      }`}
+    >
       <div className={styles['form-container']}>
         <FormLogin />
       </div>

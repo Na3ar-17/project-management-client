@@ -1,3 +1,9 @@
+import Loader from '@/components/ui/loader/Loader'
+
 export default function Home() {
-  return <></>
+  return (
+    <>
+      <Loader isFill={true} />
+    </>
+  )
 }
