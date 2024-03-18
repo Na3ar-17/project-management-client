@@ -1,5 +1,13 @@
-.error {
+.inputError {
   @apply border-red;
+  transition: all 0.2s ease;
+  -webkit-box-shadow: 0px 0px 9px -3px rgba(136, 4, 4, 1);
+  -moz-box-shadow: 0px 0px 9px -3px rgba(136, 4, 4, 1);
+  box-shadow: 0px 0px 9px -3px rgba(136, 4, 4, 1);
+}
+
+.labelError {
+  @apply mb-3;
   transition: all 0.2s ease;
   animation: horizontal-shaking 0.3s ease forwards;
 }

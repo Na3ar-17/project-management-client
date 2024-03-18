@@ -11,4 +11,5 @@ export const COLORS = {
   'light-orange': '#FFC75F',
   border: '#373737',
   red: '#880404',
+  'red-text': '#cf2121',
 }

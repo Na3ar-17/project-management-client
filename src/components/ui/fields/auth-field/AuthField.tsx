@@ -1,8 +1,9 @@
 import { TypeAuthFormLogin, TypeAuthFormRegister } from '@/types/authForm.type'
 import { forwardRef } from 'react'
-import { FieldErrors, UseFormRegister } from 'react-hook-form'
+import type { FieldError } from 'react-hook-form'
 
 import styles from './AuthField.module.scss'
+import ErrorMessage from '../../error-message/ErrorMessage'
 
 interface IProps {
   type?: string
@@ -10,7 +11,7 @@ interface IProps {
   extra?: string
   style?: string
   iconStyles?: string
-  error?: FieldErrors<TypeAuthFormRegister | TypeAuthFormLogin>
+  error?: FieldError
   Icon?: React.ElementType
 }
 
@@ -20,7 +21,11 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
     ref
   ) => {
     return (
-      <label className={`relative ${extra ? extra : ''}`}>
+      <label
+        className={`relative ${extra ? extra : ''} ${
+          error ? styles.labelError : ''
+        }`}
+      >
         {Icon && (
           <Icon
             size={18}
@@ -33,7 +38,7 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
           ref={ref}
           {...props}
           className={` ${
-            error ? styles.error : 'border-border'
+            error ? styles.inputError : 'border-border'
           }${' rounded-md border-solid py-[7px] w-[300px] pl-3 pr-9 text-left'} ${
             style ? style : ''
           }`}
@@ -41,6 +46,7 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
           placeholder={placeholder}
           autoComplete="off"
         />
+        <ErrorMessage error={error ? error.message : ''} />
       </label>
     )
   }

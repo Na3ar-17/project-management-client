@@ -5,6 +5,7 @@ import styles from '../AuthForm.module.scss'
 import { TypeAuthFormRegister } from '@/types/authForm.type'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '@/components/ui/buttons/button-confirm/Button'
+import { isFullnameValid, isValidEmail } from '../utils'
 
 interface IProps {}
 
@@ -14,15 +15,36 @@ const FormRegister: NextPage<IProps> = ({}) => {
     handleSubmit,
     formState: { errors },
     reset,
+    setError,
   } = useForm<TypeAuthFormRegister>({
     mode: 'onChange',
   })
 
   const onSubmit: SubmitHandler<TypeAuthFormRegister> = (values) => {
+    const { email, password, repetPassword, fullName } = values
+
+    if (!isValidEmail(email)) {
+      setError('email', { type: 'onChange', message: 'Invalid email' })
+      return
+    }
+
+    if (repetPassword !== password) {
+      setError('repetPassword', {
+        type: 'onChange',
+        message: 'Passwords must match',
+      })
+      return
+    }
+
+    if (!isFullnameValid(fullName)) {
+      setError('fullName', {
+        type: 'onChange',
+        message: 'Must contains only one space',
+      })
+      return
+    }
     console.log(values)
   }
-
-  if (errors) console.log(errors)
 
   return (
     <form
@@ -31,34 +53,60 @@ const FormRegister: NextPage<IProps> = ({}) => {
     >
       <h1>Sign Up</h1>
       <AuthField
-        error={errors.email}
         placeholder="Email"
-        type="email"
+        type="text"
         Icon={AtSign}
+        error={errors.email}
         {...register('email', {
-          required: true,
+          required: {
+            value: true,
+            message: 'Email is required field',
+          },
         })}
       />
       <AuthField
-        error={errors.password}
         placeholder="Password"
         type="password"
         Icon={Lock}
-        {...register('password', { required: true })}
+        error={errors.password}
+        {...register('password', {
+          required: {
+            value: true,
+            message: 'Password is required field',
+          },
+          minLength: {
+            value: 6,
+            message: 'Min 6 characters',
+          },
+        })}
       />
       <AuthField
         placeholder="Repet password"
         type="password"
         Icon={Repeat2}
         error={errors.repetPassword}
-        {...register('repetPassword', { required: true })}
+        {...register('repetPassword', {
+          required: {
+            value: true,
+            message: 'Passwords must match',
+          },
+          minLength: {
+            value: 6,
+            message: 'Min 6 characters',
+          },
+        })}
       />
       <AuthField
         error={errors.fullName}
         placeholder="Full name"
         type="text"
         Icon={User}
-        {...register('fullName', { required: true })}
+        {...register('fullName', {
+          required: {
+            value: true,
+            message: 'Full name is required field ',
+          },
+        })}
       />
       <AuthField
         placeholder="Company Name"
