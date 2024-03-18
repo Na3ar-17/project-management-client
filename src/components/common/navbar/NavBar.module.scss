@@ -1,0 +1,25 @@
+.nav {
+  @apply w-full h-[70px] flex bg-secondary  px-7 items-center justify-between;
+
+  .logo {
+    @apply text-2xl font-bold;
+  }
+
+  .user {
+    @apply flex items-center justify-between gap-3;
+    .icon {
+      @apply text-menu-text cursor-pointer mr-2;
+    }
+    .avatar {
+      @apply flex items-center cursor-pointer bg-[#3e3e3ee6] rounded-md gap-4 px-3 py-1;
+
+      .img {
+        @apply w-[36px] rounded-full;
+      }
+
+      p {
+        @apply text-[17px];
+      }
+    }
+  }
+}

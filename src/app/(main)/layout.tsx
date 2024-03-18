@@ -1,4 +1,4 @@
-import styles from './layout.module.scss'
+import NavBar from '@/components/common/navbar/NavBar'
 
 export default function Layout({
   children,
@@ -6,8 +6,8 @@ export default function Layout({
   children: React.ReactNode
 }>) {
   return (
-    <main className={styles.main}>
-      {/* <div className={styles.gradient}></div> */}
+    <main>
+      <NavBar />
       {children}
     </main>
   )
