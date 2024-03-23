@@ -1,8 +1,7 @@
 import { NextPage } from 'next'
 import styles from './NavBar.module.scss'
 import { Bell, MessageSquareText } from 'lucide-react'
-import Image from 'next/image'
-import avatar from '../../../../public//avatar.jpg'
+import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 
 const NavBar: NextPage = () => {
   return (
@@ -12,7 +11,7 @@ const NavBar: NextPage = () => {
         <Bell className={styles.icon} />
         <MessageSquareText className={styles.icon} />
         <div className={styles.avatar}>
-          <Image className={styles.img} src={avatar} alt="user" />
+          <AvatarComponent />
           <p>Nazar</p>
         </div>
       </div>

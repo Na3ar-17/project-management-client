@@ -1,0 +1,21 @@
+.layout {
+  transition: all 0.3s;
+  display: grid;
+  grid-template-rows: 70px 1fr;
+  grid-template-areas:
+    'navbar navbar'
+    'sidebar content';
+}
+
+.navbar {
+  grid-area: navbar;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.content {
+  padding: 20px;
+  grid-area: content;
+}
