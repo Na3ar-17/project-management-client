@@ -1,0 +1,70 @@
+.li {
+  @apply relative;
+  white-space: nowrap;
+
+  .link {
+    @apply text-menu-text text-[18px] font-[500] flex items-start gap-3;
+    transition: all 0.3s ease;
+
+    span {
+      transition: all 0.3s ease;
+    }
+    .icon {
+      @apply text-menu-text size-6;
+      transition: all 0.3s ease;
+    }
+
+    .details {
+      @apply absolute bg-secondary px-2 py-1 rounded-md;
+      border: 1px solid #373737;
+      right: -20px;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.2s ease;
+      top: 20px;
+      right: -48px;
+    }
+  }
+
+  &:last-child {
+    margin-top: auto;
+  }
+
+  &:hover {
+    .link {
+      .icon {
+        @apply text-blue;
+      }
+      span {
+        @apply text-blue;
+      }
+    }
+  }
+
+  &.active {
+    .link {
+      @apply text-blue;
+
+      .icon {
+        @apply text-blue;
+      }
+    }
+  }
+
+  &.hidden {
+    .link {
+      transition: all 0.3s ease;
+
+      span {
+        transform: translateX(-100px);
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .icon {
+        @apply size-7;
+        transform: translateX(100%);
+      }
+    }
+  }
+}

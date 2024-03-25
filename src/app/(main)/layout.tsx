@@ -2,9 +2,9 @@
 import NavBar from '@/components/common/navbar/NavBar'
 import styles from './layout.module.scss'
 import SideBar from '@/components/common/sidebar/SideBar'
-import { useEffect } from 'react'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeIsHidden } from '@/types/sideBar.type'
+import Loader from '@/components/ui/loader/Loader'
 
 export default function Layout({
   children,
@@ -15,6 +15,8 @@ export default function Layout({
     defaultValue: 'false',
     key: 'isHidden',
   })
+
+  if (isLoading) return <Loader isFill={true} />
 
   return (
     <main

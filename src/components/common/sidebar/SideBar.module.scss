@@ -5,11 +5,12 @@
   transition: all 0.3s ease;
 
   .iconPosition {
-    @apply absolute right-3 top-3 text-menu-text size-5 cursor-pointer;
+    @apply absolute right-3 top-3 text-menu-text size-4 cursor-pointer;
     transition: all 0.2s;
     z-index: 100;
     opacity: 0;
     visibility: hidden;
+
     &:active {
       @apply scale-90;
     }
@@ -27,62 +28,20 @@
 
     .header {
       @apply absolute top-8 left-5;
+      transition: all 0.3s ease;
+      transform: translateX(0px);
       user-select: none;
+
       .title {
         @apply text-2xl text-menu-text;
         transition: all 0.3s ease;
       }
     }
+
     .items {
       @apply flex flex-col items-start gap-[30px] pt-[100px];
       height: 90%;
-
-      li {
-        @apply flex items-start gap-3 relative w-full;
-
-        .icon {
-          @apply text-menu-text size-6;
-          transition: all 0.2s ease;
-        }
-
-        a {
-          @apply text-menu-text text-[18px] font-[500];
-          transition: all 0.2s ease;
-        }
-
-        &:last-child {
-          margin-top: auto;
-        }
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: -50%;
-          transform: translate(-50%, -50%) rotate(45deg);
-          width: 50px;
-          height: 50px;
-          border-radius: 10px;
-          background-image: linear-gradient(#268bff, hsl(252, 82, 57));
-          visibility: hidden;
-          opacity: 0;
-          transition: all 0.2s ease;
-        }
-
-        &:hover::before {
-          visibility: visible;
-          opacity: 1;
-        }
-
-        &:hover {
-          .icon {
-            @apply text-blue;
-          }
-          a {
-            @apply text-blue;
-          }
-        }
-      }
+      transition: all 0.3s ease;
     }
   }
 
@@ -92,30 +51,14 @@
     .body {
       .header {
         .title {
-          display: none;
+          transform: translateX(0px);
+          opacity: 0;
+          visibility: hidden;
         }
       }
+
       .items {
-        li {
-          @apply gap-0;
-          .icon {
-            @apply size-8 cursor-pointer;
-          }
-
-          a {
-            display: none;
-          }
-
-          &::before {
-            display: none;
-          }
-
-          &:hover {
-            .icon {
-              @apply text-blue;
-            }
-          }
-        }
+        width: 75px;
       }
     }
   }
