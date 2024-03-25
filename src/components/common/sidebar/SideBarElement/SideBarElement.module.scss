@@ -1,13 +1,14 @@
 .li {
   @apply relative;
   white-space: nowrap;
+  transition: all 0.3s ease;
 
   .link {
-    @apply text-menu-text text-[18px] font-[500] flex items-start gap-3;
+    @apply text-menu-text text-[17px] font-[500] flex items-start gap-2;
     transition: all 0.3s ease;
 
     span {
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
     .icon {
       @apply text-menu-text size-6;
@@ -22,7 +23,7 @@
       opacity: 0;
       transition: all 0.2s ease;
       top: 20px;
-      right: -48px;
+      right: -28px;
     }
   }
 
@@ -53,17 +54,22 @@
 
   &.hidden {
     .link {
-      transition: all 0.3s ease;
-
       span {
-        transform: translateX(-100px);
         opacity: 0;
         visibility: hidden;
+        transform: translateX(-55%);
       }
 
       .icon {
         @apply size-7;
-        transform: translateX(100%);
+        transform: translateX(-25%);
+      }
+    }
+
+    &:hover {
+      .details {
+        opacity: 1;
+        visibility: visible;
       }
     }
   }

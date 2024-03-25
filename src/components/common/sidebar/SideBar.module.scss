@@ -24,7 +24,7 @@
   }
 
   .body {
-    @apply h-full relative;
+    @apply h-full relative w-full;
 
     .header {
       @apply absolute top-8 left-5;
@@ -39,9 +39,10 @@
     }
 
     .items {
-      @apply flex flex-col items-start gap-[30px] pt-[100px];
+      @apply flex flex-col items-start gap-[25px] pt-[100px] pl-8;
       height: 90%;
       transition: all 0.3s ease;
+      width: 100%;
     }
   }
 
@@ -58,7 +59,6 @@
       }
 
       .items {
-        width: 75px;
       }
     }
   }
