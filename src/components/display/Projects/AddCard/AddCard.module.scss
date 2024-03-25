@@ -1,0 +1,20 @@
+.card {
+  @apply w-[400px] p-2 bg-secondary rounded-md flex flex-col cursor-pointer;
+  transition: all 0.2s ease;
+  aspect-ratio: 16/12;
+
+  .content {
+    @apply border-border border-dashed h-full rounded-md flex items-center justify-center;
+    .icon {
+      @apply text-border size-16 border-border border-dashed border-2 rounded-full;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

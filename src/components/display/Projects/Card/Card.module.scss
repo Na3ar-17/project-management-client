@@ -1,0 +1,35 @@
+.card {
+  @apply w-[400px] p-2 bg-secondary rounded-md flex flex-col;
+  aspect-ratio: 16/12;
+
+  .no-image {
+    @apply border-dashed flex items-center rounded-md justify-center border-border border-[2px];
+    aspect-ratio: 16/8;
+
+    .icon {
+      @apply size-12 text-border;
+    }
+  }
+
+  .image {
+    @apply w-full;
+    aspect-ratio: 16/8;
+    .picture {
+      @apply rounded-md;
+      width: inherit;
+      aspect-ratio: 16/8;
+    }
+  }
+
+  .content {
+    @apply flex flex-col pt-3 px-1;
+
+    .name {
+      @apply text-xl text-text;
+    }
+
+    .time {
+      @apply text-text2 pt-3 text-sm;
+    }
+  }
+}

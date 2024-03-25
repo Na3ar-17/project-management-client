@@ -2,11 +2,9 @@ import { ISideBarElement } from '@/types/sidebar-element.type'
 import {
   Home,
   Settings,
-  Maximize2,
-  Minimize,
-  LayoutDashboard,
   FolderRoot,
   MessageCircleMore,
+  User,
 } from 'lucide-react'
 
 export const sideBarElementData: ISideBarElement[] = [
@@ -18,13 +16,18 @@ export const sideBarElementData: ISideBarElement[] = [
   {
     text: 'Projects',
     Icon: FolderRoot,
-    href: '/home',
+    href: '/projects',
   },
   {
-    text: 'Team chat',
-    Icon: MessageCircleMore,
-    href: '/home',
+    text: 'Profile',
+    Icon: User,
+    href: '/profile',
   },
+  // {
+  //   text: 'Team chat',
+  //   Icon: MessageCircleMore,
+  //   href: '/home',
+  // },
   {
     text: 'Settings',
     Icon: Settings,
