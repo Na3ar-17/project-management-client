@@ -1,6 +1,7 @@
 .card {
-  @apply w-[400px] p-2 bg-secondary rounded-md flex flex-col;
+  @apply w-[385px] p-2 bg-secondary rounded-md flex flex-col cursor-pointer;
   aspect-ratio: 16/12;
+  transition: all 0.3s ease;
 
   .no-image {
     @apply border-dashed flex items-center rounded-md justify-center border-border border-[2px];
@@ -31,5 +32,11 @@
     .time {
       @apply text-text2 pt-3 text-sm;
     }
+  }
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 15px -8px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 0px 0px 15px -8px rgba(66, 68, 90, 1);
+    box-shadow: 0px 0px 15px -8px rgba(66, 68, 90, 1);
   }
 }

@@ -1,20 +1,24 @@
 .card {
-  @apply w-[400px] p-2 bg-secondary rounded-md flex flex-col cursor-pointer;
+  @apply w-[385px] p-2 bg-secondary rounded-md flex flex-col cursor-pointer;
   transition: all 0.2s ease;
   aspect-ratio: 16/12;
 
   .content {
-    @apply border-border border-dashed h-full rounded-md flex items-center justify-center;
+    @apply border-border border-dashed h-full rounded-md flex flex-col items-center justify-center;
+    p {
+      @apply text-menu-text text-lg mb-3;
+      user-select: none;
+    }
     .icon {
       @apply text-border size-16 border-border border-dashed border-2 rounded-full;
     }
   }
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
   }
 
   &:active {
-    transform: scale(0.98);
+    transform: translateY(0px);
   }
 }

@@ -6,6 +6,7 @@ const AddCard: NextPage = () => {
   return (
     <div className={styles.card}>
       <div className={styles.content}>
+        <p>Create new Project</p>
         <Plus strokeWidth={1.25} className={styles.icon} />
       </div>
     </div>

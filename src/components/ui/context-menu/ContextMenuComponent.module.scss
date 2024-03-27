@@ -1,0 +1,18 @@
+.content {
+  @apply bg-[#252424] w-[160px];
+
+  .item {
+    @apply flex items-center cursor-pointer hover:bg-[#3736367c] transition-all;
+
+    p {
+      @apply flex items-center;
+      .icon {
+        @apply mr-1;
+      }
+    }
+
+    .shortCut {
+      @apply pt-[2px];
+    }
+  }
+}
