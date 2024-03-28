@@ -8,6 +8,7 @@ import { TypeIsHidden } from '@/types/sideBar.type'
 import { sideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { projectCardData, projectsNameAndSlug } from '@/data/project.data'
 interface IProps {
   setIsHidden: Dispatch<SetStateAction<TypeIsHidden>>
   isHidden: TypeIsHidden
@@ -59,6 +60,7 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
               isHidden={isHidden}
               isActive={item.text === sideBarElText}
               setIsActive={() => setSideBarElText(item.text)}
+              subMenuElements={projectsNameAndSlug}
             />
           ))}
         </ul>

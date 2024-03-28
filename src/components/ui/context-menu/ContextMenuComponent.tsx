@@ -17,12 +17,12 @@ interface IProps {
 
 const ContextMenuComponent: NextPage<IProps> = ({ children, id }) => {
   return (
-    <ContextMenu>
+    <ContextMenu modal={false}>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
       <ContextMenuContent className={styles.content}>
         <ContextMenuItem className={styles.item}>
           <p>
-            <Trash size={13} className={styles.icon} />
+            <Pencil size={13} className={styles.icon} />
             <span>Edit</span>
           </p>
           <ContextMenuShortcut className={styles.shortCut}>
@@ -31,7 +31,7 @@ const ContextMenuComponent: NextPage<IProps> = ({ children, id }) => {
         </ContextMenuItem>
         <ContextMenuItem className={styles.item}>
           <p>
-            <Pencil size={13} className={styles.icon} />
+            <Trash size={13} className={styles.icon} />
             <span>Delete</span>
           </p>
           <ContextMenuShortcut className={styles.shortCut}>

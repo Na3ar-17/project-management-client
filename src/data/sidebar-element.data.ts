@@ -1,3 +1,4 @@
+import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import { ISideBarElement } from '@/types/sidebar-element.type'
 import {
   Home,
@@ -11,17 +12,17 @@ export const sideBarElementData: ISideBarElement[] = [
   {
     text: 'Home',
     Icon: Home,
-    href: '/home',
+    href: DASHBOARD_PAGES.HOME,
   },
   {
     text: 'Projects',
     Icon: FolderRoot,
-    href: '/projects',
+    href: DASHBOARD_PAGES.PROJECTS,
   },
   {
     text: 'Profile',
     Icon: User,
-    href: '/profile',
+    href: '',
   },
   // {
   //   text: 'Team chat',
@@ -31,6 +32,6 @@ export const sideBarElementData: ISideBarElement[] = [
   {
     text: 'Settings',
     Icon: Settings,
-    href: '/settings',
+    href: DASHBOARD_PAGES.SETTINGS,
   },
 ]

@@ -39,7 +39,7 @@
     }
 
     .items {
-      @apply flex flex-col items-start gap-[25px] pt-[100px] pl-8;
+      @apply flex flex-col items-start gap-[15px] pt-[100px];
       height: 90%;
       transition: all 0.3s ease;
       width: 100%;

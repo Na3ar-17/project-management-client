@@ -1,14 +1,7 @@
 import { NextPage } from 'next'
 import styles from './Card.module.scss'
-import { ImageIcon, Pencil, Trash } from 'lucide-react'
-import { IProjectCard } from '@/types/projectCard.type'
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-  ContextMenuShortcut,
-} from '@/components/ui/shadcn/ui/context-menu'
+import { ImageIcon } from 'lucide-react'
+import { IProjectCard } from '@/types/project.types'
 import Image from 'next/image'
 import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
 

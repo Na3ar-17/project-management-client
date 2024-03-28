@@ -1,17 +1,27 @@
 .li {
-  @apply relative;
+  @apply relative w-full py-2 cursor-pointer;
   white-space: nowrap;
   transition: all 0.3s ease;
+  user-select: none;
 
-  .link {
-    @apply text-menu-text text-[17px] font-[500] flex items-start gap-2;
-    transition: all 0.3s ease;
+  .element {
+    @apply text-menu-text relative px-4 text-[17px] justify-between font-[500] flex items-center gap-2;
+    transition: all 0.2s ease;
 
-    span {
-      transition: all 0.2s ease;
+    .link {
+      @apply flex items-center gap-1;
+      span {
+        @apply text-lg;
+        transition: all 0.2s ease;
+      }
+      .icon {
+        @apply text-menu-text size-5;
+        transition: all 0.3s ease;
+      }
     }
-    .icon {
-      @apply text-menu-text size-6;
+
+    .open {
+      @apply size-5 text-menu-text cursor-pointer;
       transition: all 0.3s ease;
     }
 
@@ -29,6 +39,59 @@
 
   &:last-child {
     margin-top: auto;
+  }
+
+  &:hover {
+    background-color: rgb(58, 57, 57);
+  }
+
+  .sub-menu {
+    position: absolute;
+    transition: all 0.3s ease;
+    top: 132%;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+
+    @apply flex flex-col;
+    .list {
+      @apply flex justify-between py-2 items-center px-4;
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: #262626;
+      }
+      .sub-open {
+        @apply size-5 text-menu-text cursor-pointer;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  &.subActive {
+    background-color: rgb(58, 57, 57);
+
+    @apply mb-[155px];
+    .open {
+      transform: rotate(180deg);
+    }
+
+    .sub-menu {
+      background-color: #343333;
+      animation: show 0.6s ease forwards;
+    }
+  }
+
+  @keyframes show {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   &:hover {
@@ -53,24 +116,41 @@
   }
 
   &.hidden {
-    .link {
-      span {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateX(-55%);
+    .element {
+      .link {
+        span {
+          opacity: 0;
+          visibility: hidden;
+          transform: translateX(-100%);
+        }
+        .icon {
+          @apply size-7;
+          transform: translateX(36%);
+        }
       }
 
-      .icon {
-        @apply size-7;
-        transform: translateX(-25%);
+      .open {
+        display: none;
+      }
+
+      .details {
+        @apply absolute bg-secondary px-2 py-1 rounded-md;
+        border: 1px solid #373737;
+        right: -20px;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.2s ease;
+        top: 20px;
+        right: -28px;
       }
     }
 
-    // &:hover {
-    //   .details {
-    //     opacity: 1;
-    //     visibility: visible;
-    //   }
-    // }
+    .sub-menu {
+      display: none;
+      .list {
+        .sub-open {
+        }
+      }
+    }
   }
 }

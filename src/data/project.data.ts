@@ -1,4 +1,4 @@
-import { IProjectCard } from '@/types/projectCard.type'
+import { IProjectCard, TypeSideBarSubMenuElement } from '@/types/project.types'
 
 export const projectCardData: IProjectCard[] = [
   {
@@ -27,4 +27,11 @@ export const projectCardData: IProjectCard[] = [
     start: '25.03.2024',
     end: '01.05.2024',
   },
+]
+
+export const projectsNameAndSlug: TypeSideBarSubMenuElement[] = [
+  { name: 'Social Media', slug: 'socila_media' },
+  { name: 'Chat app', slug: 'chat_app' },
+  { name: 'Gaming Service', slug: 'gaming_service' },
+  { name: 'Gaming Service', slug: 'project_management_app' },
 ]

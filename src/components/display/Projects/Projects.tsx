@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import styles from './Projects.module.scss'
 import Heading from '@/components/ui/heading/Heading'
 import Image from 'next/image'
-import { projectCardData } from '@/data/project-card.data'
+import { projectCardData } from '@/data/project.data'
 import Card from './Card/Card'
 import AddCard from './AddCard/AddCard'
 

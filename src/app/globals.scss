@@ -9,6 +9,14 @@
   display: revert;
 }
 
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border;
+}
+
 body {
   @apply bg-primary text-text;
 }
