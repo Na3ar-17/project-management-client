@@ -2,8 +2,9 @@
   transition: all 0.3s;
   display: grid;
   grid-template-rows: 70px 1fr;
+
   grid-template-areas:
-    'navbar navbar'
+    'sidebar navbar'
     'sidebar content';
 }
 
@@ -16,6 +17,6 @@
 }
 
 .content {
-  padding: 20px;
+  padding: 20px 20px 20px 40px;
   grid-area: content;
 }

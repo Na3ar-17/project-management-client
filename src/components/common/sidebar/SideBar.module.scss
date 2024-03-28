@@ -1,6 +1,6 @@
 .sidebar {
   @apply w-[190px] bg-secondary fixed flex left-0 flex-col items-center;
-  height: calc(100% - 70px);
+  height: 100%;
   border-right: 2px solid rgb(55 55 55);
   transition: all 0.3s ease;
 
@@ -25,6 +25,7 @@
 
   .body {
     @apply h-full relative w-full;
+    transition: all 0.3s ease;
 
     .header {
       @apply absolute top-8 left-5;
@@ -47,19 +48,25 @@
   }
 
   &.hidden {
-    @apply w-[75px];
-
+    transform: translateX(-100%);
     .body {
-      .header {
-        .title {
-          transform: translateX(0px);
-          opacity: 0;
-          visibility: hidden;
-        }
-      }
-
       .items {
       }
+    }
+  }
+
+  .toggle-box {
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    @apply items-center justify-center;
+
+    .toggle {
+      transition: all 0.3s ease;
+      @apply size-7 cursor-pointer rotate-90;
     }
   }
 }

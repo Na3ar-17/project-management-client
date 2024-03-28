@@ -33,5 +33,5 @@ export const projectsNameAndSlug: TypeSideBarSubMenuElement[] = [
   { name: 'Social Media', slug: 'socila_media' },
   { name: 'Chat app', slug: 'chat_app' },
   { name: 'Gaming Service', slug: 'gaming_service' },
-  { name: 'Gaming Service', slug: 'project_management_app' },
+  { name: 'Project Management App', slug: 'project_management_app' },
 ]

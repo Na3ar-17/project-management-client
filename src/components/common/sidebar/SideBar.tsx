@@ -1,14 +1,13 @@
 'use client'
 import { NextPage } from 'next'
 import styles from './SideBar.module.scss'
-import { Maximize2, Minimize } from 'lucide-react'
-import Loader from '@/components/ui/loader/Loader'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+import { Dispatch, SetStateAction } from 'react'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { sideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { projectCardData, projectsNameAndSlug } from '@/data/project.data'
+import { projectsNameAndSlug } from '@/data/project.data'
 interface IProps {
   setIsHidden: Dispatch<SetStateAction<TypeIsHidden>>
   isHidden: TypeIsHidden
@@ -20,35 +19,15 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
     key: 'sideBarTest',
   })
 
-  const handleOpen = () => {
-    setIsHidden('false')
-  }
-
-  const handleClose = () => {
-    setIsHidden('true')
-  }
-
   return (
     <aside
       className={`${styles.sidebar} ${
         isHidden === 'true' ? styles.hidden : ''
       }`}
     >
-      {isHidden === 'true' ? (
-        <Maximize2
-          onClick={() => handleOpen()}
-          className={styles.iconPosition}
-        />
-      ) : (
-        <Minimize
-          onClick={() => handleClose()}
-          className={styles.iconPosition}
-        />
-      )}
-
       <div className={styles.body}>
         <div className={styles.header}>
-          {/* <p className={styles.title}>Menu</p> */}
+          <p className={styles.title}>Menu</p>
         </div>
         <ul className={styles.items}>
           {sideBarElementData.map((item, index) => (
@@ -64,6 +43,20 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
             />
           ))}
         </ul>
+      </div>
+      <div
+        className={styles['toggle-box']}
+        style={{
+          left: `${isHidden === 'true' ? '107%' : '206px'}`,
+        }}
+      >
+        <ChevronDown
+          onClick={() => setIsHidden(isHidden == 'false' ? 'true' : 'false')}
+          style={{
+            transform: `rotate(${isHidden === 'true' ? '270deg' : '90deg'})`,
+          }}
+          className={styles.toggle}
+        />
       </div>
     </aside>
   )

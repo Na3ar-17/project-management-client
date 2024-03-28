@@ -114,43 +114,4 @@
       }
     }
   }
-
-  &.hidden {
-    .element {
-      .link {
-        span {
-          opacity: 0;
-          visibility: hidden;
-          transform: translateX(-100%);
-        }
-        .icon {
-          @apply size-7;
-          transform: translateX(36%);
-        }
-      }
-
-      .open {
-        display: none;
-      }
-
-      .details {
-        @apply absolute bg-secondary px-2 py-1 rounded-md;
-        border: 1px solid #373737;
-        right: -20px;
-        visibility: hidden;
-        opacity: 0;
-        transition: all 0.2s ease;
-        top: 20px;
-        right: -28px;
-      }
-    }
-
-    .sub-menu {
-      display: none;
-      .list {
-        .sub-open {
-        }
-      }
-    }
-  }
 }

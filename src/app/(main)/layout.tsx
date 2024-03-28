@@ -18,19 +18,24 @@ export default function Layout({
 
   if (isLoading) return <Loader isFill={true} />
 
+  const handleShowToggler = (e: any) => {
+    console.log(e)
+  }
+
   return (
     <main
       className={styles.layout}
       style={{
-        gridTemplateColumns: `${isHidden === 'true' ? '70px' : '190px'} 1fr`,
+        gridTemplateColumns: `${isHidden === 'true' ? '0px' : '190px'} 1fr`,
       }}
     >
       <div className={styles.navbar}>
-        <NavBar />
+        <NavBar isHidden={isHidden} />
       </div>
       <div className={styles.sidebar}>
         <SideBar isHidden={isHidden} setIsHidden={setIsHidden} />
       </div>
+
       <div className={styles.content}>{children}</div>
     </main>
   )

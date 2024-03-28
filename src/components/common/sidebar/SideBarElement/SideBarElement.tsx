@@ -27,13 +27,12 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   subMenuElements,
 }) => {
   const [isSubMenuActive, setIsSubMenuActive] = useState<boolean>(false)
-  console.log(isSubMenuActive)
 
   return (
     <li
-      className={`${styles.li} ${isHidden === 'true' ? styles.hidden : ''} ${
-        isActive ? styles.active : ''
-      } ${isSubMenuActive ? styles.subActive : ''}`}
+      className={`${styles.li}  ${isActive ? styles.active : ''} ${
+        isSubMenuActive ? styles.subActive : ''
+      }`}
     >
       <div className={`${styles.element}`}>
         <Link onClick={setIsActive} className={styles.link} href={href}>
@@ -58,7 +57,6 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
             ))}
           </ul>
         )}
-        {isHidden === 'true' && <p className={styles.details}>{text}</p>}
       </div>
     </li>
   )
