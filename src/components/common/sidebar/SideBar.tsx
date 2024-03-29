@@ -26,9 +26,6 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
       }`}
     >
       <div className={styles.body}>
-        <div className={styles.header}>
-          <p className={styles.title}>Menu</p>
-        </div>
         <ul className={styles.items}>
           {sideBarElementData.map((item, index) => (
             <SideBarElement
@@ -39,7 +36,7 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
               isHidden={isHidden}
               isActive={item.text === sideBarElText}
               setIsActive={() => setSideBarElText(item.text)}
-              subMenuElements={projectsNameAndSlug}
+              childrens={item.childrens}
             />
           ))}
         </ul>

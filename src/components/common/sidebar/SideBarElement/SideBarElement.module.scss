@@ -1,117 +1,62 @@
-.li {
-  @apply relative w-full py-2 cursor-pointer;
-  white-space: nowrap;
+.element {
+  transition: background-color 0.15s;
+  padding: 8px 12px;
+  border-radius: 5px;
+  width: 100%;
   transition: all 0.3s ease;
-  user-select: none;
+  @apply text-menu-text;
+  &:hover {
+    background-color: rgba(58, 57, 57, 0.7);
+  }
 
-  .element {
-    @apply text-menu-text relative px-4 text-[17px] justify-between font-[500] flex items-center gap-2;
-    transition: all 0.2s ease;
+  .title {
+    @apply flex justify-between items-center cursor-pointer;
 
-    .link {
-      @apply flex items-center gap-1;
-      span {
-        @apply text-lg;
-        transition: all 0.2s ease;
-      }
-      .icon {
-        @apply text-menu-text size-5;
-        transition: all 0.3s ease;
+    span {
+      a {
+        @apply flex items-start gap-1 text-lg w-full;
+
+        .icon {
+          @apply size-6;
+        }
       }
     }
 
-    .open {
-      @apply size-5 text-menu-text cursor-pointer;
+    .toggle {
       transition: all 0.3s ease;
     }
+  }
 
-    .details {
-      @apply absolute bg-secondary px-2 py-1 rounded-md;
-      border: 1px solid #373737;
-      right: -20px;
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.2s ease;
-      top: 20px;
-      right: -28px;
-    }
+  .content {
+    padding-top: 0.25em;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    @apply cursor-pointer;
   }
 
   &:last-child {
     margin-top: auto;
   }
 
-  &:hover {
-    background-color: rgb(58, 57, 57);
-  }
-
-  .sub-menu {
-    position: absolute;
-    transition: all 0.3s ease;
-    top: 132%;
-    left: 0;
-    opacity: 0;
-    visibility: hidden;
-    width: 100%;
-
-    @apply flex flex-col;
-    .list {
-      @apply flex justify-between py-2 items-center px-4;
-      transition: all 0.3s ease;
-      &:hover {
-        background-color: #262626;
-      }
-      .sub-open {
-        @apply size-5 text-menu-text cursor-pointer;
-        transition: all 0.3s ease;
-      }
-    }
-  }
-
-  &.subActive {
-    background-color: rgb(58, 57, 57);
-
-    @apply mb-[155px];
-    .open {
-      transform: rotate(180deg);
-    }
-
-    .sub-menu {
-      background-color: #343333;
-      animation: show 0.6s ease forwards;
-    }
-  }
-
-  @keyframes show {
-    0% {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    100% {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
-  &:hover {
-    .link {
-      .icon {
-        @apply text-blue;
-      }
+  &.open {
+    > .title {
       span {
-        @apply text-blue;
+        a {
+          .icon {
+          }
+        }
+      }
+
+      .toggle {
+        @apply rotate-180;
       }
     }
-  }
 
-  &.active {
-    .link {
-      @apply text-blue;
-
-      .icon {
-        @apply text-blue;
-      }
+    > .content {
+      padding-top: 0.25em;
+      height: auto;
+      overflow: visible;
     }
   }
 }

@@ -1,20 +1,16 @@
 'use client'
 import { NextPage } from 'next'
 import styles from './SideBarElement.module.scss'
-import Link from 'next/link'
 import { ISideBarElement } from '@/types/sidebar-element.type'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
-import { textAbstract } from '../utils'
-import { TypeSideBarSubMenuElement } from '@/types/project.types'
-import { DASHBOARD_PAGES } from '@/config/pages-url-config'
+import Link from 'next/link'
 
 interface IProps {
-  isHidden: TypeIsHidden
-  isActive: boolean
-  setIsActive: () => void
-  subMenuElements: TypeSideBarSubMenuElement[]
+  isHidden?: TypeIsHidden
+  isActive?: boolean
+  setIsActive?: () => void
 }
 
 const SideBarElement: NextPage<ISideBarElement & IProps> = ({
@@ -24,39 +20,46 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   isHidden,
   isActive,
   setIsActive,
-  subMenuElements,
+  childrens,
 }) => {
-  const [isSubMenuActive, setIsSubMenuActive] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  console.log(childrens)
 
-  return (
-    <li
-      className={`${styles.li}  ${isActive ? styles.active : ''} ${
-        isSubMenuActive ? styles.subActive : ''
-      }`}
-    >
-      <div className={`${styles.element}`}>
-        <Link onClick={setIsActive} className={styles.link} href={href}>
-          <Icon strokeWidth={1.8} className={styles.icon} />
-          <span>{text}</span>
-        </Link>
-        {text === 'Projects' && (
-          <ChevronDown
-            onClick={() => setIsSubMenuActive(!isSubMenuActive)}
-            className={styles.open}
+  return childrens ? (
+    <li className={`${styles.element} ${isOpen ? styles.open : ''}`}>
+      <div className={styles.title}>
+        <span>
+          <Link href={href}>
+            {Icon && <Icon className={styles.icon} />}
+            {text}
+          </Link>
+        </span>
+        <ChevronDown
+          onClick={() => setIsOpen(!isOpen)}
+          className={styles.toggle}
+        />
+      </div>
+      <div className={styles.content}>
+        {childrens.map((child, index) => (
+          <SideBarElement
+            Icon={child.Icon}
+            href={child.href}
+            text={child.text}
+            key={index}
+            childrens={child.childrens}
           />
-        )}
-        {text === 'Projects' && (
-          <ul className={styles['sub-menu']}>
-            {subMenuElements.map((item, index) => (
-              <li className={styles.list} key={index}>
-                <Link href={`${DASHBOARD_PAGES.PROJECTS}/${item.slug}`}>
-                  <span>{textAbstract(item.name, 14)}</span>
-                </Link>
-                <ChevronDown className={styles['sub-open']} />
-              </li>
-            ))}
-          </ul>
-        )}
+        ))}
+      </div>
+    </li>
+  ) : (
+    <li className={`${styles.element} ${isOpen ? styles.open : ''}`}>
+      <div className={styles.title}>
+        <span>
+          <Link href={href}>
+            {Icon && <Icon className={styles.icon} />}
+            {text}
+          </Link>
+        </span>
       </div>
     </li>
   )

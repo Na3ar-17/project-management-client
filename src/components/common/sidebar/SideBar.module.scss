@@ -27,18 +27,6 @@
     @apply h-full relative w-full;
     transition: all 0.3s ease;
 
-    .header {
-      @apply absolute top-8 left-5;
-      transition: all 0.3s ease;
-      transform: translateX(0px);
-      user-select: none;
-
-      .title {
-        @apply text-2xl text-menu-text;
-        transition: all 0.3s ease;
-      }
-    }
-
     .items {
       @apply flex flex-col items-start gap-[15px] pt-[100px];
       height: 90%;
@@ -49,10 +37,6 @@
 
   &.hidden {
     transform: translateX(-100%);
-    .body {
-      .items {
-      }
-    }
   }
 
   .toggle-box {
