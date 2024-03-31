@@ -7,12 +7,14 @@ export const projectCardData: IProjectCard[] = [
     start: '25.03.2024',
     end: '01.05.2024',
     image: '',
+    slug: 'socila_media',
   },
   {
     id: 'assd',
     name: 'Chat app',
     start: '30.04.2024',
     end: '07.06.2024',
+    slug: 'chat_app',
   },
   {
     id: 'asgfdfg',
@@ -20,12 +22,14 @@ export const projectCardData: IProjectCard[] = [
     start: '01.05.2024',
     end: '06.08.2024',
     image: '',
+    slug: 'gaming_service',
   },
   {
     id: 'askllml',
     name: 'Project Management App',
     start: '25.03.2024',
     end: '01.05.2024',
+    slug: 'project_management_app',
   },
 ]
 

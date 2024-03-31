@@ -3,12 +3,12 @@ import { ISideBarElement } from '@/types/sidebar-element.type'
 import {
   Home,
   Settings,
-  FolderRoot,
   MessageCircleMore,
-  Database,
   User,
   UsersRound,
   LayoutDashboard,
+  LayoutGrid,
+  ListTodo,
 } from 'lucide-react'
 
 export const sideBarElementData: ISideBarElement[] = [
@@ -19,18 +19,41 @@ export const sideBarElementData: ISideBarElement[] = [
   },
   {
     text: 'Projects',
-    Icon: FolderRoot,
+    Icon: LayoutGrid,
     href: DASHBOARD_PAGES.PROJECTS,
     childrens: [
       {
         text: 'Chat App',
-        href: '/',
+        href: '/home',
         childrens: [
           { text: 'Dashboard', href: '/', Icon: LayoutDashboard },
           { text: 'Members', href: '/', Icon: UsersRound },
           {
             text: 'Team chat',
             Icon: MessageCircleMore,
+            href: '/home',
+          },
+          {
+            text: 'Tasks',
+            Icon: ListTodo,
+            href: '/home',
+          },
+        ],
+      },
+      {
+        text: 'Project Management App',
+        href: '/home',
+        childrens: [
+          { text: 'Dashboard', href: '/home', Icon: LayoutDashboard },
+          { text: 'Members', href: '/home', Icon: UsersRound },
+          {
+            text: 'Team chat',
+            Icon: MessageCircleMore,
+            href: '/home',
+          },
+          {
+            text: 'Tasks',
+            Icon: ListTodo,
             href: '/home',
           },
         ],

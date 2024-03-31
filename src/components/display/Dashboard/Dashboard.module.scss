@@ -1,0 +1,8 @@
+.container {
+  .statistics {
+    @apply pt-8 pl-3;
+    .row {
+      @apply grid grid-cols-4;
+    }
+  }
+}

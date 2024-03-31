@@ -6,6 +6,21 @@
   grid-template-areas:
     'sidebar navbar'
     'sidebar content';
+
+  .toggle-box {
+    transition: all 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    @apply items-center justify-center;
+
+    .toggle {
+      transition: all 0.3s ease;
+      @apply size-7 cursor-pointer rotate-90;
+    }
+  }
 }
 
 .navbar {

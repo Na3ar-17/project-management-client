@@ -1,7 +1,6 @@
 import { NextPage } from 'next'
 import styles from './Projects.module.scss'
 import Heading from '@/components/ui/heading/Heading'
-import Image from 'next/image'
 import { projectCardData } from '@/data/project.data'
 import Card from './Card/Card'
 import AddCard from './AddCard/AddCard'
@@ -18,6 +17,8 @@ const Projects: NextPage = () => {
             start={card.start}
             name={card.name}
             image={card.image}
+            slug={card.slug}
+            key={card.id}
           />
         ))}
         <AddCard />

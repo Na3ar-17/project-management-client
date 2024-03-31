@@ -5,6 +5,7 @@ import SideBar from '@/components/common/sidebar/SideBar'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import Loader from '@/components/ui/loader/Loader'
+import { ChevronDown } from 'lucide-react'
 
 export default function Layout({
   children,
@@ -37,6 +38,20 @@ export default function Layout({
       </div>
 
       <div className={styles.content}>{children}</div>
+      <div
+        className={styles['toggle-box']}
+        style={{
+          left: `${isHidden === 'true' ? '12px' : '206px'}`,
+        }}
+      >
+        <ChevronDown
+          onClick={() => setIsHidden(isHidden == 'false' ? 'true' : 'false')}
+          style={{
+            transform: `rotate(${isHidden === 'true' ? '270deg' : '90deg'})`,
+          }}
+          className={styles.toggle}
+        />
+      </div>
     </main>
   )
 }

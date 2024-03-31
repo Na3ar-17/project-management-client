@@ -2,6 +2,7 @@ export const COLORS = {
   primary: '#1C1C1C',
   secondary: '#282727',
   blue: '#268BFF',
+  'light-blue': '#BFF0FF',
   text: '#FFFFFF',
   text2: '#C5C5C5',
   'menu-text': '#B4B4B4',
@@ -12,4 +13,6 @@ export const COLORS = {
   border: '#373737',
   red: '#880404',
   'red-text': '#cf2121',
+  'white-bodyli': '#E6E0FF',
+  'dark-orange': '#88750b',
 }

@@ -6,6 +6,7 @@ import { TypeIsHidden } from '@/types/sideBar.type'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import Link from 'next/link'
+import { textAbstract } from '../utils'
 
 interface IProps {
   isHidden?: TypeIsHidden
@@ -25,42 +26,35 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false)
   console.log(childrens)
 
-  return childrens ? (
+  return (
     <li className={`${styles.element} ${isOpen ? styles.open : ''}`}>
       <div className={styles.title}>
         <span>
           <Link href={href}>
             {Icon && <Icon className={styles.icon} />}
-            {text}
+            {textAbstract(text, 10)}
           </Link>
         </span>
-        <ChevronDown
-          onClick={() => setIsOpen(!isOpen)}
-          className={styles.toggle}
-        />
-      </div>
-      <div className={styles.content}>
-        {childrens.map((child, index) => (
-          <SideBarElement
-            Icon={child.Icon}
-            href={child.href}
-            text={child.text}
-            key={index}
-            childrens={child.childrens}
+        {childrens && (
+          <ChevronDown
+            onClick={() => setIsOpen(!isOpen)}
+            className={styles.toggle}
           />
-        ))}
+        )}
       </div>
-    </li>
-  ) : (
-    <li className={`${styles.element} ${isOpen ? styles.open : ''}`}>
-      <div className={styles.title}>
-        <span>
-          <Link href={href}>
-            {Icon && <Icon className={styles.icon} />}
-            {text}
-          </Link>
-        </span>
-      </div>
+      {childrens && (
+        <div className={styles.content}>
+          {childrens.map((child, index) => (
+            <SideBarElement
+              Icon={child.Icon}
+              href={child.href}
+              text={child.text}
+              key={index}
+              childrens={child.childrens}
+            />
+          ))}
+        </div>
+      )}
     </li>
   )
 }

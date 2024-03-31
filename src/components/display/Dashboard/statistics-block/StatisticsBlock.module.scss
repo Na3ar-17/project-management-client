@@ -1,0 +1,16 @@
+.block {
+  @apply bg-secondary w-[170px] rounded-lg flex flex-col p-4 justify-between;
+  aspect-ratio: 16/19;
+  .icon-container {
+    @apply w-12 flex items-center justify-center h-12 bg-purple rounded-full;
+    .icon {
+    }
+  }
+  p {
+    max-width: 80px;
+  }
+
+  span {
+    @apply text-4xl font-semibold;
+  }
+}

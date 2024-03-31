@@ -41,20 +41,6 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
           ))}
         </ul>
       </div>
-      <div
-        className={styles['toggle-box']}
-        style={{
-          left: `${isHidden === 'true' ? '107%' : '206px'}`,
-        }}
-      >
-        <ChevronDown
-          onClick={() => setIsHidden(isHidden == 'false' ? 'true' : 'false')}
-          style={{
-            transform: `rotate(${isHidden === 'true' ? '270deg' : '90deg'})`,
-          }}
-          className={styles.toggle}
-        />
-      </div>
     </aside>
   )
 }
