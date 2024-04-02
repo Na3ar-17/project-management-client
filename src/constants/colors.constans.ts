@@ -9,10 +9,12 @@ export const COLORS = {
   purple: '#972592',
   green: '#3B6330',
   'green-light': '#58E598',
+  'green-ligh2': '#3dc019',
   'light-orange': '#FFC75F',
   border: '#373737',
   red: '#880404',
   'red-text': '#cf2121',
   'white-bodyli': '#E6E0FF',
   'dark-orange': '#88750b',
+  'accent-gray': '#363636',
 }

@@ -9,9 +9,9 @@ const config = {
     './src/**/*.{ts,tsx}',
   ],
   prefix: '',
+
   theme: {
     colors: COLORS,
-
     container: {
       center: true,
       padding: '2rem',

@@ -1,0 +1,36 @@
+.green-dot {
+  @apply relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: -8%;
+    transform: translate(-50%, -50%);
+    @apply bg-green-ligh2 w-2 h-2 rounded-full;
+  }
+}
+
+.red-dot {
+  @apply relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: -8%;
+    transform: translate(-50%, -50%);
+    @apply bg-red w-2 h-2 rounded-full;
+  }
+}
+
+.role {
+  @apply relative;
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    transform: translate(-50%, -50%);
+    @apply size-5 text-text2;
+  }
+}

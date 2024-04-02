@@ -24,7 +24,6 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   childrens,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  console.log(childrens)
 
   return (
     <li className={`${styles.element} ${isOpen ? styles.open : ''}`}>
