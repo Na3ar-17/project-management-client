@@ -13,6 +13,8 @@ import { ColumnDef } from '@tanstack/react-table'
 import { Button } from '@/components/ui/shadcn/ui/button'
 import { ArrowDownUp } from 'lucide-react'
 import { userRoleFormat, userStatusFormat } from '../../utils'
+
+import DropdownMenuComponent from '@/components/ui/dropdown-menu-component/DropdownMenuComponent'
 export const columns: ColumnDef<IMembers>[] = [
   {
     id: 'select',
@@ -37,6 +39,9 @@ export const columns: ColumnDef<IMembers>[] = [
   {
     accessorKey: 'fullName',
     header: () => <p className={styles.header}>Full Name</p>,
+    cell: ({ row }) => {
+      return <p className={styles['row-text']}>{row.getValue('fullName')}</p>
+    },
   },
   {
     accessorKey: 'email',
@@ -47,11 +52,15 @@ export const columns: ColumnDef<IMembers>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           <p className={styles.header}>Email</p>
-          <ArrowDownUp className="ml-2 h-4 w-4" />
+          <ArrowDownUp className="ml-2 size-4 text-text2" />
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue('email')}</div>,
+    cell: ({ row }) => (
+      <div className={`${styles['row-text']} ${`lowercase`}`}>
+        {row.getValue('email')}
+      </div>
+    ),
   },
   {
     accessorKey: 'status',
@@ -59,7 +68,7 @@ export const columns: ColumnDef<IMembers>[] = [
     cell: ({ row }) => {
       const status: EnumUserStatus = row.getValue('status')
       const convertedFromEnum = userStatusFormat(userStatusText[status])
-      return convertedFromEnum
+      return <p className={styles['row-text']}>{convertedFromEnum}</p>
     },
   },
   {
@@ -68,7 +77,14 @@ export const columns: ColumnDef<IMembers>[] = [
     cell: ({ row }) => {
       const role: EnumUserRole = row.getValue('role')
       const convertedFromEnum = userRoleFormat(userRoleText[role])
-      return convertedFromEnum
+      return <p className={styles['row-text']}>{convertedFromEnum}</p>
+    },
+  },
+  {
+    id: 'actions',
+    enableHiding: false,
+    cell: () => {
+      return <DropdownMenuComponent />
     },
   },
 ]

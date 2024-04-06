@@ -13,8 +13,10 @@ export const COLORS = {
   'light-orange': '#FFC75F',
   border: '#373737',
   red: '#880404',
+  'light-red': '#db1010',
   'red-text': '#cf2121',
   'white-bodyli': '#E6E0FF',
   'dark-orange': '#88750b',
   'accent-gray': '#363636',
+  'accent-gray2': '#3f3c3c',
 }

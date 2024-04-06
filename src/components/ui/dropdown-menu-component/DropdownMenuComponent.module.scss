@@ -1,0 +1,56 @@
+.trigger {
+  @apply hover:bg-accent-gray w-6 h-6 flex items-center justify-center rounded-sm cursor-pointer transition-all;
+
+  .icon {
+    @apply text-[19px];
+  }
+}
+
+.content {
+  @apply bg-border  rounded-md  px-2 justify-between py-1 w-[200px];
+  z-index: 100;
+
+  .lable {
+    @apply text-base font-semibold px-2 mb-2;
+  }
+
+  .item {
+    @apply hover:bg-accent-gray2 cursor-pointer mt-1 text-base py-1 px-2;
+  }
+}
+
+.content[data-state='open'] {
+  top: 0%;
+  opacity: 1;
+  visibility: visible;
+  animation: show 0.2s ease;
+}
+
+.content[data-state='closed'] {
+  opacity: 0;
+  visibility: hidden;
+  animation: hide 0.2s ease;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    top: -100%;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

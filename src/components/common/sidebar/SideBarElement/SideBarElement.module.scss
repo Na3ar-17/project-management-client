@@ -48,16 +48,16 @@
             }
           }
         }
-
-        &:hover {
-          background-color: rgba(47, 46, 46, 0.7);
-        }
       }
     }
   }
 
   &:last-child {
     margin-top: auto;
+  }
+
+  .toogle-hidden {
+    display: none;
   }
 
   &.open {

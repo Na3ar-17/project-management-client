@@ -37,7 +37,9 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
         {childrens && (
           <ChevronDown
             onClick={() => setIsOpen(!isOpen)}
-            className={styles.toggle}
+            className={`${styles.toggle} ${
+              isHidden === 'true' ? styles['toogle-hidden'] : ''
+            }`}
           />
         )}
       </div>

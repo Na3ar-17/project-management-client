@@ -1,0 +1,30 @@
+.container {
+  @apply grid;
+  grid-template-columns: 1fr 300px;
+
+  .chat {
+    @apply border-2 border-solid border-border border-l-0 border-t-0 border-b-0 pt-5;
+    min-height: calc(100vh - 100px);
+    display: grid;
+    grid-template-areas:
+      'header'
+      'body'
+      'footer';
+
+    .header {
+      grid-area: header;
+      @apply flex gap-2;
+    }
+
+    .body {
+      grid-area: body;
+    }
+    .footer {
+      grid-area: footer;
+    }
+  }
+
+  .chat-info {
+    @apply pl-3;
+  }
+}
