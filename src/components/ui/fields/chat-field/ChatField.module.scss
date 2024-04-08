@@ -1,0 +1,36 @@
+.lable {
+  @apply bg-secondary max-w-[500px] h-[50px] rounded-lg flex items-center justify-between px-3;
+  margin: 0 auto;
+
+  .group {
+    @apply flex gap-2 w-full;
+    .input {
+      @apply pl-1 py-1 w-[90%];
+    }
+  }
+
+  .file-block {
+    @apply flex items-center gap-1;
+    .file-icon {
+      @apply text-light-orange size-5;
+    }
+
+    .file {
+      @apply text-text;
+    }
+  }
+  .icons {
+    @apply flex gap-2 text-text2 items-center;
+    .icon {
+      @apply size-5 transition-all duration-300 cursor-pointer active:scale-95;
+
+      &:last-child {
+        @apply ml-4 size-5 text-text;
+      }
+
+      &:last-child:hover {
+        @apply rotate-45;
+      }
+    }
+  }
+}

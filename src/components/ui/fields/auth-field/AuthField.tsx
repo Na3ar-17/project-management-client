@@ -1,5 +1,5 @@
 import { TypeAuthFormLogin, TypeAuthFormRegister } from '@/types/authForm.type'
-import { forwardRef } from 'react'
+import { FC, forwardRef } from 'react'
 import type { FieldError } from 'react-hook-form'
 
 import styles from './AuthField.module.scss'

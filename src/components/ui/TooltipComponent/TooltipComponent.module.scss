@@ -1,0 +1,7 @@
+.content {
+  @apply bg-border px-2 py-[2px] rounded-lg;
+
+  .text {
+    @apply text-sm;
+  }
+}

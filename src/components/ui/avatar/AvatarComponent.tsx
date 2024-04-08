@@ -1,18 +1,22 @@
 import { NextPage } from 'next'
 import { Avatar, AvatarImage } from '@/components/ui/shadcn/ui/avatar'
 
-interface IProps {
+export interface IUserAvatarProps {
   imgLink?: string
   size?: number
 }
 
-const AvatarComponent: NextPage<IProps> = ({
+const AvatarComponent: NextPage<IUserAvatarProps> = ({
   imgLink = 'https://github.com/shadcn.png',
-  size,
+  size = 40,
 }) => {
   return (
     <Avatar>
-      <AvatarImage src={imgLink} alt="avatar" />
+      <AvatarImage
+        style={{ width: `${size}px`, height: `${size}px` }}
+        src={imgLink}
+        alt="avatar"
+      />
     </Avatar>
   )
 }
