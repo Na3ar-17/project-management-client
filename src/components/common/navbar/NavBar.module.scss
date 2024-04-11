@@ -1,6 +1,7 @@
 .nav {
   @apply h-[70px] flex bg-secondary fixed top-0 px-7 items-center justify-between;
   transition: all 0.3s ease;
+  z-index: 1000;
   .logo {
     @apply text-2xl font-bold;
   }

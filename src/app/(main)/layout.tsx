@@ -6,22 +6,31 @@ import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import Loader from '@/components/ui/loader/Loader'
 import { ChevronDown } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { useLayoutEffect, useState } from 'react'
 
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const pathname = usePathname()
+  const [isChatPage, setIsChatPage] = useState<boolean>(false)
+
+  useLayoutEffect(() => {
+    if (pathname.includes('/chat')) {
+      setIsChatPage(true)
+    } else {
+      setIsChatPage(false)
+    }
+  }, [pathname])
+
   const [isHidden, setIsHidden, isLoading] = useLocalStorage<TypeIsHidden>({
     defaultValue: 'false',
     key: 'isHidden',
   })
 
   if (isLoading) return <Loader isFill={true} />
-
-  const handleShowToggler = (e: any) => {
-    console.log(e)
-  }
 
   return (
     <main
@@ -37,7 +46,13 @@ export default function Layout({
         <SideBar isHidden={isHidden} setIsHidden={setIsHidden} />
       </div>
 
-      <div className={styles.content}>{children}</div>
+      <div
+        className={`${styles.content} ${
+          isChatPage ? styles['chat-page-content'] : ''
+        }`}
+      >
+        {children}
+      </div>
       <div
         className={styles['toggle-box']}
         style={{

@@ -2,6 +2,7 @@
   transition: all 0.3s;
   display: grid;
   grid-template-rows: 70px 1fr;
+  min-height: 100vh;
 
   grid-template-areas:
     'sidebar navbar'
@@ -34,4 +35,8 @@
 .content {
   padding: 20px 20px 20px 40px;
   grid-area: content;
+}
+
+.chat-page-content {
+  padding: 0px 0px 0px 40px;
 }

@@ -3,8 +3,8 @@
   grid-template-columns: 1fr 300px;
 
   .chat {
-    @apply border-2 border-solid border-border border-l-0 border-t-0 border-b-0 pt-5;
-    min-height: calc(100vh - 100px);
+    @apply pt-5;
+    height: calc(100vh - 110px);
     display: grid;
     grid-template-areas:
       'header'
@@ -22,7 +22,46 @@
     }
 
     .body {
+      @apply px-5 flex items-end gap-5 w-full flex-col-reverse;
+
       grid-area: body;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        opacity: 0;
+        width: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: #222;
+        border-radius: 5px;
+      }
+
+      .my-message,
+      .message {
+        .content {
+          @apply bg-secondary px-3 py-2 rounded-xl max-w-[350px];
+          .created-at {
+            @apply block  pt-1 text-sm text-text2;
+          }
+        }
+      }
+
+      .my-message {
+        @apply flex w-full justify-end;
+        .content {
+          @apply relative;
+          .created-at {
+            @apply text-right;
+          }
+        }
+      }
+
+      .message {
+        @apply flex w-full justify-start items-start;
+      }
     }
     .footer {
       grid-area: footer;
@@ -31,6 +70,7 @@
   }
 
   .chat-info {
-    @apply pl-3;
+    @apply pl-3 bg-secondary;
+    height: calc(100vh - 70px);
   }
 }
