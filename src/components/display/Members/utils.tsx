@@ -1,7 +1,7 @@
 import { Crown, User, ShieldBanIcon } from 'lucide-react'
 import styles from './utils.module.scss'
 
-export const userStatusFormat = (text: string) => {
+export const memberStatusFormat = (text: string) => {
   switch (text) {
     case 'Active':
       return <p className={styles['green-dot']}>{text}</p>

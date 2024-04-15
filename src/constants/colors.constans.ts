@@ -19,4 +19,5 @@ export const COLORS = {
   'dark-orange': '#88750b',
   'accent-gray': '#363636',
   'accent-gray2': '#3f3c3c',
+  gray: '#5E5F61',
 }

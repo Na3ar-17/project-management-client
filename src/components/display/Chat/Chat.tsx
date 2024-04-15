@@ -3,6 +3,9 @@ import styles from './Chat.module.scss'
 import { Boxes } from 'lucide-react'
 import { ChatField } from '@/components/ui/fields/chat-field/ChatField'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
+import Image from 'next/image'
+import { membersData } from '@/data/members.data'
+import { EnumUserStatus } from '@/types/members.type'
 
 const Chat: NextPage = () => {
   return (
@@ -14,7 +17,10 @@ const Chat: NextPage = () => {
         </nav>
         <div className={styles.body}>
           <div className={styles['message']}>
-            <AvatarComponent size={35} />
+            <AvatarComponent
+              imgLink="https://i.pinimg.com/564x/6b/8d/79/6b8d79bd28abeb90ce2e1166372b9eb0.jpg"
+              size={35}
+            />
             <span className={styles.content}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Laudantium aut excepturi vel labore iure sint suscipit nostrum
@@ -50,7 +56,73 @@ const Chat: NextPage = () => {
           <ChatField placeholder="Your Message" userAvatar={{ size: 30 }} />
         </div>
       </div>
-      <div className={styles['chat-info']}>Chat info</div>
+      <div className={styles['chat-details']}>
+        <p className={styles.title}>Chat Details</p>
+        <div className={styles['members-block']}>
+          <p className={styles['members-count']}>
+            Members <span>5</span>
+          </p>
+          <div className={styles.members}>
+            {membersData.map((member, index) => (
+              <div key={index} className={styles.member}>
+                <div className={styles['avatar']}>
+                  <AvatarComponent imgLink={member.imgLink} size={35} />
+                  {member.status === EnumUserStatus.ACTIVE && (
+                    <span className={styles.online}></span>
+                  )}
+                </div>
+                <p className={styles.fullname}>{member.fullName}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={styles['media-list']}>
+          <p className={styles['media-title']}>
+            Media <span>32</span>
+          </p>
+
+          <div className={styles.media}>
+            <div className={styles.item}>
+              <Image
+                className={styles.img}
+                src={
+                  'https://i.pinimg.com/736x/27/2c/16/272c16cee4ae4d153f6109f0d105004c.jpg'
+                }
+                width={50}
+                height={50}
+                alt="item"
+              />
+            </div>
+            <div className={styles.item}>
+              <Image
+                className={styles.img}
+                src={
+                  'https://i.pinimg.com/736x/dc/1c/b8/dc1cb8ee13ba6d8ae1a8ea4e6aad2ad1.jpg'
+                }
+                width={50}
+                height={50}
+                alt="item"
+              />
+            </div>
+            <div className={styles.item}>
+              <Image
+                className={styles.img}
+                src={
+                  'https://i.pinimg.com/564x/58/3a/35/583a35781d7128eac011f6b1897b623e.jpg'
+                }
+                width={50}
+                height={50}
+                alt="item"
+              />
+            </div>
+            <div className={styles.rest}>
+              <p className={styles['rest-items-count']}>
+                +<span>30</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   )
 }

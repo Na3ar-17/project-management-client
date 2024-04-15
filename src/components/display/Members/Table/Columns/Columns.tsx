@@ -2,17 +2,11 @@
 
 import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
 import styles from './Columns.module.scss'
-import {
-  EnumUserRole,
-  EnumUserStatus,
-  IMembers,
-  userRoleText,
-  userStatusText,
-} from '@/types/members.type'
+import { EnumUserRole, EnumUserStatus, IMembers } from '@/types/members.type'
 import { ColumnDef } from '@tanstack/react-table'
 import { Button } from '@/components/ui/shadcn/ui/button'
 import { ArrowDownUp } from 'lucide-react'
-import { userRoleFormat, userStatusFormat } from '../../utils'
+import { userRoleFormat, memberStatusFormat } from '../../utils'
 
 import DropdownMenuComponent from '@/components/ui/dropdown-menu-component/DropdownMenuComponent'
 export const columns: ColumnDef<IMembers>[] = [
@@ -67,7 +61,7 @@ export const columns: ColumnDef<IMembers>[] = [
     header: () => <p className={styles.header}>Status</p>,
     cell: ({ row }) => {
       const status: EnumUserStatus = row.getValue('status')
-      const convertedFromEnum = userStatusFormat(userStatusText[status])
+      const convertedFromEnum = memberStatusFormat(status)
       return <p className={styles['row-text']}>{convertedFromEnum}</p>
     },
   },
@@ -76,7 +70,7 @@ export const columns: ColumnDef<IMembers>[] = [
     header: () => <p className={styles.header}>Role</p>,
     cell: ({ row }) => {
       const role: EnumUserRole = row.getValue('role')
-      const convertedFromEnum = userRoleFormat(userRoleText[role])
+      const convertedFromEnum = userRoleFormat(role)
       return <p className={styles['row-text']}>{convertedFromEnum}</p>
     },
   },

@@ -4,26 +4,16 @@ export interface IMembers {
   role: EnumUserRole
   status: EnumUserStatus
   email: string
+  imgLink?: string
 }
 
 export enum EnumUserRole {
-  USER,
-  MODERATOR,
-  CREATOR,
+  USER = 'User',
+  MODERATOR = 'Moderator',
+  CREATOR = 'Creator',
 }
 
 export enum EnumUserStatus {
-  ACTIVE,
-  INACTIVE,
-}
-
-export const userRoleText: Record<EnumUserRole, string> = {
-  [EnumUserRole.USER]: 'User',
-  [EnumUserRole.MODERATOR]: 'Moderator',
-  [EnumUserRole.CREATOR]: 'Creator',
-}
-
-export const userStatusText: Record<EnumUserStatus, string> = {
-  [EnumUserStatus.ACTIVE]: 'Active',
-  [EnumUserStatus.INACTIVE]: 'Inactive',
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
 }

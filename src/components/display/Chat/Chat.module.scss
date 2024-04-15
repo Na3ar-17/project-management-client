@@ -3,8 +3,8 @@
   grid-template-columns: 1fr 300px;
 
   .chat {
-    @apply pt-5;
-    height: calc(100vh - 110px);
+    @apply pt-5 pr-3;
+    height: calc(100vh - 70px);
     display: grid;
     grid-template-areas:
       'header'
@@ -14,7 +14,6 @@
     grid-template-rows: auto 1fr;
     .header {
       grid-area: header;
-
       @apply flex gap-2 text-text2  text-xl h-fit items-center  justify-center;
       .chat-icon {
         @apply size-6;
@@ -23,7 +22,6 @@
 
     .body {
       @apply px-5 flex items-end gap-5 w-full flex-col-reverse;
-
       grid-area: body;
       overflow-y: scroll;
 
@@ -69,8 +67,73 @@
     }
   }
 
-  .chat-info {
-    @apply pl-3 bg-secondary;
+  .chat-details {
+    @apply pl-6 bg-secondary pt-3 flex flex-col;
     height: calc(100vh - 70px);
+
+    .title {
+      @apply text-xl text-center;
+    }
+
+    .members-block {
+      @apply mt-[30px];
+      .members-count {
+        @apply text-gray font-bold mb-3;
+        span {
+          @apply text-text;
+        }
+      }
+
+      .members {
+        @apply flex flex-col gap-3 mt-3;
+        overflow-y: scroll;
+        .member {
+          @apply flex items-center transition-all;
+          .fullname {
+            @apply font-medium text-base;
+          }
+          .avatar {
+            @apply relative;
+            .online {
+              position: absolute;
+              right: 5px;
+              bottom: 0;
+              @apply rounded-full bg-green-ligh2 w-[0.6rem] h-[0.6rem];
+            }
+          }
+        }
+      }
+    }
+    .media-list {
+      @apply mt-10;
+      .media-title {
+        @apply text-gray font-bold;
+        span {
+          @apply text-text;
+        }
+      }
+
+      .media {
+        @apply grid grid-cols-4 mt-3;
+
+        .item,
+        .rest {
+          @apply cursor-pointer rounded-lg w-[55px] h-[55px] overflow-hidden;
+        }
+
+        .item {
+          .img {
+            @apply rounded-lg w-full h-full;
+          }
+        }
+
+        .rest {
+          @apply bg-primary flex justify-center items-center;
+          .rest-items-count {
+            @apply text-sm;
+          }
+        }
+      }
+    }
   }
 }
