@@ -1,0 +1,64 @@
+.container {
+  .content {
+    @apply grid grid-cols-4 place-items-center mt-5;
+    .category {
+      width: 90%;
+      .tab {
+        @apply flex items-center justify-between border-2 border-solid border-border px-3 py-2.5 rounded-xl;
+        .tab-title {
+          @apply flex items-center gap-3;
+          .mark {
+            @apply w-[18px] h-[18px] block  rounded-md;
+          }
+
+          p {
+            @apply text-lg;
+          }
+        }
+        .dots {
+          @apply size-5 cursor-pointer;
+        }
+      }
+    }
+
+    .tasks {
+      width: 90%;
+      @apply my-5;
+      .task {
+        @apply flex cursor-grab flex-col py-3 px-4 gap-3 border-2 border-border border-solid rounded-xl;
+
+        .title {
+          @apply text-[19px] cursor-pointer transition-all w-fit;
+
+          &:hover {
+            @apply underline;
+          }
+        }
+        .task_info {
+          @apply flex items-center gap-3;
+        }
+
+        .description {
+          @apply text-menu-text text-[15px];
+        }
+
+        .users {
+          @apply flex justify-between items-center;
+          .group {
+            @apply flex;
+            .user {
+              @apply w-[12%];
+            }
+          }
+
+          .icons {
+            @apply flex items-center gap-1 text-menu-text;
+            .icon {
+              @apply size-5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
