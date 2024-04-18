@@ -14,11 +14,7 @@ const ProgressComponent: NextPage = () => {
 
   return (
     <div>
-      <Progress
-        value={progress}
-        className={styles.progress}
-        indicator={styles.indicator}
-      />
+      <Progress value={progress} className={styles.progress} />
       <p className="text-sm text-menu-text">On Progress</p>
     </div>
   )

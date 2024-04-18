@@ -2,10 +2,10 @@ import { NextPage } from 'next'
 import styles from './DateBadge.module.scss'
 import { CalendarDays } from 'lucide-react'
 interface IProps {
-  date: string
+  date?: string
 }
 
-const DateBadge: NextPage<IProps> = ({ date }) => {
+const DateBadge: NextPage<IProps> = ({ date = '18 April 2024' }) => {
   return (
     <span className={styles.badge}>
       <CalendarDays className={styles.icon} />

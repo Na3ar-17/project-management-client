@@ -1,0 +1,6 @@
+.container {
+  @apply flex items-center border-2 border-solid border-border px-1.5 py-[4px] bg-primary/20 gap-1.5 rounded-lg w-fit;
+  .fullName {
+    @apply text-sm;
+  }
+}

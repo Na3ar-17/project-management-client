@@ -1,9 +1,9 @@
 .green {
-  @apply bg-green/40 border-2 text-sm rounded-lg px-1 py-0.5 text-green-ligh2 border-green-ligh2 border-solid;
+  @apply bg-green/40 w-fit border-2 text-sm rounded-lg px-1 py-0.5 text-green-ligh2 border-green-ligh2 border-solid;
 }
 .blue {
-  @apply bg-blue/40 border-2 text-sm rounded-lg px-1 py-0.5 text-light-blue border-blue border-solid;
+  @apply bg-blue/40 w-fit border-2 text-sm rounded-lg px-1 py-0.5 text-light-blue border-blue border-solid;
 }
 .red {
-  @apply bg-red/40 border-2 text-sm rounded-lg px-1 py-0.5 text-red-text  border-red border-solid;
+  @apply bg-red/40 w-fit border-2 text-sm rounded-lg px-1 py-0.5 text-red-text  border-red border-solid;
 }
