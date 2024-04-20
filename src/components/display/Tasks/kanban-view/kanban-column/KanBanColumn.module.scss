@@ -1,0 +1,23 @@
+.category {
+  width: 90%;
+  .tab {
+    @apply flex items-center justify-between border-2 border-solid border-border px-3 py-2.5 rounded-xl;
+    .tab-title {
+      @apply flex items-center gap-3;
+      .mark {
+        @apply w-[18px] h-[18px] block  rounded-md;
+      }
+
+      p {
+        @apply text-lg;
+      }
+    }
+    .dots {
+      @apply size-5 cursor-pointer;
+    }
+  }
+
+  .tasks {
+    @apply mt-3 flex flex-col gap-4;
+  }
+}

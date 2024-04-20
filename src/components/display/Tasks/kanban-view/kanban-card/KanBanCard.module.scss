@@ -1,0 +1,35 @@
+.task {
+  @apply flex cursor-grab flex-col py-3 px-4 gap-3 border-2 border-border border-solid rounded-xl;
+
+  .title {
+    @apply text-[19px] cursor-pointer transition-all w-fit;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+  .task_info {
+    @apply flex items-center gap-3;
+  }
+
+  .description {
+    @apply text-menu-text text-[15px];
+  }
+
+  .users {
+    @apply flex justify-between items-center;
+    .group {
+      @apply flex;
+      .user {
+        @apply w-[12%];
+      }
+    }
+
+    .icons {
+      @apply flex items-center gap-1 text-menu-text;
+      .icon {
+        @apply size-5;
+      }
+    }
+  }
+}

@@ -10,12 +10,13 @@ import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
 import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
+import KanbanView from './kanban-view/KanbanView'
 
 const Tasks: NextPage = () => {
   return (
     <main className={styles.container}>
       <Heading text="Tasks" />
-      <div className={styles.content}>
+      {/* <div className={styles.content}>
         {tasksCategoryData.map((category) => (
           <div className={styles.category}>
             <div className={styles.tab}>
@@ -60,7 +61,8 @@ const Tasks: NextPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <KanbanView />
     </main>
   )
 }
