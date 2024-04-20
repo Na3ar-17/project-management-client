@@ -1,5 +1,7 @@
 export const useTasksEnd = () => {
-  const onDragEnd = () => {}
+  const onDragEnd = () => {
+    console.log(1)
+  }
 
   return { onDragEnd }
 }

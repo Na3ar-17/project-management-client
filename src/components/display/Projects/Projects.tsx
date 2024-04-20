@@ -10,6 +10,7 @@ const Projects: NextPage = () => {
     <main>
       <Heading text="My Projects" />
       <div className={styles.container}>
+        <AddCard />
         {projectCardData.map((card) => (
           <Card
             end={card.end}
@@ -21,7 +22,6 @@ const Projects: NextPage = () => {
             key={card.id}
           />
         ))}
-        <AddCard />
       </div>
     </main>
   )

@@ -57,7 +57,7 @@ const SheetContent = React.forwardRef<
       className={cn(
         sheetVariants({ side }),
         className,
-        'bg-secondary top-[70px] h-full'
+        `bg-secondary top-[70px] `
       )}
       {...props}
     >

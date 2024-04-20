@@ -45,6 +45,7 @@ const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
                 </Draggable>
               ))}
             </div>
+            {provided.placeholder}
           </div>
         </>
       )}

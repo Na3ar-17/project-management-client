@@ -27,6 +27,10 @@
 
     .name {
       @apply text-xl text-text;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     .time {

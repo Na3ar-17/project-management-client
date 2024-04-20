@@ -27,6 +27,7 @@ const CheckBox: NextPage<IProps> = ({ onCheckedChange, checked }) => {
         checked={isChecked || !!checked}
         onChange={handleCheckboxChange}
         type="checkbox"
+        className="input-checkbox-standart"
       />
       <span className="checkmark"></span>
     </label>

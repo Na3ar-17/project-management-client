@@ -1,3 +1,4 @@
+'use client'
 import { NextPage } from 'next'
 import {
   ContextMenu,
@@ -9,6 +10,8 @@ import {
 import { Pencil, Trash } from 'lucide-react'
 
 import styles from './ContextMenuComponent.module.scss'
+import AlertDialogComponent from '../alert-dialog-component/AlertDialogComponent'
+import { useDialog } from '@/zustand/useDialog'
 
 interface IProps {
   children: React.ReactNode
@@ -16,8 +19,9 @@ interface IProps {
 }
 
 const ContextMenuComponent: NextPage<IProps> = ({ children, id }) => {
+  const { onOpen } = useDialog()
   return (
-    <ContextMenu modal={false}>
+    <ContextMenu modal={false} key={id}>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
       <ContextMenuContent className={styles.content}>
         <ContextMenuItem className={styles.item}>
@@ -29,7 +33,7 @@ const ContextMenuComponent: NextPage<IProps> = ({ children, id }) => {
             Shift + E
           </ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem className={styles.item}>
+        <ContextMenuItem onClick={onOpen} className={styles.item}>
           <p>
             <Trash size={13} className={styles.icon} />
             <span>Delete</span>
@@ -39,6 +43,7 @@ const ContextMenuComponent: NextPage<IProps> = ({ children, id }) => {
           </ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
+      <AlertDialogComponent />
     </ContextMenu>
   )
 }

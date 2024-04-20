@@ -1,0 +1,21 @@
+.content {
+  @apply h-fit w-[440px] bg-primary/70;
+  .title {
+    @apply text-center text-base text-text2;
+  }
+
+  .footer {
+    @apply flex flex-col items-center gap-2;
+    .action {
+      @apply p-0 m-0 text-base w-full cursor-pointer;
+    }
+
+    .cancel {
+      @apply border-border border-2 border-solid text-gray hover:bg-border/30;
+    }
+
+    .delete {
+      @apply bg-red/20 text-red-text border-2 border-red border-solid hover:bg-red/10;
+    }
+  }
+}

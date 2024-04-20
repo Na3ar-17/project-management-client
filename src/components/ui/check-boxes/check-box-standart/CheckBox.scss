@@ -75,6 +75,6 @@ input:checked ~ .checkmark:after {
   }
 }
 
-input {
-  display: none !important;
+.input-checkbox-standart {
+  display: none;
 }

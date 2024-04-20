@@ -20,7 +20,6 @@ import cn from 'clsx'
 import TaskStatusBadge from '../badges/task-status-badge/TaskStatusBadge'
 import TabsComponent from '../tabs-component/TabsComponent'
 import TasksBlock from './TasksBlock/TasksBlock'
-import { useOutside } from '@/hooks/useOutside'
 interface IProps {
   children: React.ReactNode
 }
@@ -29,7 +28,7 @@ const SheetComponent: NextPage<IProps> = ({ children }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent>
+      <SheetContent className={styles.content}>
         <SheetHeader>
           <SheetTitle className="text-2xl">Create Proquill</SheetTitle>
         </SheetHeader>
