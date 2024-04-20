@@ -1,6 +1,6 @@
-import { TypeAuthFormLogin, TypeAuthFormRegister } from '@/types/authForm.type'
-import { FC, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import type { FieldError } from 'react-hook-form'
+import cn from 'clsx'
 
 import styles from './AuthField.module.scss'
 import ErrorMessage from '../../error-message/ErrorMessage'
@@ -21,27 +21,25 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
     ref
   ) => {
     return (
-      <label
-        className={`relative ${extra ? extra : ''} ${
-          error ? styles.labelError : ''
-        }`}
-      >
+      <label className={cn('relative', extra, error && styles.labelError)}>
         {Icon && (
           <Icon
             size={18}
-            className={`${
-              error ? 'text-red' : ''
-            } ${`absolute  top-[50%] right-[5px] transition-all translate-x-[-50%] translate-y-[-50%]`} ${iconStyles}`}
+            className={cn(
+              error && 'text-red',
+              'absolute  top-[50%] right-[5px] transition-all translate-x-[-50%] translate-y-[-50%]',
+              iconStyles
+            )}
           />
         )}
         <input
           ref={ref}
           {...props}
-          className={` ${
-            error ? styles.inputError : 'border-border'
-          }${' rounded-md border-solid py-[7px] w-[300px] pl-3 pr-9 text-left'} ${
-            style ? style : ''
-          }`}
+          className={cn(
+            error ? styles.inputError : 'border-border',
+            'rounded-md border-solid py-[7px] w-[300px] pl-3 pr-9 text-left',
+            style
+          )}
           type={type}
           placeholder={placeholder}
           autoComplete="off"
