@@ -1,6 +1,17 @@
 import type { CSSProperties } from 'react'
 
 export interface ICategory {
-  title: string
+  value: string
   styles: CSSProperties
+  label: string
+}
+
+export interface ITaskRowData {
+  title: string
+  isCompleted: boolean
+}
+
+export interface IComment {
+  id: string
+  text: string
 }

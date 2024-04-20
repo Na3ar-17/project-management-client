@@ -24,7 +24,7 @@ const Tasks: NextPage = () => {
                   style={category.styles}
                   className={`${styles.mark}`}
                 ></span>
-                <p>{category.title}</p>
+                <p>{category.label}</p>
               </div>
               <BsThreeDots className={styles.dots} />
             </div>

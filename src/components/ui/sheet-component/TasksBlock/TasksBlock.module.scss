@@ -1,0 +1,11 @@
+.container {
+  @apply py-2 mt-1;
+
+  .title {
+    @apply text-menu-text;
+  }
+
+  .list {
+    @apply mt-4 w-full;
+  }
+}

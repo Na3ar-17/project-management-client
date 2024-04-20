@@ -6,6 +6,7 @@ import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import Image from 'next/image'
 import { membersData } from '@/data/members.data'
 import { EnumUserStatus } from '@/types/members.type'
+import { ScrollArea } from '../../ui/shadcn/ui/scroll-area'
 
 const Chat: NextPage = () => {
   return (

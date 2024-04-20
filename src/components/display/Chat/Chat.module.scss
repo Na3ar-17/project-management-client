@@ -86,7 +86,6 @@
 
       .members {
         @apply flex flex-col gap-3 mt-3;
-        overflow-y: scroll;
         .member {
           @apply flex items-center transition-all;
           .fullname {

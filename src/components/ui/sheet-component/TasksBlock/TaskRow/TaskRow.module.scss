@@ -1,0 +1,8 @@
+.item {
+  @apply flex items-center gap-2;
+
+  .completed {
+    @apply opacity-80;
+    text-decoration: line-through;
+  }
+}

@@ -1,0 +1,32 @@
+.list {
+  @apply grid w-full grid-cols-2 border-2 rounded-none border-solid border-border border-l-0 border-r-0 border-t-0;
+
+  .trigger {
+    @apply text-menu-text text-lg relative cursor-pointer;
+
+    .comments_count {
+      position: absolute;
+      top: 45%;
+      right: -5%;
+      transform: translate(-50%, -50%);
+
+      @apply w-6 h-6 rounded-lg bg-accent-gray2 flex justify-center items-center;
+    }
+  }
+
+  .active {
+    @apply text-blue;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 2px;
+      transition: all 0.2s ease;
+      @apply bg-blue;
+    }
+  }
+}

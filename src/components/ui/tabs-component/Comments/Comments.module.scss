@@ -1,0 +1,10 @@
+.container {
+  @apply bg-border/30 rounded-lg p-2;
+
+  .content {
+    @apply flex flex-col gap-2;
+    .comment {
+      @apply flex items-start gap-2 rounded-lg bg-accent-gray2 w-fit px-1 py-0.5;
+    }
+  }
+}
