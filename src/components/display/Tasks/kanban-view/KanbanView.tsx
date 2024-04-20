@@ -1,5 +1,5 @@
 'use client'
-import { tasksCategoryData } from '@/data/tasks.data'
+import { taskCardsData, tasksCategoryData } from '@/data/tasks.data'
 import { DragDropContext } from '@hello-pangea/dnd'
 
 import { NextPage } from 'next'
@@ -13,7 +13,7 @@ const KanbanView: NextPage = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>
         {tasksCategoryData.map((category) => (
-          <KanBanColumn category={category} />
+          <KanBanColumn category={category} tasks={taskCardsData} />
         ))}
       </div>
     </DragDropContext>

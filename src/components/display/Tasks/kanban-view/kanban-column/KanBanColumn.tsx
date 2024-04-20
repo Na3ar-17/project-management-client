@@ -1,14 +1,16 @@
 import { NextPage } from 'next'
 import styles from './KanBanColumn.module.scss'
 import { BsThreeDots } from 'react-icons/bs'
-import { ICategory } from '@/types/tasks.types'
+import { ICategory, ITaskCard } from '@/types/tasks.types'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
 import KanBanCard from '../kanban-card/KanBanCard'
+import { filterTasks } from '../../utils/filter-tasks'
 interface IProps {
   category: ICategory
+  tasks: ITaskCard[]
 }
 
-const KanBanColumn: NextPage<IProps> = ({ category }) => {
+const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
   return (
     <Droppable droppableId={category.value}>
       {(provided) => (
@@ -29,8 +31,19 @@ const KanBanColumn: NextPage<IProps> = ({ category }) => {
               <BsThreeDots className={styles.dots} />
             </div>
             <div className={styles.tasks}>
-              <KanBanCard />
-              <KanBanCard />
+              {filterTasks(tasks, category.value)?.map((card, index) => (
+                <Draggable key={card.id} draggableId={card.id} index={index}>
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <KanBanCard data={card} />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
             </div>
           </div>
         </>

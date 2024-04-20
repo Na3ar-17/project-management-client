@@ -7,25 +7,37 @@ import ProgressComponent from '@/components/ui/progress/ProgressComponent'
 import { membersData } from '@/data/members.data'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import { MessageSquareText } from 'lucide-react'
-interface IProps {}
+import { ITaskCard } from '@/types/tasks.types'
+interface IProps {
+  data: ITaskCard
+}
 
-const KanBanCard: NextPage<IProps> = ({}) => {
+const KanBanCard: NextPage<IProps> = ({ data }) => {
+  const {
+    assigneesers,
+    descripton,
+    dueDate,
+    id,
+    title,
+    comments,
+    createdAt,
+    priority,
+    subTasks,
+  } = data
   return (
     <div className={styles.task}>
       <SheetComponent>
-        <p className={styles.title}>Create Proquill</p>
+        <p className={styles.title}>{title}</p>
       </SheetComponent>
       <div className={styles['task_info']}>
-        <p>{taskBadgeStyleFormat('Normal')}</p>
+        <p>{taskBadgeStyleFormat(priority || '')}</p>
         <DateBadge />
       </div>
-      <p className={styles.description}>
-        Develop a modern project management app
-      </p>
+      <p className={styles.description}>{descripton}</p>
       <ProgressComponent />
       <div className={styles.users}>
         <div className={styles.group}>
-          {membersData.map((el) => {
+          {assigneesers.map((el) => {
             return (
               <div className={styles.user}>
                 <AvatarComponent imgLink={el.imgLink} size={30} />

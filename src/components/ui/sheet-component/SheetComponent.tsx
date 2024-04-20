@@ -46,7 +46,7 @@ const SheetComponent: NextPage<IProps> = ({ children }) => {
             </div>
             <ScrollArea className="w-full h-[70px]">
               <div className={cn(styles.block, styles.users)}>
-                <p className={styles.label}>Assigneeser</p>
+                <p className={styles.label}>Assigneesers</p>
                 {membersData.map((el) => {
                   return (
                     <UserBadge

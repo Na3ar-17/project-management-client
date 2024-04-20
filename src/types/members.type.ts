@@ -1,7 +1,7 @@
 export interface IMembers {
   id: string
   fullName: string
-  role: EnumUserRole
+  role?: EnumUserRole
   status: EnumUserStatus
   email: string
   imgLink?: string

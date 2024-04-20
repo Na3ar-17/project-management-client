@@ -1,17 +1,46 @@
 import type { CSSProperties } from 'react'
+import { IMembers } from './members.type'
+import { IBase } from './base.type'
+
+//TODO create user type
 
 export interface ICategory {
-  value: string
+  value: EnumTaskStatus
   styles: CSSProperties
   label: string
 }
 
-export interface ITaskRowData {
+export interface ISubTaskRow extends IBase {
   title: string
   isCompleted: boolean
 }
 
-export interface IComment {
-  id: string
+export interface IComment extends IBase {
   text: string
+  owner: any
+}
+
+export enum EnumTaskPriority {
+  low = 'Low',
+  normal = 'Normal',
+  high = 'High',
+}
+
+export enum EnumTaskStatus {
+  inQueue = 'in-queue',
+  onProgress = 'on-progress',
+  testing = 'testing',
+  completed = 'completed',
+}
+
+export interface ITaskCard extends IBase {
+  title: string
+  subTasks?: ISubTaskRow[]
+  priority?: EnumTaskPriority
+  dueDate: string
+  createdBy: any
+  descripton: string
+  assigneesers: IMembers[]
+  comments?: IComment[]
+  status: EnumTaskStatus
 }
