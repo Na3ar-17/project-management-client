@@ -1,4 +1,5 @@
 .content {
+  @apply bg-border;
   .item {
     @apply cursor-pointer px-3 py-1.5;
   }

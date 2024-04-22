@@ -7,7 +7,7 @@ export default function Layout({
 }>) {
   return (
     <main className={styles.main}>
-      {/* <div className={styles.gradient}></div> */}
+      <div className={styles.gradient}></div>
       {children}
     </main>
   )

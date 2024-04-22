@@ -9,23 +9,19 @@ import {
 import { NextPage } from 'next'
 import styles from './SimpleSelect.module.scss'
 import TaskPriorityBadge from '../../badges/task-priority-badge/TaskPriorityBadge'
+import { simpleSelectData } from '@/data/tasks.data'
 
 interface IProps {
-  data: {
-    value: string
-    lable: string
-  }[]
-
   children: React.ReactNode
 }
 
-const SimpleSelect: NextPage<IProps> = ({ data, children }) => {
+const SimpleSelect: NextPage<IProps> = ({ children }) => {
   return (
     <Select>
       <SelectTrigger>{children}</SelectTrigger>
       <SelectContent className={styles.content}>
         <SelectGroup>
-          {data.map((el) => (
+          {simpleSelectData.map((el) => (
             <SelectItem className={styles.item} value={el.value}>
               <TaskPriorityBadge text={el.lable} />
             </SelectItem>

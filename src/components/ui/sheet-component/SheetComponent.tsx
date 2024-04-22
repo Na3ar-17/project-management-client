@@ -20,11 +20,14 @@ import cn from 'clsx'
 import TaskStatusBadge from '../badges/task-status-badge/TaskStatusBadge'
 import TabsComponent from '../tabs-component/TabsComponent'
 import TasksBlock from './TasksBlock/TasksBlock'
+import SimpleSelect from '../selectors/simple-select/SimpleSelect'
+import { Controller, useForm } from 'react-hook-form'
 interface IProps {
   children: React.ReactNode
 }
 
 const SheetComponent: NextPage<IProps> = ({ children }) => {
+  const { control } = useForm()
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -37,7 +40,7 @@ const SheetComponent: NextPage<IProps> = ({ children }) => {
             <div className={styles.block}>
               <p className={styles.label}>Label</p>
               <div className={styles.group}>
-                {taskBadgeStyleFormat('Low')}
+                <SimpleSelect>{taskBadgeStyleFormat('Low')}</SimpleSelect>
                 <span className={styles.icons}>
                   <Plus className={styles.icon} />
                 </span>
@@ -46,7 +49,7 @@ const SheetComponent: NextPage<IProps> = ({ children }) => {
             <ScrollArea className="w-full h-[70px]">
               <div className={cn(styles.block, styles.users)}>
                 <p className={styles.label}>Assigneesers</p>
-                {membersData.map((el) => {
+                {membersData.slice(0, 2).map((el) => {
                   return (
                     <UserBadge
                       fullName={el.fullName}

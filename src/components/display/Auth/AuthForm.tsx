@@ -36,14 +36,18 @@ const AuthForm: NextPage = () => {
       <div className={styles.toogle}>
         <div className={cn(styles['toggle-panel'], styles['toggle-left'])}>
           <h1>Hello, Friend!</h1>
-          <p>Register with your personal details to use all of site features</p>
+          <p className={styles.description}>
+            Register with your personal details to use all of site features
+          </p>
           <button onClick={handleLogin} className={styles.button}>
             Sign In
           </button>
         </div>
         <div className={cn(styles['toggle-panel'], styles['toggle-right'])}>
           <h1>Welcome Back!</h1>
-          <p>Enter your personal details to use all of site features</p>
+          <p className={styles.description}>
+            Enter your personal details to use all of site features
+          </p>
           <button onClick={handleRegister} className={styles.button}>
             Sign Up
           </button>

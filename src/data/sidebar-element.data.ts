@@ -63,7 +63,7 @@ export const sideBarElementData: ISideBarElement[] = [
   {
     text: 'Profile',
     Icon: User,
-    href: '',
+    href: '/profile',
   },
 
   {

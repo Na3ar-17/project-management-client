@@ -1,0 +1,33 @@
+.container {
+  @apply py-1 px-3;
+
+  .header {
+    .card {
+      @apply w-full relative  bg-secondary/70 rounded-lg;
+      .bg-image {
+      }
+
+      .user {
+        position: absolute;
+        bottom: 10px;
+        left: 30px;
+        .fullName {
+          @apply mt-2 text-lg;
+        }
+      }
+    }
+
+    .personal-data {
+      @apply mt-5 px-5;
+      .group {
+        @apply flex items-center gap-4;
+        .lable {
+          @apply text-lg;
+        }
+        .data {
+          @apply px-3 py-1 text-menu-text font-semibold bg-border/50 w-fit rounded-md;
+        }
+      }
+    }
+  }
+}

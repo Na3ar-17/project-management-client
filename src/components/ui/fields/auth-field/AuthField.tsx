@@ -27,7 +27,7 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
             size={18}
             className={cn(
               error && 'text-red',
-              'absolute  top-[50%] right-[5px] transition-all translate-x-[-50%] translate-y-[-50%]',
+              'absolute top-[50%] right-[5px] size-5 transition-all translate-x-[-50%] translate-y-[-50%]',
               iconStyles
             )}
           />
@@ -37,7 +37,7 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
           {...props}
           className={cn(
             error ? styles.inputError : 'border-border',
-            'rounded-md border-solid py-[7px] w-[300px] pl-3 pr-9 text-left',
+            'rounded-md border-solid py-[9px] w-[340px] pl-3 pr-9 text-left',
             style
           )}
           type={type}
@@ -49,5 +49,4 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
     )
   }
 )
-
 AuthField.displayName = 'field'

@@ -1,0 +1,34 @@
+.content {
+  @apply mt-5;
+
+  .tabs {
+    @apply w-full  grid;
+    grid-template-columns: 250px 1fr;
+
+    .list {
+      @apply flex flex-col items-start gap-3  bg-border/60 px-1 py-2;
+
+      .title {
+        @apply text-gray font-bold text-sm ml-3;
+      }
+
+      .list-item {
+        @apply text-[15px] gap-2 flex rounded-md items-center justify-start  text-menu-text cursor-pointer hover:bg-accent-gray2 w-full;
+        transition: all 0.2s ease;
+        .icon {
+          @apply size-5;
+        }
+      }
+    }
+
+    .item {
+      @apply bg-secondary/80 px-5 py-4;
+      .title {
+        @apply text-text2 font-semibold text-[17px] mb-3;
+      }
+
+      .separator {
+      }
+    }
+  }
+}

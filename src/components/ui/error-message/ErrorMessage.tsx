@@ -1,20 +1,13 @@
 import { FC } from 'react'
-
+import cn from 'clsx'
+import styles from './ErrorMessage.module.scss'
 interface IProps {
   error?: any
-  styles?: string
+  style?: string
 }
 
-const ErrorMessage: FC<IProps> = ({ error, styles }) => {
-  return error ? (
-    <p
-      className={`${
-        styles ? styles : ''
-      }text-red-text absolute bottom-[-20px] left-[1px]`}
-    >
-      {error}
-    </p>
-  ) : null
+const ErrorMessage: FC<IProps> = ({ error, style }) => {
+  return error ? <p className={cn(style, styles.text)}>{error}</p> : null
 }
 
 export default ErrorMessage

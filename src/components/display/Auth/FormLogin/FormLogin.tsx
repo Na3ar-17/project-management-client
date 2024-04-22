@@ -64,7 +64,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
           },
         })}
       />
-      <p>Forget Your Password?</p>
+      <p>Forgot Your Password?</p>
       <Button type="submit" text="Sing In" />
     </form>
   )

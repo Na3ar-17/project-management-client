@@ -48,5 +48,6 @@
   &.hidden {
     width: 0;
     overflow: hidden;
+    transform: translateX(-2px);
   }
 }

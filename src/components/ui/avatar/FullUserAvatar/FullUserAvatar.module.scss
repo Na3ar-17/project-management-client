@@ -1,0 +1,14 @@
+.container {
+  @apply flex items-center gap-2;
+
+  .info {
+    @apply flex flex-col;
+    .fullname {
+      @apply text-[15px] font-semibold text-text2;
+    }
+
+    .email {
+      @apply text-[13px] text-menu-text;
+    }
+  }
+}
