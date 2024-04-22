@@ -9,6 +9,8 @@ import {
 } from '@/components/ui/shadcn/ui/tabs'
 import { Bell, CircleUserRound, Globe, SlidersHorizontal } from 'lucide-react'
 import FullUserAvatar from '@/components/ui/avatar/FullUserAvatar/FullUserAvatar'
+import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
+import Block from './Block/Block'
 interface IProps {}
 
 const ProfileContent: NextPage<IProps> = ({}) => {
@@ -38,6 +40,18 @@ const ProfileContent: NextPage<IProps> = ({}) => {
         <TabsContent className={styles.item} value="my-account">
           <p className={styles.title}>My profile </p>
           <Separator className={styles.separator} />
+          <div className={styles.info}>
+            <AvatarComponent size={60} avatarStyles="w-fit" />
+            <div className={styles.group}>
+              <span>Preferred name</span>
+              <input
+                type="text"
+                value={'Гаврилик Назар'}
+                className={styles.input}
+              />
+            </div>
+          </div>
+          <Block />
         </TabsContent>
         <TabsContent className={styles.item} value="my-settings">
           My Settings

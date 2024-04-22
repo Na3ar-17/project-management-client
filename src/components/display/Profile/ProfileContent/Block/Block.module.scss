@@ -1,0 +1,29 @@
+.block {
+  @apply mt-8;
+  .title {
+    @apply text-text2 font-semibold text-[17px] mb-3;
+  }
+
+  .content {
+    @apply mt-4 flex flex-col gap-4;
+    .row {
+      @apply flex justify-between items-center;
+
+      .group {
+        .subTitle {
+          @apply text-text;
+        }
+
+        .text {
+          @apply text-menu-text text-sm font-[500];
+        }
+      }
+
+      .action {
+        .btn {
+          @apply text-menu-text border-border transition-all cursor-pointer hover:bg-accent-gray border-2 border-solid px-3 rounded-md py-1 text-[15px];
+        }
+      }
+    }
+  }
+}
