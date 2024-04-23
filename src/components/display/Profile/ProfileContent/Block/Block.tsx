@@ -2,37 +2,55 @@ import { NextPage } from 'next'
 import styles from './Block.module.scss'
 import { Separator } from '@/components/ui/shadcn/ui/separator'
 import SimpleSwitch from '@/components/ui/switchers/simple-switch/SimpleSwitch'
-import { ISettingsContentData } from '@/types/settings.types'
+import cn from 'clsx'
+import {
+  EnumSettingsContentActions,
+  ISettingsContentData,
+} from '@/types/settings.types'
+import { ChevronRight, Info } from 'lucide-react'
+import ButtonSettings from '@/components/ui/buttons/button-settings/ButtonSettings'
+import TimeZoneSelect from '@/components/ui/selectors/timezone-select/TimeZoneSelect'
 interface IProps {
   data: ISettingsContentData
 }
 
 const Block: NextPage<IProps> = ({ data }) => {
+  const { content, title } = data
   return (
     <div className={styles.block}>
-      <p className={styles.title}>Account security</p>
+      <p className={styles.title}>{title}</p>
       <Separator className="mb-2" />
+
       <div className={styles.content}>
-        <div className={styles.row}>
-          <div className={styles.group}>
-            <span className={styles.subTitle}>Email</span>
-            <p className={styles.text}>gavruluknazar0210@gmail.com</p>
+        {content.map((el) => (
+          <div className={styles.row}>
+            <div className={styles.group}>
+              <span
+                className={cn(styles.subTitle, el.subTitleStyle || 'text-text')}
+              >
+                {el.subTitle}
+              </span>
+              <p className={styles.text}>{el.text}</p>
+            </div>
+            <div className={styles.action}>
+              {el.actions == EnumSettingsContentActions.button && (
+                <ButtonSettings action={el.buttonAction} text={el.buttonText} />
+              )}
+              {el.actions == EnumSettingsContentActions.switch && (
+                <SimpleSwitch />
+              )}
+              {el.actions == EnumSettingsContentActions.chevron && (
+                <ChevronRight
+                  onClick={el.chevronAction}
+                  className={styles.chevron}
+                />
+              )}
+              {el.actions == EnumSettingsContentActions.timeZone && (
+                <TimeZoneSelect />
+              )}
+            </div>
           </div>
-          <div className={styles.action}>
-            <button className={styles.btn}>Change email</button>
-          </div>
-        </div>
-        <div className={styles.row}>
-          <div className={styles.group}>
-            <span className={styles.subTitle}>2-step verification</span>
-            <p className={styles.text}>
-              Add an additional layer of security to your account during login.
-            </p>
-          </div>
-          <div className={styles.action}>
-            <SimpleSwitch />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   )

@@ -1,0 +1,14 @@
+.list-item {
+  @apply text-[15px] gap-2 flex rounded-md items-center justify-start  text-menu-text cursor-pointer hover:bg-accent-gray2 w-full;
+  transition: all 0.2s ease;
+  .icon {
+    @apply size-5;
+  }
+
+  &:nth-child(6) {
+    @apply mb-4;
+  }
+}
+.active {
+  @apply bg-accent-gray;
+}

@@ -1,0 +1,29 @@
+.item {
+  @apply bg-secondary/80 px-10 py-4 rounded-r-lg h-[535px];
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-lg;
+  }
+  .title {
+    @apply text-text2 font-semibold text-[17px] mb-3;
+  }
+
+  .info {
+    @apply flex items-center gap-3 mt-3;
+    .group {
+      @apply flex flex-col justify-center;
+      span {
+        @apply text-gray text-[15px] font-semibold;
+      }
+
+      .input {
+        @apply bg-border px-2 py-0.5 rounded-sm text-text2 min-w-[250px] focus:shadow-md transition-all;
+      }
+    }
+  }
+}

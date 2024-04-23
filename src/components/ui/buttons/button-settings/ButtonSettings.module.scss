@@ -1,0 +1,3 @@
+.btn {
+  @apply text-menu-text active:translate-y-[1px] border-border transition-all cursor-pointer hover:bg-accent-gray border-2 border-solid px-3 rounded-md py-1 text-[15px];
+}

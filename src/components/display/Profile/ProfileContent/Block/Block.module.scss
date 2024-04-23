@@ -1,17 +1,20 @@
 .block {
-  @apply mt-8;
+  @apply mt-3;
+
+  &:not(:first-child) {
+    @apply mt-7;
+  }
   .title {
     @apply text-text2 font-semibold text-[17px] mb-3;
   }
 
   .content {
-    @apply mt-4 flex flex-col gap-4;
+    @apply mt-4 flex flex-col gap-6;
     .row {
       @apply flex justify-between items-center;
 
       .group {
         .subTitle {
-          @apply text-text;
         }
 
         .text {
@@ -20,8 +23,8 @@
       }
 
       .action {
-        .btn {
-          @apply text-menu-text border-border transition-all cursor-pointer hover:bg-accent-gray border-2 border-solid px-3 rounded-md py-1 text-[15px];
+        .chevron {
+          @apply transition-all hover:bg-accent-gray size-6 cursor-pointer rounded-md active:scale-95 text-gray;
         }
       }
     }

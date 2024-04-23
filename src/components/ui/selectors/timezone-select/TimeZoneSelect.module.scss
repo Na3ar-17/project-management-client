@@ -1,0 +1,15 @@
+.trigger {
+  @apply text-gray text-base font-[600] cursor-pointer;
+}
+
+.content {
+  @apply bg-border;
+
+  .group {
+    @apply flex flex-col;
+  }
+
+  .item {
+    @apply text-menu-text p-0 py-2 px-1 hover:bg-primary/40 cursor-pointer;
+  }
+}
