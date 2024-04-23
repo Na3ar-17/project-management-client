@@ -15,10 +15,10 @@ import { useState } from 'react'
 interface IProps {}
 
 const ProfileContent: NextPage<IProps> = ({}) => {
-  const [active, setActive] = useState<string>('my-settings')
+  const [active, setActive] = useState<string>('my-account')
   return (
     <div className={styles.content}>
-      <Tabs defaultValue="my-settings" className={styles.tabs}>
+      <Tabs defaultValue="my-account" className={styles.tabs}>
         <TabsList className={styles.list}>
           <p className={styles.title}>Account</p>
           <FullUserAvatar className="ml-2" />

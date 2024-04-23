@@ -10,7 +10,7 @@ import {
 import { Pencil, Trash } from 'lucide-react'
 
 import styles from './ContextMenuComponent.module.scss'
-import AlertDialogComponent from '../alert-dialog-component/AlertDialogComponent'
+import AlertDialogComponent from '../windows/confirm-delete-component/AlertDialogComponent'
 import { useDialog } from '@/zustand/useDialog'
 
 interface IProps {

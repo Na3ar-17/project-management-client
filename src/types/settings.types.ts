@@ -8,6 +8,7 @@ export interface ISettingsContentData {
 
 export interface IContent {
   subTitle: string
+  disabled?: boolean
   text: string
   actions: EnumSettingsContentActions
   buttonText?: string
@@ -22,6 +23,9 @@ export enum EnumSettingsContentActions {
   switch = 'switch',
   chevron = 'chevron',
   timeZone = 'timeZone',
+  commingSoon = 'commingSoon',
+  language = 'language',
+  theme = 'theme',
 }
 
 export enum EnumSettingsTabsValue {
@@ -41,4 +45,9 @@ export interface ITabTriggerData {
 export interface ITabContentData {
   value: EnumSettingsTabsValue
   childrens: ISettingsContentData[]
+}
+
+export interface ILanguagesData {
+  label: string
+  value: string
 }

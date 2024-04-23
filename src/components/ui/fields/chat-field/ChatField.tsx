@@ -4,7 +4,7 @@ import { forwardRef, useRef } from 'react'
 import AvatarComponent, { IUserAvatarProps } from '../../avatar/AvatarComponent'
 import styles from './ChatField.module.scss'
 import { File, Mic, Paperclip, Send } from 'lucide-react'
-import TooltipComponent from '../../TooltipComponent/TooltipComponent'
+import TooltipComponent from '../../tooltip-component/TooltipComponent'
 
 interface IProps {
   placeholder?: string

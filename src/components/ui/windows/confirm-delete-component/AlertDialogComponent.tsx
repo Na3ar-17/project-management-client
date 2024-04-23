@@ -8,7 +8,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '../shadcn/ui/alert-dialog'
+} from '../../shadcn/ui/alert-dialog'
 import { useDialog } from '@/zustand/useDialog'
 import styles from './AlertDialogComponent.module.scss'
 import cn from 'clsx'

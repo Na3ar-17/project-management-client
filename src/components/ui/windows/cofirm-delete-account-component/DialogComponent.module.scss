@@ -1,0 +1,11 @@
+.content {
+  .body {
+    .confirmEmail {
+      @apply w-full flex justify-center items-center;
+    }
+  }
+
+  .footer {
+    @apply flex flex-col gap-2 items-center;
+  }
+}

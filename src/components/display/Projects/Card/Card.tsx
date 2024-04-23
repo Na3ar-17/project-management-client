@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import { useState } from 'react'
-import AlertDialogComponent from '@/components/ui/alert-dialog-component/AlertDialogComponent'
+import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
 
 const Card: NextPage<IProjectCard> = ({
   end,

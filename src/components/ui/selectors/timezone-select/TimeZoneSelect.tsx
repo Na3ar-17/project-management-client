@@ -15,7 +15,7 @@ import { useState } from 'react'
 
 interface IProps {}
 
-const TimeZoneSelect: NextPage<IProps> = ({}) => {
+const TimeZoneSelect: NextPage<IProps> = () => {
   const [time, setTime] = useState('(GMT+02:00) Europe/Warsaw (GMT+2)')
   return (
     <Select>

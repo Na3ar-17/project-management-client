@@ -2,6 +2,7 @@ import { COLORS } from '@/constants/colors.constans'
 import {
   EnumSettingsContentActions,
   EnumSettingsTabsValue,
+  ILanguagesData,
   ISettingsContentData,
   ITabContentData,
   ITabTriggerData,
@@ -107,8 +108,8 @@ export const mySettingsContentData: ISettingsContentData[] = [
       {
         subTitle: 'Cookie settings',
         text: 'Customize cookies. See {link to cookie notice} for details.',
-        actions: EnumSettingsContentActions.button,
-        buttonText: 'Create modal window for cookie settings',
+        actions: EnumSettingsContentActions.commingSoon,
+        disabled: true,
       },
       {
         subTitle: 'Profile discoverability',
@@ -144,8 +145,8 @@ export const languageContentData: ISettingsContentData[] = [
       {
         subTitle: 'Language',
         text: 'Change the language used in the user interface.',
-        actions: EnumSettingsContentActions.button,
-        buttonText: 'Create language select',
+        actions: EnumSettingsContentActions.commingSoon,
+        disabled: true,
       },
     ],
   },
@@ -158,8 +159,8 @@ export const workspaceSettingsData: ISettingsContentData[] = [
       {
         subTitle: 'Theme',
         text: 'Customize how Proquill looks on your device.',
-        actions: EnumSettingsContentActions.button,
-        buttonText: 'Create theme select',
+        actions: EnumSettingsContentActions.commingSoon,
+        disabled: true,
       },
     ],
   },
@@ -201,4 +202,20 @@ export const timeZoneData: { value: string }[] = [
   {
     value: '(GMT+02:00) Europe/Berlin (GMT+2)',
   },
+]
+
+export const languagesData: ILanguagesData[] = [
+  { label: 'English', value: 'English' },
+  { label: 'Español', value: 'Spanish' },
+  { label: 'Français', value: 'French' },
+  { label: 'Deutsch', value: 'German' },
+  { label: '中文', value: 'Chinese' },
+  { label: '日本語', value: 'Japanese' },
+  { label: '한국어', value: 'Korean' },
+  { label: 'العربية', value: 'Arabic' },
+  { label: 'Português', value: 'Portuguese' },
+  { label: 'Italiano', value: 'Italian' },
+  { label: 'Nederlands', value: 'Dutch' },
+  { label: 'Svenska', value: 'Swedish' },
+  { label: 'Українська', value: 'Ukrainian' },
 ]
