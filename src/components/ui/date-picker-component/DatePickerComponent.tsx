@@ -31,7 +31,6 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
 }) => {
   const [selected, setSelected] = useState<Date>()
   const { isShow, setIsShow, ref } = useOutside(false)
-  console.log(end)
 
   const handleDaySelect: SelectSingleEventHandler = (date) => {
     const ISOdate = date?.toISOString()
@@ -45,12 +44,10 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
     }
   }
 
-  console.log(end)
-
   return (
     <div className="relative" ref={ref}>
       <button onClick={() => setIsShow(!isShow)}>
-        <DateBadge date={start} deadLine={dayjs(end).format('MM.DD.YYYY')} />
+        <DateBadge date={start} deadLine={dayjs(end).format('DD.MM.YYYY')} />
       </button>
 
       {disabled !== true && isShow && (

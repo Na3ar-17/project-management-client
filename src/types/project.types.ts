@@ -5,7 +5,7 @@ export interface IProjectCard {
   image?: string
   date: {
     start: string
-    end?: string
+    end: string
   }
 }
 

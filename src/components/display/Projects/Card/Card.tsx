@@ -107,14 +107,14 @@ const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
           )}
           <p className={styles.time}>
             <Controller
-              name="date"
+              name="date.end"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <DatePickerComponent
-                  onChange={() => onChange(value.end)}
+                  onChange={onChange}
                   disabled={isEdit ? false : true}
-                  start={date.start}
-                  end={date.end || value.end || ''}
+                  end={value ? value : date.end || ''}
+                  start={date.start || ''}
                 />
               )}
             />
