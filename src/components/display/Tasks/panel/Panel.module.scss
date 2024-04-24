@@ -1,0 +1,27 @@
+.panel {
+  @apply flex items-center justify-between mt-3 pb-3 px-4 border-2 border-border border-solid border-l-0 border-r-0 border-t-0;
+
+  .views,
+  .actions {
+    @apply flex gap-3 items-center;
+  }
+
+  .views {
+    @apply gap-4;
+  }
+
+  .actions {
+    .action {
+      @apply cursor-pointer flex items-center font-[500] text-text2 gap-1 bg-accent-gray2/50 rounded-lg px-2 py-1 border-2 border-solid border-border;
+      p {
+      }
+      .icon {
+        @apply size-[18px];
+      }
+    }
+
+    .add-task {
+      @apply bg-blue text-text border-blue;
+    }
+  }
+}

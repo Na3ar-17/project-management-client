@@ -1,10 +1,11 @@
 import { NextPage } from 'next'
 import styles from './KanBanColumn.module.scss'
 import { BsThreeDots } from 'react-icons/bs'
-import { ICategory, ITaskCard } from '@/types/tasks.types'
+import { EnumTaskStatus, ICategory, ITaskCard } from '@/types/tasks.types'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
 import KanBanCard from '../kanban-card/KanBanCard'
 import { filterTasks } from '../../utils/filter-tasks'
+import AddCard from '../add-card/AddCard'
 interface IProps {
   category: ICategory
   tasks: ITaskCard[]

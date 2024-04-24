@@ -6,8 +6,10 @@ import {
   IComment,
   ISubTaskRow,
   ITaskCard,
+  IViewType,
 } from '@/types/tasks.types'
 import { membersData } from './members.data'
+import { LayoutTemplate, List } from 'lucide-react'
 
 //TODO create data for kanban card
 
@@ -176,4 +178,9 @@ export const taskCardsData: ITaskCard[] = [
     comments: [],
     status: EnumTaskStatus.inQueue,
   },
+]
+
+export const viewTypesData: IViewType[] = [
+  { Icon: LayoutTemplate, lable: 'Board', value: 'board' },
+  { Icon: List, lable: 'List', value: 'list' },
 ]

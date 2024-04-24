@@ -26,17 +26,25 @@ export const sideBarElementData: ISideBarElement[] = [
         text: 'Chat App',
         href: '/home',
         childrens: [
-          { text: 'Dashboard', href: '/', Icon: LayoutDashboard },
-          { text: 'Members', href: '/', Icon: UsersRound },
+          {
+            text: 'Dashboard',
+            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/dashboard`,
+            Icon: LayoutDashboard,
+          },
+          {
+            text: 'Members',
+            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/members`,
+            Icon: UsersRound,
+          },
           {
             text: 'Team chat',
             Icon: MessageCircleMore,
-            href: '/home',
+            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/chat`,
           },
           {
             text: 'Tasks',
             Icon: ListTodo,
-            href: '/home',
+            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/tasks`,
           },
         ],
       },

@@ -10,7 +10,7 @@ import styles from './Card.module.scss'
 
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
-import { useRef, useState } from 'react'
+import { ChangeEventHandler, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import ImageComponent from './ImageComponent/ImageComponent'
 
@@ -32,6 +32,7 @@ const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [imageUrl, setImageUrl] = useState<string>('')
 
+  //TODO add type for event
   const handleUploadImage = (event: any) => {
     let img = event.target.files[0]
     setImageUrl(URL.createObjectURL(img))
@@ -56,11 +57,16 @@ const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
             <div className={styles['no-image']}>
               {isEdit ? (
                 <>
-                  <ImageUp
-                    onClick={() => inputRef?.current?.click()}
-                    className={styles.icon}
-                    strokeWidth={1.5}
-                  />
+                  <div className="flex flex-col justify-center items-center">
+                    <ImageUp
+                      onClick={() => inputRef?.current?.click()}
+                      className={styles.icon}
+                      strokeWidth={1.5}
+                    />
+                    <p className="text-sm text-menu-text">
+                      Click to upload Image
+                    </p>
+                  </div>
                   <input
                     type="file"
                     onChange={handleUploadImage}

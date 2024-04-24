@@ -19,6 +19,7 @@ const TransparentField = forwardRef<HTMLInputElement, IProps>(
           placeholder={placeholder}
           {...rest}
           value={value}
+          autoFocus
         />
       </label>
     )

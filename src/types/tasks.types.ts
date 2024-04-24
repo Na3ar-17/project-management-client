@@ -44,3 +44,11 @@ export interface ITaskCard extends IBase {
   comments?: IComment[]
   status: EnumTaskStatus
 }
+
+export interface IViewType {
+  Icon: React.ElementType
+  lable: string
+  value: TypeViewType
+}
+
+export type TypeViewType = 'board' | 'list'
