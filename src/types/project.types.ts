@@ -1,13 +1,17 @@
 export interface IProjectCard {
   id: string
   name: string
-  start: string
-  end: string
   slug?: string
   image?: string
+  date: {
+    start: string
+    end?: string
+  }
 }
 
 export type TypeSideBarSubMenuElement = Omit<
   IProjectCard,
-  'id' | 'start' | 'end' | 'image'
+  'id' | 'date' | 'image'
 >
+
+export type TypeEditProjectCard = Omit<IProjectCard, 'slug'>

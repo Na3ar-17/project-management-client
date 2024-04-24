@@ -7,14 +7,14 @@ import {
   workspaceTabsTriggerData,
 } from '@/data/settings.data'
 import { NextPage } from 'next'
-import styles from './ProfileContent.module.scss'
+import styles from './SettingsContent.module.scss'
 import TabsTriggerComponent from './TabsTriggerComponent/TabsTriggerComponent'
 import TabContent from './TabContent/TabContent'
 import { useState } from 'react'
 
 interface IProps {}
 
-const ProfileContent: NextPage<IProps> = ({}) => {
+const SettingsContent: NextPage<IProps> = ({}) => {
   const [active, setActive] = useState<string>('my-account')
   return (
     <div className={styles.content}>
@@ -46,4 +46,4 @@ const ProfileContent: NextPage<IProps> = ({}) => {
   )
 }
 
-export default ProfileContent
+export default SettingsContent

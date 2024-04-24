@@ -1,47 +1,123 @@
-import { NextPage } from 'next'
-import styles from './Card.module.scss'
-import { ImageIcon } from 'lucide-react'
-import { IProjectCard } from '@/types/project.types'
-import Image from 'next/image'
+'use client'
 import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
-import Link from 'next/link'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
-import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
-import { useState } from 'react'
-import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
+import { IProjectCard, TypeEditProjectCard } from '@/types/project.types'
+import cn from 'clsx'
+import { ImageIcon, ImageUp } from 'lucide-react'
+import { NextPage } from 'next'
+import Link from 'next/link'
+import styles from './Card.module.scss'
 
-const Card: NextPage<IProjectCard> = ({
-  end,
-  id,
-  name,
-  start,
-  image,
-  slug,
-}) => {
+import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
+import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
+import { useRef, useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import ImageComponent from './ImageComponent/ImageComponent'
+
+const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
+  const [isEdit, setIsEdit] = useState<boolean>(false)
+  const {
+    register,
+    control,
+    formState: { errors },
+    setError,
+  } = useForm<TypeEditProjectCard>({
+    mode: 'onChange',
+    defaultValues: {
+      name: name,
+      image: image,
+    },
+  })
+
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [imageUrl, setImageUrl] = useState<string>('')
+
+  const handleUploadImage = (event: any) => {
+    let img = event.target.files[0]
+    setImageUrl(URL.createObjectURL(img))
+  }
+
+  const handleDeleteImage = () => {
+    setImageUrl('')
+  }
+
   return (
-    <ContextMenuComponent id={id}>
-      <div className={styles.card}>
-        {image ? (
-          <div className={styles.image}>
-            <Image
-              src={image}
+    <ContextMenuComponent onEdit={() => setIsEdit(!isEdit)} id={id}>
+      <div className={cn(styles.card, isEdit && styles.edit)}>
+        {!imageUrl ? (
+          image ? (
+            <ImageComponent
+              onImageDelete={handleDeleteImage}
               alt={name}
-              className={styles.picture}
-              width={100}
-              height={100}
+              image={image}
+              isEdit={isEdit}
             />
-          </div>
+          ) : (
+            <div className={styles['no-image']}>
+              {isEdit ? (
+                <>
+                  <ImageUp
+                    onClick={() => inputRef?.current?.click()}
+                    className={styles.icon}
+                    strokeWidth={1.5}
+                  />
+                  <input
+                    type="file"
+                    onChange={handleUploadImage}
+                    ref={inputRef}
+                    hidden
+                  />
+                </>
+              ) : (
+                <ImageIcon strokeWidth={1.5} className={styles.icon} />
+              )}
+            </div>
+          )
         ) : (
-          <div className={styles['no-image']}>
-            <ImageIcon strokeWidth={1.5} className={styles.icon} />
-          </div>
+          <ImageComponent
+            onImageDelete={handleDeleteImage}
+            isEdit={isEdit}
+            alt={name}
+            image={imageUrl || ''}
+          />
         )}
         <div className={styles.content}>
-          <Link href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/dashboard`}>
-            <p className={styles.name}>{name}</p>
-          </Link>
+          {isEdit ? (
+            <Controller
+              name="name"
+              control={control}
+              render={({ field: { onChange, value } }) => {
+                return (
+                  <TransparentField
+                    {...register('name')}
+                    className="text-lg w-full"
+                    value={value}
+                    onChange={onChange}
+                  />
+                )
+              }}
+            />
+          ) : (
+            <Link
+              className="w-fit"
+              href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/dashboard`}
+            >
+              <p className={styles.name}>{name}</p>
+            </Link>
+          )}
           <p className={styles.time}>
-            <DateBadge date={start} deadLine={end} />
+            <Controller
+              name="date"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <DatePickerComponent
+                  onChange={() => onChange(value.end)}
+                  disabled={isEdit ? false : true}
+                  start={date.start}
+                  end={date.end || value.end || ''}
+                />
+              )}
+            />
           </p>
         </div>
       </div>

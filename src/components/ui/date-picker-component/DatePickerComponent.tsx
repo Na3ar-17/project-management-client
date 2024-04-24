@@ -10,22 +10,28 @@ import { useState } from 'react'
 import { useOutside } from '@/hooks/useOutside'
 import { X } from 'lucide-react'
 import './DatePicker.scss'
+import DateBadge from '../badges/date-badge/DateBadge'
 
 dayjs.extend(LocalizedFormat)
 
 interface IDatePicker {
   onChange: (value: string) => void
-  value: string
+  end: string
   position?: 'left' | 'right'
+  disabled?: boolean
+  start: string
 }
 
 const DatePickerComponent: NextPage<IDatePicker> = ({
   onChange,
-  value,
+  end,
   position = 'right',
+  disabled = true,
+  start,
 }) => {
   const [selected, setSelected] = useState<Date>()
   const { isShow, setIsShow, ref } = useOutside(false)
+  console.log(end)
 
   const handleDaySelect: SelectSingleEventHandler = (date) => {
     const ISOdate = date?.toISOString()
@@ -38,21 +44,17 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
       onChange('')
     }
   }
+
+  console.log(end)
+
   return (
     <div className="relative" ref={ref}>
       <button onClick={() => setIsShow(!isShow)}>
-        {value ? dayjs(value).format('LL') : 'Click for select'}
+        <DateBadge date={start} deadLine={dayjs(end).format('MM.DD.YYYY')} />
       </button>
-      {value && (
-        <button
-          className="absolute -top-2 -right-4 opacity-30 hover:opacity-100 transition-opacity"
-          onClick={() => onChange('')}
-        >
-          <X size={14} />
-        </button>
-      )}
-      {isShow && (
-        <div className={'absolute p-2.5  bg-secondary z-10 shadow rounded-lg'}>
+
+      {disabled !== true && isShow && (
+        <div className={'absolute  p-2.5  bg-border z-10 shadow rounded-lg'}>
           <DayPicker
             fromYear={2024}
             toYear={2050}

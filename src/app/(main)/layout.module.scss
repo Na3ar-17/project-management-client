@@ -10,7 +10,7 @@
 
   .toggle-box {
     transition: all 0.3s ease;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 100%;
     transform: translate(-50%, -50%);

@@ -1,0 +1,47 @@
+.image {
+  @apply w-full relative;
+  aspect-ratio: 16/8;
+  .picture {
+    @apply rounded-md;
+    width: inherit;
+    aspect-ratio: 16/8;
+  }
+
+  .delete {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @apply text-red cursor-pointer transition-all size-8;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+
+    &:hover {
+      @apply size-7;
+    }
+  }
+
+  &:hover {
+    .delete {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @apply bg-accent-gray/30 w-full transition-all rounded-md;
+    aspect-ratio: 16/8;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &:hover .overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+}

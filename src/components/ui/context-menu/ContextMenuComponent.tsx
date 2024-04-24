@@ -16,15 +16,16 @@ import { useDialog } from '@/zustand/useDialog'
 interface IProps {
   children: React.ReactNode
   id: string
+  onEdit: () => void
 }
 
-const ContextMenuComponent: NextPage<IProps> = ({ children, id }) => {
+const ContextMenuComponent: NextPage<IProps> = ({ children, id, onEdit }) => {
   const { onOpen } = useDialog()
   return (
     <ContextMenu modal={false} key={id}>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
       <ContextMenuContent className={styles.content}>
-        <ContextMenuItem className={styles.item}>
+        <ContextMenuItem onClick={onEdit} className={styles.item}>
           <p>
             <Pencil size={13} className={styles.icon} />
             <span>Edit</span>

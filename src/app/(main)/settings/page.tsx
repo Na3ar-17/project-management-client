@@ -1,7 +1,8 @@
+import Settings from '@/components/display/Settings/Settings'
 import { NextPage } from 'next'
 
 const page: NextPage = () => {
-  return <div>settings</div>
+  return <Settings />
 }
 
 export default page

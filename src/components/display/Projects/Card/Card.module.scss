@@ -12,21 +12,11 @@
     }
   }
 
-  .image {
-    @apply w-full;
-    aspect-ratio: 16/8;
-    .picture {
-      @apply rounded-md;
-      width: inherit;
-      aspect-ratio: 16/8;
-    }
-  }
-
   .content {
     @apply flex flex-col pt-3 px-1;
 
     .name {
-      @apply text-xl text-text;
+      @apply text-xl text-text w-fit;
 
       &:hover {
         text-decoration: underline;
@@ -43,4 +33,7 @@
     -moz-box-shadow: 0px 0px 15px -8px rgba(66, 68, 90, 1);
     box-shadow: 0px 0px 15px -8px rgba(66, 68, 90, 1);
   }
+}
+
+.edit {
 }

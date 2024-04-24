@@ -13,9 +13,8 @@ const Projects: NextPage = () => {
         <AddCard />
         {projectCardData.map((card) => (
           <Card
-            end={card.end}
             id={card.id}
-            start={card.start}
+            date={card.date}
             name={card.name}
             image={card.image}
             slug={card.slug}
