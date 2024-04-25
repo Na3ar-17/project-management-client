@@ -1,7 +1,7 @@
 'use client'
 import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
-import { IProjectCard, TypeEditProjectCard } from '@/types/project.types'
+import { IProjectResponse, TypeEditProjectCard } from '@/types/project.types'
 import cn from 'clsx'
 import { ImageIcon, ImageUp } from 'lucide-react'
 import { NextPage } from 'next'
@@ -14,7 +14,7 @@ import { ChangeEventHandler, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import ImageComponent from './ImageComponent/ImageComponent'
 
-const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
+const Card: NextPage<IProjectResponse> = ({ id, name, date, image, slug }) => {
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const {
     register,
@@ -112,7 +112,7 @@ const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
               <p className={styles.name}>{name}</p>
             </Link>
           )}
-          <p className={styles.time}>
+          <div className={styles.time}>
             <Controller
               name="date.end"
               control={control}
@@ -125,7 +125,7 @@ const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
                 />
               )}
             />
-          </p>
+          </div>
         </div>
       </div>
     </ContextMenuComponent>

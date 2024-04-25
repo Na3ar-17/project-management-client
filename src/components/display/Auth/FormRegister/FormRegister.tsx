@@ -21,15 +21,15 @@ const FormRegister: NextPage<IProps> = ({}) => {
   })
 
   const onSubmit: SubmitHandler<TypeAuthFormRegister> = (values) => {
-    const { email, password, repetPassword, fullName } = values
+    const { email, password, repeatPassword, fullName } = values
 
     if (!isValidEmail(email)) {
       setError('email', { type: 'onChange', message: 'Invalid email' })
       return
     }
 
-    if (repetPassword !== password) {
-      setError('repetPassword', {
+    if (repeatPassword !== password) {
+      setError('repeatPassword', {
         type: 'onChange',
         message: 'Passwords must match',
       })
@@ -84,8 +84,8 @@ const FormRegister: NextPage<IProps> = ({}) => {
         placeholder="Repet password"
         type="password"
         Icon={Repeat2}
-        error={errors.repetPassword}
-        {...register('repetPassword', {
+        error={errors.repeatPassword}
+        {...register('repeatPassword', {
           required: {
             value: true,
             message: 'Passwords must match',

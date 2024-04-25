@@ -1,5 +1,8 @@
-import { IProjectCard, TypeSideBarSubMenuElement } from '@/types/project.types'
-export const projectCardData: IProjectCard[] = [
+import {
+  IProjectResponse,
+  TypeSideBarSubMenuElement,
+} from '@/types/project.types'
+export const projectCardData: IProjectResponse[] = [
   {
     id: 'asaaa',
     name: 'Social Media',

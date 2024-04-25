@@ -22,24 +22,26 @@ const SettingsContent: NextPage<IProps> = ({}) => {
         <TabsList className={styles.list}>
           <p className={styles.title}>Account</p>
           <FullUserAvatar className="ml-2" />
-          {tabsTriggerData.map((el) => (
+          {tabsTriggerData.map((el, index) => (
             <TabsTriggerComponent
               isActive={active === el.value}
               setActive={() => setActive(el.value)}
               data={el}
+              key={index}
             />
           ))}
           <p className={styles.title}>Workspace</p>
-          {workspaceTabsTriggerData.map((el) => (
+          {workspaceTabsTriggerData.map((el, index) => (
             <TabsTriggerComponent
               isActive={active === el.value}
               setActive={() => setActive(el.value)}
               data={el}
+              key={index}
             />
           ))}
         </TabsList>
-        {tabsContentData.map((el) => (
-          <TabContent key={el.value} data={el} />
+        {tabsContentData.map((el, index) => (
+          <TabContent key={index} data={el} />
         ))}
       </Tabs>
     </div>

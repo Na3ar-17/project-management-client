@@ -28,8 +28,11 @@ const Block: NextPage<IProps> = ({ data }) => {
       <Separator className="mb-2" />
 
       <div className={styles.content}>
-        {content.map((el) => (
-          <div className={cn(styles.row, el.disabled && styles.disabled)}>
+        {content.map((el, index) => (
+          <div
+            key={index}
+            className={cn(styles.row, el.disabled && styles.disabled)}
+          >
             <div className={styles.group}>
               <span
                 className={cn(styles.subTitle, el.subTitleStyle || 'text-text')}

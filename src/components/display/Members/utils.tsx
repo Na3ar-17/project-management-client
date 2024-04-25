@@ -4,10 +4,10 @@ import styles from './utils.module.scss'
 export const memberStatusFormat = (text: string) => {
   switch (text) {
     case 'Active':
-      return <p className={styles['green-dot']}>{text}</p>
+      return <span className={styles['green-dot']}>{text}</span>
 
     default:
-      return <p className={styles['red-dot']}>{text}</p>
+      return <span className={styles['red-dot']}>{text}</span>
   }
 }
 
@@ -15,25 +15,25 @@ export const userRoleFormat = (text: string) => {
   switch (text) {
     case 'Creator':
       return (
-        <p className={styles.role}>
+        <span className={styles.role}>
           <Crown style={{ color: '#eae02a' }} className={styles.icon} />
           {text}
-        </p>
+        </span>
       )
 
-    case 'Moderator':
+    case 'Admin':
       return (
-        <p className={styles.role}>
+        <span className={styles.role}>
           <ShieldBanIcon style={{ color: '#c62fff' }} className={styles.icon} />
           {text}
-        </p>
+        </span>
       )
     default:
       return (
-        <p className={styles.role}>
+        <span className={styles.role}>
           <User className={styles.icon} />
           {text}
-        </p>
+        </span>
       )
   }
 }

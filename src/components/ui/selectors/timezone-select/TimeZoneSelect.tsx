@@ -29,6 +29,7 @@ const TimeZoneSelect: NextPage<IProps> = () => {
               className={styles.item}
               onClick={() => setTime(el.value)}
               value={`GMT+2 ${index}`}
+              key={index}
             >
               {el.value}
             </SelectItem>

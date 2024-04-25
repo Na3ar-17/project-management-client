@@ -5,7 +5,7 @@
     content: '';
     position: absolute;
     top: 55%;
-    left: -8%;
+    left: -15%;
     transform: translate(-50%, -50%);
     @apply bg-green-ligh2 w-2 h-2 rounded-full;
   }
@@ -18,14 +18,14 @@
     content: '';
     position: absolute;
     top: 55%;
-    left: -8%;
+    left: -15%;
     transform: translate(-50%, -50%);
     @apply bg-light-red w-2 h-2 rounded-full;
   }
 }
 
 .role {
-  @apply relative;
+  @apply relative flex items-center gap-1.5;
   .icon {
     position: absolute;
     top: 50%;

@@ -2,11 +2,11 @@ export type TypeAuthFormRegister = {
   fullName: string
   email: string
   password: string
-  repetPassword: string
+  repeatPassword: string
   companyName?: string
 }
 
 export type TypeAuthFormLogin = Omit<
   TypeAuthFormRegister,
-  'fullName' | 'repetPassword' | 'companyName'
+  'fullName' | 'repeatPassword' | 'companyName'
 >

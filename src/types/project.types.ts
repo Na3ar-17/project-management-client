@@ -1,5 +1,6 @@
-export interface IProjectCard {
-  id: string
+import { IBase } from './base.type'
+
+export interface IProjectResponse extends IBase {
   name: string
   slug?: string
   image?: string
@@ -10,8 +11,8 @@ export interface IProjectCard {
 }
 
 export type TypeSideBarSubMenuElement = Omit<
-  IProjectCard,
+  IProjectResponse,
   'id' | 'date' | 'image'
 >
 
-export type TypeEditProjectCard = Omit<IProjectCard, 'slug'>
+export type TypeEditProjectCard = Omit<IProjectResponse, 'slug'>

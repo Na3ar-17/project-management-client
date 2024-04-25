@@ -38,7 +38,7 @@ export interface ITaskCard extends IBase {
   subTasks?: ISubTaskRow[]
   priority?: EnumTaskPriority
   dueDate: string
-  createdBy: any
+  createdBy: IMembers
   descripton: string
   assigneesers: IMembers[]
   comments?: IComment[]
