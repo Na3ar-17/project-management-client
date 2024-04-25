@@ -35,16 +35,16 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
             {title}
           </p>
           <div className={styles['task_info']}>
-            <p>{taskBadgeStyleFormat(priority || '')}</p>
+            {taskBadgeStyleFormat(priority || '')}
             <DateBadge />
           </div>
           <p className={styles.description}>{descripton}</p>
           <ProgressComponent />
           <div className={styles.users}>
             <div className={styles.group}>
-              {assigneesers.map((el) => {
+              {assigneesers.map((el, index) => {
                 return (
-                  <div className={styles.user}>
+                  <div className={styles.user} key={index}>
                     <AvatarComponent imgLink={el.imgLink} size={30} />
                   </div>
                 )

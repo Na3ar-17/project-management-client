@@ -92,6 +92,7 @@ const Card: NextPage<IProjectCard> = ({ id, name, date, image, slug }) => {
             <Controller
               name="name"
               control={control}
+              defaultValue={name}
               render={({ field: { onChange, value } }) => {
                 return (
                   <TransparentField

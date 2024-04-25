@@ -26,7 +26,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <li className={`${styles.element} ${isOpen ? styles.open : ''}`}>
+    <div className={`${styles.element} ${isOpen ? styles.open : ''}`}>
       <div className={styles.title}>
         <span>
           <Link href={href}>
@@ -56,7 +56,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
           ))}
         </div>
       )}
-    </li>
+    </div>
   )
 }
 

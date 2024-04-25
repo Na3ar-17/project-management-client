@@ -12,8 +12,8 @@ const KanbanView: NextPage = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>
-        {tasksCategoryData.map((category) => (
-          <KanBanColumn category={category} tasks={taskCardsData} />
+        {tasksCategoryData.map((category, index) => (
+          <KanBanColumn key={index} category={category} tasks={taskCardsData} />
         ))}
       </div>
     </DragDropContext>

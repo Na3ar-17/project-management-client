@@ -71,11 +71,12 @@ const SheetComponent: NextPage<IProps> = ({ data }) => {
               </div>
               <div className={cn(styles.block, styles.users)}>
                 <p className={styles.label}>Assigneesers</p>
-                {assigneesers.map((el) => {
+                {assigneesers.map((el, index) => {
                   return (
                     <UserBadge
                       fullName={el.fullName}
                       imgLink={el.imgLink || ''}
+                      key={index}
                     />
                   )
                 })}

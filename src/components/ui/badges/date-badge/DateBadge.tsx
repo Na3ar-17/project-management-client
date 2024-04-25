@@ -8,16 +8,16 @@ interface IProps {
 
 const DateBadge: NextPage<IProps> = ({ date = '18 April 2024', deadLine }) => {
   return (
-    <span className={styles.badge}>
+    <p className={styles.badge}>
       <CalendarDays className={styles.icon} />
       {deadLine ? (
-        <p className={styles.date}>
+        <span className={styles.date}>
           {date} - {deadLine}
-        </p>
+        </span>
       ) : (
-        <p className={styles.date}>{date}</p>
+        <span className={styles.date}>{date}</span>
       )}
-    </span>
+    </p>
   )
 }
 

@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={figtree.className}>
+      <body suppressHydrationWarning={true} className={figtree.className}>
         <Suspense fallback={<Loader />}>{children}</Suspense>
       </body>
     </html>

@@ -26,7 +26,7 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
       }`}
     >
       <div className={styles.body}>
-        <ul className={styles.items}>
+        <div className={styles.items}>
           {sideBarElementData.map((item, index) => (
             <SideBarElement
               Icon={item.Icon}
@@ -39,7 +39,7 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
               childrens={item.childrens}
             />
           ))}
-        </ul>
+        </div>
       </div>
     </aside>
   )

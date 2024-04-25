@@ -10,7 +10,7 @@ const TasksBlock: NextPage<IProps> = ({}) => {
     <div className={styles.container}>
       <p className={styles.title}>Tasks Progress</p>
       <ul className={styles.list}>
-        <ScrollArea type="hover" className="h-[120px] ">
+        <ScrollArea type="hover" className="h-[120px]">
           {subTaskRowData.map((el, index) => (
             <TaskRow key={index} data={el} />
           ))}

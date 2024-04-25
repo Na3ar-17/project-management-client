@@ -16,8 +16,13 @@ const Panel: NextPage = () => {
   return (
     <div className={styles.panel}>
       <div className={styles.views}>
-        {viewTypesData.map((el) => (
-          <ViewType onChange={() => setType(el.value)} type={type} data={el} />
+        {viewTypesData.map((el, index) => (
+          <ViewType
+            key={index}
+            onChange={() => setType(el.value)}
+            type={type}
+            data={el}
+          />
         ))}
       </div>
 
