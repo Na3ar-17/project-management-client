@@ -3,13 +3,17 @@ import { IProjectResponse } from './project.types'
 
 export interface IUser extends IBase {
   fullName: string
-  role?: EnumUserRole
   email: string
   imgLink?: string
   companyName?: string
   projects: IProjectResponse[]
 }
 
-export enum EnumUserRole {
-  User = 'User',
+export interface IAuthResponse {
+  accessToken: string
+  user: IUser
+}
+
+export interface IUpdateUser extends IUser {
+  password?: string
 }

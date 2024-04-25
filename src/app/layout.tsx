@@ -4,6 +4,7 @@ import './globals.scss'
 import { SITE_NAME } from '@/constants/seo.constants'
 import { Suspense } from 'react'
 import Loader from '@/components/ui/loader/Loader'
+import { Providers } from '@/components/display/Providers/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 const figtree = Figtree({ subsets: ['latin'] })
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={figtree.className}>
-        <Suspense fallback={<Loader />}>{children}</Suspense>
+        <Suspense fallback={<Loader />}>
+          <Providers>{children}</Providers>
+        </Suspense>
       </body>
     </html>
   )
