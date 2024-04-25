@@ -2,8 +2,6 @@ import { tasksCategoryData } from '@/data/tasks.data'
 import styles from './TaskStatusBadge.module.scss'
 
 export const taskStatusBadgeFormat = (status: string) => {
-  console.log(1)
-
   switch (status) {
     case 'In Queue':
       return (

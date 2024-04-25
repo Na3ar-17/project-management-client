@@ -50,10 +50,10 @@ export const tasksCategoryData: ICategory[] = [
   },
 ]
 
-export const simpleSelectData = [
-  { value: 'Low', lable: 'Low' },
-  { value: 'Normal', lable: 'Normal' },
-  { value: 'High', lable: 'High' },
+export const simpleSelectData: { lable: string; value: EnumTaskPriority }[] = [
+  { value: EnumTaskPriority.low, lable: 'Low' },
+  { value: EnumTaskPriority.normal, lable: 'Normal' },
+  { value: EnumTaskPriority.high, lable: 'High' },
 ]
 
 export const subTaskRowData: ISubTaskRow[] = [

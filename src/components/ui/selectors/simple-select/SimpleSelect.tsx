@@ -5,6 +5,7 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
+  SelectValue,
 } from '../../shadcn/ui/select'
 import { NextPage } from 'next'
 import styles from './SimpleSelect.module.scss'
@@ -12,21 +13,22 @@ import TaskPriorityBadge from '../../badges/task-priority-badge/TaskPriorityBadg
 import { simpleSelectData } from '@/data/tasks.data'
 
 interface IProps {
-  children: React.ReactNode
+  value: string
+  onChange: (value: string) => void
 }
 
-const SimpleSelect: NextPage<IProps> = ({ children }) => {
+const SimpleSelect: NextPage<IProps> = ({ onChange, value }) => {
   return (
-    <Select>
-      <SelectTrigger>{children}</SelectTrigger>
+    <Select onValueChange={onChange} defaultValue={value}>
+      <SelectTrigger>
+        {value ? <TaskPriorityBadge text={value} /> : 'select'}
+      </SelectTrigger>
       <SelectContent className={styles.content}>
-        <SelectGroup>
-          {simpleSelectData.map((el) => (
-            <SelectItem className={styles.item} value={el.value}>
-              <TaskPriorityBadge text={el.lable} />
-            </SelectItem>
-          ))}
-        </SelectGroup>
+        {simpleSelectData.map((el, index) => (
+          <SelectItem className={styles.item} value={el.value} key={index}>
+            <TaskPriorityBadge text={el.value} />
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   )

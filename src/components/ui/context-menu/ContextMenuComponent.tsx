@@ -16,24 +16,33 @@ import { useDialog } from '@/zustand/useDialog'
 interface IProps {
   children: React.ReactNode
   id: string
-  onEdit: () => void
+  isEdit?: boolean
+  onEdit?: () => void
+  disabled?: boolean
 }
 
-const ContextMenuComponent: NextPage<IProps> = ({ children, id, onEdit }) => {
+const ContextMenuComponent: NextPage<IProps> = ({
+  children,
+  id,
+  onEdit,
+  isEdit = true,
+}) => {
   const { onOpen } = useDialog()
   return (
     <ContextMenu modal={false} key={id}>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
       <ContextMenuContent className={styles.content}>
-        <ContextMenuItem onClick={onEdit} className={styles.item}>
-          <p>
-            <Pencil size={13} className={styles.icon} />
-            <span>Edit</span>
-          </p>
-          <ContextMenuShortcut className={styles.shortCut}>
-            Shift + E
-          </ContextMenuShortcut>
-        </ContextMenuItem>
+        {isEdit && (
+          <ContextMenuItem onClick={onEdit} className={styles.item}>
+            <p>
+              <Pencil size={13} className={styles.icon} />
+              <span>Edit</span>
+            </p>
+            <ContextMenuShortcut className={styles.shortCut}>
+              Shift + E
+            </ContextMenuShortcut>
+          </ContextMenuItem>
+        )}
         <ContextMenuItem onClick={onOpen} className={styles.item}>
           <p>
             <Trash size={13} className={styles.icon} />

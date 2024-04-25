@@ -57,7 +57,7 @@ const SheetContent = React.forwardRef<
       className={cn(
         sheetVariants({ side }),
         className,
-        `bg-secondary top-[70px] `
+        `bg-secondary top-[70px]`
       )}
       {...props}
     >
@@ -104,7 +104,7 @@ const SheetTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
-    className={cn('text-lg font-semibold text-foreground', className)}
+    className={cn('text-lg font-semibold ', className)}
     {...props}
   />
 ))
@@ -116,7 +116,7 @@ const SheetDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Description
     ref={ref}
-    className={cn('text-sm text-muted-foreground', className)}
+    className={cn('text-sm ', className)}
     {...props}
   />
 ))

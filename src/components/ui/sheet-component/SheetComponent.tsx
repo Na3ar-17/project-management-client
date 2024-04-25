@@ -1,5 +1,4 @@
 'use client'
-
 import { NextPage } from 'next'
 import styles from './SheetComponent.module.scss'
 import {
@@ -10,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../shadcn/ui/sheet'
-import { ScrollArea } from '../shadcn/ui/scroll-area'
+import { ScrollArea, ScrollBar } from '../shadcn/ui/scroll-area'
 import { taskBadgeStyleFormat } from '../badges/task-priority-badge/utils'
 import DateBadge from '../badges/date-badge/DateBadge'
 import { Plus } from 'lucide-react'
@@ -21,35 +20,58 @@ import TaskStatusBadge from '../badges/task-status-badge/TaskStatusBadge'
 import TabsComponent from '../tabs-component/TabsComponent'
 import TasksBlock from './TasksBlock/TasksBlock'
 import SimpleSelect from '../selectors/simple-select/SimpleSelect'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
+import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
+import { useSheet } from '@/zustand/useSheet'
 interface IProps {
-  children: React.ReactNode
+  data: ITaskCard
 }
 
-const SheetComponent: NextPage<IProps> = ({ children }) => {
-  const { control } = useForm()
+const SheetComponent: NextPage<IProps> = ({ data }) => {
+  const { isOpen, onClose } = useSheet()
+  const {
+    priority,
+    assigneesers,
+    createdBy,
+    descripton,
+    dueDate,
+    id,
+    status,
+    title,
+    subTasks,
+    comments,
+  } = data
+  const { control, register } = useForm<TypeUpdateTaskCard>({
+    mode: 'onChange',
+    defaultValues: {
+      priority: priority,
+    },
+  })
+
   return (
-    <Sheet>
-      <SheetTrigger asChild>{children}</SheetTrigger>
+    <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className={styles.content}>
-        <SheetHeader>
-          <SheetTitle className="text-2xl">Create Proquill</SheetTitle>
-        </SheetHeader>
-        <div className={styles.body}>
-          <div className={styles.info}>
-            <div className={styles.block}>
-              <p className={styles.label}>Label</p>
-              <div className={styles.group}>
-                <SimpleSelect>{taskBadgeStyleFormat('Low')}</SimpleSelect>
-                <span className={styles.icons}>
-                  <Plus className={styles.icon} />
-                </span>
+        <ScrollArea className="w-full h-full">
+          <SheetHeader>
+            <SheetTitle className="text-2xl">{title}</SheetTitle>
+          </SheetHeader>
+          <div className={styles.body}>
+            <div className={styles.info}>
+              <div className={styles.block}>
+                <p className={styles.label}>Label</p>
+                <div className={styles.group}>
+                  <Controller
+                    name="priority"
+                    control={control}
+                    render={({ field: { onChange, value } }) => (
+                      <SimpleSelect value={value || ''} onChange={onChange} />
+                    )}
+                  />
+                </div>
               </div>
-            </div>
-            <ScrollArea className="w-full h-[70px]">
               <div className={cn(styles.block, styles.users)}>
                 <p className={styles.label}>Assigneesers</p>
-                {membersData.slice(0, 2).map((el) => {
+                {assigneesers.map((el) => {
                   return (
                     <UserBadge
                       fullName={el.fullName}
@@ -61,28 +83,27 @@ const SheetComponent: NextPage<IProps> = ({ children }) => {
                   <Plus className={styles.icon} />
                 </span>
               </div>
-            </ScrollArea>
 
-            <div className={styles.block}>
-              <p className={styles.label}>Status</p>
-              <TaskStatusBadge status="In Queue" />
+              <div className={styles.block}>
+                <p className={styles.label}>Status</p>
+                <TaskStatusBadge status={status} />
+              </div>
+              <div className={styles.block}>
+                <p className={styles.label}>Due Date</p>
+                <DateBadge deadLine={dueDate} />
+              </div>
+              <div className={styles.block}>
+                <p className={styles.label}>Created By</p>
+                <UserBadge
+                  fullName="Nazar Gavrylyk"
+                  imgLink={membersData[1].imgLink || ''}
+                />
+              </div>
             </div>
-            <div className={styles.block}>
-              <p className={styles.label}>Due Date</p>
-              <DateBadge />
-            </div>
-            <div className={styles.block}>
-              <p className={styles.label}>Created By</p>
-              <UserBadge
-                fullName="Nazar Gavrylyk"
-                imgLink={membersData[1].imgLink || ''}
-              />
-            </div>
+            <TabsComponent />
+            <TasksBlock />
           </div>
-          <TabsComponent />
-          <TasksBlock />
-        </div>
-        <SheetFooter></SheetFooter>
+        </ScrollArea>
       </SheetContent>
     </Sheet>
   )

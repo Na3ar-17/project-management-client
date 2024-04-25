@@ -8,11 +8,14 @@ import { membersData } from '@/data/members.data'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import { MessageSquareText } from 'lucide-react'
 import { ITaskCard } from '@/types/tasks.types'
+import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
+import { useSheet } from '@/zustand/useSheet'
 interface IProps {
   data: ITaskCard
 }
 
 const KanBanCard: NextPage<IProps> = ({ data }) => {
+  const { onOpen } = useSheet()
   const {
     assigneesers,
     descripton,
@@ -25,32 +28,37 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
     subTasks,
   } = data
   return (
-    <div className={styles.task}>
-      <SheetComponent>
-        <p className={styles.title}>{title}</p>
-      </SheetComponent>
-      <div className={styles['task_info']}>
-        <p>{taskBadgeStyleFormat(priority || '')}</p>
-        <DateBadge />
-      </div>
-      <p className={styles.description}>{descripton}</p>
-      <ProgressComponent />
-      <div className={styles.users}>
-        <div className={styles.group}>
-          {assigneesers.map((el) => {
-            return (
-              <div className={styles.user}>
-                <AvatarComponent imgLink={el.imgLink} size={30} />
-              </div>
-            )
-          })}
+    <>
+      <ContextMenuComponent isEdit={false} id={id} key={id}>
+        <div className={styles.task}>
+          <p className={styles.title} onClick={onOpen}>
+            {title}
+          </p>
+          <div className={styles['task_info']}>
+            <p>{taskBadgeStyleFormat(priority || '')}</p>
+            <DateBadge />
+          </div>
+          <p className={styles.description}>{descripton}</p>
+          <ProgressComponent />
+          <div className={styles.users}>
+            <div className={styles.group}>
+              {assigneesers.map((el) => {
+                return (
+                  <div className={styles.user}>
+                    <AvatarComponent imgLink={el.imgLink} size={30} />
+                  </div>
+                )
+              })}
+            </div>
+            <div className={styles.icons}>
+              <MessageSquareText className={styles.icon} />
+              <span className={styles['messages-count']}>3</span>
+            </div>
+          </div>
         </div>
-        <div className={styles.icons}>
-          <MessageSquareText className={styles.icon} />
-          <span className={styles['messages-count']}>3</span>
-        </div>
-      </div>
-    </div>
+      </ContextMenuComponent>
+      <SheetComponent data={data} />
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 .content {
-  @apply bg-border;
+  @apply bg-border w-fit;
   .item {
-    @apply cursor-pointer px-3 py-1.5;
+    @apply cursor-pointer px-3 py-1.5 hover:bg-gray/20 transition-all;
   }
 }

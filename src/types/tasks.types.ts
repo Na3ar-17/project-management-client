@@ -27,10 +27,10 @@ export enum EnumTaskPriority {
 }
 
 export enum EnumTaskStatus {
-  inQueue = 'in-queue',
-  onProgress = 'on-progress',
-  testing = 'testing',
-  completed = 'completed',
+  inQueue = 'In Queue',
+  onProgress = 'On Progress',
+  testing = 'Testing',
+  completed = 'Completed',
 }
 
 export interface ITaskCard extends IBase {
@@ -50,5 +50,10 @@ export interface IViewType {
   lable: string
   value: TypeViewType
 }
+
+export type TypeUpdateTaskCard = Omit<
+  ITaskCard,
+  'subTasks' | 'comments' | 'createdAt' | 'updatedAt'
+>
 
 export type TypeViewType = 'board' | 'list'
