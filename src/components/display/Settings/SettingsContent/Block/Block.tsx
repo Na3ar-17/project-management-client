@@ -1,3 +1,4 @@
+'use client'
 import { NextPage } from 'next'
 import styles from './Block.module.scss'
 import { Separator } from '@/components/ui/shadcn/ui/separator'
@@ -15,12 +16,14 @@ import LanguageSelect from '@/components/ui/selectors/language-select/LanguageSe
 import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
 import ThemeSelect from '@/components/ui/selectors/theme-select/ThemeSelect'
 import DialogComponent from '@/components/ui/windows/cofirm-delete-account-component/DialogComponent'
+import { useLogout } from '@/api/hooks/auth/useLogout'
 interface IProps {
   data: ISettingsContentData
 }
 
 const Block: NextPage<IProps> = ({ data }) => {
   const { content, title } = data
+  const { logoutMutation } = useLogout()
 
   return (
     <div className={styles.block}>
@@ -43,7 +46,14 @@ const Block: NextPage<IProps> = ({ data }) => {
             </div>
             <div className={styles.action}>
               {el.actions == EnumSettingsContentActions.button && (
-                <ButtonSettings action={el.buttonAction} text={el.buttonText} />
+                <ButtonSettings
+                  action={
+                    el.buttonType === 'logout'
+                      ? logoutMutation
+                      : el.buttonAction
+                  }
+                  text={el.buttonText}
+                />
               )}
               {el.actions == EnumSettingsContentActions.switch && (
                 <SimpleSwitch />

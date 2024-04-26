@@ -1,5 +1,4 @@
 .container {
-  // @apply w-[900px] relative grid grid-cols-2 h-[480px] bg-secondary rounded-md;
   @apply w-[1100px] relative grid grid-cols-2 h-[580px] bg-secondary rounded-md;
 
   .form-container {
@@ -76,7 +75,12 @@
   }
   &.active .toogle .toggle-left {
     transform: translateX(220%);
-    // transform: translateX(170%);
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .container {
+    @apply w-[950px];
   }
 }

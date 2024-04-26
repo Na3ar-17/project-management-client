@@ -5,7 +5,7 @@ import { ChatField } from '@/components/ui/fields/chat-field/ChatField'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import Image from 'next/image'
 import { membersData } from '@/data/members.data'
-import { EnumUserStatus } from '@/types/members.type'
+import { EnumMemberStatus } from '@/types/members.type'
 import { ScrollArea } from '../../ui/shadcn/ui/scroll-area'
 
 const Chat: NextPage = () => {
@@ -68,7 +68,7 @@ const Chat: NextPage = () => {
               <div key={index} className={styles.member}>
                 <div className={styles['avatar']}>
                   <AvatarComponent imgLink={member.imgLink} size={35} />
-                  {member.status === EnumUserStatus.ACTIVE && (
+                  {member.status === EnumMemberStatus.Active && (
                     <span className={styles.online}></span>
                   )}
                 </div>

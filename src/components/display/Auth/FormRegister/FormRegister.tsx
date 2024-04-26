@@ -6,10 +6,12 @@ import { TypeAuthFormRegister } from '@/types/authForm.type'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { isFullnameValid, isValidEmail } from '../utils'
+import { useRegister } from '@/api/hooks/auth/useRegister'
 
 interface IProps {}
 
 const FormRegister: NextPage<IProps> = ({}) => {
+  const { registerMutation } = useRegister()
   const {
     register,
     handleSubmit,
@@ -21,14 +23,14 @@ const FormRegister: NextPage<IProps> = ({}) => {
   })
 
   const onSubmit: SubmitHandler<TypeAuthFormRegister> = (values) => {
-    const { email, password, repeatPassword, fullName } = values
+    const { repeatPassword, ...dto } = values
 
-    if (!isValidEmail(email)) {
+    if (!isValidEmail(dto.email)) {
       setError('email', { type: 'onChange', message: 'Invalid email' })
       return
     }
 
-    if (repeatPassword !== password) {
+    if (repeatPassword !== dto.password) {
       setError('repeatPassword', {
         type: 'onChange',
         message: 'Passwords must match',
@@ -36,14 +38,15 @@ const FormRegister: NextPage<IProps> = ({}) => {
       return
     }
 
-    if (!isFullnameValid(fullName)) {
+    if (!isFullnameValid(dto.fullName)) {
       setError('fullName', {
         type: 'onChange',
         message: 'Must contains only one space',
       })
       return
     }
-    console.log(values)
+
+    registerMutation(dto)
   }
 
   return (

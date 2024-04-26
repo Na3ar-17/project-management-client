@@ -3,3 +3,7 @@ export interface IBase {
   createdAt?: string
   updatedAt?: string
 }
+
+export interface IAPIError {
+  message: string
+}

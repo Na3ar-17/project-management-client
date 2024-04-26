@@ -72,6 +72,7 @@ export const accountSettingsContentData: ISettingsContentData[] = [
         text: 'Log out of this device',
         actions: EnumSettingsContentActions.button,
         buttonText: 'Log out',
+        buttonType: 'logout',
       },
       {
         subTitle: 'Delete my account',

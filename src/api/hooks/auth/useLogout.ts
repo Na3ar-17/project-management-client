@@ -1,20 +1,19 @@
 import { authKeys } from '@/api/keys/auth.keys'
 import { authService } from '@/api/services/auth.service'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
-import { TypeAuthFormRegister } from '@/types/authForm.type'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
-export const useRegister = () => {
+export const useLogout = () => {
   const { push } = useRouter()
 
-  const { mutate: registerMutation } = useMutation({
+  const { mutate: logoutMutation } = useMutation({
     mutationKey: [authKeys.AUTH],
-    mutationFn: (dto: TypeAuthFormRegister) => authService.register(dto),
+    mutationFn: () => authService.logout(),
     onSuccess: () => {
-      push(DASHBOARD_PAGES.SETTINGS)
+      push(DASHBOARD_PAGES.AUTH)
     },
   })
 
-  return { registerMutation }
+  return { logoutMutation }
 }

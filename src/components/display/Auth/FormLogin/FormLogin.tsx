@@ -7,10 +7,12 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { useState } from 'react'
 import { isValidEmail } from '../utils'
+import { useLogin } from '@/api/hooks/auth/useLogin'
 
 interface IProps {}
 
 const FormLogin: NextPage<IProps> = ({}) => {
+  const { loginMutation } = useLogin()
   const {
     register,
     handleSubmit,
@@ -19,6 +21,10 @@ const FormLogin: NextPage<IProps> = ({}) => {
     setError,
   } = useForm<TypeAuthFormLogin>({
     mode: 'onChange',
+    defaultValues: {
+      email: 'gavruluknazar0210s@gmail.com',
+      password: '12345678',
+    },
   })
 
   const onSubmit: SubmitHandler<TypeAuthFormLogin> = (values) => {
@@ -27,7 +33,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
       setError('email', { type: 'onChange', message: 'Invalid email' })
       return
     } else {
-      console.log(values)
+      loginMutation(values)
     }
   }
   return (

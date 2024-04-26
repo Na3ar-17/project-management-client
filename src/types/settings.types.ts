@@ -16,6 +16,7 @@ export interface IContent {
   buttonStyle?: string
   chevronAction?: () => void
   buttonAction?: () => void
+  buttonType?: 'logout'
 }
 
 export enum EnumSettingsContentActions {

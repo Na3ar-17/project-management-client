@@ -14,6 +14,10 @@ export interface IAuthResponse {
   user: IUser
 }
 
+export interface IErrorMessageResponse {
+  message: string
+}
+
 export interface IUpdateUser extends IUser {
   password?: string
 }

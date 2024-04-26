@@ -2,7 +2,7 @@ export type TypeAuthFormRegister = {
   fullName: string
   email: string
   password: string
-  repeatPassword: string
+  repeatPassword?: string
   companyName?: string
 }
 
