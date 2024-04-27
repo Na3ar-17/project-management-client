@@ -1,12 +1,30 @@
-import { IUpdateUser } from '@/types/user.type'
+import { IUser, TypeUpdateProfile } from '@/types/user.type'
 import { axiosWithAuth } from '../interceptors'
+import { errorHandler } from './errorHandler'
 
 class UserService {
   private URL = 'user'
 
-  async update(dto: IUpdateUser) {
-    const { data } = await axiosWithAuth.put(this.URL, dto)
-    return data
+  // TODO make try catch
+
+  async update(dto: TypeUpdateProfile) {
+    try {
+      const { data } = await axiosWithAuth.put(this.URL, dto)
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async getProfile(): Promise<IUser> {
+    try {
+      const { data } = await axiosWithAuth.get(this.URL)
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
   }
 }
 

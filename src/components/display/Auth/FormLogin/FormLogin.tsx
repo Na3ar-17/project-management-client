@@ -5,14 +5,15 @@ import styles from '../AuthForm.module.scss'
 import { TypeAuthFormLogin } from '@/types/authForm.type'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '@/components/ui/buttons/button-confirm/Button'
-import { useState } from 'react'
 import { isValidEmail } from '../utils'
 import { useLogin } from '@/api/hooks/auth/useLogin'
+import toast from 'react-hot-toast'
 
 interface IProps {}
 
 const FormLogin: NextPage<IProps> = ({}) => {
   const { loginMutation } = useLogin()
+
   const {
     register,
     handleSubmit,
@@ -22,8 +23,8 @@ const FormLogin: NextPage<IProps> = ({}) => {
   } = useForm<TypeAuthFormLogin>({
     mode: 'onChange',
     defaultValues: {
-      email: 'gavruluknazar0210s@gmail.com',
-      password: '12345678',
+      email: 'test@gmail.com',
+      password: '123456',
     },
   })
 
@@ -36,12 +37,14 @@ const FormLogin: NextPage<IProps> = ({}) => {
       loginMutation(values)
     }
   }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={`${styles.form} ${styles.formLeft}`}
     >
       <h1>Sing In</h1>
+
       <AuthField
         placeholder="Email"
         type="text"

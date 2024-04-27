@@ -1,5 +1,5 @@
 .container {
-  @apply w-[1100px] relative grid grid-cols-2 h-[580px] bg-secondary rounded-md;
+  @apply w-[900px] relative grid grid-cols-2 h-[480px] bg-secondary rounded-md;
 
   .form-container {
     @apply flex justify-center items-center;
@@ -17,7 +17,7 @@
   }
 
   .formRight {
-    transform: translateX(-20%);
+    transform: translateX(-10%);
   }
 
   .toogle {
@@ -58,7 +58,7 @@
   }
 
   &.active .form-container .formLeft {
-    transform: translateX(20%);
+    transform: translateX(10%);
   }
   &.active .form-container .formRight {
     transform: translateX(0%);
@@ -74,7 +74,7 @@
     opacity: 0;
   }
   &.active .toogle .toggle-left {
-    transform: translateX(220%);
+    transform: translateX(177%);
     opacity: 1;
   }
 }

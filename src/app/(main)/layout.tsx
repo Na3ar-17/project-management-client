@@ -4,7 +4,6 @@ import styles from './layout.module.scss'
 import SideBar from '@/components/common/sidebar/SideBar'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeIsHidden } from '@/types/sideBar.type'
-import Loader from '@/components/ui/loader/Loader'
 import { ChevronDown } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useLayoutEffect, useState } from 'react'
@@ -29,8 +28,6 @@ export default function Layout({
     defaultValue: 'false',
     key: 'isHidden',
   })
-
-  if (isLoading) return <Loader isFill={true} />
 
   return (
     <main

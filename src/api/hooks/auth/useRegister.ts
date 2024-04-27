@@ -4,6 +4,7 @@ import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import { TypeAuthFormRegister } from '@/types/authForm.type'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 export const useRegister = () => {
   const { push } = useRouter()
@@ -13,6 +14,7 @@ export const useRegister = () => {
     mutationFn: (dto: TypeAuthFormRegister) => authService.register(dto),
     onSuccess: () => {
       push(DASHBOARD_PAGES.SETTINGS)
+      toast.success('Successfullyregister')
     },
   })
 

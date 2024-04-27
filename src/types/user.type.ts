@@ -6,7 +6,7 @@ export interface IUser extends IBase {
   email: string
   imgLink?: string
   companyName?: string
-  projects: IProjectResponse[]
+  projects?: IProjectResponse[]
 }
 
 export interface IAuthResponse {
@@ -18,6 +18,6 @@ export interface IErrorMessageResponse {
   message: string
 }
 
-export interface IUpdateUser extends IUser {
-  password?: string
-}
+export type TypeUpdateProfile = Partial<
+  Omit<IUser, 'projects' | 'id' | 'createdAt' | 'updatedAt'>
+>

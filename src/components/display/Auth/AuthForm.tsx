@@ -4,7 +4,6 @@ import styles from './AuthForm.module.scss'
 import FormLogin from './FormLogin/FormLogin'
 import FormRegister from './FormRegister/FormRegister'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import Loader from '@/components/ui/loader/Loader'
 import cn from 'clsx'
 
 type TypeIsFormActive = 'true' | 'false'
@@ -22,8 +21,6 @@ const AuthForm: NextPage = () => {
   const handleLogin = () => {
     setIsActive('false')
   }
-
-  if (isLoading) return <Loader size={80} />
 
   return (
     <div className={cn(styles.container, isActive === 'true' && styles.active)}>

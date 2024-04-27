@@ -2,17 +2,21 @@ import { NextPage } from 'next'
 import styles from './FullUserAvatar.module.scss'
 import AvatarComponent from '../AvatarComponent'
 import cn from 'clsx'
+import { IUser } from '@/types/user.type'
+
 interface IProps {
   className?: string
+  data: IUser
 }
 
-const FullUserAvatar: NextPage<IProps> = ({ className }) => {
+const FullUserAvatar: NextPage<IProps> = ({ className, data }) => {
+  const { email, fullName, imgLink } = data
   return (
     <div className={cn(styles.container, className)}>
       <AvatarComponent size={28} avatarStyles="w-fit" />
       <div className={styles.info}>
-        <p className={styles.fullname}>Gavrylyk Nazar</p>
-        <p className={styles.email}>gavruluknazar0210@gmail.com</p>
+        <p className={styles.fullname}>{fullName}</p>
+        <p className={styles.email}>{email}</p>
       </div>
     </div>
   )
