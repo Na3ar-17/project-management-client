@@ -45,7 +45,11 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
               {assigneesers.map((el, index) => {
                 return (
                   <div className={styles.user} key={index}>
-                    <AvatarComponent imgLink={el.imgLink} size={30} />
+                    <AvatarComponent
+                      fullName={el.fullName}
+                      imgLink={el.imgLink}
+                      size={30}
+                    />
                   </div>
                 )
               })}

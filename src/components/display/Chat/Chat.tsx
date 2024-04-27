@@ -18,10 +18,7 @@ const Chat: NextPage = () => {
         </nav>
         <div className={styles.body}>
           <div className={styles['message']}>
-            <AvatarComponent
-              imgLink="https://i.pinimg.com/564x/6b/8d/79/6b8d79bd28abeb90ce2e1166372b9eb0.jpg"
-              size={35}
-            />
+            <AvatarComponent size={35} />
             <span className={styles.content}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Laudantium aut excepturi vel labore iure sint suscipit nostrum
@@ -67,7 +64,11 @@ const Chat: NextPage = () => {
             {membersData.map((member, index) => (
               <div key={index} className={styles.member}>
                 <div className={styles['avatar']}>
-                  <AvatarComponent imgLink={member.imgLink} size={35} />
+                  <AvatarComponent
+                    fullName={member.fullName}
+                    imgLink={member.imgLink}
+                    size={35}
+                  />
                   {member.status === EnumMemberStatus.Active && (
                     <span className={styles.online}></span>
                   )}

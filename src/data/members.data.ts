@@ -11,8 +11,8 @@ export const membersData: IMembers[] = [
     role: EnumMemberRole.Member,
     status: EnumMemberStatus.Active,
     email: 'bob.smith@example.com',
-    imgLink:
-      'https://i.pinimg.com/736x/6e/96/07/6e9607f3f07ebe87550c36115e3e7abe.jpg',
+    imgLink: '',
+    // 'https://i.pinimg.com/736x/6e/96/07/6e9607f3f07ebe87550c36115e3e7abe.jpg',
   },
   {
     id: 'фівфів',

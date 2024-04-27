@@ -4,6 +4,7 @@ import { NextPage } from 'next'
 import styles from './TabsTriggerComponent.module.scss'
 import { Dispatch, SetStateAction } from 'react'
 import cn from 'clsx'
+import { IUser } from '@/types/user.type'
 interface IProps {
   data: ITabTriggerData
   isActive: boolean

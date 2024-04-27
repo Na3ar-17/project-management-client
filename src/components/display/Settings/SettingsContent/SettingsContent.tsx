@@ -11,13 +11,13 @@ import styles from './SettingsContent.module.scss'
 import TabsTriggerComponent from './TabsTriggerComponent/TabsTriggerComponent'
 import TabContent from './TabContent/TabContent'
 import { useState } from 'react'
-import { useGerProfile } from '@/api/hooks/user/useGerProfile'
+import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 
 interface IProps {}
 
 const SettingsContent: NextPage<IProps> = ({}) => {
   const [active, setActive] = useState<string>('my-account')
-  const { data, isFetching, isSuccess } = useGerProfile()
+  const { data, isFetching, isSuccess } = useGetProfile()
 
   //TODO Create loader skeleton and handle if !isSuccess
   if (isFetching) {
@@ -27,7 +27,6 @@ const SettingsContent: NextPage<IProps> = ({}) => {
   if (!data) {
     return <div>No user data available</div>
   }
-
   return (
     <div className={styles.content}>
       <Tabs defaultValue="my-account" className={styles.tabs}>
