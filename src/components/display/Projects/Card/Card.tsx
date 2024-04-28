@@ -14,7 +14,14 @@ import { ChangeEventHandler, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import ImageComponent from './ImageComponent/ImageComponent'
 
-const Card: NextPage<IProjectResponse> = ({ id, name, date, image, slug }) => {
+const Card: NextPage<IProjectResponse> = ({
+  id,
+  name,
+  end,
+  createdAt,
+  image,
+  slug,
+}) => {
   const [isEdit, setIsEdit] = useState<boolean>(false)
   const {
     register,
@@ -114,14 +121,14 @@ const Card: NextPage<IProjectResponse> = ({ id, name, date, image, slug }) => {
           )}
           <div className={styles.time}>
             <Controller
-              name="date.end"
+              name="end"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <DatePickerComponent
                   onChange={onChange}
                   disabled={isEdit ? false : true}
-                  end={value ? value : date.end || ''}
-                  start={date.start || ''}
+                  end={value ? value : end || ''}
+                  start={createdAt || ''}
                 />
               )}
             />

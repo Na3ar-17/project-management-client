@@ -4,10 +4,7 @@ export interface IProjectResponse extends IBase {
   name: string
   slug?: string
   image?: string
-  date: {
-    start: string
-    end: string
-  }
+  end: string
 }
 
 export type TypeSideBarSubMenuElement = Omit<

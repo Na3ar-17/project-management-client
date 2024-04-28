@@ -17,13 +17,18 @@ import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
 import ThemeSelect from '@/components/ui/selectors/theme-select/ThemeSelect'
 import DialogComponent from '@/components/ui/windows/cofirm-delete-account-component/DialogComponent'
 import { useLogout } from '@/api/hooks/auth/useLogout'
+import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
 interface IProps {
   data: ISettingsContentData
 }
 
 const Block: NextPage<IProps> = ({ data }) => {
   const { content, title } = data
-  const { logoutMutation } = useLogout()
+  const { logoutMutation, isPending } = useLogout()
+
+  if (isPending) {
+    return <SettingsSkeleton />
+  }
 
   return (
     <div className={styles.block}>

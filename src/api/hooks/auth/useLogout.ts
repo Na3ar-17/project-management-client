@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 export const useLogout = () => {
   const { push } = useRouter()
 
-  const { mutate: logoutMutation } = useMutation({
+  const { mutate: logoutMutation, isPending } = useMutation({
     mutationKey: [authKeys.AUTH],
     mutationFn: () => authService.logout(),
     onSuccess: () => {
@@ -17,5 +17,5 @@ export const useLogout = () => {
     },
   })
 
-  return { logoutMutation }
+  return { logoutMutation, isPending }
 }

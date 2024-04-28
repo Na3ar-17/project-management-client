@@ -47,7 +47,10 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
   return (
     <div className="relative" ref={ref}>
       <button onClick={() => setIsShow(!isShow)}>
-        <DateBadge date={start} deadLine={dayjs(end).format('DD.MM.YYYY')} />
+        <DateBadge
+          date={start}
+          deadLine={end === '00.00.00' ? '' : dayjs(end).format('DD.MM.YYYY')}
+        />
       </button>
 
       {disabled !== true && isShow && (

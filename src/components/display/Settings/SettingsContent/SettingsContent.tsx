@@ -12,6 +12,7 @@ import TabsTriggerComponent from './TabsTriggerComponent/TabsTriggerComponent'
 import TabContent from './TabContent/TabContent'
 import { useState } from 'react'
 import { useGetProfile } from '@/api/hooks/user/useGetProfile'
+import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
 
 interface IProps {}
 
@@ -21,7 +22,7 @@ const SettingsContent: NextPage<IProps> = ({}) => {
 
   //TODO Create loader skeleton and handle if !isSuccess
   if (isFetching) {
-    return <div>Loading</div>
+    return <SettingsSkeleton />
   }
 
   if (!data) {
