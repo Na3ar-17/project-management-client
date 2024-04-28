@@ -10,7 +10,7 @@ import styles from './Card.module.scss'
 
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
-import { ChangeEventHandler, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import ImageComponent from './ImageComponent/ImageComponent'
 

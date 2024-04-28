@@ -27,8 +27,11 @@ class ProjectService {
 
   async delete(id: string) {
     try {
-      await axiosWithAuth.delete(`${this.URL}/delete`)
-    } catch (error) {}
+      await axiosWithAuth.delete(`${this.URL}/delete/${id}`)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
   }
 }
 

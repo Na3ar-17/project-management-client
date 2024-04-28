@@ -26,6 +26,18 @@ class FileService {
       throw error
     }
   }
+
+  async deleteImage(imageName: string) {
+    try {
+      const data = { imageName }
+      await axiosWithAuth.delete<{ imageName: string }>(`${this.URL}/delete`, {
+        data,
+      })
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
 }
 
 export const fileService = new FileService()

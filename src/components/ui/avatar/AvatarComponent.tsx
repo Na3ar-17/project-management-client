@@ -14,7 +14,7 @@ export interface IUserAvatarProps {
   isEditable?: boolean
   fullName?: string
   onImage?: (event: React.ChangeEvent<HTMLInputElement>) => void
-  onImageDelete?: () => void
+  onImageDelete?: (imageName: string) => void
 }
 
 const AvatarComponent: NextPage<IUserAvatarProps> = ({
@@ -27,6 +27,7 @@ const AvatarComponent: NextPage<IUserAvatarProps> = ({
   onImageDelete,
 }) => {
   const imageRef = useRef<HTMLInputElement>(null)
+  console.log(imgLink)
 
   return (
     <Avatar className={cn(styles.container, avatarStyles)}>
@@ -55,9 +56,9 @@ const AvatarComponent: NextPage<IUserAvatarProps> = ({
               onClick={() => imageRef?.current?.click()}
               className={cn(styles.icon, styles.upload)}
             />
-            {imgLink && (
+            {imgLink && onImageDelete && (
               <Trash2
-                onClick={onImageDelete}
+                onClick={() => onImageDelete(imgLink)}
                 className={cn(styles.icon, styles.delete)}
               />
             )}

@@ -12,6 +12,7 @@ import { Controller, useForm } from 'react-hook-form'
 import Block from '../Block/Block'
 import styles from './TabContent.module.scss'
 import { useRef } from 'react'
+import { useDeleteAvatar } from '@/api/hooks/file/useDeleteAvatar'
 interface IProps {
   data: ITabContentData
   userData: IUser
@@ -21,6 +22,7 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
   const { fullName, imgLink } = userData
   const { childrens, value } = data
   const { handleDeleteAvatar, handleUploadAvatar } = useImageUploader()
+  const { deleteImageMutation } = useDeleteAvatar()
 
   const { control, register, watch } = useForm<TypeUpdateProfile>({
     mode: 'onChange',
@@ -29,7 +31,6 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
       imgLink,
     },
   })
-
   useProfileDebounce({ watch })
 
   return (
@@ -46,7 +47,7 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
               imgLink={imgLink}
               isEditable
               onImage={handleUploadAvatar}
-              onImageDelete={handleDeleteAvatar}
+              onImageDelete={deleteImageMutation}
             />
 
             <div className={styles.group}>

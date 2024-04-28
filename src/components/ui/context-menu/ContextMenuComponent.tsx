@@ -19,6 +19,7 @@ interface IProps {
   isEdit?: boolean
   onEdit?: () => void
   disabled?: boolean
+  onDelete?: () => void
 }
 
 const ContextMenuComponent: NextPage<IProps> = ({
@@ -28,6 +29,7 @@ const ContextMenuComponent: NextPage<IProps> = ({
   isEdit = true,
 }) => {
   const { onOpen } = useDialog()
+
   return (
     <ContextMenu modal={false} key={id}>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
@@ -53,7 +55,7 @@ const ContextMenuComponent: NextPage<IProps> = ({
           </ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
-      <AlertDialogComponent />
+      <AlertDialogComponent id={id} />
     </ContextMenu>
   )
 }

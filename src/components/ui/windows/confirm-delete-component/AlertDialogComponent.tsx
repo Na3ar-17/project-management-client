@@ -12,11 +12,16 @@ import {
 import { useDialog } from '@/zustand/useDialog'
 import styles from './AlertDialogComponent.module.scss'
 import cn from 'clsx'
+import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
 
-interface IProps {}
+interface IProps {
+  id?: string
+}
 
-const AlertDialogComponent: NextPage<IProps> = () => {
+const AlertDialogComponent: NextPage<IProps> = ({ id }) => {
   const { isOpen, onClose, title } = useDialog()
+  const { deleteProjectMutation } = useDeleteProject()
+
   return (
     <AlertDialog open={isOpen} onOpenChange={onClose} defaultOpen={isOpen}>
       <AlertDialogContent className={styles.content}>
@@ -27,7 +32,10 @@ const AlertDialogComponent: NextPage<IProps> = () => {
           <AlertDialogCancel className={cn(styles.action, styles.cancel)}>
             Cancel
           </AlertDialogCancel>
-          <AlertDialogAction className={cn(styles.action, styles.delete)}>
+          <AlertDialogAction
+            onClick={() => deleteProjectMutation(id || '')}
+            className={cn(styles.action, styles.delete)}
+          >
             Delete
           </AlertDialogAction>
         </AlertDialogFooter>
