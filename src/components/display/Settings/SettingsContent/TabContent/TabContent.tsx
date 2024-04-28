@@ -3,6 +3,7 @@ import { useProfileDebounce } from '@/api/hooks/user/useUpdateProfileDebounce'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import SimpleField from '@/components/ui/fields/simple-field/SimpleField'
 import { Separator } from '@/components/ui/shadcn/ui/separator'
+import { useImageUploader } from '@/hooks/useImageUploader'
 import { EnumSettingsTabsValue, ITabContentData } from '@/types/settings.types'
 import { IUser, TypeUpdateProfile } from '@/types/user.type'
 import { TabsContent } from '@radix-ui/react-tabs'
@@ -10,7 +11,7 @@ import { NextPage } from 'next'
 import { Controller, useForm } from 'react-hook-form'
 import Block from '../Block/Block'
 import styles from './TabContent.module.scss'
-import { useImageUploader } from '@/hooks/useImageUploader'
+import { useRef } from 'react'
 interface IProps {
   data: ITabContentData
   userData: IUser
@@ -19,7 +20,7 @@ interface IProps {
 const TabContent: NextPage<IProps> = ({ data, userData }) => {
   const { fullName, imgLink } = userData
   const { childrens, value } = data
-  const { handleUploadImage, image, imageData } = useImageUploader()
+  const { handleDeleteAvatar, handleUploadAvatar } = useImageUploader()
 
   const { control, register, watch } = useForm<TypeUpdateProfile>({
     mode: 'onChange',
@@ -28,6 +29,7 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
       imgLink,
     },
   })
+
   useProfileDebounce({ watch })
 
   return (
@@ -41,10 +43,12 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
               fullName={fullName}
               size={60}
               avatarStyles="w-fit"
-              imgLink={image}
+              imgLink={imgLink}
               isEditable
-              onImage={handleUploadImage}
+              onImage={handleUploadAvatar}
+              onImageDelete={handleDeleteAvatar}
             />
+
             <div className={styles.group}>
               <span>Preferred name</span>
               <Controller

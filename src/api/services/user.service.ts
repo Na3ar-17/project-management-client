@@ -19,7 +19,7 @@ class UserService {
 
   async getProfile(): Promise<IUser> {
     try {
-      const { data } = await axiosWithAuth.get(this.URL)
+      const { data } = await axiosWithAuth.get<IUser>(this.URL)
       return data
     } catch (error) {
       errorHandler(error)

@@ -6,13 +6,15 @@ import { ImageUp, Trash2 } from 'lucide-react'
 import cn from 'clsx'
 import { fullNameToInitials } from './FullUserAvatar/utils'
 import { useRef } from 'react'
+import { IMAGE_URL } from '@/constants/url.constants'
 export interface IUserAvatarProps {
   imgLink?: string
   size?: number
   avatarStyles?: string
   isEditable?: boolean
   fullName?: string
-  onImage?: (event: any) => void
+  onImage?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onImageDelete?: () => void
 }
 
 const AvatarComponent: NextPage<IUserAvatarProps> = ({
@@ -22,6 +24,7 @@ const AvatarComponent: NextPage<IUserAvatarProps> = ({
   isEditable = false,
   fullName,
   onImage,
+  onImageDelete,
 }) => {
   const imageRef = useRef<HTMLInputElement>(null)
 
@@ -40,7 +43,7 @@ const AvatarComponent: NextPage<IUserAvatarProps> = ({
         ) : (
           <AvatarImage
             style={{ width: `${size}px`, height: `${size}px` }}
-            src={imgLink}
+            src={IMAGE_URL + imgLink}
             alt="avatar"
             className={styles.image}
           />
@@ -52,16 +55,15 @@ const AvatarComponent: NextPage<IUserAvatarProps> = ({
               onClick={() => imageRef?.current?.click()}
               className={cn(styles.icon, styles.upload)}
             />
-            <Trash2 className={cn(styles.icon, styles.delete)} />
+            {imgLink && (
+              <Trash2
+                onClick={onImageDelete}
+                className={cn(styles.icon, styles.delete)}
+              />
+            )}
           </div>
         )}
-        <input
-          name="image"
-          type="file"
-          ref={imageRef}
-          hidden
-          onChange={onImage}
-        />
+        <input type="file" ref={imageRef} hidden onChange={onImage} />
       </div>
     </Avatar>
   )
