@@ -7,13 +7,9 @@ import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { textAbstract } from '../utils'
-import { IProjectResponse } from '@/types/project.types'
 import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import cn from 'clsx'
-import {
-  generateProjectPagesData,
-  sideBarElementData,
-} from '@/data/sidebar-element.data'
+import { generateProjectPagesData } from '@/data/sidebar-element.data'
 
 interface IProps {
   isHidden?: TypeIsHidden
@@ -26,8 +22,6 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   href,
   text,
   isHidden,
-  isActive,
-  setIsActive,
   childrens,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -57,6 +51,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
       <div className={styles.content}>
         {projects?.map((el, index) => (
           <SideBarElement
+            key={index}
             text={el.name}
             childrens={generateProjectPagesData({
               slug: el.slug || '',

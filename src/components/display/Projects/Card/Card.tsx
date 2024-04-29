@@ -122,7 +122,7 @@ const Card: NextPage<IProjectResponse> = ({
             />
             <Link
               className="w-fit"
-              href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/dashboard`}
+              href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/dashboard`}
             >
               <ExternalLink className={styles.icon} />
             </Link>
