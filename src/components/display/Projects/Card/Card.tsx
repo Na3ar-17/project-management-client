@@ -3,7 +3,7 @@ import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuCompon
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import cn from 'clsx'
-import { ImageIcon, ImageUp, Trash2 } from 'lucide-react'
+import { ExternalLink, ImageIcon, ImageUp, Trash2 } from 'lucide-react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import styles from './Card.module.scss'
@@ -59,11 +59,6 @@ const Card: NextPage<IProjectResponse> = ({
 
   return (
     <ContextMenuComponent isEdit={false} id={id}>
-      <Link
-        className="w-fit"
-        href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/dashboard`}
-      ></Link>
-
       <div className={cn(styles.card)}>
         {image ? (
           <>
@@ -125,6 +120,12 @@ const Card: NextPage<IProjectResponse> = ({
                 />
               )}
             />
+            <Link
+              className="w-fit"
+              href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/dashboard`}
+            >
+              <ExternalLink className={styles.icon} />
+            </Link>
           </div>
         </div>
       </div>

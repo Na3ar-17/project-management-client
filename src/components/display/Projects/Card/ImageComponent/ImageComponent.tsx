@@ -18,6 +18,7 @@ const ImageComponent: NextPage<IProps> = ({ alt, image, onImageDelete }) => {
         className={styles.picture}
         width={100}
         height={100}
+        layout="responsive"
       />
       <Trash2 className={styles.delete} onClick={() => onImageDelete(image)} />
       <div className={styles.overlay}></div>

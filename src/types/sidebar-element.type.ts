@@ -1,6 +1,6 @@
 export interface ISideBarElement {
   Icon?: React.ElementType
-  href: string
+  href?: string
   text: string
   childrens?: ISideBarElement[]
 }

@@ -1,4 +1,3 @@
-import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import { ISideBarElement } from '@/types/sidebar-element.type'
 import {
@@ -11,6 +10,39 @@ import {
   LayoutGrid,
   ListTodo,
 } from 'lucide-react'
+
+export const generateProjectPagesData = ({
+  slug,
+  id,
+}: {
+  slug: string
+  id: string
+}) => {
+  const projectPagesData: ISideBarElement[] = [
+    {
+      text: 'Dashboard',
+      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/dashboard`,
+      Icon: LayoutDashboard,
+    },
+    {
+      text: 'Members',
+      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/members`,
+      Icon: UsersRound,
+    },
+    {
+      text: 'Team chat',
+      Icon: MessageCircleMore,
+      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/chat`,
+    },
+    {
+      text: 'Tasks',
+      Icon: ListTodo,
+      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/tasks`,
+    },
+  ]
+
+  return projectPagesData
+}
 
 export const sideBarElementData: ISideBarElement[] = [
   {
@@ -25,45 +57,27 @@ export const sideBarElementData: ISideBarElement[] = [
     childrens: [
       {
         text: 'Chat App',
-        href: '/home',
+        href: '',
         childrens: [
           {
             text: 'Dashboard',
-            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/dashboard`,
+            href: ``,
             Icon: LayoutDashboard,
           },
           {
             text: 'Members',
-            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/members`,
+            href: ``,
             Icon: UsersRound,
           },
           {
             text: 'Team chat',
             Icon: MessageCircleMore,
-            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/chat`,
+            href: ``,
           },
           {
             text: 'Tasks',
             Icon: ListTodo,
-            href: `${DASHBOARD_PAGES.PROJECTS}/chat_app/tasks`,
-          },
-        ],
-      },
-      {
-        text: 'Project Management App',
-        href: '/home',
-        childrens: [
-          { text: 'Dashboard', href: '/home', Icon: LayoutDashboard },
-          { text: 'Members', href: '/home', Icon: UsersRound },
-          {
-            text: 'Team chat',
-            Icon: MessageCircleMore,
-            href: '/home',
-          },
-          {
-            text: 'Tasks',
-            Icon: ListTodo,
-            href: '/home',
+            href: ``,
           },
         ],
       },

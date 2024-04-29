@@ -12,8 +12,6 @@ export const useGetProjects = () => {
     queryKey: [projectKeys.GET_ALL],
     queryFn: () => projectService.getAll(),
     select: (data) => {
-      console.log(data)
-
       return data.map((project) => ({
         ...project,
         createdAt: dateFormatter(project.createdAt || ''),

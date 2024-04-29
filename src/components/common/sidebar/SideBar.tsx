@@ -1,13 +1,13 @@
 'use client'
 import { NextPage } from 'next'
 import styles from './SideBar.module.scss'
-import { ChevronDown } from 'lucide-react'
 import { Dispatch, SetStateAction } from 'react'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { sideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { projectsNameAndSlug } from '@/data/project.data'
+import { useGetProjects } from '@/api/hooks/project/useGetProjects'
+import cn from 'clsx'
 interface IProps {
   setIsHidden: Dispatch<SetStateAction<TypeIsHidden>>
   isHidden: TypeIsHidden
@@ -21,9 +21,7 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
 
   return (
     <aside
-      className={`${styles.sidebar} ${
-        isHidden === 'true' ? styles.hidden : ''
-      }`}
+      className={cn(styles.sidebar, isHidden === 'true' ? styles.hidden : '')}
     >
       <div className={styles.body}>
         <div className={styles.items}>

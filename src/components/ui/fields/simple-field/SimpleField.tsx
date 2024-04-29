@@ -21,6 +21,7 @@ const SimpleField = forwardRef<HTMLInputElement, IProps>(
         placeholder={placeholder}
         onChange={onInputChange}
         {...rest}
+        autoComplete="off"
       />
     )
   }
