@@ -1,27 +1,11 @@
-import { useUploadAvatar } from '@/api/hooks/file/useUploadAvatar'
-import { useUpdateProfile } from '@/api/hooks/user/useUpdateProfile'
+import { isImageValid } from '@/api/utils/isImageValid'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 export const useImageUploader = () => {
-  const isImageValid = (image: Blob): boolean => {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg']
-    const imageType = image.type.toLowerCase()
+  const [imgFile, setImgFile] = useState<Blob>()
 
-    for (const type of allowedTypes) {
-      if (type === imageType) {
-        return true
-      }
-    }
-
-    return false
-  }
-
-  const { uploadImageMutation } = useUploadAvatar()
-  const { updateProfileMutation } = useUpdateProfile()
-  const [img, setImg] = useState<string>('')
-
-  const handleUploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
     let files = event.target.files
 
     if (files && files.length > 0) {
@@ -31,15 +15,10 @@ export const useImageUploader = () => {
         event.target.value = ''
         toast.error('File must be an image!')
       } else {
-        uploadImageMutation(img)
+        setImgFile(img)
       }
     }
   }
 
-  const handleDeleteAvatar = () => {
-    updateProfileMutation({
-      imgLink: '',
-    })
-  }
-  return { handleUploadAvatar, handleDeleteAvatar }
+  return { handleUploadImage, imgFile }
 }

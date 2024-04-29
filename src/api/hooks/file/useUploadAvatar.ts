@@ -6,7 +6,7 @@ import { useUpdateProfile } from '../user/useUpdateProfile'
 
 export const useUploadAvatar = () => {
   const { updateProfileMutation } = useUpdateProfile()
-  const { mutate: uploadImageMutation } = useMutation({
+  const { mutate: uploadAvatarMutation } = useMutation({
     mutationKey: [fileKeys.UPLOAD],
     mutationFn: (image: Blob) => fileService.uploadImage(image),
     onSuccess: (data) => {
@@ -19,5 +19,5 @@ export const useUploadAvatar = () => {
     },
   })
 
-  return { uploadImageMutation }
+  return { uploadAvatarMutation }
 }

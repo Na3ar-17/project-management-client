@@ -11,8 +11,10 @@ import { NextPage } from 'next'
 import { Controller, useForm } from 'react-hook-form'
 import Block from '../Block/Block'
 import styles from './TabContent.module.scss'
-import { useRef } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDeleteAvatar } from '@/api/hooks/file/useDeleteAvatar'
+import { useUploadAvatar } from '@/api/hooks/file/useUploadAvatar'
+
 interface IProps {
   data: ITabContentData
   userData: IUser
@@ -21,8 +23,10 @@ interface IProps {
 const TabContent: NextPage<IProps> = ({ data, userData }) => {
   const { fullName, imgLink } = userData
   const { childrens, value } = data
-  const { handleDeleteAvatar, handleUploadAvatar } = useImageUploader()
-  const { deleteImageMutation } = useDeleteAvatar()
+
+  const { handleUploadImage, imgFile } = useImageUploader()
+  const { uploadAvatarMutation } = useUploadAvatar()
+  const { deleteAvatarMutation } = useDeleteAvatar()
 
   const { control, register, watch } = useForm<TypeUpdateProfile>({
     mode: 'onChange',
@@ -32,6 +36,12 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
     },
   })
   useProfileDebounce({ watch })
+
+  useEffect(() => {
+    if (imgFile) {
+      uploadAvatarMutation(imgFile)
+    }
+  }, [imgFile])
 
   return (
     <TabsContent className={styles.item} value={value}>
@@ -46,8 +56,8 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
               avatarStyles="w-fit"
               imgLink={imgLink}
               isEditable
-              onImage={handleUploadAvatar}
-              onImageDelete={deleteImageMutation}
+              onImage={handleUploadImage}
+              onImageDelete={deleteAvatarMutation}
             />
 
             <div className={styles.group}>

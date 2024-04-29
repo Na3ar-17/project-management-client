@@ -10,13 +10,15 @@ import styles from './Card.module.scss'
 
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import ImageComponent from './ImageComponent/ImageComponent'
 import { IMAGE_URL } from '@/constants/url.constants'
 import { useUpdateProjectDebounce } from '@/api/hooks/project/useUpdateProjectDebounce'
 import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
 import { useUploadProjectImage } from '@/api/hooks/file/useUploadProjectImage'
+import { useImageUploader } from '@/hooks/useImageUploader'
+import { useDeleteProjectImage } from '@/api/hooks/file/useDeleteProjectImage'
 
 const Card: NextPage<IProjectResponse> = ({
   id,
@@ -44,14 +46,16 @@ const Card: NextPage<IProjectResponse> = ({
   useUpdateProjectDebounce({ watch, projectId: id })
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const { uploadProjectImageMutation } = useUploadProjectImage()
 
-  //TODO add type for event
-  const handleUploadImage = (event: any) => {
-    let img = event.target.files[0]
-  }
+  const { uploadProjectImageMutation } = useUploadProjectImage(id)
+  const { handleUploadImage, imgFile } = useImageUploader()
+  const { deleteProjectImageMutation } = useDeleteProjectImage(id)
 
-  const handleDeleteImage = () => {}
+  useEffect(() => {
+    if (imgFile) {
+      uploadProjectImageMutation(imgFile)
+    }
+  }, [imgFile])
 
   return (
     <ContextMenuComponent isEdit={false} id={id}>
@@ -62,11 +66,13 @@ const Card: NextPage<IProjectResponse> = ({
 
       <div className={cn(styles.card)}>
         {image ? (
-          <ImageComponent
-            onImageDelete={handleDeleteImage}
-            alt={name}
-            image={IMAGE_URL + image}
-          />
+          <>
+            <ImageComponent
+              onImageDelete={deleteProjectImageMutation}
+              alt={name}
+              image={image}
+            />
+          </>
         ) : (
           <div className={styles['no-image']}>
             <ImageIcon strokeWidth={1.5} className={styles.icon} />
@@ -77,11 +83,17 @@ const Card: NextPage<IProjectResponse> = ({
                     <ImageUp
                       strokeWidth={1.8}
                       className={styles['icon-action']}
+                      onClick={() => inputRef?.current?.click()}
+                    />
+                    <input
+                      onChange={handleUploadImage}
+                      type="file"
+                      hidden
+                      ref={inputRef}
                     />
                   </div>
                 </TooltipComponent>
               )}
-              {image && <Trash2 className={styles['icon-action']} />}
             </div>
           </div>
         )}

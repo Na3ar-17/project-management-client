@@ -27,7 +27,6 @@ const AvatarComponent: NextPage<IUserAvatarProps> = ({
   onImageDelete,
 }) => {
   const imageRef = useRef<HTMLInputElement>(null)
-  console.log(imgLink)
 
   return (
     <Avatar className={cn(styles.container, avatarStyles)}>
