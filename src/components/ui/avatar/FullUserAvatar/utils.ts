@@ -3,4 +3,5 @@ export const fullNameToInitials = (fullName: string): string => {
     .split(' ')
     .map((el) => el.charAt(0))
     .join('')
+    .toUpperCase()
 }

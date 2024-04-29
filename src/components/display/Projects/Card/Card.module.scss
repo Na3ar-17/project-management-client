@@ -4,11 +4,42 @@
   transition: all 0.3s ease;
 
   .no-image {
-    @apply border-dashed flex items-center rounded-md justify-center border-border border-[2px];
+    @apply border-dashed relative flex items-center rounded-md justify-center border-border border-[2px];
     aspect-ratio: 16/8;
 
     .icon {
-      @apply size-12 text-border;
+      @apply size-12 text-border transition-all;
+    }
+
+    .action {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      .group {
+        @apply flex flex-col items-center gap-2 transition-all;
+        opacity: 0;
+        visibility: hidden;
+        .icon-action {
+          @apply size-12 text-border;
+        }
+      }
+
+      .icon-action {
+      }
+    }
+
+    &:hover {
+      .icon {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .action {
+        .group {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-import { IProjectResponse } from '@/types/project.types'
+import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import { axiosWithAuth } from '../interceptors'
 import { errorHandler } from './errorHandler'
 
@@ -28,6 +28,20 @@ class ProjectService {
   async delete(id: string) {
     try {
       await axiosWithAuth.delete(`${this.URL}/delete/${id}`)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async update(dto: TypeUpdateProjectCard): Promise<IProjectResponse> {
+    try {
+      const { data } = await axiosWithAuth.put<IProjectResponse>(
+        `${this.URL}/update`,
+        dto
+      )
+
+      return data
     } catch (error) {
       errorHandler(error)
       throw error

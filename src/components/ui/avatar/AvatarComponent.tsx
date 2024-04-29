@@ -52,10 +52,12 @@ const AvatarComponent: NextPage<IUserAvatarProps> = ({
 
         {isEditable && (
           <div className={styles.actions}>
-            <ImageUp
-              onClick={() => imageRef?.current?.click()}
-              className={cn(styles.icon, styles.upload)}
-            />
+            {!imgLink && (
+              <ImageUp
+                onClick={() => imageRef?.current?.click()}
+                className={cn(styles.icon, styles.upload)}
+              />
+            )}
             {imgLink && onImageDelete && (
               <Trash2
                 onClick={() => onImageDelete(imgLink)}

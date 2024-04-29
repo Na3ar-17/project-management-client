@@ -18,7 +18,6 @@ interface IDatePicker {
   onChange: (value: string) => void
   end: string
   position?: 'left' | 'right'
-  disabled?: boolean
   start: string
 }
 
@@ -26,7 +25,6 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
   onChange,
   end,
   position = 'right',
-  disabled = true,
   start,
 }) => {
   const [selected, setSelected] = useState<Date>()
@@ -53,7 +51,7 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
         />
       </button>
 
-      {disabled !== true && isShow && (
+      {isShow && (
         <div className={'absolute  p-2.5  bg-border z-10 shadow rounded-lg'}>
           <DayPicker
             fromYear={2024}

@@ -1,9 +1,9 @@
 'use client'
 import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
-import { IProjectResponse, TypeEditProjectCard } from '@/types/project.types'
+import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import cn from 'clsx'
-import { ImageIcon, ImageUp } from 'lucide-react'
+import { ImageIcon, ImageUp, Trash2 } from 'lucide-react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import styles from './Card.module.scss'
@@ -13,6 +13,10 @@ import TransparentField from '@/components/ui/fields/transparent-field/Transpare
 import { useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import ImageComponent from './ImageComponent/ImageComponent'
+import { IMAGE_URL } from '@/constants/url.constants'
+import { useUpdateProjectDebounce } from '@/api/hooks/project/useUpdateProjectDebounce'
+import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
+import { useUploadProjectImage } from '@/api/hooks/file/useUploadProjectImage'
 
 const Card: NextPage<IProjectResponse> = ({
   id,
@@ -22,103 +26,81 @@ const Card: NextPage<IProjectResponse> = ({
   image,
   slug,
 }) => {
-  const [isEdit, setIsEdit] = useState<boolean>(false)
   const {
     register,
     control,
     formState: { errors },
     setError,
-  } = useForm<TypeEditProjectCard>({
+    watch,
+  } = useForm<TypeUpdateProjectCard>({
     mode: 'onChange',
     defaultValues: {
       name: name,
       image: image,
+      end: end,
     },
   })
 
+  useUpdateProjectDebounce({ watch, projectId: id })
+
   const inputRef = useRef<HTMLInputElement>(null)
-  const [imageUrl, setImageUrl] = useState<string>('')
+  const { uploadProjectImageMutation } = useUploadProjectImage()
 
   //TODO add type for event
   const handleUploadImage = (event: any) => {
     let img = event.target.files[0]
-    setImageUrl(URL.createObjectURL(img))
   }
 
-  const handleDeleteImage = () => {
-    setImageUrl('')
-  }
+  const handleDeleteImage = () => {}
 
   return (
-    <ContextMenuComponent onEdit={() => setIsEdit(!isEdit)} id={id}>
-      <div className={cn(styles.card, isEdit && styles.edit)}>
-        {!imageUrl ? (
-          image ? (
-            <ImageComponent
-              onImageDelete={handleDeleteImage}
-              alt={name}
-              image={image}
-              isEdit={isEdit}
-            />
-          ) : (
-            <div className={styles['no-image']}>
-              {isEdit ? (
-                <>
-                  <div className="flex flex-col justify-center items-center">
-                    <ImageUp
-                      onClick={() => inputRef?.current?.click()}
-                      className={styles.icon}
-                      strokeWidth={1.5}
-                    />
-                    <p className="text-sm text-menu-text">
-                      Click to upload Image
-                    </p>
-                  </div>
-                  <input
-                    type="file"
-                    onChange={handleUploadImage}
-                    ref={inputRef}
-                    hidden
-                  />
-                </>
-              ) : (
-                <ImageIcon strokeWidth={1.5} className={styles.icon} />
-              )}
-            </div>
-          )
-        ) : (
+    <ContextMenuComponent isEdit={false} id={id}>
+      <Link
+        className="w-fit"
+        href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/dashboard`}
+      ></Link>
+
+      <div className={cn(styles.card)}>
+        {image ? (
           <ImageComponent
             onImageDelete={handleDeleteImage}
-            isEdit={isEdit}
             alt={name}
-            image={imageUrl || ''}
+            image={IMAGE_URL + image}
           />
+        ) : (
+          <div className={styles['no-image']}>
+            <ImageIcon strokeWidth={1.5} className={styles.icon} />
+            <div className={styles.action}>
+              {!image && (
+                <TooltipComponent text="Upload image">
+                  <div className={styles.group}>
+                    <ImageUp
+                      strokeWidth={1.8}
+                      className={styles['icon-action']}
+                    />
+                  </div>
+                </TooltipComponent>
+              )}
+              {image && <Trash2 className={styles['icon-action']} />}
+            </div>
+          </div>
         )}
         <div className={styles.content}>
-          {isEdit ? (
-            <Controller
-              name="name"
-              control={control}
-              defaultValue={name}
-              render={({ field: { onChange, value } }) => {
-                return (
-                  <TransparentField
-                    {...register('name')}
-                    className="text-lg w-full"
-                    value={value}
-                    onChange={onChange}
-                  />
-                )
-              }}
-            />
-          ) : (
-            <Link
-              className="w-fit"
-              href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/dashboard`}
-            >
-              <p className={styles.name}>{name}</p>
-            </Link>
-          )}
+          <Controller
+            name="name"
+            control={control}
+            defaultValue={name}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <TransparentField
+                  {...register('name')}
+                  className="text-xl w-full"
+                  value={value}
+                  onChange={onChange}
+                />
+              )
+            }}
+          />
           <div className={styles.time}>
             <Controller
               name="end"
@@ -126,7 +108,6 @@ const Card: NextPage<IProjectResponse> = ({
               render={({ field: { onChange, value } }) => (
                 <DatePickerComponent
                   onChange={onChange}
-                  disabled={isEdit ? false : true}
                   end={value ? value : end || ''}
                   start={createdAt || ''}
                 />

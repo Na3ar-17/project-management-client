@@ -1,3 +1,4 @@
+import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import { ISideBarElement } from '@/types/sidebar-element.type'
 import {

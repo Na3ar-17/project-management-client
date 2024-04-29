@@ -12,4 +12,6 @@ export type TypeSideBarSubMenuElement = Omit<
   'id' | 'date' | 'image'
 >
 
-export type TypeEditProjectCard = Omit<IProjectResponse, 'slug'>
+export type TypeUpdateProjectCard = Partial<
+  Omit<IProjectResponse, 'slug' | 'createdAt' | 'updatedAt'>
+>

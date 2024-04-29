@@ -5,16 +5,10 @@ import { Trash2 } from 'lucide-react'
 interface IProps {
   alt: string
   image: string
-  isEdit: boolean
   onImageDelete: () => void
 }
 
-const ImageComponent: NextPage<IProps> = ({
-  alt,
-  image,
-  isEdit,
-  onImageDelete,
-}) => {
+const ImageComponent: NextPage<IProps> = ({ alt, image, onImageDelete }) => {
   return (
     <div className={styles.image}>
       <Image
@@ -24,8 +18,6 @@ const ImageComponent: NextPage<IProps> = ({
         width={100}
         height={100}
       ></Image>
-      {isEdit && <Trash2 className={styles.delete} onClick={onImageDelete} />}
-      {isEdit && <div className={styles.overlay}></div>}
     </div>
   )
 }

@@ -26,7 +26,7 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
         <MessageSquareText className={styles.icon} />
         <div className={styles.avatar}>
           <AvatarComponent fullName={data?.fullName} imgLink={data?.imgLink} />
-          <p>Nazar</p>
+          <p>{data?.fullName.split(' ')[0]}</p>
         </div>
       </div>
     </nav>

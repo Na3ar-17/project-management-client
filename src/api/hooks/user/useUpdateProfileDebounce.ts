@@ -4,11 +4,11 @@ import { TypeUpdateProfile } from '@/types/user.type'
 import { useUpdateProfile } from './useUpdateProfile'
 import { UseFormWatch } from 'react-hook-form'
 
-interface IUseProfileDebounce {
+interface IUserProfileDebounce {
   watch: UseFormWatch<TypeUpdateProfile>
 }
 
-export const useProfileDebounce = ({ watch }: IUseProfileDebounce) => {
+export const useProfileDebounce = ({ watch }: IUserProfileDebounce) => {
   const { updateProfileMutation } = useUpdateProfile()
 
   const debouncedUpdateProfile = useCallback(

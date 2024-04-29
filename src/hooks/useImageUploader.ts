@@ -1,5 +1,6 @@
 import { useUploadAvatar } from '@/api/hooks/file/useUploadAvatar'
 import { useUpdateProfile } from '@/api/hooks/user/useUpdateProfile'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 export const useImageUploader = () => {
@@ -18,6 +19,7 @@ export const useImageUploader = () => {
 
   const { uploadImageMutation } = useUploadAvatar()
   const { updateProfileMutation } = useUpdateProfile()
+  const [img, setImg] = useState<string>('')
 
   const handleUploadAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
     let files = event.target.files
