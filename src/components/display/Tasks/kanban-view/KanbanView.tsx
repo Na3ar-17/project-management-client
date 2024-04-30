@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const KanbanView: NextPage<IProps> = ({ projectId }) => {
-  const { onDragEnd } = useTasksEnd()
+  const { onDragEnd } = useTasksEnd({ projectId })
   const { tasksData, isFetching, isSuccess } = useGetTasks(projectId)
   //TODO create loader and error message
   if (!tasksData) {

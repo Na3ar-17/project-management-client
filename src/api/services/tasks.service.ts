@@ -15,6 +15,18 @@ class TasksService {
     }
   }
 
+  async getOne(projectId: string, taskId: string): Promise<ITaskCard> {
+    try {
+      const { data } = await axiosWithAuth.get(
+        `${this.URL}/get-one/${projectId}/${taskId}`
+      )
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
   async create(projectId: string): Promise<ITaskCard> {
     try {
       const { data } = await axiosWithAuth.post(`${this.URL}/${projectId}`)

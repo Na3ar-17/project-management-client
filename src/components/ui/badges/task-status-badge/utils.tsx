@@ -6,28 +6,28 @@ export const taskStatusBadgeFormat = (status: string) => {
     case 'inQueue':
       return (
         <span style={tasksCategoryData[0].styles} className={styles.status}>
-          {status}
+          In Queue
         </span>
       )
 
     case 'onProgress':
       return (
         <span style={tasksCategoryData[1].styles} className={styles.status}>
-          {status}
+          On Progress
         </span>
       )
 
     case 'testing':
       return (
         <span style={tasksCategoryData[2].styles} className={styles.status}>
-          {status}
+          Testing
         </span>
       )
 
     case 'completed':
       return (
         <span style={tasksCategoryData[3].styles} className={styles.status}>
-          {status}
+          Completed
         </span>
       )
     default:

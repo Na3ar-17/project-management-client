@@ -1,4 +1,4 @@
 export const fileKeys = {
   UPLOAD: 'upload',
-  DELETE: 'delete',
+  DELETE: 'delete_file',
 }

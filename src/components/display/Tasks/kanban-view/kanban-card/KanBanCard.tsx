@@ -4,7 +4,6 @@ import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
 import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
-import { membersData } from '@/data/members.data'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import { MessageSquareText } from 'lucide-react'
 import { ITaskCard } from '@/types/tasks.types'
@@ -15,7 +14,7 @@ interface IProps {
 }
 
 const KanBanCard: NextPage<IProps> = ({ data }) => {
-  const { onOpen } = useSheet()
+  const { onOpen, setTaskId } = useSheet()
 
   const {
     assigneesers,
@@ -27,13 +26,20 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
     createdAt,
     priority,
     subTasks,
+    projectId,
   } = data
 
   return (
     <>
       <ContextMenuComponent isEdit={false} id={id} key={id}>
         <div className={styles.task}>
-          <p className={styles.title} onClick={onOpen}>
+          <p
+            className={styles.title}
+            onClick={() => {
+              setTaskId(id)
+              onOpen()
+            }}
+          >
             {title}
           </p>
           <div className={styles['task_info']}>
@@ -65,7 +71,7 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
           )}
         </div>
       </ContextMenuComponent>
-      <SheetComponent data={data} />
+      <SheetComponent projectId={projectId} taskId={id} taskData={data} />
     </>
   )
 }

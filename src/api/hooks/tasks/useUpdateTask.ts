@@ -11,7 +11,7 @@ export const useUpdateTask = () => {
     mutationFn: (dto: TypeUpdateTaskCard) => tasksService.update(dto),
     onSuccess: () => {
       queryClient.invalidateQueries()
-      toast.success('Successfully updated project')
+      toast.success('Successfully updated task')
     },
   })
 

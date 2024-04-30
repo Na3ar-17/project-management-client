@@ -11,6 +11,12 @@ export const useGetTasks = (projectId: string) => {
   } = useQuery({
     queryKey: [tasksKeys.GET_ALL + projectId],
     queryFn: () => tasksService.getAll(projectId),
+    select: (data) => {
+      return data.map((el) => ({
+        ...el,
+        dueDate: dateFormatter(el.dueDate),
+      }))
+    },
   })
 
   return { tasksData, isFetching, isSuccess }
