@@ -1,7 +1,7 @@
 import { IImage } from '@/types/file.types'
 import { File } from 'buffer'
 import { axiosWithAuth } from '../interceptors'
-import { errorHandler } from './errorHandler'
+import { errorHandler } from '../utils/errorHandler'
 
 class FileService {
   private URL = 'files'

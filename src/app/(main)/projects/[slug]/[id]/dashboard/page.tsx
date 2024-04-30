@@ -1,10 +1,17 @@
 import Dashboard from '@/components/display/Dashboard/Dashboard'
 import { NextPage } from 'next'
 
-const page: NextPage = () => {
+interface IProps {
+  params: {
+    slug: string
+    id: string
+  }
+}
+
+const page: NextPage<IProps> = ({ params }) => {
   return (
     <main>
-      <Dashboard />
+      <Dashboard params={params} />
     </main>
   )
 }

@@ -1,8 +1,14 @@
 import Tasks from '@/components/display/Tasks/Tasks'
 import { NextPage } from 'next'
 
-const page: NextPage = () => {
-  return <Tasks />
+interface IProps {
+  params: {
+    id: string
+  }
+}
+
+const page: NextPage<IProps> = ({ params }) => {
+  return <Tasks projectId={params.id} />
 }
 
 export default page

@@ -2,7 +2,7 @@ import { TypeAuthFormLogin, TypeAuthFormRegister } from '@/types/authForm.type'
 import { IAuthResponse } from '@/types/user.type'
 import { axiosClassic } from '../interceptors'
 import { removeFromStorage, saveTokenStorage } from './auth-toke.service'
-import { errorHandler } from './errorHandler'
+import { errorHandler } from '../utils/errorHandler'
 
 class AuthService {
   private URL = 'auth'

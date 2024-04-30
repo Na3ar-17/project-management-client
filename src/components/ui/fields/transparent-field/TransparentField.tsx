@@ -4,15 +4,15 @@ interface IProps {
   className?: string
   placeholder?: string
   value?: string
-  onChange: () => void
+  onInputChange: () => void
 }
 
 const TransparentField = forwardRef<HTMLInputElement, IProps>(
-  ({ className, placeholder, value, onChange, ...rest }, ref) => {
+  ({ className, placeholder, value, onInputChange, ...rest }, ref) => {
     return (
       <label>
         <input
-          onChange={onChange}
+          onChange={onInputChange}
           type="text"
           className={cn('bg-[transparent]', className)}
           ref={ref}

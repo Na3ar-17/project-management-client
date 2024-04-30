@@ -6,7 +6,6 @@ import { TypeIsHidden } from '@/types/sideBar.type'
 import { sideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import cn from 'clsx'
 interface IProps {
   setIsHidden: Dispatch<SetStateAction<TypeIsHidden>>

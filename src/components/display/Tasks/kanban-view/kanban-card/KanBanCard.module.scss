@@ -1,5 +1,5 @@
 .task {
-  @apply flex cursor-grab min-h-[210px] flex-col py-3 px-4 gap-3 border-2 border-border bg-primary border-solid rounded-xl;
+  @apply flex cursor-grab  flex-col py-3 px-4 gap-3 border-2 border-border bg-primary border-solid rounded-xl;
 
   .title {
     @apply text-[19px] cursor-pointer transition-all w-fit;

@@ -12,6 +12,8 @@ interface IProps {
 }
 
 const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
+  console.log(tasks)
+
   return (
     <Droppable droppableId={category.value}>
       {(provided) => (

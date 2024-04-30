@@ -5,10 +5,10 @@ import styles from './ProgressComponent.module.scss'
 import { useEffect, useState } from 'react'
 
 const ProgressComponent: NextPage = () => {
-  const [progress, setProgress] = useState(13)
+  const [progress, setProgress] = useState<number>(0)
 
   useEffect(() => {
-    const timer = setTimeout(() => setProgress(12), 500)
+    const timer = setTimeout(() => setProgress(0), 500)
     return () => clearTimeout(timer)
   }, [])
 

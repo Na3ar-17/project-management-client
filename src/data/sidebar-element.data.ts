@@ -40,7 +40,6 @@ export const generateProjectPagesData = ({
       href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/tasks`,
     },
   ]
-
   return projectPagesData
 }
 

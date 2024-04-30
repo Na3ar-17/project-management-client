@@ -21,16 +21,16 @@ export interface IComment extends IBase {
 }
 
 export enum EnumTaskPriority {
-  low = 'Low',
-  normal = 'Normal',
-  high = 'High',
+  low = 'low',
+  normal = 'normal',
+  high = 'high',
 }
 
 export enum EnumTaskStatus {
-  inQueue = 'In Queue',
-  onProgress = 'On Progress',
-  testing = 'Testing',
-  completed = 'Completed',
+  inQueue = 'inQueue',
+  onProgress = 'onProgress',
+  testing = 'testing',
+  completed = 'completed',
 }
 
 export interface ITaskCard extends IBase {
@@ -39,10 +39,11 @@ export interface ITaskCard extends IBase {
   priority?: EnumTaskPriority
   dueDate: string
   createdBy: IMembers
-  descripton: string
+  description: string
   assigneesers: IMembers[]
   comments?: IComment[]
   status: EnumTaskStatus
+  projectId: string
 }
 
 export interface IViewType {
@@ -51,9 +52,11 @@ export interface IViewType {
   value: TypeViewType
 }
 
-export type TypeUpdateTaskCard = Omit<
-  ITaskCard,
-  'subTasks' | 'comments' | 'createdAt' | 'updatedAt'
->
+export type TypeUpdateTaskCard = Partial<
+  Omit<
+    ITaskCard,
+    'subTasks' | 'comments' | 'createdAt' | 'updatedAt' | 'createdBy'
+  >
+> & { projectId: string }
 
 export type TypeViewType = 'board' | 'list'

@@ -11,6 +11,7 @@ import { useOutside } from '@/hooks/useOutside'
 import { X } from 'lucide-react'
 import './DatePicker.scss'
 import DateBadge from '../badges/date-badge/DateBadge'
+import { isToday } from 'date-fns'
 
 dayjs.extend(LocalizedFormat)
 
@@ -18,7 +19,7 @@ interface IDatePicker {
   onChange: (value: string) => void
   end: string
   position?: 'left' | 'right'
-  start: string
+  start?: string
 }
 
 const DatePickerComponent: NextPage<IDatePicker> = ({
@@ -45,10 +46,14 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
   return (
     <div className="relative" ref={ref}>
       <button onClick={() => setIsShow(!isShow)}>
-        <DateBadge
-          date={start}
-          deadLine={end === '' ? end : dayjs(end).format('DD.MM.YYYY')}
-        />
+        {isToday(end) ? (
+          <DateBadge deadLine={end} />
+        ) : (
+          <DateBadge
+            date={start}
+            deadLine={end === '' ? end : dayjs(end).format('DD.MM.YYYY')}
+          />
+        )}
       </button>
 
       {isShow && (

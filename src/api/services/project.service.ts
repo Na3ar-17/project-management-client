@@ -1,6 +1,6 @@
 import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import { axiosWithAuth } from '../interceptors'
-import { errorHandler } from './errorHandler'
+import { errorHandler } from '../utils/errorHandler'
 
 class ProjectService {
   private URL = 'project'

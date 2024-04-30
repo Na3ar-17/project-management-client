@@ -16,9 +16,10 @@ interface IProps {
 
 const KanBanCard: NextPage<IProps> = ({ data }) => {
   const { onOpen } = useSheet()
+
   const {
     assigneesers,
-    descripton,
+    description,
     dueDate,
     id,
     title,
@@ -27,6 +28,7 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
     priority,
     subTasks,
   } = data
+
   return (
     <>
       <ContextMenuComponent isEdit={false} id={id} key={id}>
@@ -36,29 +38,31 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
           </p>
           <div className={styles['task_info']}>
             {taskBadgeStyleFormat(priority || '')}
-            <DateBadge />
+            <DateBadge deadLine={dueDate} />
           </div>
-          <p className={styles.description}>{descripton}</p>
+          <p className={styles.description}>{description}</p>
           <ProgressComponent />
-          <div className={styles.users}>
-            <div className={styles.group}>
-              {assigneesers.map((el, index) => {
-                return (
-                  <div className={styles.user} key={index}>
-                    <AvatarComponent
-                      fullName={el.fullName}
-                      imgLink={el.imgLink}
-                      size={30}
-                    />
-                  </div>
-                )
-              })}
+          {assigneesers && (
+            <div className={styles.users}>
+              <div className={styles.group}>
+                {assigneesers.map((el, index) => {
+                  return (
+                    <div className={styles.user} key={index}>
+                      <AvatarComponent
+                        fullName={el.fullName}
+                        imgLink={el.imgLink}
+                        size={30}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+              <div className={styles.icons}>
+                <MessageSquareText className={styles.icon} />
+                <span className={styles['messages-count']}>3</span>
+              </div>
             </div>
-            <div className={styles.icons}>
-              <MessageSquareText className={styles.icon} />
-              <span className={styles['messages-count']}>3</span>
-            </div>
-          </div>
+          )}
         </div>
       </ContextMenuComponent>
       <SheetComponent data={data} />

@@ -3,28 +3,28 @@ import styles from './TaskStatusBadge.module.scss'
 
 export const taskStatusBadgeFormat = (status: string) => {
   switch (status) {
-    case 'In Queue':
+    case 'inQueue':
       return (
         <span style={tasksCategoryData[0].styles} className={styles.status}>
           {status}
         </span>
       )
 
-    case 'On Progress':
+    case 'onProgress':
       return (
         <span style={tasksCategoryData[1].styles} className={styles.status}>
           {status}
         </span>
       )
 
-    case 'Testing':
+    case 'testing':
       return (
         <span style={tasksCategoryData[2].styles} className={styles.status}>
           {status}
         </span>
       )
 
-    case 'Completed':
+    case 'completed':
       return (
         <span style={tasksCategoryData[3].styles} className={styles.status}>
           {status}

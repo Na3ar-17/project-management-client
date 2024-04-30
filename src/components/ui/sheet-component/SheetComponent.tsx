@@ -23,6 +23,10 @@ import SimpleSelect from '../selectors/simple-select/SimpleSelect'
 import { useForm, Controller } from 'react-hook-form'
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { useSheet } from '@/zustand/useSheet'
+import SimpleField from '../fields/simple-field/SimpleField'
+import TransparentField from '../fields/transparent-field/TransparentField'
+import DatePickerComponent from '../date-picker-component/DatePickerComponent'
+import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
 interface IProps {
   data: ITaskCard
 }
@@ -33,27 +37,47 @@ const SheetComponent: NextPage<IProps> = ({ data }) => {
     priority,
     assigneesers,
     createdBy,
-    descripton,
+    description,
     dueDate,
     id,
     status,
     title,
     subTasks,
     comments,
+    projectId,
   } = data
-  const { control, register } = useForm<TypeUpdateTaskCard>({
+  const { control, register, watch } = useForm<TypeUpdateTaskCard>({
     mode: 'onChange',
     defaultValues: {
       priority: priority,
+      title: title,
+      status: status,
+      assigneesers: assigneesers,
+      dueDate: dueDate,
+      description: description,
     },
   })
+
+  useUpdateTaskDebounce({ watch, projectId, taskId: id })
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className={styles.content}>
         <ScrollArea className="w-full h-full">
           <SheetHeader>
-            <SheetTitle className="text-2xl">{title}</SheetTitle>
+            <SheetTitle className="text-2xl">
+              <Controller
+                control={control}
+                name="title"
+                render={({ field: { onChange, value } }) => (
+                  <TransparentField
+                    className="w-full"
+                    value={value}
+                    onInputChange={onChange}
+                  />
+                )}
+              />
+            </SheetTitle>
           </SheetHeader>
           <div className={styles.body}>
             <div className={styles.info}>
@@ -69,21 +93,23 @@ const SheetComponent: NextPage<IProps> = ({ data }) => {
                   />
                 </div>
               </div>
-              <div className={cn(styles.block, styles.users)}>
-                <p className={styles.label}>Assigneesers</p>
-                {assigneesers.map((el, index) => {
-                  return (
-                    <UserBadge
-                      fullName={el.fullName}
-                      imgLink={el.imgLink || ''}
-                      key={index}
-                    />
-                  )
-                })}
-                <span className={styles.icons}>
-                  <Plus className={styles.icon} />
-                </span>
-              </div>
+              {assigneesers && (
+                <div className={cn(styles.block, styles.users)}>
+                  <p className={styles.label}>Assigneesers</p>
+                  {assigneesers.map((el, index) => {
+                    return (
+                      <UserBadge
+                        fullName={el.fullName}
+                        imgLink={el.imgLink || ''}
+                        key={index}
+                      />
+                    )
+                  })}
+                  <span className={styles.icons}>
+                    <Plus className={styles.icon} />
+                  </span>
+                </div>
+              )}
 
               <div className={styles.block}>
                 <p className={styles.label}>Status</p>
@@ -91,15 +117,26 @@ const SheetComponent: NextPage<IProps> = ({ data }) => {
               </div>
               <div className={styles.block}>
                 <p className={styles.label}>Due Date</p>
-                <DateBadge deadLine={dueDate} />
-              </div>
-              <div className={styles.block}>
-                <p className={styles.label}>Created By</p>
-                <UserBadge
-                  fullName="Nazar Gavrylyk"
-                  imgLink={membersData[1].imgLink || ''}
+                <Controller
+                  control={control}
+                  name="dueDate"
+                  render={({ field: { onChange, value } }) => (
+                    <DatePickerComponent
+                      onChange={onChange}
+                      end={value || ''}
+                    />
+                  )}
                 />
               </div>
+              {assigneesers && (
+                <div className={styles.block}>
+                  <p className={styles.label}>Created By</p>
+                  <UserBadge
+                    fullName="Nazar Gavrylyk"
+                    imgLink={membersData[1].imgLink || ''}
+                  />
+                </div>
+              )}
             </div>
             <TabsComponent />
             <TasksBlock />

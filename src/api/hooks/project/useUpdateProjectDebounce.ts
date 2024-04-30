@@ -15,6 +15,7 @@ export const useUpdateProjectDebounce = ({
   projectId,
 }: IProjectDebounce) => {
   const { updateProjectMutation } = useUpdateProject()
+
   const debouncedUpdateProject = useCallback(
     debounce((dto: TypeUpdateProjectCard) => {
       updateProjectMutation(dto)
