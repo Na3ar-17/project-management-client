@@ -7,12 +7,19 @@ import { viewTypesData } from '@/data/tasks.data'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeViewType } from '@/types/tasks.types'
 import ViewType from './view-type/ViewType'
+import { useCreateTask } from '@/api/hooks/tasks/useCreateTask'
+interface IProps {
+  projectId: string
+}
 
-const Panel: NextPage = () => {
+const Panel: NextPage<IProps> = ({ projectId }) => {
   const [type, setType, isLoading] = useLocalStorage<TypeViewType>({
     defaultValue: 'board',
     key: 'ViewType',
   })
+
+  const { createTaskMutation } = useCreateTask()
+
   return (
     <div className={styles.panel}>
       <div className={styles.views}>
@@ -35,7 +42,10 @@ const Panel: NextPage = () => {
           <ListFilter className={styles.icon} />
           <p>More filters</p>
         </div>
-        <div className={cn(styles.action, styles['add-task'])}>
+        <div
+          onClick={() => createTaskMutation(projectId)}
+          className={cn(styles.action, styles['add-task'])}
+        >
           <Plus className={styles.icon} />
           <p>Add Task</p>
         </div>

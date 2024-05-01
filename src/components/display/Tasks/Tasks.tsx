@@ -11,7 +11,7 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
   return (
     <main className={styles.container}>
       <Heading text="Tasks" />
-      <Panel />
+      <Panel projectId={projectId} />
       <KanbanView projectId={projectId} />
     </main>
   )

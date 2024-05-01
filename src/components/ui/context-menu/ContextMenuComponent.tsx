@@ -15,23 +15,22 @@ import { useDialog } from '@/zustand/useDialog'
 
 interface IProps {
   children: React.ReactNode
-  id: string
   isEdit?: boolean
   onEdit?: () => void
   disabled?: boolean
-  onDelete?: () => void
+  onDelete: () => void
 }
 
 const ContextMenuComponent: NextPage<IProps> = ({
   children,
-  id,
   onEdit,
   isEdit = true,
+  onDelete,
 }) => {
   const { onOpen } = useDialog()
 
   return (
-    <ContextMenu modal={false} key={id}>
+    <ContextMenu modal={false}>
       <ContextMenuTrigger>{children}</ContextMenuTrigger>
       <ContextMenuContent className={styles.content}>
         {isEdit && (
@@ -55,7 +54,7 @@ const ContextMenuComponent: NextPage<IProps> = ({
           </ContextMenuShortcut>
         </ContextMenuItem>
       </ContextMenuContent>
-      <AlertDialogComponent id={id} />
+      <AlertDialogComponent onDelete={onDelete} />
     </ContextMenu>
   )
 }

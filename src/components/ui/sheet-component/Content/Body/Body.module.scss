@@ -1,0 +1,26 @@
+.body {
+  @apply mt-5;
+  .icons {
+    @apply w-7 cursor-pointer h-7 rounded-lg bg-accent-gray2 flex items-center justify-center;
+    .icon {
+      @apply size-4;
+    }
+  }
+  .info {
+    @apply flex flex-col gap-2 mt-1 mb-2;
+    .block {
+      @apply grid items-center;
+      grid-template-columns: 100px 1fr;
+      .label {
+        @apply text-menu-text;
+      }
+      .group {
+        @apply flex items-center gap-2;
+      }
+    }
+
+    .users {
+      @apply flex flex-wrap items-center gap-x-[0.2rem] gap-y-1;
+    }
+  }
+}

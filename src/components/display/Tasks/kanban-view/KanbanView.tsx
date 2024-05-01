@@ -12,17 +12,20 @@ interface IProps {
 }
 
 const KanbanView: NextPage<IProps> = ({ projectId }) => {
-  const { onDragEnd } = useTasksEnd({ projectId })
-  const { tasksData, isFetching, isSuccess } = useGetTasks(projectId)
+  const { tasksData, isFetching, isSuccess, setTasksState, tasksState } =
+    useGetTasks(projectId)
+
+  const { onDragEnd } = useTasksEnd({ projectId, setTasksState })
   //TODO create loader and error message
-  if (!tasksData) {
+  if (!tasksData || !tasksState) {
     return <div>Error</div>
   }
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>
         {tasksCategoryData.map((category, index) => (
-          <KanBanColumn key={index} category={category} tasks={tasksData} />
+          <KanBanColumn key={index} category={category} tasks={tasksState} />
         ))}
       </div>
     </DragDropContext>

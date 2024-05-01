@@ -37,7 +37,7 @@ class TasksService {
     }
   }
 
-  async delete({ projectId, id }: { projectId: string; id: string }) {
+  async delete(projectId: string, id: string) {
     try {
       const { data } = await axiosWithAuth.delete(
         `${this.URL}/${projectId}/${id}`

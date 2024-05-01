@@ -9,12 +9,14 @@ import { MessageSquareText } from 'lucide-react'
 import { ITaskCard } from '@/types/tasks.types'
 import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
 import { useSheet } from '@/zustand/useSheet'
+import { textAbstract } from '@/utils/textAbstract'
+import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
 interface IProps {
   data: ITaskCard
 }
 
 const KanBanCard: NextPage<IProps> = ({ data }) => {
-  const { onOpen, setTaskId } = useSheet()
+  const { onOpen, setExpectedTaskId } = useSheet()
 
   const {
     assigneesers,
@@ -29,14 +31,20 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
     projectId,
   } = data
 
+  const { deleteTaskMutation } = useDeleteTask()
+
   return (
     <>
-      <ContextMenuComponent isEdit={false} id={id} key={id}>
+      <ContextMenuComponent
+        onDelete={() => deleteTaskMutation({ projectId, taskId: id })}
+        isEdit={false}
+        key={id}
+      >
         <div className={styles.task}>
           <p
             className={styles.title}
             onClick={() => {
-              setTaskId(id)
+              setExpectedTaskId(id)
               onOpen()
             }}
           >
@@ -46,7 +54,7 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
             {taskBadgeStyleFormat(priority || '')}
             <DateBadge deadLine={dueDate} />
           </div>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description}>{textAbstract(description, 75)}</p>
           <ProgressComponent />
           {assigneesers && (
             <div className={styles.users}>
@@ -71,7 +79,7 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
           )}
         </div>
       </ContextMenuComponent>
-      <SheetComponent projectId={projectId} taskId={id} taskData={data} />
+      <SheetComponent taskData={data} />
     </>
   )
 }

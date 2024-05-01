@@ -6,10 +6,14 @@ import { useState } from 'react'
 import cn from 'clsx'
 import TextAreaComponent from '../fields/text-area-component/TextAreaComponent'
 import Comments from './Comments/Comments'
+import { Control, Controller } from 'react-hook-form'
+import { TypeUpdateTaskCard } from '@/types/tasks.types'
 
-interface IProps {}
+interface IProps {
+  control: Control<TypeUpdateTaskCard>
+}
 
-const TabsComponent: NextPage<IProps> = ({}) => {
+const TabsComponent: NextPage<IProps> = ({ control }) => {
   const [isActive, setIsActive] = useState<'Description' | 'Comments'>(
     'Description'
   )
@@ -44,7 +48,16 @@ const TabsComponent: NextPage<IProps> = ({}) => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="Description">
-        <TextAreaComponent />
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, value } }) => (
+            <TextAreaComponent
+              value={value || ''}
+              onTextAreaChange={onChange}
+            />
+          )}
+        />
       </TabsContent>
       <TabsContent value="Comments">
         <Comments />

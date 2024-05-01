@@ -19,6 +19,7 @@ import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent
 import { useUploadProjectImage } from '@/api/hooks/file/useUploadProjectImage'
 import { useImageUploader } from '@/hooks/useImageUploader'
 import { useDeleteProjectImage } from '@/api/hooks/file/useDeleteProjectImage'
+import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
 
 const Card: NextPage<IProjectResponse> = ({
   id,
@@ -42,6 +43,7 @@ const Card: NextPage<IProjectResponse> = ({
       end: end,
     },
   })
+  const { deleteProjectMutation } = useDeleteProject()
 
   useUpdateProjectDebounce({ watch, projectId: id })
 
@@ -58,7 +60,10 @@ const Card: NextPage<IProjectResponse> = ({
   }, [imgFile])
 
   return (
-    <ContextMenuComponent isEdit={false} id={id}>
+    <ContextMenuComponent
+      onDelete={() => deleteProjectMutation(id)}
+      isEdit={false}
+    >
       <div className={cn(styles.card)}>
         {image ? (
           <>
@@ -103,7 +108,7 @@ const Card: NextPage<IProjectResponse> = ({
                   {...register('name')}
                   className="text-xl w-full"
                   value={value}
-                  onChange={onChange}
+                  onInputChange={onChange}
                 />
               )
             }}

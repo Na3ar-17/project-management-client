@@ -7,6 +7,7 @@ import KanBanCard from '../kanban-card/KanBanCard'
 import { filterTasks } from '../../utils/filter-tasks'
 import AddCard from '../add-card/AddCard'
 import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
+import { Columns2, Columns4 } from 'lucide-react'
 interface IProps {
   category: ICategory
   tasks: ITaskCard[]
@@ -31,7 +32,7 @@ const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
                   ></span>
                   <p>{category.label}</p>
                 </div>
-                <BsThreeDots className={styles.dots} />
+                <Columns2 className={styles.icon} />
               </div>
               <div className={styles.tasks}>
                 {filterTasks(tasks, category.value)?.map((card, index) => (
