@@ -18,18 +18,8 @@ interface IProps {
 const KanBanCard: NextPage<IProps> = ({ data }) => {
   const { onOpen, setExpectedTaskId } = useSheet()
 
-  const {
-    assigneesers,
-    description,
-    dueDate,
-    id,
-    title,
-    comments,
-    createdAt,
-    priority,
-    subTasks,
-    projectId,
-  } = data
+  const { assigneesers, description, dueDate, id, title, priority, projectId } =
+    data
 
   const { deleteTaskMutation } = useDeleteTask()
 

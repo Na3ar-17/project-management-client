@@ -24,9 +24,14 @@ const KanbanView: NextPage<IProps> = ({ projectId }) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>
-        {tasksCategoryData.map((category, index) => (
-          <KanBanColumn key={index} category={category} tasks={tasksState} />
-        ))}
+        {tasksState.length <= 0 ? (
+          // Create cool message about empty tasks
+          <div>No elenemts</div>
+        ) : (
+          tasksCategoryData.map((category, index) => (
+            <KanBanColumn key={index} category={category} tasks={tasksState} />
+          ))
+        )}
       </div>
     </DragDropContext>
   )

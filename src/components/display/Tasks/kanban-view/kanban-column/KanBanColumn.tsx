@@ -18,22 +18,22 @@ const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
     <>
       <Droppable droppableId={category.value}>
         {(provided) => (
-          <>
+          <div className={styles.group}>
+            <div className={styles.tab}>
+              <div className={styles['tab-title']}>
+                <span
+                  style={category.styles}
+                  className={`${styles.mark}`}
+                ></span>
+                <p>{category.label}</p>
+              </div>
+              <Columns2 className={styles.icon} />
+            </div>
             <div
               ref={provided.innerRef}
               {...provided.droppableProps}
               className={styles.category}
             >
-              <div className={styles.tab}>
-                <div className={styles['tab-title']}>
-                  <span
-                    style={category.styles}
-                    className={`${styles.mark}`}
-                  ></span>
-                  <p>{category.label}</p>
-                </div>
-                <Columns2 className={styles.icon} />
-              </div>
               <div className={styles.tasks}>
                 {filterTasks(tasks, category.value)?.map((card, index) => (
                   <Draggable key={card.id} draggableId={card.id} index={index}>
@@ -51,7 +51,7 @@ const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
               </div>
               {provided.placeholder}
             </div>
-          </>
+          </div>
         )}
       </Droppable>
     </>
