@@ -13,7 +13,7 @@ const SheetComponent: NextPage<IProps> = ({ taskData }) => {
   const { isOpen, onClose, expectedTaskId } = useSheet()
 
   return (
-    <Sheet open={isOpen} onOpenChange={onClose} key={expectedTaskId}>
+    <Sheet open={true} onOpenChange={onClose} key={expectedTaskId}>
       <Content data={taskData} expectedTaskId={expectedTaskId} />
     </Sheet>
   )

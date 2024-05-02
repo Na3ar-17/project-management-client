@@ -10,7 +10,7 @@ export interface ICategory {
   label: string
 }
 
-export interface ISubTaskRow extends IBase {
+export interface ISubTask extends IBase {
   title: string
   isCompleted: boolean
 }
@@ -35,7 +35,7 @@ export enum EnumTaskStatus {
 
 export interface ITaskCard extends IBase {
   title: string
-  subTasks?: ISubTaskRow[]
+  subTasks?: ISubTask[]
   priority?: EnumTaskPriority
   dueDate: string
   createdBy: IMembers

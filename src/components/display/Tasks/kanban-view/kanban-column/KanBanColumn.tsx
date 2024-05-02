@@ -43,7 +43,7 @@ const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <KanBanCard data={card} />
+                        <KanBanCard data={card} key={index} />
                       </div>
                     )}
                   </Draggable>

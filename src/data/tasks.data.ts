@@ -4,7 +4,7 @@ import {
   EnumTaskStatus,
   ICategory,
   IComment,
-  ISubTaskRow,
+  ISubTask,
   ITaskCard,
   IViewType,
 } from '@/types/tasks.types'
@@ -56,7 +56,7 @@ export const simpleSelectData: { lable: string; value: EnumTaskPriority }[] = [
   { value: EnumTaskPriority.high, lable: 'High' },
 ]
 
-export const subTaskRowData: ISubTaskRow[] = [
+export const subTaskRowData: ISubTask[] = [
   {
     isCompleted: false,
     id: '1',
@@ -71,26 +71,6 @@ export const subTaskRowData: ISubTaskRow[] = [
     isCompleted: true,
     id: '3',
     title: 'Coding',
-  },
-  {
-    isCompleted: true,
-    id: '4',
-    title: 'Coding',
-  },
-  {
-    isCompleted: false,
-    id: '55',
-    title: 'Ui SideBar design',
-  },
-  {
-    isCompleted: false,
-    id: '6',
-    title: 'Ui SideBar design',
-  },
-  {
-    isCompleted: false,
-    id: '7',
-    title: 'Ui SideBar design',
   },
 ]
 

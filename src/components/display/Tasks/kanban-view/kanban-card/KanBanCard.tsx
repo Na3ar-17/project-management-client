@@ -11,6 +11,8 @@ import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuCompon
 import { useSheet } from '@/zustand/useSheet'
 import { textAbstract } from '@/utils/textAbstract'
 import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
+import { useState } from 'react'
+
 interface IProps {
   data: ITaskCard
 }
@@ -26,9 +28,9 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
   return (
     <>
       <ContextMenuComponent
+        key={id}
         onDelete={() => deleteTaskMutation({ projectId, taskId: id })}
         isEdit={false}
-        key={id}
       >
         <div className={styles.task}>
           <p

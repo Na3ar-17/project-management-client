@@ -3,6 +3,7 @@ import styles from './TasksBlock.module.scss'
 import { subTaskRowData } from '@/data/tasks.data'
 import { ScrollArea } from '../../shadcn/ui/scroll-area'
 import TaskRow from './TaskRow/TaskRow'
+import TransparentField from '../../fields/transparent-field/TransparentField'
 interface IProps {}
 
 const TasksBlock: NextPage<IProps> = ({}) => {
@@ -14,6 +15,11 @@ const TasksBlock: NextPage<IProps> = ({}) => {
           {subTaskRowData.map((el, index) => (
             <TaskRow key={index} data={el} />
           ))}
+          <TransparentField
+            placeholder="Title here..."
+            className="px-1 py-0.5 w-full mt-2"
+            onInputChange={() => {}}
+          />
         </ScrollArea>
       </ul>
     </div>
