@@ -65,3 +65,7 @@ export type TypeCreateSubTask = Omit<
   ISubTask,
   'isCompleted' | 'id' | 'createdAt' | 'updatedAt'
 > & { taskId: string }
+
+export type TypeUpdateSubTask = Omit<ISubTask, 'createdAt' | 'updatedAt'> & {
+  taskId: string
+}

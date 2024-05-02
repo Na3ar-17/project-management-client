@@ -1,4 +1,8 @@
-import { ISubTask, TypeCreateSubTask } from '@/types/tasks.types'
+import {
+  ISubTask,
+  TypeCreateSubTask,
+  TypeUpdateSubTask,
+} from '@/types/tasks.types'
 import { axiosWithAuth } from '../interceptors'
 import { errorHandler } from '../utils/errorHandler'
 
@@ -20,6 +24,16 @@ class SubTasksService {
       const { data } = await axiosWithAuth.post(
         `${this.URL}/create/${dto.taskId}`
       )
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async update(dto: TypeUpdateSubTask): Promise<ISubTask> {
+    try {
+      const { data } = await axiosWithAuth.put(`${this.URL}/update`, dto)
       return data
     } catch (error) {
       errorHandler(error)
