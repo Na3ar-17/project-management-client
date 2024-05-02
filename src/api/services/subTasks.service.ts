@@ -2,7 +2,7 @@ import { ISubTask } from '@/types/tasks.types'
 import { axiosWithAuth } from '../interceptors'
 import { errorHandler } from '../utils/errorHandler'
 
-class SubTaskService {
+class SubTasksService {
   private URL = 'sub-task'
 
   async getAll(taskId: string): Promise<ISubTask[]> {
@@ -16,4 +16,4 @@ class SubTaskService {
   }
 }
 
-export const subTaskService = new SubTaskService()
+export const subTasksService = new SubTasksService()
