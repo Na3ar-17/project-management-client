@@ -1,14 +1,16 @@
 import { NextPage } from 'next'
 import styles from './TaskRow.module.scss'
 import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
-import { ITaskRowData } from '@/types/tasks.types'
+import { ISubTask } from '@/types/tasks.types'
 import cn from 'clsx'
+
 interface IProps {
-  data: ITaskRowData
+  data: ISubTask
 }
 
 const TaskRow: NextPage<IProps> = ({ data }) => {
   const { isCompleted, title } = data
+
   return (
     <li className={styles.item}>
       <CheckBox checked={isCompleted} />

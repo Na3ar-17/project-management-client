@@ -11,12 +11,14 @@ import { Plus } from 'lucide-react'
 import { Control, Controller } from 'react-hook-form'
 import TasksBlock from '../../TasksBlock/TasksBlock'
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
+import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
 interface IProps {
   control: Control<TypeUpdateTaskCard>
   data: ITaskCard
 }
 
 const Body: NextPage<IProps> = ({ control, data }) => {
+  const { data: subtaskData, isSuccess } = useGetAll(data.id)
   return (
     <div className={styles.body}>
       <div className={styles.info}>
@@ -75,7 +77,8 @@ const Body: NextPage<IProps> = ({ control, data }) => {
         )}
       </div>
       <TabsComponent control={control} />
-      <TasksBlock />
+      //TODO handle errors
+      {isSuccess ? <TasksBlock subTasksData={subtaskData} /> : <div>Error</div>}
     </div>
   )
 }

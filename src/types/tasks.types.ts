@@ -60,3 +60,8 @@ export type TypeUpdateTaskCard = Partial<
 > & { projectId: string }
 
 export type TypeViewType = 'board' | 'list'
+
+export type TypeCreateSubTask = Omit<
+  ISubTask,
+  'isCompleted' | 'id' | 'createdAt' | 'updatedAt'
+> & { taskId: string }
