@@ -1,0 +1,11 @@
+.dropdown {
+  @apply w-[400px] min-h-[70px] px-2 py-1 bg-border/90;
+
+  .title {
+    @apply font-[500];
+  }
+
+  .content {
+    @apply bg-primary/50;
+  }
+}

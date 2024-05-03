@@ -1,0 +1,32 @@
+.notification {
+  @apply rounded-md flex gap-2;
+
+  .left-side {
+    .picture {
+      @apply w-[50px] h-[50px] bg-blue/60 rounded-lg flex justify-center items-center;
+      .icon {
+        @apply size-5 text-text;
+      }
+    }
+  }
+  .right-side {
+    .body {
+      @apply flex w-full;
+
+      .content {
+      }
+    }
+
+    .footer {
+      @apply flex items-center gap-3 justify-between w-full mt-2;
+    }
+  }
+
+  &:not(:last-child) {
+    @apply mb-4;
+  }
+
+  &:first-child {
+    @apply mt-2;
+  }
+}

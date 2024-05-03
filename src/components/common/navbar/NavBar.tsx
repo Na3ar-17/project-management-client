@@ -5,6 +5,7 @@ import { Bell, MessageSquareText } from 'lucide-react'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { useGetProfile } from '@/api/hooks/user/useGetProfile'
+import DropDownNotificationMenu from '../drop-down-notification-menu/DropDownNotificationMenu'
 
 interface IProps {
   isHidden: TypeIsHidden
@@ -22,7 +23,9 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
     >
       <div className={styles.logo}>Proquill</div>
       <div className={styles.user}>
-        <Bell className={styles.icon} />
+        <DropDownNotificationMenu>
+          <Bell className={styles.icon} />
+        </DropDownNotificationMenu>
         <MessageSquareText className={styles.icon} />
         <div className={styles.avatar}>
           <AvatarComponent fullName={data?.fullName} imgLink={data?.imgLink} />
