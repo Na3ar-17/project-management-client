@@ -34,48 +34,42 @@ const KanBanCard: NextPage<IProps> = ({
 
   return (
     <>
-      <ContextMenuComponent
-        key={id}
-        onDelete={() => deleteTaskMutation({ projectId, taskId: id })}
-        isEdit={false}
-      >
-        <div className={cn(styles.task, isDragging && styles.dragging)}>
-          <Header
-            id={id}
-            title={title}
-            provided={provided}
-            isDragging={isDragging}
-            onTaskDelete={() => deleteTaskMutation({ projectId, taskId: id })}
-          />
-          <div className={styles['task_info']}>
-            {taskBadgeStyleFormat(priority || '')}
-            <DateBadge deadLine={dueDate} />
-          </div>
-          <p className={styles.description}>{textAbstract(description, 75)}</p>
-          <ProgressComponent />
-          {assigneesers && (
-            <div className={styles.users}>
-              <div className={styles.group}>
-                {assigneesers.map((el, index) => {
-                  return (
-                    <div className={styles.user} key={index}>
-                      <AvatarComponent
-                        fullName={el.fullName}
-                        imgLink={el.imgLink}
-                        size={30}
-                      />
-                    </div>
-                  )
-                })}
-              </div>
-              <div className={styles.icons}>
-                <MessageSquareText className={styles.icon} />
-                <span className={styles['messages-count']}>3</span>
-              </div>
-            </div>
-          )}
+      <div className={cn(styles.task, isDragging && styles.dragging)}>
+        <Header
+          id={id}
+          title={title}
+          provided={provided}
+          isDragging={isDragging}
+          onTaskDelete={() => deleteTaskMutation({ projectId, taskId: id })}
+        />
+        <div className={styles['task_info']}>
+          {taskBadgeStyleFormat(priority || '')}
+          <DateBadge deadLine={dueDate} />
         </div>
-      </ContextMenuComponent>
+        <p className={styles.description}>{textAbstract(description, 75)}</p>
+        <ProgressComponent />
+        {assigneesers && (
+          <div className={styles.users}>
+            <div className={styles.group}>
+              {assigneesers.map((el, index) => {
+                return (
+                  <div className={styles.user} key={index}>
+                    <AvatarComponent
+                      fullName={el.fullName}
+                      imgLink={el.imgLink}
+                      size={30}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+            <div className={styles.icons}>
+              <MessageSquareText className={styles.icon} />
+              <span className={styles['messages-count']}>3</span>
+            </div>
+          </div>
+        )}
+      </div>
       <SheetComponent taskData={data} />
     </>
   )
