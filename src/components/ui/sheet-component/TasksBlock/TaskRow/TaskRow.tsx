@@ -8,12 +8,14 @@ import { useSubTaskDebounce } from '@/api/hooks/subTasks/useSubTaskDebounce'
 import { Controller, useForm } from 'react-hook-form'
 import { Trash2 } from 'lucide-react'
 import { useDeleteSubTask } from '@/api/hooks/subTasks/useDeleteSubTask'
+import { Dispatch, SetStateAction } from 'react'
 
 interface IProps {
   data: ISubTask
+  setSubTaskData: Dispatch<SetStateAction<ISubTask[] | undefined>>
 }
 
-const TaskRow: NextPage<IProps> = ({ data }) => {
+const TaskRow: NextPage<IProps> = ({ data, setSubTaskData }) => {
   const { isCompleted, title, id, taskId } = data
 
   const { watch, control } = useForm<TypeUpdateSubTask>({
@@ -24,6 +26,7 @@ const TaskRow: NextPage<IProps> = ({ data }) => {
   })
 
   const { deleteSubtaskMutation } = useDeleteSubTask()
+
   useSubTaskDebounce({ watch, taskId, id })
 
   return (
@@ -38,7 +41,11 @@ const TaskRow: NextPage<IProps> = ({ data }) => {
       <Trash2
         strokeWidth={1.7}
         className={styles.delete}
-        onClick={() => deleteSubtaskMutation({ taskId, id })}
+        onClick={() =>
+          id
+            ? deleteSubtaskMutation({ taskId, id })
+            : setSubTaskData((prev) => prev?.slice(0, -1))
+        }
       />
       <Controller
         control={control}

@@ -22,7 +22,8 @@ class SubTasksService {
   async create(dto: TypeCreateSubTask): Promise<ISubTask> {
     try {
       const { data } = await axiosWithAuth.post(
-        `${this.URL}/create/${dto.taskId}`
+        `${this.URL}/create/${dto.taskId}`,
+        dto
       )
       return data
     } catch (error) {

@@ -1,15 +1,10 @@
 import { NextPage } from 'next'
 import styles from './TasksBlock.module.scss'
-import { subTaskRowData } from '@/data/tasks.data'
 import { ScrollArea } from '../../shadcn/ui/scroll-area'
 import TaskRow from './TaskRow/TaskRow'
-import TransparentField from '../../fields/transparent-field/TransparentField'
-import { ISubTask, TypeUpdateSubTask } from '@/types/tasks.types'
-import { Controller, useForm } from 'react-hook-form'
-import { useSubTaskDebounce } from '@/api/hooks/subTasks/useSubTaskDebounce'
+import { ISubTask } from '@/types/tasks.types'
 import { Dispatch, SetStateAction } from 'react'
 import ButtonSettings from '../../buttons/button-settings/ButtonSettings'
-import { useCreateSubTask } from '@/api/hooks/subTasks/useCreateSubTask'
 interface IProps {
   subTasksData: ISubTask[]
   setSubTaskData: Dispatch<SetStateAction<ISubTask[] | undefined>>
@@ -43,7 +38,7 @@ const TasksBlock: NextPage<IProps> = ({
       <ul className={styles.list}>
         <ScrollArea type="hover" className="h-[120px] w-full">
           {subTasksData.map((el, index) => (
-            <TaskRow key={index} data={el} />
+            <TaskRow setSubTaskData={setSubTaskData} key={index} data={el} />
           ))}
           {!subTasksData?.some((el) => !el.id) && (
             <ButtonSettings action={addSubTask} text="Title here..." />

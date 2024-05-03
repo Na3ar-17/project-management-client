@@ -25,7 +25,7 @@ export const useSubTaskDebounce = ({ watch, taskId, id }: IProps) => {
   const debouncedCreateSubTask = useCallback(
     debounce((dto: TypeCreateSubTask) => {
       createSubTaskMutation(dto)
-    }, 2000),
+    }, 500),
     []
   )
 
