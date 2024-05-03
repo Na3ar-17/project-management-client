@@ -10,7 +10,14 @@ interface IProps {
 }
 
 const Notification: NextPage<IProps> = ({ data }) => {
-  const { content, createdAt, type } = data
+  const {
+    content,
+    createdAt,
+    type,
+    owner: { imgLink, fullName },
+  } = data
+  console.log(type)
+
   return (
     <DropdownMenuItem className={styles.notification}>
       <div className={styles['left-side']}>
@@ -28,8 +35,8 @@ const Notification: NextPage<IProps> = ({ data }) => {
             <p>from</p>
             <UserBadge
               clasName="cursor-pointer"
-              fullName="Nazar Gavrylyk"
-              imgLink="100926af15a5893fb1c.jpg"
+              fullName={fullName}
+              imgLink={imgLink || ''}
             />
           </div>
         </div>
