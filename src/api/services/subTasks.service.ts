@@ -40,6 +40,15 @@ class SubTasksService {
       throw error
     }
   }
+
+  async delete({ taskId, id }: { taskId: string; id: string }) {
+    try {
+      await axiosWithAuth.delete(`${this.URL}/delete/${taskId}/${id}`)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
 }
 
 export const subTasksService = new SubTasksService()

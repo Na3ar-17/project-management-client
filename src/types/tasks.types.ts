@@ -13,6 +13,7 @@ export interface ICategory {
 export interface ISubTask extends IBase {
   title: string
   isCompleted: boolean
+  taskId: string
 }
 
 export interface IComment extends IBase {
@@ -64,8 +65,8 @@ export type TypeViewType = 'board' | 'list'
 export type TypeCreateSubTask = Omit<
   ISubTask,
   'isCompleted' | 'id' | 'createdAt' | 'updatedAt'
-> & { taskId: string }
+>
 
-export type TypeUpdateSubTask = Omit<ISubTask, 'createdAt' | 'updatedAt'> & {
-  taskId: string
-}
+export type TypeUpdateSubTask = Partial<
+  Omit<ISubTask, 'createdAt' | 'updatedAt'>
+>

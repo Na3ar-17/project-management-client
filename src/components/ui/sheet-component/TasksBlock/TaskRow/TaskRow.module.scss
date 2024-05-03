@@ -1,5 +1,13 @@
 .item {
-  @apply flex items-center gap-2;
+  @apply flex py-1 px-1 items-center  rounded-sm gap-2 transition-all hover:bg-border/30 cursor-pointer mb-2;
+
+  .delete {
+    @apply size-5 text-red-text transition-all;
+  }
+
+  .title {
+    @apply text-[17px];
+  }
 
   .completed {
     @apply opacity-80;

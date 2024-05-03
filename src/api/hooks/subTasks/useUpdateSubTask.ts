@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 
 export const useUpdateSubTask = () => {
   const queryClient = useQueryClient()
+
   const { mutate: updateSubTakMutation } = useMutation({
     mutationKey: [subTasksKeys.UPDATE],
     mutationFn: (dto: TypeUpdateSubTask) => subTasksService.update(dto),

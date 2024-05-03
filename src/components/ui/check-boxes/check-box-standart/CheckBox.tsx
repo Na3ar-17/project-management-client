@@ -5,15 +5,13 @@ import './CheckBox.scss'
 
 interface IProps {
   onCheckedChange?: (value: any) => void
-  checked?: string | boolean
+  checked?: boolean
 }
 
 const CheckBox: NextPage<IProps> = ({ onCheckedChange, checked }) => {
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState(checked)
 
-  const handleCheckboxChange: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
+  const handleCheckboxChange: ChangeEventHandler<HTMLInputElement> = () => {
     const newValue = !isChecked
     setIsChecked(newValue)
     if (onCheckedChange) {
@@ -22,14 +20,13 @@ const CheckBox: NextPage<IProps> = ({ onCheckedChange, checked }) => {
   }
 
   return (
-    <label className="label">
+    <label className="flex justify-center items-center">
       <input
-        checked={isChecked || !!checked}
+        checked={!!checked}
         onChange={handleCheckboxChange}
         type="checkbox"
-        className="input-checkbox-standart"
+        className="ui-checkbox"
       />
-      <span className="checkmark"></span>
     </label>
   )
 }

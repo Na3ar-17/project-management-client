@@ -4,7 +4,7 @@ interface IProps {
   className?: string
   placeholder?: string
   value?: string
-  onInputChange: () => void
+  onInputChange?: () => void
 }
 
 const TransparentField = forwardRef<HTMLInputElement, IProps>(
