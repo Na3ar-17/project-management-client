@@ -6,6 +6,7 @@ import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import DropDownNotificationMenu from '../drop-down-notification-menu/DropDownNotificationMenu'
+import { useGetAll } from '@/api/hooks/notifications/useGetAll'
 
 interface IProps {
   isHidden: TypeIsHidden
@@ -13,7 +14,17 @@ interface IProps {
 
 const NavBar: NextPage<IProps> = ({ isHidden }) => {
   const { data, isFetching, isSuccess } = useGetProfile()
+  const {
+    isFetching: isNotificationsDataFetching,
+    isSuccess: isNotificationsDataSuccess,
+    notificationsData,
+  } = useGetAll()
+
   //TODO handle isFetching, isSuccess
+
+  if (!isNotificationsDataSuccess || !notificationsData) {
+    return <div>Error</div>
+  }
   return (
     <nav
       style={{
@@ -23,7 +34,7 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
     >
       <div className={styles.logo}>Proquill</div>
       <div className={styles.user}>
-        <DropDownNotificationMenu>
+        <DropDownNotificationMenu data={notificationsData}>
           <Bell className={styles.icon} />
         </DropDownNotificationMenu>
         <MessageSquareText className={styles.icon} />

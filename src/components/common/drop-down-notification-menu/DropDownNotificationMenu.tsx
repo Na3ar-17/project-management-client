@@ -9,11 +9,13 @@ import {
 } from '@/components/ui/shadcn/ui/dropdown-menu'
 import Notification from './notification/Notification'
 import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
+import { INotifications } from '@/types/notifications.types'
 interface IProps {
   children: React.ReactNode
+  data: INotifications[]
 }
 
-const DropDownNotificationMenu: NextPage<IProps> = ({ children }) => {
+const DropDownNotificationMenu: NextPage<IProps> = ({ children, data }) => {
   return (
     <div>
       <DropdownMenu modal={false}>
@@ -25,8 +27,8 @@ const DropDownNotificationMenu: NextPage<IProps> = ({ children }) => {
           <p className={styles.title}>My notifications</p>
           <div className={styles.content}>
             <ScrollArea className="h-[220px]">
-              {Array.from({ length: 5 }).map((el, index) => (
-                <Notification key={index} />
+              {data.map((el, index) => (
+                <Notification data={el} key={index} />
               ))}
             </ScrollArea>
           </div>
