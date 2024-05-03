@@ -1,25 +1,32 @@
-import { NextPage } from 'next'
-import styles from './KanBanCard.module.scss'
-import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
-import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
-import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
-import ProgressComponent from '@/components/ui/progress/ProgressComponent'
-import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
-import { MessageSquareText } from 'lucide-react'
-import { ITaskCard } from '@/types/tasks.types'
-import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
-import { useSheet } from '@/zustand/useSheet'
-import { textAbstract } from '@/utils/textAbstract'
 import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
-import { useState } from 'react'
-
+import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
+import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
+import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
+import ContextMenuComponent from '@/components/ui/context-menu/ContextMenuComponent'
+import ProgressComponent from '@/components/ui/progress/ProgressComponent'
+import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
+import { ITaskCard } from '@/types/tasks.types'
+import { textAbstract } from '@/utils/textAbstract'
+import type {
+  DraggableProvided,
+  DraggableStateSnapshot,
+} from '@hello-pangea/dnd'
+import cn from 'clsx'
+import { MessageSquareText } from 'lucide-react'
+import { NextPage } from 'next'
+import Header from './Header/Header'
+import styles from './KanBanCard.module.scss'
 interface IProps {
   data: ITaskCard
+  provided: DraggableProvided
+  snapshot: DraggableStateSnapshot
 }
 
-const KanBanCard: NextPage<IProps> = ({ data }) => {
-  const { onOpen, setExpectedTaskId } = useSheet()
-
+const KanBanCard: NextPage<IProps> = ({
+  data,
+  provided,
+  snapshot: { isDragging },
+}) => {
   const { assigneesers, description, dueDate, id, title, priority, projectId } =
     data
 
@@ -32,16 +39,14 @@ const KanBanCard: NextPage<IProps> = ({ data }) => {
         onDelete={() => deleteTaskMutation({ projectId, taskId: id })}
         isEdit={false}
       >
-        <div className={styles.task}>
-          <p
-            className={styles.title}
-            onClick={() => {
-              setExpectedTaskId(id)
-              onOpen()
-            }}
-          >
-            {title}
-          </p>
+        <div className={cn(styles.task, isDragging && styles.dragging)}>
+          <Header
+            id={id}
+            title={title}
+            provided={provided}
+            isDragging={isDragging}
+            onTaskDelete={() => deleteTaskMutation({ projectId, taskId: id })}
+          />
           <div className={styles['task_info']}>
             {taskBadgeStyleFormat(priority || '')}
             <DateBadge deadLine={dueDate} />

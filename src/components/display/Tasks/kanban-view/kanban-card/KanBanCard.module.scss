@@ -1,11 +1,28 @@
 .task {
-  @apply flex cursor-grab  flex-col py-3 px-4 gap-3 border-2 border-border bg-primary border-solid rounded-xl;
+  @apply flex flex-col py-3 px-4 gap-3 border-2 border-border bg-primary border-solid rounded-xl;
 
-  .title {
-    @apply text-[19px] cursor-pointer transition-all w-fit;
+  .header {
+    @apply flex justify-between items-center;
+    .title {
+      @apply text-[19px] cursor-pointer transition-all w-fit;
 
-    &:hover {
-      @apply underline;
+      &:hover {
+        @apply underline;
+      }
+    }
+
+    .actions {
+      opacity: 0;
+      visibility: hidden;
+      @apply transition-all;
+
+      .icon {
+        @apply size-5 text-menu-text cursor-grab transition-all;
+      }
+
+      .delete {
+        @apply text-light-red;
+      }
     }
   }
   .task_info {
@@ -32,4 +49,35 @@
       }
     }
   }
+
+  &:hover {
+    .header {
+      .actions {
+        opacity: 1;
+        visibility: visible;
+        @apply transition-all;
+
+        .icon {
+          @apply size-5;
+        }
+
+        .drag {
+          @apply text-menu-text cursor-grab transition-all;
+
+          &:hover {
+            @apply text-text scale-105;
+          }
+        }
+
+        .delete {
+          &:hover {
+            @apply text-red scale-105;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dragging {
 }

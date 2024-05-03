@@ -5,6 +5,7 @@ import TaskRow from './TaskRow/TaskRow'
 import { ISubTask } from '@/types/tasks.types'
 import { Dispatch, SetStateAction } from 'react'
 import ButtonSettings from '../../buttons/button-settings/ButtonSettings'
+
 interface IProps {
   subTasksData: ISubTask[]
   setSubTaskData: Dispatch<SetStateAction<ISubTask[] | undefined>>
