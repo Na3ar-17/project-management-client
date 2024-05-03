@@ -7,6 +7,7 @@ import TransparentField from '@/components/ui/fields/transparent-field/Transpare
 import { useSubTaskDebounce } from '@/api/hooks/subTasks/useSubTaskDebounce'
 import { Controller, useForm } from 'react-hook-form'
 import { Trash2 } from 'lucide-react'
+import { useDeleteSubTask } from '@/api/hooks/subTasks/useDeleteSubTask'
 
 interface IProps {
   data: ISubTask
@@ -21,6 +22,8 @@ const TaskRow: NextPage<IProps> = ({ data }) => {
       isCompleted,
     },
   })
+
+  const { deleteSubtaskMutation } = useDeleteSubTask()
   useSubTaskDebounce({ watch, taskId, id })
 
   return (
@@ -32,7 +35,11 @@ const TaskRow: NextPage<IProps> = ({ data }) => {
           return <CheckBox checked={value} onCheckedChange={onChange} />
         }}
       />
-      <Trash2 strokeWidth={1.7} className={styles.delete} />
+      <Trash2
+        strokeWidth={1.7}
+        className={styles.delete}
+        onClick={() => deleteSubtaskMutation({ taskId, id })}
+      />
       <Controller
         control={control}
         name="title"
