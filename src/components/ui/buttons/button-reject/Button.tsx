@@ -1,6 +1,7 @@
-import { forwardRef } from 'react'
 import styles from './Button.module.scss'
 import cn from 'clsx'
+import { forwardRef } from 'react'
+
 interface IProps {
   text: string
   type: 'submit' | 'reset' | 'button'
@@ -9,7 +10,9 @@ interface IProps {
   height?: number
 }
 
-const Button = forwardRef<HTMLButtonElement, IProps>(
+interface IProps {}
+
+const ButtonReject = forwardRef<HTMLButtonElement, IProps>(
   ({ height = 36, width = 150, text, type, className, ...rest }, ref) => {
     return (
       <button
@@ -28,4 +31,6 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
   }
 )
 
-export default Button
+ButtonReject.displayName = 'ButtonReject'
+
+export default ButtonReject

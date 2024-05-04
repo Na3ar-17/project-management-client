@@ -1,0 +1,28 @@
+.button {
+  @apply w-[150px] h-[36px] rounded-md cursor-pointer text-base mt-4;
+
+  background-image: linear-gradient(#ff3c26, hsl(17, 78%, 37%));
+  transition: all 0.3s ease;
+
+  &:hover {
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse512 1.5s infinite;
+  }
+  &:active {
+    transform: translateY(4px);
+  }
+
+  @keyframes pulse512 {
+    0% {
+      box-shadow: 0 0 0 0 #f82d0966;
+    }
+
+    70% {
+      box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+    }
+  }
+}
