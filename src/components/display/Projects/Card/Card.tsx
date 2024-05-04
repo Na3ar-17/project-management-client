@@ -30,8 +30,6 @@ const Card: NextPage<IProjectResponse> = ({
   slug,
   ownerId,
 }) => {
-  console.log(ownerId)
-
   const {
     register,
     control,

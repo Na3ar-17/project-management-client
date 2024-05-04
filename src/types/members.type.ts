@@ -1,11 +1,9 @@
 import { IBase } from './base.type'
+import { IUser } from './user.type'
 
-export interface IMembers extends IBase {
-  fullName: string
+export interface IMembers extends IBase, IUser {
   role?: EnumMemberRole
   status: EnumMemberStatus
-  email: string
-  imgLink?: string
 }
 
 export enum EnumMemberRole {
