@@ -16,10 +16,9 @@ const Notification: NextPage<IProps> = ({ data }) => {
     type,
     owner: { imgLink, fullName },
   } = data
-  console.log(type)
 
   return (
-    <DropdownMenuItem className={styles.notification}>
+    <div className={styles.notification}>
       <div className={styles['left-side']}>
         <div className={styles.picture}>
           <MailQuestion className={styles.icon} />
@@ -41,7 +40,7 @@ const Notification: NextPage<IProps> = ({ data }) => {
           </div>
         </div>
       </div>
-    </DropdownMenuItem>
+    </div>
   )
 }
 

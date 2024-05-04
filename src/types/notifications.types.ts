@@ -3,7 +3,7 @@ import { IUser } from './user.type'
 
 export interface INotifications extends IBase {
   content: string
-  type?: EnumNotificationType
+  type: EnumNotificationType
   recipientId: string
   owner: Omit<IUser, ' companyName' | 'createdAt' | 'updatedAt'>
 }

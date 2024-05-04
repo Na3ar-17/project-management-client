@@ -8,8 +8,17 @@
 
   .user {
     @apply flex items-center justify-between gap-3;
+    .notifications-count {
+      @apply relative;
+      .indicator {
+        @apply bg-blue/70 text-base rounded-full w-5 h-5 flex justify-center items-center;
+        position: absolute;
+        bottom: -20px;
+        left: -10px;
+      }
+    }
     .icon {
-      @apply text-menu-text cursor-pointer mr-2;
+      @apply text-menu-text relative cursor-pointer mr-2;
     }
     .avatar {
       @apply flex items-center cursor-pointer bg-[#3e3e3ee6] rounded-md gap-4 px-3 py-1;

@@ -4,8 +4,6 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuItem,
 } from '@/components/ui/shadcn/ui/dropdown-menu'
 import Notification from './notification/Notification'
 import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
@@ -26,7 +24,7 @@ const DropDownNotificationMenu: NextPage<IProps> = ({ children, data }) => {
         <DropdownMenuContent className={styles.dropdown} align="end">
           <p className={styles.title}>My notifications</p>
           <div className={styles.content}>
-            <ScrollArea className="h-[220px]">
+            <ScrollArea className="h-[280px]">
               {data.map((el, index) => (
                 <Notification data={el} key={index} />
               ))}

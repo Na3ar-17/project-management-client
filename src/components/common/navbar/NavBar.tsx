@@ -7,7 +7,7 @@ import { TypeIsHidden } from '@/types/sideBar.type'
 import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import DropDownNotificationMenu from '../drop-down-notification-menu/DropDownNotificationMenu'
 import { useGetAll } from '@/api/hooks/notifications/useGetAll'
-
+import cn from 'clsx'
 interface IProps {
   isHidden: TypeIsHidden
 }
@@ -35,7 +35,10 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
       <div className={styles.logo}>Proquill</div>
       <div className={styles.user}>
         <DropDownNotificationMenu data={notificationsData}>
-          <Bell className={styles.icon} />
+          <div className={styles['notifications-count']}>
+            <Bell className={cn(styles.icon)} />
+            <p className={styles.indicator}>{notificationsData.length}</p>
+          </div>
         </DropDownNotificationMenu>
         <MessageSquareText className={styles.icon} />
         <div className={styles.avatar}>
