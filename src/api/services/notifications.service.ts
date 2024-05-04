@@ -14,6 +14,15 @@ class NotificationsService {
       throw error
     }
   }
+
+  async delete(id: string) {
+    try {
+      await axiosWithAuth.delete(`${this.URL}/delete/${id}`)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
 }
 
 export const notificationsService = new NotificationsService()
