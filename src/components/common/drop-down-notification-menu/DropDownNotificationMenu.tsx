@@ -25,9 +25,12 @@ const DropDownNotificationMenu: NextPage<IProps> = ({ children, data }) => {
           <p className={styles.title}>My notifications</p>
           <div className={styles.content}>
             <ScrollArea className="h-[280px]">
-              {data.map((el, index) => (
-                <Notification data={el} key={index} />
-              ))}
+              {data.length <= 0 ? (
+                // TODO handle empty array
+                <div>Empty</div>
+              ) : (
+                data.map((el, index) => <Notification data={el} key={index} />)
+              )}
             </ScrollArea>
           </div>
         </DropdownMenuContent>

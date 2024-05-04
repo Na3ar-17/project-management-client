@@ -35,10 +35,12 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
       <div className={styles.logo}>Proquill</div>
       <div className={styles.user}>
         <DropDownNotificationMenu data={notificationsData}>
-          <div className={styles['notifications-count']}>
-            <Bell className={cn(styles.icon)} />
-            <p className={styles.indicator}>{notificationsData.length}</p>
-          </div>
+          <Bell className={cn(styles.icon)} />
+          {notificationsData.length !== 0 && (
+            <div className={styles['notifications-count']}>
+              <p className={styles.indicator}>{notificationsData.length}</p>
+            </div>
+          )}
         </DropDownNotificationMenu>
         <MessageSquareText className={styles.icon} />
         <div className={styles.avatar}>

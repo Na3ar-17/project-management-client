@@ -1,5 +1,5 @@
 .notification {
-  @apply rounded-md p-2 flex flex-col;
+  @apply rounded-md  p-2 flex flex-col;
 
   .group {
     @apply flex gap-2;
@@ -26,7 +26,17 @@
   }
 
   .actions {
-    @apply flex justify-center gap-4 items-center;
+    @apply flex justify-center gap-4 relative items-center;
+
+    .icon {
+      position: absolute;
+      bottom: -5px;
+      left: 15px;
+      transform: translate(-50%, -50%);
+      @apply size-5 text-red-text transition-all cursor-pointer active:bottom-[-8px];
+      opacity: 0;
+      visibility: hidden;
+    }
   }
   &:not(:last-child) {
     @apply mb-4;
@@ -34,5 +44,14 @@
 
   &:first-child {
     @apply mt-2;
+  }
+
+  &:hover {
+    .actions {
+      .icon {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
   }
 }
