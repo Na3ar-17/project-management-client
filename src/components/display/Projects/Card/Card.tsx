@@ -28,7 +28,10 @@ const Card: NextPage<IProjectResponse> = ({
   createdAt,
   image,
   slug,
+  ownerId,
 }) => {
+  console.log(ownerId)
+
   const {
     register,
     control,

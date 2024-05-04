@@ -34,6 +34,7 @@ const Projects: NextPage = () => {
             image={card.image}
             slug={card.slug}
             key={card.id}
+            ownerId={card.ownerId}
           />
         ))}
       </div>
