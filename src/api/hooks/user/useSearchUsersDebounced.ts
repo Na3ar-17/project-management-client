@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export const useSearchUsersDebounced = ({ watch }: IProps) => {
-  const { data, searchUsersMutation } = useSearchUsers()
+  const { data, searchUsersMutation, isPending } = useSearchUsers()
 
   const debouncedSearchUsers = useCallback(
     debounce((dto: { email: string }) => {
@@ -26,5 +26,5 @@ export const useSearchUsersDebounced = ({ watch }: IProps) => {
       unsubscribe()
     }
   }, [watch(), debouncedSearchUsers])
-  return { data }
+  return { data, isPending }
 }

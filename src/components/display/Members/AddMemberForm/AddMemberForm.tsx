@@ -13,7 +13,7 @@ const AddMemberForm: NextPage<IProps> = ({}) => {
     mode: 'onChange',
   })
 
-  const { data } = useSearchUsersDebounced({ watch })
+  const { data, isPending } = useSearchUsersDebounced({ watch })
 
   return (
     <div className={styles.container}>
@@ -23,11 +23,13 @@ const AddMemberForm: NextPage<IProps> = ({}) => {
             type="text"
             className={styles.input}
             placeholder="Search by email"
+            autoComplete="off"
             {...register('email')}
           />
         </form>
         <div className={styles['users-list']}>
-          <ScrollArea className="h-[400px]">
+          <ScrollArea className="h-[200px]">
+            {isPending && <div>Loading</div>}
             <div className={styles.wrapper}>
               {data ? (
                 data.map((user, index) => (
@@ -56,6 +58,8 @@ const AddMemberForm: NextPage<IProps> = ({}) => {
               ) : (
                 <div>Type to search</div>
               )}
+
+              {data && data?.length <= 0 && <div>Not found</div>}
             </div>
           </ScrollArea>
         </div>

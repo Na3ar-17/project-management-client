@@ -4,12 +4,16 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export const useSearchUsers = () => {
   const queryClient = useQueryClient()
-  const { mutate: searchUsersMutation, data } = useMutation({
+  const {
+    mutate: searchUsersMutation,
+    data,
+    isPending,
+  } = useMutation({
     mutationKey: [userKeys.SEARCH],
     mutationFn: (dto: { email: string }) => userService.searchByEmail(dto),
     onSuccess: () => {
       queryClient.invalidateQueries()
     },
   })
-  return { searchUsersMutation, data }
+  return { searchUsersMutation, data, isPending }
 }

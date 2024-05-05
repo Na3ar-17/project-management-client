@@ -3,7 +3,7 @@
   .content {
     @apply w-[600px];
     .form {
-      @apply w-[600px];
+      @apply w-full;
       .input {
         @apply w-full h-[40px] bg-border/40 text-left px-2 rounded-t-md text-menu-text font-[500];
       }
