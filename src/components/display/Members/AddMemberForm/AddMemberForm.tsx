@@ -6,6 +6,7 @@ import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { useForm } from 'react-hook-form'
 import { useSearchUsersDebounced } from '@/api/hooks/user/useSearchUsersDebounced'
+import { useCreateInvitation } from '@/api/hooks/notifications/useCreateInvitation'
 interface IProps {}
 
 const AddMemberForm: NextPage<IProps> = ({}) => {
@@ -14,6 +15,11 @@ const AddMemberForm: NextPage<IProps> = ({}) => {
   })
 
   const { data, isPending } = useSearchUsersDebounced({ watch })
+  const { createInvitationMutation } = useCreateInvitation()
+
+  const handleInvite = (recipientId: string) => {
+    createInvitationMutation({ content: 'Ivitation to project', recipientId })
+  }
 
   return (
     <div className={styles.container}>
@@ -51,6 +57,7 @@ const AddMemberForm: NextPage<IProps> = ({}) => {
                         type="button"
                         width={80}
                         height={22}
+                        onClick={() => handleInvite(user.id)}
                       />
                     </div>
                   </div>

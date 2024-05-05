@@ -26,7 +26,7 @@
   }
 
   .actions {
-    @apply flex justify-center gap-4 relative items-center;
+    @apply flex justify-center gap-4 relative items-center mt-2;
 
     .icon {
       position: absolute;
