@@ -1,0 +1,36 @@
+.container {
+  @apply w-full flex flex-col items-center;
+  .content {
+    @apply w-[600px];
+    .form {
+      @apply w-[600px];
+      .input {
+        @apply w-full h-[40px] bg-border/40 text-left px-2 rounded-t-md text-menu-text font-[500];
+      }
+    }
+
+    .users-list {
+      @apply bg-border/10  rounded-b-md;
+      .wrapper {
+        @apply flex flex-col gap-3 px-3 pt-3;
+
+        .user {
+          @apply hover:bg-accent-gray2/40 flex justify-between items-center py-1 px-2 cursor-pointer rounded-md transition-all;
+
+          .actions {
+            @apply flex transition-all items-center text-sm;
+            opacity: 0;
+            visibility: hidden;
+          }
+
+          &:hover {
+            .actions {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+        }
+      }
+    }
+  }
+}

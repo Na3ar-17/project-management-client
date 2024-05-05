@@ -7,16 +7,21 @@ import { IUser } from '@/types/user.type'
 interface IProps {
   className?: string
   data: IUser
+  avatarSize?: number
 }
 
-const FullUserAvatar: NextPage<IProps> = ({ className, data }) => {
+const FullUserAvatar: NextPage<IProps> = ({
+  className,
+  data,
+  avatarSize = 28,
+}) => {
   const { email, fullName, imgLink } = data
   return (
     <div className={cn(styles.container, className)}>
       <AvatarComponent
         fullName={fullName}
         imgLink={imgLink}
-        size={28}
+        size={avatarSize}
         avatarStyles="w-fit"
       />
       <div className={styles.info}>
