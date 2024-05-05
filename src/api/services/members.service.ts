@@ -15,7 +15,9 @@ class MembersService {
     }
   }
 
-  async addNewMember(projectId: string) {
+  async addNewMember(
+    projectId: string
+  ): Promise<{ project: { slug: string; id: string } }> {
     try {
       const { data } = await axiosWithAuth.post(
         `${this.URL}add-new/${projectId}`
