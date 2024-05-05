@@ -2,13 +2,18 @@
 
 import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
 import styles from './Columns.module.scss'
-import { EnumUserRole, EnumUserStatus, IMembers } from '@/types/members.type'
+import {
+  EnumMemberRole,
+  EnumMemberStatus,
+  IMembers,
+} from '@/types/members.type'
 import { ColumnDef } from '@tanstack/react-table'
 import { Button } from '@/components/ui/shadcn/ui/button'
 import { ArrowDownUp } from 'lucide-react'
 import { userRoleFormat, memberStatusFormat } from '../../utils'
 
 import DropdownMenuComponent from '@/components/ui/dropdown-menu-component/DropdownMenuComponent'
+import { IUser } from '@/types/user.type'
 export const columns: ColumnDef<IMembers>[] = [
   {
     id: 'select',
@@ -31,14 +36,18 @@ export const columns: ColumnDef<IMembers>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'fullName',
+    id: 'user.fullName',
+    accessorKey: 'user.fullName',
     header: () => <p className={styles.header}>Full Name</p>,
     cell: ({ row }) => {
-      return <p className={styles['row-text']}>{row.getValue('fullName')}</p>
+      return (
+        <p className={styles['row-text']}>{row.getValue('user.fullName')}</p>
+      )
     },
   },
   {
-    accessorKey: 'email',
+    id: 'user.email',
+    accessorKey: 'user.email',
     header: ({ column }) => {
       return (
         <Button
@@ -52,7 +61,7 @@ export const columns: ColumnDef<IMembers>[] = [
     },
     cell: ({ row }) => (
       <div className={`${styles['row-text']} ${`lowercase`}`}>
-        {row.getValue('email')}
+        {row.getValue('user.email')}
       </div>
     ),
   },
@@ -60,7 +69,7 @@ export const columns: ColumnDef<IMembers>[] = [
     accessorKey: 'status',
     header: () => <p className={styles.header}>Status</p>,
     cell: ({ row }) => {
-      const status: EnumUserStatus = row.getValue('status')
+      const status: EnumMemberStatus = row.getValue('status')
       const convertedFromEnum = memberStatusFormat(status)
       return <p className={styles['row-text']}>{convertedFromEnum}</p>
     },
@@ -69,7 +78,7 @@ export const columns: ColumnDef<IMembers>[] = [
     accessorKey: 'role',
     header: () => <p className={styles.header}>Role</p>,
     cell: ({ row }) => {
-      const role: EnumUserRole = row.getValue('role')
+      const role: EnumMemberRole = row.getValue('role')
       const convertedFromEnum = userRoleFormat(role)
       return <p className={styles['row-text']}>{convertedFromEnum}</p>
     },

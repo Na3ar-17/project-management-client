@@ -16,11 +16,14 @@ const Members: NextPage<IProps> = ({ projectId }) => {
     // TODO handle error
     return <div> Error</div>
   }
+
+  console.log(membersData)
+
   return (
     <div>
       <Heading text="Members" />
       <div className="pt-6">
-        {membersData.length <= 1 ? (
+        {membersData.length <= 0 ? (
           <div className={styles['no-members']}>
             <p className="text-lg"> There are no members in this project</p>
             <AddMemberForm />

@@ -5,7 +5,7 @@ import './CheckBox.scss'
 
 interface IProps {
   onCheckedChange?: (value: any) => void
-  checked?: boolean
+  checked?: boolean | 'indeterminate'
 }
 
 const CheckBox: NextPage<IProps> = ({ onCheckedChange, checked }) => {

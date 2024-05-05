@@ -14,6 +14,19 @@ class MembersService {
       throw error
     }
   }
+
+  async addNewMember(projectId: string) {
+    try {
+      const { data } = await axiosWithAuth.post(
+        `${this.URL}add-new/${projectId}`
+      )
+
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
 }
 
 export const membersService = new MembersService()
