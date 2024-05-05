@@ -1,4 +1,7 @@
-import { INotifications } from '@/types/notifications.types'
+import {
+  TypeCreateNotificationDto,
+  INotifications,
+} from '@/types/notifications.types'
 import { axiosWithAuth } from '../interceptors'
 import { errorHandler } from '../utils/errorHandler'
 
@@ -18,6 +21,15 @@ class NotificationsService {
   async delete(id: string) {
     try {
       await axiosWithAuth.delete(`${this.URL}/delete/${id}`)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async createInvitation(dto: TypeCreateNotificationDto) {
+    try {
+      await axiosWithAuth.post(`${this.URL}/invitation`, dto)
     } catch (error) {
       errorHandler(error)
       throw error
