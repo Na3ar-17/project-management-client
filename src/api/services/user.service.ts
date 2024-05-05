@@ -1,11 +1,13 @@
-import { IUser, TypeUpdateProfile } from '@/types/user.type'
+import {
+  IUser,
+  TypeUpdateProfile,
+  TypeUserSearchResponse,
+} from '@/types/user.type'
 import { axiosWithAuth } from '../interceptors'
 import { errorHandler } from '../utils/errorHandler'
 
 class UserService {
   private URL = 'user'
-
-  // TODO make try catch
 
   async update(dto: TypeUpdateProfile) {
     try {
@@ -20,6 +22,18 @@ class UserService {
   async getProfile(): Promise<IUser> {
     try {
       const { data } = await axiosWithAuth.get<IUser>(this.URL)
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async searchByEmail(dto: {
+    email: string
+  }): Promise<TypeUserSearchResponse[]> {
+    try {
+      const { data } = await axiosWithAuth.post(`${this.URL}/search`, dto)
       return data
     } catch (error) {
       errorHandler(error)

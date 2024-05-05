@@ -18,6 +18,11 @@ export interface IErrorMessageResponse {
   message: string
 }
 
+export type TypeUserSearchResponse = Omit<
+  IUser,
+  'createdAt' | 'updatedAt' | 'companyName' | 'projects'
+>
+
 export type TypeUpdateProfile = Partial<
   Omit<IUser, 'projects' | 'id' | 'createdAt' | 'updatedAt'>
 >
