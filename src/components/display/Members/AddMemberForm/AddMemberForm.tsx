@@ -4,9 +4,17 @@ import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import FullUserAvatar from '@/components/ui/avatar/FullUserAvatar/FullUserAvatar'
 import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
 import Button from '@/components/ui/buttons/button-confirm/Button'
+import { useForm } from 'react-hook-form'
+import { useSearchUsersDebounced } from '@/api/hooks/user/useSearchUsersDebounced'
 interface IProps {}
 
 const AddMemberForm: NextPage<IProps> = ({}) => {
+  const { control, watch, register } = useForm<{ email: string }>({
+    mode: 'onChange',
+  })
+
+  const { data } = useSearchUsersDebounced({ watch })
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -15,33 +23,39 @@ const AddMemberForm: NextPage<IProps> = ({}) => {
             type="text"
             className={styles.input}
             placeholder="Search by email"
+            {...register('email')}
           />
         </form>
         <div className={styles['users-list']}>
           <ScrollArea className="h-[400px]">
             <div className={styles.wrapper}>
-              {Array.from({ length: 20 }).map((_, index) => (
-                <div className={styles.user}>
-                  <FullUserAvatar
-                    className="text-left"
-                    avatarSize={40}
-                    key={index}
-                    data={{
-                      fullName: 'Nazar Gavrylyk',
-                      email: 'gavruluknazar0210@gmail.com',
-                      id: '1',
-                    }}
-                  />
-                  <div className={styles.actions}>
-                    <Button
-                      text="Invite"
-                      type="button"
-                      width={80}
-                      height={22}
+              {data ? (
+                data.map((user, index) => (
+                  <div className={styles.user} key={index}>
+                    <FullUserAvatar
+                      className="text-left"
+                      avatarSize={40}
+                      key={index}
+                      data={{
+                        fullName: user.fullName,
+                        email: user.email,
+                        id: user.id,
+                        imgLink: user.imgLink,
+                      }}
                     />
+                    <div className={styles.actions}>
+                      <Button
+                        text="Invite"
+                        type="button"
+                        width={80}
+                        height={22}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <div>Type to search</div>
+              )}
             </div>
           </ScrollArea>
         </div>
