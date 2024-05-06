@@ -27,8 +27,16 @@ const KanBanCard: NextPage<IProps> = ({
   provided,
   snapshot: { isDragging },
 }) => {
-  const { assigneesers, description, dueDate, id, title, priority, projectId } =
-    data
+  const {
+    assigneesers,
+    description,
+    dueDate,
+    id,
+    title,
+    priority,
+    projectId,
+    progressPercent,
+  } = data
 
   const { deleteTaskMutation } = useDeleteTask()
 
@@ -47,7 +55,7 @@ const KanBanCard: NextPage<IProps> = ({
           <DateBadge deadLine={dueDate} />
         </div>
         <p className={styles.description}>{textAbstract(description, 50)}</p>
-        <ProgressComponent />
+        <ProgressComponent progressNumber={progressPercent} />
         {assigneesers && (
           <div className={styles.users}>
             <div className={styles.group}>

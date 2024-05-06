@@ -45,6 +45,7 @@ export interface ITaskCard extends IBase {
   comments?: IComment[]
   status: EnumTaskStatus
   projectId: string
+  progressPercent: number
 }
 
 export interface IViewType {
