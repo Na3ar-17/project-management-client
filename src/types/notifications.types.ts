@@ -7,6 +7,7 @@ export interface INotifications extends IBase {
   recipientId: string
   owner?: Omit<IUser, 'companyName' | 'createdAt' | 'updatedAt'>
   projectId?: string
+  hasSeen: boolean
 }
 export type TypeCreateNotificationDto = Omit<
   INotifications,
