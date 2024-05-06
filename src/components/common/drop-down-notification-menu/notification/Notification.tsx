@@ -4,23 +4,35 @@ import { DropdownMenuItem } from '@/components/ui/shadcn/ui/dropdown-menu'
 import { MailQuestion, Trash2 } from 'lucide-react'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import UserBadge from '@/components/ui/badges/user-badge/UserBadge'
-import { INotifications } from '@/types/notifications.types'
+import {
+  EnumNotificationType,
+  INotifications,
+} from '@/types/notifications.types'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import ButtonReject from '@/components/ui/buttons/button-reject/Button'
 import { useDeleteNotification } from '@/api/hooks/notifications/useDeleteNotification'
+import { useAddNewMember } from '@/api/hooks/members/useAddNewMember'
 interface IProps {
   data: INotifications
 }
 
 const Notification: NextPage<IProps> = ({ data }) => {
+  //TODO handle this
+  if (!data.owner) {
+    return <div>Error</div>
+  }
+
   const {
     content,
     createdAt,
     type,
     id,
+    projectId,
     owner: { imgLink, fullName },
   } = data
+
   const { deleteNotificationMutation } = useDeleteNotification()
+  const { addNewMemberMutation } = useAddNewMember()
 
   return (
     <div className={styles.notification}>
@@ -58,6 +70,7 @@ const Notification: NextPage<IProps> = ({ data }) => {
           text="Confirm"
           type="button"
           className="text-center"
+          onClick={() => addNewMemberMutation(projectId || '')}
         />
         <ButtonReject
           width={100}

@@ -26,16 +26,7 @@ const Projects: NextPage = () => {
       <div className={styles.container}>
         <AddCard onClick={createProjectMutation} />
         {projects?.map((card) => (
-          <Card
-            id={card.id}
-            end={card.end}
-            createdAt={card.createdAt}
-            name={card.name}
-            image={card.image}
-            slug={card.slug}
-            key={card.id}
-            ownerId={card.ownerId}
-          />
+          <Card data={card} key={card.id} />
         ))}
       </div>
     </main>

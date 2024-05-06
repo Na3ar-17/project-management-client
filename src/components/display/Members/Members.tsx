@@ -26,7 +26,7 @@ const Members: NextPage<IProps> = ({ projectId }) => {
         {membersData.length <= 0 ? (
           <div className={styles['no-members']}>
             <p className="text-lg"> There are no members in this project</p>
-            <AddMemberForm />
+            <AddMemberForm projectId={projectId} />
           </div>
         ) : (
           <DataTable data={membersData} columns={columns} />

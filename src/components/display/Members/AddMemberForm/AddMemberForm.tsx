@@ -7,9 +7,11 @@ import Button from '@/components/ui/buttons/button-confirm/Button'
 import { useForm } from 'react-hook-form'
 import { useSearchUsersDebounced } from '@/api/hooks/user/useSearchUsersDebounced'
 import { useCreateInvitation } from '@/api/hooks/notifications/useCreateInvitation'
-interface IProps {}
+interface IProps {
+  projectId: string
+}
 
-const AddMemberForm: NextPage<IProps> = ({}) => {
+const AddMemberForm: NextPage<IProps> = ({ projectId }) => {
   const { control, watch, register } = useForm<{ email: string }>({
     mode: 'onChange',
   })
@@ -18,7 +20,11 @@ const AddMemberForm: NextPage<IProps> = ({}) => {
   const { createInvitationMutation } = useCreateInvitation()
 
   const handleInvite = (recipientId: string) => {
-    createInvitationMutation({ content: 'Ivitation to project', recipientId })
+    createInvitationMutation({
+      content: 'Ivitation to project',
+      recipientId,
+      projectId,
+    })
   }
 
   return (

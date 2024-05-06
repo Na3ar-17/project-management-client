@@ -20,7 +20,7 @@ class MembersService {
   ): Promise<{ project: { slug: string; id: string } }> {
     try {
       const { data } = await axiosWithAuth.post(
-        `${this.URL}add-new/${projectId}`
+        `${this.URL}/add-new/${projectId}`
       )
 
       return data

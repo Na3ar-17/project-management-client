@@ -1,6 +1,7 @@
 import {
   TypeCreateNotificationDto,
   INotifications,
+  TypeRejectInvitation,
 } from '@/types/notifications.types'
 import { axiosWithAuth } from '../interceptors'
 import { errorHandler } from '../utils/errorHandler'
@@ -30,6 +31,16 @@ class NotificationsService {
   async createInvitation(dto: TypeCreateNotificationDto) {
     try {
       await axiosWithAuth.post(`${this.URL}/invitation`, dto)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async rejectInvitation(dto: TypeRejectInvitation) {
+    try {
+      const { data } = await axiosWithAuth.post(`${this.URL}/reject`, dto)
+      return data
     } catch (error) {
       errorHandler(error)
       throw error

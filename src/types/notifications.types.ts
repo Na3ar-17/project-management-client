@@ -6,11 +6,18 @@ export interface INotifications extends IBase {
   type: EnumNotificationType
   recipientId: string
   owner?: Omit<IUser, 'companyName' | 'createdAt' | 'updatedAt'>
+  projectId?: string
 }
 export type TypeCreateNotificationDto = Omit<
   INotifications,
-  'id' | 'companyName' | 'createdAt' | 'updatedAt' | 'type'
+  'id' | 'createdAt' | 'updatedAt' | 'type'
 >
+
+export type TypeRejectInvitation = {
+  recipientId: string
+  ownerId: string
+  id: string
+}
 
 export enum EnumNotificationType {
   Invitation,

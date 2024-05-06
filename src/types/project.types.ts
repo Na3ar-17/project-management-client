@@ -6,6 +6,7 @@ export interface IProjectResponse extends IBase {
   image?: string
   end: string
   ownerId: string
+  userId: string
 }
 
 export type TypeSideBarSubMenuElement = Omit<

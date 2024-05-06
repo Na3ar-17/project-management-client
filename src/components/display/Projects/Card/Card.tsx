@@ -20,16 +20,15 @@ import { useUploadProjectImage } from '@/api/hooks/file/useUploadProjectImage'
 import { useImageUploader } from '@/hooks/useImageUploader'
 import { useDeleteProjectImage } from '@/api/hooks/file/useDeleteProjectImage'
 import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
+import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 
-const Card: NextPage<IProjectResponse> = ({
-  id,
-  name,
-  end,
-  createdAt,
-  image,
-  slug,
-  ownerId,
-}) => {
+interface IProps {
+  data: IProjectResponse
+}
+
+const Card: NextPage<IProps> = ({ data }) => {
+  const { end, id, name, ownerId, userId, createdAt, image, slug } = data
+
   const {
     register,
     control,
@@ -44,6 +43,13 @@ const Card: NextPage<IProjectResponse> = ({
       end: end,
     },
   })
+
+  const { data: currentUserData } = useGetProfile()
+  if (!data) {
+    // TODO handle this
+    return <div>Error</div>
+  }
+
   const { deleteProjectMutation } = useDeleteProject()
 
   useUpdateProjectDebounce({ watch, projectId: id })
@@ -65,7 +71,12 @@ const Card: NextPage<IProjectResponse> = ({
       onDelete={() => deleteProjectMutation(id)}
       isEdit={false}
     >
-      <div className={cn(styles.card)}>
+      <div
+        className={cn(
+          styles.card,
+          currentUserData?.id !== ownerId && styles.notOwner
+        )}
+      >
         {image ? (
           <>
             <ImageComponent
