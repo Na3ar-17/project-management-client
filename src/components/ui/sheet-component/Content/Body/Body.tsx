@@ -43,8 +43,8 @@ const Body: NextPage<IProps> = ({ control, data }) => {
             {data.assigneesers.map((el, index) => {
               return (
                 <UserBadge
-                  fullName={el.fullName}
-                  imgLink={el.imgLink || ''}
+                  fullName={el.user.fullName}
+                  imgLink={el.user.imgLink || ''}
                   key={index}
                 />
               )
@@ -72,14 +72,11 @@ const Body: NextPage<IProps> = ({ control, data }) => {
         {data.assigneesers && (
           <div className={styles.block}>
             <p className={styles.label}>Created By</p>
-            <UserBadge
-              fullName="Nazar Gavrylyk"
-              imgLink={membersData[1].imgLink || ''}
-            />
+            <UserBadge fullName="Nazar Gavrylyk" imgLink={''} />
           </div>
         )}
       </div>
-      <TabsComponent control={control} />
+      <TabsComponent data={data} control={control} />
       {!isSuccess || !subtaskData ? (
         //TODO handle errors
         <div>Error</div>

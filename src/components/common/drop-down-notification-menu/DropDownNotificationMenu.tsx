@@ -8,6 +8,8 @@ import {
 import Notification from './notification/Notification'
 import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
 import { INotifications } from '@/types/notifications.types'
+import { useSeeNotifications } from '@/api/hooks/notifications/useSeeNotifications'
+import { useEffect } from 'react'
 interface IProps {
   children: React.ReactNode
   data: INotifications[]

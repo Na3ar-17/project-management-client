@@ -18,16 +18,17 @@ interface IProps {
 const TaskRow: NextPage<IProps> = ({ data, setSubTaskData }) => {
   const { isCompleted, title, id, taskId } = data
 
-  const { watch, control } = useForm<TypeUpdateSubTask>({
+  const { watch, control, register } = useForm<TypeUpdateSubTask>({
     defaultValues: {
       title,
       isCompleted,
     },
+    mode: 'onChange',
   })
 
-  const { deleteSubtaskMutation } = useDeleteSubTask()
-
   useSubTaskDebounce({ watch, taskId, id })
+
+  const { deleteSubtaskMutation } = useDeleteSubTask()
 
   return (
     <li className={styles.item}>
@@ -47,16 +48,9 @@ const TaskRow: NextPage<IProps> = ({ data, setSubTaskData }) => {
             : setSubTaskData((prev) => prev?.slice(0, -1))
         }
       />
-      <Controller
-        control={control}
-        name="title"
-        render={({ field: { onChange, value } }) => (
-          <TransparentField
-            value={value}
-            className={cn(isCompleted && styles.completed, styles.title)}
-            onInputChange={onChange}
-          />
-        )}
+      <TransparentField
+        {...register('title')}
+        className={cn(isCompleted && styles.completed, styles.title)}
       />
     </li>
   )

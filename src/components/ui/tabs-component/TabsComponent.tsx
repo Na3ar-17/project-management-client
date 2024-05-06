@@ -7,13 +7,14 @@ import cn from 'clsx'
 import TextAreaComponent from '../fields/text-area-component/TextAreaComponent'
 import Comments from './Comments/Comments'
 import { Control, Controller } from 'react-hook-form'
-import { TypeUpdateTaskCard } from '@/types/tasks.types'
+import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 
 interface IProps {
   control: Control<TypeUpdateTaskCard>
+  data: ITaskCard
 }
 
-const TabsComponent: NextPage<IProps> = ({ control }) => {
+const TabsComponent: NextPage<IProps> = ({ control, data }) => {
   const [isActive, setIsActive] = useState<'Description' | 'Comments'>(
     'Description'
   )
@@ -35,17 +36,19 @@ const TabsComponent: NextPage<IProps> = ({ control }) => {
         >
           Description
         </TabsTrigger>
-        <TabsTrigger
-          onClick={() => handleChangeIsActive('Comments')}
-          className={cn(
-            styles.trigger,
-            isActive === 'Comments' && styles.active
-          )}
-          value="Comments"
-        >
-          Comments
-          <span className={styles['comments_count']}>3</span>
-        </TabsTrigger>
+        {data.assigneesers?.length > 1 && (
+          <TabsTrigger
+            onClick={() => handleChangeIsActive('Comments')}
+            className={cn(
+              styles.trigger,
+              isActive === 'Comments' && styles.active
+            )}
+            value="Comments"
+          >
+            Comments
+            <span className={styles['comments_count']}>3</span>
+          </TabsTrigger>
+        )}
       </TabsList>
       <TabsContent value="Description">
         <Controller

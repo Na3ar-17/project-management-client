@@ -3,4 +3,5 @@ export const notificationsKeys = {
   DELETE: 'delete_notification',
   CREATE_INVITE: 'create_notification_invite',
   REJECT_INVITE: 'reject_invite',
+  SEE: 'see',
 }

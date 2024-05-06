@@ -25,6 +25,7 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
   if (!isNotificationsDataSuccess || !notificationsData) {
     return <div>Error</div>
   }
+
   return (
     <nav
       style={{
@@ -38,7 +39,9 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
           <Bell className={cn(styles.icon)} />
           {notificationsData.length !== 0 && (
             <div className={styles['notifications-count']}>
-              <p className={styles.indicator}>{notificationsData.length}</p>
+              <p className={styles.indicator}>
+                {notificationsData.filter((el) => el.hasSeen == false).length}
+              </p>
             </div>
           )}
         </DropDownNotificationMenu>

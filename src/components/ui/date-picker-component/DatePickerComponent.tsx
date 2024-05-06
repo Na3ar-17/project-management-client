@@ -51,7 +51,9 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
         ) : (
           <DateBadge
             date={start}
-            deadLine={end === '' ? end : dayjs(end).format('DD.MM.YYYY')}
+            deadLine={
+              end === '--.--.--' ? end : dayjs(end).format('DD.MM.YYYY')
+            }
           />
         )}
       </button>

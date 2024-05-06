@@ -46,7 +46,7 @@ const KanBanCard: NextPage<IProps> = ({
           {taskBadgeStyleFormat(priority || '')}
           <DateBadge deadLine={dueDate} />
         </div>
-        <p className={styles.description}>{textAbstract(description, 75)}</p>
+        <p className={styles.description}>{textAbstract(description, 50)}</p>
         <ProgressComponent />
         {assigneesers && (
           <div className={styles.users}>
@@ -55,8 +55,8 @@ const KanBanCard: NextPage<IProps> = ({
                 return (
                   <div className={styles.user} key={index}>
                     <AvatarComponent
-                      fullName={el.fullName}
-                      imgLink={el.imgLink}
+                      fullName={el.user.fullName}
+                      imgLink={el.user.imgLink}
                       size={30}
                     />
                   </div>

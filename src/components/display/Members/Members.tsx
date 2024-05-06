@@ -17,8 +17,6 @@ const Members: NextPage<IProps> = ({ projectId }) => {
     return <div> Error</div>
   }
 
-  console.log(membersData)
-
   return (
     <div>
       <Heading text="Members" />

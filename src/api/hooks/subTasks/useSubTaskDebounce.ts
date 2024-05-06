@@ -17,7 +17,9 @@ export const useSubTaskDebounce = ({ watch, taskId, id }: IProps) => {
 
   const debouncedUpdateSubTask = useCallback(
     debounce((dto: TypeUpdateSubTask) => {
-      updateSubTakMutation(dto)
+      updateSubTakMutation({
+        ...dto,
+      })
     }, 700),
     []
   )
@@ -25,7 +27,7 @@ export const useSubTaskDebounce = ({ watch, taskId, id }: IProps) => {
   const debouncedCreateSubTask = useCallback(
     debounce((dto: TypeCreateSubTask) => {
       createSubTaskMutation(dto)
-    }, 500),
+    }, 700),
     []
   )
 
@@ -39,14 +41,14 @@ export const useSubTaskDebounce = ({ watch, taskId, id }: IProps) => {
         })
       } else {
         debouncedCreateSubTask({
-          ...dto,
           title: dto.title || '',
           taskId: taskId,
         })
       }
-      return () => {
-        unsubscribe()
-      }
     })
+
+    return () => {
+      unsubscribe()
+    }
   }, [watch(), debouncedUpdateSubTask, debouncedCreateSubTask])
 }

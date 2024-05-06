@@ -42,7 +42,7 @@ const TasksBlock: NextPage<IProps> = ({
             <TaskRow setSubTaskData={setSubTaskData} key={index} data={el} />
           ))}
           {!subTasksData?.some((el) => !el.id) && (
-            <ButtonSettings action={addSubTask} text="Title here..." />
+            <button onClick={addSubTask}>Title here ...</button>
           )}
         </ScrollArea>
       </ul>
