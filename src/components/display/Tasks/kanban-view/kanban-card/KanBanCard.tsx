@@ -28,10 +28,10 @@ const KanBanCard: NextPage<IProps> = ({
   snapshot: { isDragging },
 }) => {
   const {
+    id,
     assigneesers,
     description,
     dueDate,
-    id,
     title,
     priority,
     projectId,
