@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import styles from './Notification.module.scss'
 import { DropdownMenuItem } from '@/components/ui/shadcn/ui/dropdown-menu'
-import { MailQuestion, Trash2 } from 'lucide-react'
+import { MailQuestion, MailWarning, Trash2 } from 'lucide-react'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import UserBadge from '@/components/ui/badges/user-badge/UserBadge'
 import {
@@ -37,53 +37,70 @@ const Notification: NextPage<IProps> = ({ data }) => {
   const { addNewMemberMutation } = useAddNewMember()
   const { rejectInvitationMutation } = useRejectInvitation()
 
+  const isSimpleNotification =
+    type == EnumNotificationType.DeadlineReminder ||
+    type == EnumNotificationType.TaskAssignment ||
+    type == EnumNotificationType.RejectInvitation
+
   return (
     <div className={styles.notification}>
-      <div className={styles.group}>
-        <div className={styles['left-side']}>
-          <div className={styles.picture}>
-            <MailQuestion className={styles.icon} />
+      <>
+        <div className={styles.group}>
+          <div className={styles['left-side']}>
+            <div className={styles.picture}>
+              {isSimpleNotification ? (
+                <MailWarning className={styles.icon} />
+              ) : (
+                <MailQuestion className={styles.icon} />
+              )}
+            </div>
           </div>
-        </div>
-        <div className={styles['right-side']}>
-          <div className={styles.body}>
-            <p className={styles.content}>{content}</p>
-          </div>
-          <div className={styles.footer}>
-            <DateBadge date={createdAt} />
-            <div className="flex gap-2 items-center">
-              <p>from</p>
-              <UserBadge
-                clasName="cursor-pointer"
-                fullName={fullName}
-                imgLink={imgLink || ''}
-              />
+          <div className={styles['right-side']}>
+            <div className={styles.body}>
+              <p className={styles.content}>{content}</p>
+            </div>
+            <div className={styles.footer}>
+              <DateBadge date={createdAt} />
+              <div className="flex gap-2 items-center">
+                <p>from</p>
+                <UserBadge
+                  clasName="cursor-pointer"
+                  fullName={fullName}
+                  imgLink={imgLink || ''}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.actions}>
-        <Trash2
-          onClick={() => deleteNotificationMutation(id)}
-          className={styles.icon}
-        />
-        <Button
-          width={100}
-          height={29}
-          text="Confirm"
-          type="button"
-          className="text-center"
-          onClick={() => addNewMemberMutation(projectId || '')}
-        />
-        <ButtonReject
-          width={100}
-          height={29}
-          text="Reject"
-          type="button"
-          className="text-center"
-          onClick={() => rejectInvitationMutation({ id, ownerId, recipientId })}
-        />
-      </div>
+        <div className={styles.actions}>
+          <Trash2
+            onClick={() => deleteNotificationMutation(id)}
+            className={styles.icon}
+          />
+          {!isSimpleNotification && (
+            <>
+              <Button
+                width={100}
+                height={29}
+                text="Confirm"
+                type="button"
+                className="text-center"
+                onClick={() => addNewMemberMutation(projectId || '')}
+              />
+              <ButtonReject
+                width={100}
+                height={29}
+                text="Reject"
+                type="button"
+                className="text-center"
+                onClick={() =>
+                  rejectInvitationMutation({ id, ownerId, recipientId })
+                }
+              />
+            </>
+          )}
+        </div>
+      </>
     </div>
   )
 }

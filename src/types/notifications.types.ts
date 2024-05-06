@@ -20,7 +20,8 @@ export type TypeRejectInvitation = {
 }
 
 export enum EnumNotificationType {
-  Invitation,
-  TaskAssignment,
-  DeadlineReminder,
+  Invitation = 'Invitation',
+  TaskAssignment = 'TaskAssignment',
+  DeadlineReminder = 'DeadlineReminder',
+  RejectInvitation = 'RejectInvitation',
 }
