@@ -8,14 +8,19 @@ interface IProps {
   className?: string
   width?: number
   height?: number
+  onClick?: () => void
 }
 
 interface IProps {}
 
 const ButtonReject = forwardRef<HTMLButtonElement, IProps>(
-  ({ height = 36, width = 150, text, type, className, ...rest }, ref) => {
+  (
+    { height = 36, width = 150, text, type, className, onClick, ...rest },
+    ref
+  ) => {
     return (
       <button
+        onClick={onClick}
         style={{
           width: `${width}px`,
           height: `${height}px`,
