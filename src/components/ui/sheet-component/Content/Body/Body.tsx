@@ -65,7 +65,11 @@ const Body: NextPage<IProps> = ({ control, data }) => {
             control={control}
             name="dueDate"
             render={({ field: { onChange, value } }) => (
-              <DatePickerComponent onChange={onChange} end={value || ''} />
+              <DatePickerComponent
+                isSingle
+                onChange={onChange}
+                deadLine={value || ''}
+              />
             )}
           />
         </div>

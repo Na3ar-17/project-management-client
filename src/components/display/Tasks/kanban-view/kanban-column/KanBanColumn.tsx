@@ -28,7 +28,13 @@ const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
                 </div>
                 <Columns2 className={styles.icon} />
               </div>
-              <div ref={provided.innerRef} className={cn(styles.category)}>
+              <div
+                ref={provided.innerRef}
+                className={cn(
+                  styles.category,
+                  snapshot.isDraggingOver && styles.draggingOver
+                )}
+              >
                 <div className={styles.tasks}>
                   {filterTasks(tasks, category.value)?.map((card, index) => (
                     <Draggable

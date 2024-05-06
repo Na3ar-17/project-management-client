@@ -132,8 +132,8 @@ const Card: NextPage<IProps> = ({ data }) => {
               render={({ field: { onChange, value } }) => (
                 <DatePickerComponent
                   onChange={onChange}
-                  end={value ? value : end || ''}
-                  start={createdAt || ''}
+                  deadLine={value ? value : end || ''}
+                  date={createdAt || ''}
                 />
               )}
             />

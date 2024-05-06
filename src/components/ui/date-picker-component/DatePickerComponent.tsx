@@ -11,25 +11,28 @@ import { useOutside } from '@/hooks/useOutside'
 import { X } from 'lucide-react'
 import './DatePicker.scss'
 import DateBadge from '../badges/date-badge/DateBadge'
-import { isToday } from 'date-fns'
+import { isToday, isMatch } from 'date-fns'
 
 dayjs.extend(LocalizedFormat)
 
 interface IDatePicker {
   onChange: (value: string) => void
-  end: string
+  deadLine: string
   position?: 'left' | 'right'
-  start?: string
+  date?: string
+  isSingle?: boolean
 }
 
 const DatePickerComponent: NextPage<IDatePicker> = ({
   onChange,
-  end,
+  deadLine,
   position = 'right',
-  start,
+  date,
+  isSingle,
 }) => {
   const [selected, setSelected] = useState<Date>()
   const { isShow, setIsShow, ref } = useOutside(false)
+  console.log()
 
   const handleDaySelect: SelectSingleEventHandler = (date) => {
     const ISOdate = date?.toISOString()
@@ -46,13 +49,16 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
   return (
     <div className="relative" ref={ref}>
       <button onClick={() => setIsShow(!isShow)}>
-        {isToday(end) ? (
-          <DateBadge deadLine={end} />
+        {isMatch(deadLine, 'dd.mm.yyyy') ? (
+          <DateBadge isSingle deadLine={deadLine} />
         ) : (
           <DateBadge
-            date={start}
+            date={date}
+            isSingle={isSingle}
             deadLine={
-              end === '--.--.--' ? end : dayjs(end).format('DD.MM.YYYY')
+              deadLine == ''
+                ? 'Select dead line'
+                : dayjs(deadLine).format('DD.MM.YYYY')
             }
           />
         )}

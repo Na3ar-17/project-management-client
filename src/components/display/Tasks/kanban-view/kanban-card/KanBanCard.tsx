@@ -52,7 +52,7 @@ const KanBanCard: NextPage<IProps> = ({
         />
         <div className={styles['task_info']}>
           {taskBadgeStyleFormat(priority || '')}
-          <DateBadge deadLine={dueDate} />
+          <DateBadge isSingle deadLine={dueDate} />
         </div>
         <p className={styles.description}>{textAbstract(description, 50)}</p>
         <ProgressComponent progressNumber={progressPercent} />

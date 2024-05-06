@@ -8,19 +8,24 @@ interface IProps {
   date?: string
   deadLine?: string
   className?: string
+  isSingle?: boolean
 }
 
-const DateBadge: NextPage<IProps> = ({ date, deadLine, className }) => {
+const DateBadge: NextPage<IProps> = ({
+  date,
+  deadLine,
+  className,
+  isSingle = false,
+}) => {
   return (
     <p className={cn(className, styles.badge)}>
       <CalendarDays className={styles.icon} />
-      {deadLine ? (
-        <span className={styles.date}>
-          {date} {!deadLine && '-'}
-          {isToday(deadLine) ? '00.00.00' : deadLine}
-        </span>
+      {isSingle ? (
+        <span className={styles.date}>{deadLine}</span>
       ) : (
-        <span className={styles.date}>{date}</span>
+        <span className={styles.date}>
+          {date ? date : ''} - {deadLine ? deadLine : ''}
+        </span>
       )}
     </p>
   )

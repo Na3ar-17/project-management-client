@@ -50,7 +50,7 @@ const TabsComponent: NextPage<IProps> = ({ control, data }) => {
           </TabsTrigger>
         )}
       </TabsList>
-      <TabsContent value="Description">
+      <TabsContent className="mt-2" value="Description">
         <Controller
           control={control}
           name="description"
