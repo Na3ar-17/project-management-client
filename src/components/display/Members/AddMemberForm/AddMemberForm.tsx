@@ -7,6 +7,7 @@ import Button from '@/components/ui/buttons/button-confirm/Button'
 import { useForm } from 'react-hook-form'
 import { useSearchUsersDebounced } from '@/api/hooks/user/useSearchUsersDebounced'
 import { useCreateInvitation } from '@/api/hooks/notifications/useCreateInvitation'
+import cn from 'clsx'
 interface IProps {
   projectId: string
 }
@@ -35,12 +36,14 @@ const AddMemberForm: NextPage<IProps> = ({ projectId }) => {
           <input
             type="text"
             className={styles.input}
-            placeholder="Search by email"
+            placeholder="Search by email to add new member"
             autoComplete="off"
             {...register('email')}
           />
         </form>
-        <div className={styles['users-list']}>
+        <div
+          className={cn(styles['users-list'], watch('email') && styles.visible)}
+        >
           <ScrollArea className="h-[200px]">
             {isPending && <div>Loading</div>}
             <div className={styles.wrapper}>

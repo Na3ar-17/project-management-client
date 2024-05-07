@@ -35,9 +35,5 @@ export const useProjectOwner = ({ projectId }: { projectId: string }) => {
     userData,
   ])
 
-  if (isProjectFetching || isUserDataFetching) {
-    return { isOwner: false, isLoading: true }
-  }
-
-  return { isOwner, isLoading: false, currentUserId: userData?.id }
+  return { isOwner, currentUserId: userData?.id }
 }

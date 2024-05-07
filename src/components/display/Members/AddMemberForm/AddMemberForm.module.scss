@@ -1,7 +1,7 @@
 .container {
   @apply w-full flex flex-col items-center;
   .content {
-    @apply w-[600px];
+    @apply w-[900px];
     .form {
       @apply w-full;
       .input {
@@ -10,7 +10,10 @@
     }
 
     .users-list {
-      @apply bg-border/10  rounded-b-md;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      @apply bg-border/10 rounded-b-md;
       .wrapper {
         @apply flex flex-col gap-3 px-3 pt-3;
 
@@ -31,6 +34,12 @@
           }
         }
       }
+    }
+
+    .visible {
+      max-height: 200px;
+      overflow: visible;
+      transition: max-height 0.3s ease;
     }
   }
 }
