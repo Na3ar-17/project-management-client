@@ -85,7 +85,9 @@ const Notification: NextPage<IProps> = ({ data }) => {
                 text="Confirm"
                 type="button"
                 className="text-center"
-                onClick={() => addNewMemberMutation(projectId || '')}
+                onClick={() =>
+                  addNewMemberMutation({ projectId: projectId || '', ownerId })
+                }
               />
               <ButtonReject
                 width={100}

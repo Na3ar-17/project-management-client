@@ -16,11 +16,12 @@ class MembersService {
   }
 
   async addNewMember(
-    projectId: string
+    projectId: string,
+    ownerId: string
   ): Promise<{ project: { slug: string; id: string } }> {
     try {
       const { data } = await axiosWithAuth.post(
-        `${this.URL}/add-new/${projectId}`
+        `${this.URL}/add-new/${projectId}/${ownerId}`
       )
 
       return data
