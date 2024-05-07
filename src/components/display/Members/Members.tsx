@@ -1,17 +1,18 @@
 'use client'
 import { NextPage } from 'next'
-import DataTable from './Table/DataTable'
-import { columns } from './Table/Columns/Columns'
 import Heading from '@/components/ui/heading/Heading'
 import { useGetAllMembers } from '@/api/hooks/members/useGetAllMembers'
 import styles from './Members.module.scss'
 import AddMemberForm from './AddMemberForm/AddMemberForm'
+import { useMemo } from 'react'
+import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 interface IProps {
   projectId: string
 }
 
 const Members: NextPage<IProps> = ({ projectId }) => {
   const { isFetching, isSuccess, membersData } = useGetAllMembers(projectId)
+  const { isOwner } = useProjectOwner({ projectId })
 
   if (!isSuccess || !membersData) {
     // TODO handle error
@@ -28,7 +29,7 @@ const Members: NextPage<IProps> = ({ projectId }) => {
             <AddMemberForm projectId={projectId} />
           </div>
         ) : (
-          <DataTable data={membersData} columns={columns} />
+          <div></div>
         )}
       </div>
     </div>

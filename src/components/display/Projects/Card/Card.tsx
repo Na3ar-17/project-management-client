@@ -28,6 +28,7 @@ import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import { useDialog } from '@/zustand/useDialog'
 import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
+import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 
 interface IProps {
   data: IProjectResponse
@@ -56,8 +57,8 @@ const Card: NextPage<IProps> = ({ data }) => {
   const { handleUploadImage, imgFile } = useImageUploader()
   const { deleteProjectImageMutation } = useDeleteProjectImage(id)
   const { onOpen } = useDialog()
-  // const { isOwner } = useProjectOwner({ projectId: id })
-  const isOwner = true
+
+  const { isOwner } = useProjectOwner({ projectId: id })
 
   useEffect(() => {
     if (imgFile) {

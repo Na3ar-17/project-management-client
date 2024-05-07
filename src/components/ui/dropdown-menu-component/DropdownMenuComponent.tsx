@@ -9,7 +9,11 @@ import { NextPage } from 'next'
 import { BsThreeDots } from 'react-icons/bs'
 import styles from './DropdownMenuComponent.module.scss'
 
-const DropdownMenuComponent: NextPage = () => {
+export interface IProps {
+  onKick?: () => void
+}
+
+const DropdownMenuComponent: NextPage<IProps> = ({ onKick }) => {
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -19,7 +23,9 @@ const DropdownMenuComponent: NextPage = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className={styles.content} align="end">
         <DropdownMenuLabel className={styles.lable}>Actions</DropdownMenuLabel>
-        <DropdownMenuItem className={styles.item}>Delete</DropdownMenuItem>
+        <DropdownMenuItem onClick={onKick} className={styles.item}>
+          Kick
+        </DropdownMenuItem>
         <DropdownMenuItem className={styles.item}>
           Raise the rank
         </DropdownMenuItem>
