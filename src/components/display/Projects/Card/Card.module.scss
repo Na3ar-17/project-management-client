@@ -41,7 +41,7 @@
   }
 
   .content {
-    @apply flex flex-col pt-3 px-1;
+    @apply flex flex-col pt-3 px-1 relative;
 
     .name {
       @apply text-xl text-text w-fit;
@@ -90,5 +90,4 @@
 }
 
 .notOwner {
-  @apply bg-red;
 }

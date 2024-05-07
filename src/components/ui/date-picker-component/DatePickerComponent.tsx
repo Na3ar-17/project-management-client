@@ -21,6 +21,7 @@ interface IDatePicker {
   position?: 'left' | 'right'
   date?: string
   isSingle?: boolean
+  disabled?: boolean
 }
 
 const DatePickerComponent: NextPage<IDatePicker> = ({
@@ -29,6 +30,7 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
   position = 'right',
   date,
   isSingle,
+  disabled,
 }) => {
   const [selected, setSelected] = useState<Date>()
   const { isShow, setIsShow, ref } = useOutside(false)
@@ -48,7 +50,7 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
 
   return (
     <div className="relative" ref={ref}>
-      <button onClick={() => setIsShow(!isShow)}>
+      <button onClick={() => !disabled && setIsShow(!isShow)}>
         {isMatch(deadLine, 'dd.mm.yyyy') ? (
           <DateBadge isSingle deadLine={deadLine} />
         ) : (
@@ -67,6 +69,7 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
       {isShow && (
         <div className={'absolute  p-2.5  bg-border z-10 shadow rounded-lg'}>
           <DayPicker
+            disabled={disabled}
             fromYear={2024}
             toYear={2050}
             initialFocus={isShow}

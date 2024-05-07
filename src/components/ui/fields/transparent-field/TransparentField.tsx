@@ -5,13 +5,18 @@ interface IProps {
   placeholder?: string
   value?: string
   onInputChange?: () => void
+  disabled?: boolean
 }
 
 const TransparentField = forwardRef<HTMLInputElement, IProps>(
-  ({ className, placeholder, value, onInputChange, ...rest }, ref) => {
+  (
+    { className, placeholder, value, onInputChange, disabled, ...rest },
+    ref
+  ) => {
     return (
       <label>
         <input
+          disabled={disabled}
           onChange={onInputChange}
           type="text"
           className={cn('bg-[transparent]', className)}

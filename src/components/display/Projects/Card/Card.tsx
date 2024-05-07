@@ -2,7 +2,13 @@
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import cn from 'clsx'
-import { ExternalLink, ImageIcon, ImageUp, Trash2 } from 'lucide-react'
+import {
+  ExternalLink,
+  ImageIcon,
+  ImageUp,
+  Trash2,
+  UserSquare2Icon,
+} from 'lucide-react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import styles from './Card.module.scss'
@@ -21,6 +27,7 @@ import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
 import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import { useDialog } from '@/zustand/useDialog'
 import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
+import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 
 interface IProps {
   data: IProjectResponse
@@ -56,6 +63,8 @@ const Card: NextPage<IProps> = ({ data }) => {
   const { deleteProjectImageMutation } = useDeleteProjectImage(id)
   const { onOpen } = useDialog()
 
+  const isOwner = currentUserData?.id == ownerId
+
   useEffect(() => {
     if (imgFile) {
       uploadProjectImageMutation(imgFile)
@@ -63,42 +72,44 @@ const Card: NextPage<IProps> = ({ data }) => {
   }, [imgFile])
 
   return (
-    <div
-      className={cn(
-        styles.card,
-        currentUserData?.id !== ownerId && styles.notOwner
-      )}
-    >
+    <div className={cn(styles.card, !isOwner && styles.notOwner)}>
       {image ? (
         <>
           <ImageComponent
             onImageDelete={deleteProjectImageMutation}
             alt={name}
             image={image}
+            isOwner={isOwner}
           />
         </>
       ) : (
         <div className={styles['no-image']}>
-          <ImageIcon strokeWidth={1.5} className={styles.icon} />
-          <div className={styles.action}>
-            {!image && (
-              <TooltipComponent text="Upload image">
-                <div className={styles.group}>
-                  <ImageUp
-                    strokeWidth={1.8}
-                    className={styles['icon-action']}
-                    onClick={() => inputRef?.current?.click()}
-                  />
-                  <input
-                    onChange={handleUploadImage}
-                    type="file"
-                    hidden
-                    ref={inputRef}
-                  />
-                </div>
-              </TooltipComponent>
-            )}
-          </div>
+          {!isOwner ? (
+            <ImageIcon strokeWidth={1.5} className={'size-12 text-border'} />
+          ) : (
+            <>
+              <ImageIcon strokeWidth={1.5} className={styles.icon} />
+              <div className={styles.action}>
+                {!image && (
+                  <TooltipComponent text="Upload image">
+                    <div className={styles.group}>
+                      <ImageUp
+                        strokeWidth={1.8}
+                        className={styles['icon-action']}
+                        onClick={() => inputRef?.current?.click()}
+                      />
+                      <input
+                        onChange={handleUploadImage}
+                        type="file"
+                        hidden
+                        ref={inputRef}
+                      />
+                    </div>
+                  </TooltipComponent>
+                )}
+              </div>
+            </>
+          )}
         </div>
       )}
       <div className={styles.content}>
@@ -113,6 +124,7 @@ const Card: NextPage<IProps> = ({ data }) => {
                 className="text-xl w-full"
                 value={value}
                 onInputChange={onChange}
+                disabled={!isOwner}
               />
             )
           }}
@@ -126,6 +138,7 @@ const Card: NextPage<IProps> = ({ data }) => {
                 onChange={onChange}
                 deadLine={value ? value : end || ''}
                 date={createdAt || ''}
+                disabled={!isOwner}
               />
             )}
           />
@@ -136,7 +149,7 @@ const Card: NextPage<IProps> = ({ data }) => {
             >
               <ExternalLink className={styles.icon} />
             </Link>
-            <Trash2 onClick={onOpen} className={styles.delete} />
+            {isOwner && <Trash2 onClick={onOpen} className={styles.delete} />}
           </div>
         </div>
       </div>
