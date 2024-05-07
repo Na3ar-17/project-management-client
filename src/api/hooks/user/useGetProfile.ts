@@ -7,7 +7,7 @@ export const useGetProfile = () => {
   const { data, isSuccess, isFetching } = useQuery({
     queryKey: [userKeys.USER],
     queryFn: () => userService.getProfile(),
-    retry: 5,
+    retry: 3,
   })
 
   return { data, isSuccess, isFetching }

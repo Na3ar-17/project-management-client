@@ -46,12 +46,6 @@ const Card: NextPage<IProps> = ({ data }) => {
     }
   )
 
-  const { data: currentUserData } = useGetProfile()
-  if (!data) {
-    // TODO handle this
-    return <div>Error</div>
-  }
-
   const { deleteProjectMutation } = useDeleteProject()
 
   useUpdateProjectDebounce({ watch, projectId: id })
@@ -62,8 +56,8 @@ const Card: NextPage<IProps> = ({ data }) => {
   const { handleUploadImage, imgFile } = useImageUploader()
   const { deleteProjectImageMutation } = useDeleteProjectImage(id)
   const { onOpen } = useDialog()
-
-  const isOwner = currentUserData?.id == ownerId
+  // const { isOwner } = useProjectOwner({ projectId: id })
+  const isOwner = true
 
   useEffect(() => {
     if (imgFile) {

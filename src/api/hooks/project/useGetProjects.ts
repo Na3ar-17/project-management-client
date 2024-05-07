@@ -11,6 +11,7 @@ export const useGetProjects = () => {
   } = useQuery({
     queryKey: [projectKeys.GET_ALL],
     queryFn: () => projectService.getAll(),
+    retry: 3,
     select: (data) => {
       return data.map((project) => ({
         ...project,

@@ -12,6 +12,7 @@ interface IProps {
 
 const Members: NextPage<IProps> = ({ projectId }) => {
   const { isFetching, isSuccess, membersData } = useGetAllMembers(projectId)
+
   if (!isSuccess || !membersData) {
     // TODO handle error
     return <div> Error</div>

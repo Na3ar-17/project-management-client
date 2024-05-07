@@ -15,6 +15,16 @@ class ProjectService {
     }
   }
 
+  async getOne(id: string): Promise<IProjectResponse> {
+    try {
+      const { data } = await axiosWithAuth.get(`${this.URL}/get-one/${id}`)
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
   async create(): Promise<IProjectResponse> {
     try {
       const { data } = await axiosWithAuth.post(`${this.URL}/create`)
