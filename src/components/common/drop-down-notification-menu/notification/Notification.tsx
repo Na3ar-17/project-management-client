@@ -34,7 +34,7 @@ const Notification: NextPage<IProps> = ({ data }) => {
   } = data
 
   const { deleteNotificationMutation } = useDeleteNotification()
-  const { addNewMemberMutation } = useAddNewMember()
+  const { addNewMemberMutation } = useAddNewMember(id)
   const { rejectInvitationMutation } = useRejectInvitation()
 
   const isSimpleNotification =

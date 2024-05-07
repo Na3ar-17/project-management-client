@@ -21,9 +21,10 @@ const AddMemberForm: NextPage<IProps> = ({ projectId }) => {
 
   const handleInvite = (recipientId: string) => {
     createInvitationMutation({
-      content: 'Ivitation to project',
+      content: 'Invitation to project',
       recipientId,
       projectId,
+      hasSeen: false,
     })
   }
 
