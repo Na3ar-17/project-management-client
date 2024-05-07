@@ -3,4 +3,5 @@ export const projectKeys = {
   CREATE: 'create_project',
   DELETE: 'delete_project',
   UPDATE: 'update_project',
+  GET_ONE: 'get_one_project',
 }
