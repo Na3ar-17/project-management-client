@@ -6,6 +6,7 @@ import styles from './Members.module.scss'
 import AddMemberForm from './AddMemberForm/AddMemberForm'
 import { useMemo } from 'react'
 import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
+import Table from './Table/Table'
 interface IProps {
   projectId: string
 }
@@ -23,14 +24,8 @@ const Members: NextPage<IProps> = ({ projectId }) => {
     <div>
       <Heading text="Members" />
       <div className="pt-6">
-        {membersData.length <= 0 ? (
-          <div className={styles['no-members']}>
-            <p className="text-lg"> There are no members in this project</p>
-            <AddMemberForm projectId={projectId} />
-          </div>
-        ) : (
-          <div></div>
-        )}
+        {/* <AddMemberForm projectId={projectId} /> */}
+        <Table data={membersData} />
       </div>
     </div>
   )

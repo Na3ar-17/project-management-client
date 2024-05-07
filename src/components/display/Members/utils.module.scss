@@ -27,10 +27,6 @@
 .role {
   @apply relative flex items-center gap-1.5;
   .icon {
-    position: absolute;
-    top: 50%;
-    left: -10%;
-    transform: translate(-50%, -50%);
     @apply size-5 text-text2;
   }
 }

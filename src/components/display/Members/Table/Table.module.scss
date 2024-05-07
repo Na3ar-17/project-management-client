@@ -1,0 +1,9 @@
+.table {
+  margin: 0 auto;
+  @apply min-w-[500px] flex flex-col bg-secondary min-h-[50px] w-[900px] rounded-lg;
+
+  .row {
+    @apply grid place-items-center w-full h-[55px] px-3 py-1  text-[17px];
+    grid-template-columns: 1fr 1fr 1fr 50px;
+  }
+}

@@ -2,6 +2,7 @@ import {
   EnumMemberRole,
   EnumMemberStatus,
   IMembers,
+  ITableColumns,
 } from '@/types/members.type'
 
 export const membersData: IMembers[] = [
@@ -50,4 +51,11 @@ export const membersData: IMembers[] = [
     imgLink:
       'https://i.pinimg.com/564x/40/82/a8/4082a8c61a8e8456c1e5d99aa149e77c.jpg',
   },
+]
+
+export const tableColumnsData: ITableColumns[] = [
+  { lable: 'Full Name', value: 'full-name' },
+  { lable: 'Email', value: 'email' },
+  { lable: 'Role', value: 'role' },
+  { lable: 'Actions', value: 'actions' },
 ]

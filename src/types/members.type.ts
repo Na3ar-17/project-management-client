@@ -7,6 +7,11 @@ export interface IMembers extends IBase {
   user: IUser
 }
 
+export interface ITableColumns {
+  lable: string
+  value: string
+}
+
 export enum EnumMemberRole {
   Member = 'Member',
   Admin = 'Admin',
