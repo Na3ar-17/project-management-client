@@ -26,6 +26,7 @@ const Table: NextPage<IProps> = ({ data, projectId }) => {
           data={el}
           isOwner={isOwner}
           key={index}
+          projectId={projectId}
         />
       ))}
     </main>
