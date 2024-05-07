@@ -23,7 +23,7 @@ const Members: NextPage<IProps> = ({ projectId }) => {
     <div>
       <Heading text="Members" />
       <div className="pt-6">
-        {/* <AddMemberForm projectId={projectId} /> */}
+        <AddMemberForm projectId={projectId} />
         <Table data={membersData} projectId={projectId} />
       </div>
     </div>

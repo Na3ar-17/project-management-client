@@ -14,7 +14,7 @@ export const useRegister = () => {
     mutationFn: (dto: TypeAuthFormRegister) => authService.register(dto),
     onSuccess: () => {
       push(DASHBOARD_PAGES.SETTINGS)
-      toast.success('Successfullyregister')
+      toast.success('Successfully register')
     },
   })
 

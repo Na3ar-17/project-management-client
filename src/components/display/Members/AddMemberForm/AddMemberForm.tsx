@@ -64,6 +64,7 @@ const AddMemberForm: NextPage<IProps> = ({ projectId }) => {
                         type="button"
                         width={80}
                         height={22}
+                        className="text-center"
                         onClick={() => handleInvite(user.id)}
                       />
                     </div>

@@ -30,6 +30,15 @@ class MembersService {
       throw error
     }
   }
+
+  async kick({ projectId, id }: { projectId: string; id: string }) {
+    try {
+      await axiosWithAuth.delete(`${this.URL}/kick/${projectId}/${id}`)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
 }
 
 export const membersService = new MembersService()

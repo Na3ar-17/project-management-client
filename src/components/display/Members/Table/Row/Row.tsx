@@ -12,8 +12,9 @@ interface IProps {
 
 const Row: NextPage<IProps> = ({ isOwner, data, currentUserId }) => {
   const {
-    user: { email, fullName, id },
+    user: { email, fullName, id: userId },
     role,
+    id,
   } = data
   return (
     <div
@@ -22,7 +23,9 @@ const Row: NextPage<IProps> = ({ isOwner, data, currentUserId }) => {
       <p className={styles.fullname}>{fullName}</p>
       <p className={styles.email}>{email}</p>
       {userRoleFormat(role || '')}
-      {isOwner && currentUserId !== id && <DropdownMenuComponent />}
+      {isOwner && currentUserId !== userId && (
+        <DropdownMenuComponent onKick={() => console.log(email)} />
+      )}
     </div>
   )
 }
