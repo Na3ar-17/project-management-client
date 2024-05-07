@@ -39,5 +39,5 @@ export const useProjectOwner = ({ projectId }: { projectId: string }) => {
     return { isOwner: false, isLoading: true }
   }
 
-  return { isOwner, isLoading: false }
+  return { isOwner, isLoading: false, currentUserId: userData?.id }
 }

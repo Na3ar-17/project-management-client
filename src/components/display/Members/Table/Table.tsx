@@ -6,22 +6,27 @@ import { DropdownMenu } from '@/components/ui/shadcn/ui/dropdown-menu'
 import DropdownMenuComponent from '@/components/ui/dropdown-menu-component/DropdownMenuComponent'
 import Columns from './Columns/Columns'
 import { tableColumnsData } from '@/data/members.data'
+import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
+import cn from 'clsx'
+import Row from './Row/Row'
 
 interface IProps {
   data: IMembers[]
+  projectId: string
 }
 
-const Table: NextPage<IProps> = ({ data }) => {
+const Table: NextPage<IProps> = ({ data, projectId }) => {
+  const { isOwner, currentUserId } = useProjectOwner({ projectId })
   return (
     <main className={styles.table}>
-      <Columns columnsData={tableColumnsData} />
+      <Columns isOwner={isOwner} columnsData={tableColumnsData} />
       {data.map((el, index) => (
-        <div key={index} className={styles.row}>
-          <p className={styles.fullname}>{el.user.fullName}</p>
-          <p className={styles.email}>{el.user.email}</p>
-          {userRoleFormat(el.role || '')}
-          <DropdownMenuComponent />
-        </div>
+        <Row
+          currentUserId={currentUserId || ''}
+          data={el}
+          isOwner={isOwner}
+          key={index}
+        />
       ))}
     </main>
   )

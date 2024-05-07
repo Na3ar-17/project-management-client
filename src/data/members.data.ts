@@ -57,5 +57,4 @@ export const tableColumnsData: ITableColumns[] = [
   { lable: 'Full Name', value: 'full-name' },
   { lable: 'Email', value: 'email' },
   { lable: 'Role', value: 'role' },
-  { lable: 'Actions', value: 'actions' },
 ]

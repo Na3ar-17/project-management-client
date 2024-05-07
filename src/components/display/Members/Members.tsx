@@ -13,7 +13,6 @@ interface IProps {
 
 const Members: NextPage<IProps> = ({ projectId }) => {
   const { isFetching, isSuccess, membersData } = useGetAllMembers(projectId)
-  const { isOwner } = useProjectOwner({ projectId })
 
   if (!isSuccess || !membersData) {
     // TODO handle error
@@ -25,7 +24,7 @@ const Members: NextPage<IProps> = ({ projectId }) => {
       <Heading text="Members" />
       <div className="pt-6">
         {/* <AddMemberForm projectId={projectId} /> */}
-        <Table data={membersData} />
+        <Table data={membersData} projectId={projectId} />
       </div>
     </div>
   )

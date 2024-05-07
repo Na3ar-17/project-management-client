@@ -4,9 +4,10 @@ import { ITableColumns } from '@/types/members.type'
 
 interface IProps {
   columnsData: ITableColumns[]
+  isOwner: boolean
 }
 
-const Columns: NextPage<IProps> = ({ columnsData }) => {
+const Columns: NextPage<IProps> = ({ columnsData, isOwner }) => {
   return (
     <div className={styles.columns}>
       {columnsData.map((el, index) => (
