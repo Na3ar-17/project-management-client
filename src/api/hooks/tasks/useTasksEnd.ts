@@ -14,7 +14,9 @@ export const useTasksEnd = ({
   const { updateTaskMutation } = useUpdateTask()
 
   const onDragEnd = (result: DropResult) => {
-    if (!result.destination) result
+    const { destination, source } = result
+
+    if (!destination) return
 
     const destinationColumnId = result.destination?.droppableId
 

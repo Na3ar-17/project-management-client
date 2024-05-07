@@ -54,13 +54,21 @@
     .time {
       @apply text-text2 pt-3 text-sm flex items-center justify-between;
 
-      .icon {
-        @apply size-5 transition-all;
+      .actions {
+        @apply flex items-center gap-3 transition-all;
         opacity: 0;
         visibility: hidden;
+        .icon,
+        .delete {
+          @apply size-5;
 
-        &:active {
-          @apply translate-y-[2px];
+          &:active {
+            @apply translate-y-[2px];
+          }
+        }
+
+        .delete {
+          @apply text-red-text;
         }
       }
     }
@@ -72,7 +80,7 @@
     box-shadow: 0px 0px 15px -8px rgba(66, 68, 90, 1);
     .content {
       .time {
-        .icon {
+        .actions {
           opacity: 1;
           visibility: visible;
         }
