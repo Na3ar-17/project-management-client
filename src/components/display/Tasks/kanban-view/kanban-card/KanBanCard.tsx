@@ -27,6 +27,8 @@ const KanBanCard: NextPage<IProps> = ({
   provided,
   snapshot: { isDragging },
 }) => {
+  console.log(data)
+
   const {
     id,
     assigneesers,
@@ -36,6 +38,7 @@ const KanBanCard: NextPage<IProps> = ({
     priority,
     projectId,
     progressPercent,
+    project: { members },
   } = data
 
   const { deleteTaskMutation } = useDeleteTask()

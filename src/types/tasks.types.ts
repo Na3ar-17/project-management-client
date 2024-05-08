@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { IMembers } from './members.type'
 import { IBase } from './base.type'
+import { IProjectResponse } from './project.types'
 
 //TODO create user type
 
@@ -46,6 +47,7 @@ export interface ITaskCard extends IBase {
   status: EnumTaskStatus
   projectId: string
   progressPercent: number
+  project: IProjectResponse
 }
 
 export interface IViewType {
