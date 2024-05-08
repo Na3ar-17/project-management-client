@@ -1,5 +1,4 @@
 import type { CSSProperties } from 'react'
-import { IMembers } from './members.type'
 import { IBase } from './base.type'
 import { IProjectResponse } from './project.types'
 
@@ -40,9 +39,7 @@ export interface ITaskCard extends IBase {
   subTasks?: ISubTask[]
   priority?: EnumTaskPriority
   dueDate: string
-  createdBy: IMembers
   description: string
-  assigneesers: IMembers[]
   comments?: IComment[]
   status: EnumTaskStatus
   projectId: string

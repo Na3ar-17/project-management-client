@@ -11,7 +11,6 @@ import {
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import ButtonReject from '@/components/ui/buttons/button-reject/Button'
 import { useDeleteNotification } from '@/api/hooks/notifications/useDeleteNotification'
-import { useAddNewMember } from '@/api/hooks/members/useAddNewMember'
 import { useRejectInvitation } from '@/api/hooks/notifications/useRejectInvitation'
 interface IProps {
   data: INotifications
@@ -34,7 +33,6 @@ const Notification: NextPage<IProps> = ({ data }) => {
   } = data
 
   const { deleteNotificationMutation } = useDeleteNotification()
-  const { addNewMemberMutation } = useAddNewMember(id)
   const { rejectInvitationMutation } = useRejectInvitation()
 
   const isSimpleNotification =
@@ -85,9 +83,6 @@ const Notification: NextPage<IProps> = ({ data }) => {
                 text="Confirm"
                 type="button"
                 className="text-center"
-                onClick={() =>
-                  addNewMemberMutation({ projectId: projectId || '', ownerId })
-                }
               />
               <ButtonReject
                 width={100}

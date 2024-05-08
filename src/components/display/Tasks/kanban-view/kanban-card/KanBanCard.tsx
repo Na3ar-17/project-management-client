@@ -35,7 +35,6 @@ const KanBanCard: NextPage<IProps> = ({
     priority,
     projectId,
     progressPercent,
-    project: { members },
   } = data
 
   const { deleteTaskMutation } = useDeleteTask()

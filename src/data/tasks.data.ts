@@ -8,7 +8,6 @@ import {
   ITaskCard,
   IViewType,
 } from '@/types/tasks.types'
-import { membersData } from './members.data'
 import { LayoutTemplate, List } from 'lucide-react'
 
 //TODO create data for kanban card
@@ -56,24 +55,6 @@ export const simpleSelectData: { lable: string; value: EnumTaskPriority }[] = [
   { value: EnumTaskPriority.high, lable: 'High' },
 ]
 
-export const subTaskRowData: ISubTask[] = [
-  {
-    isCompleted: false,
-    id: '1',
-    title: 'Ui SideBar design',
-  },
-  {
-    isCompleted: true,
-    id: '2',
-    title: 'Coding',
-  },
-  {
-    isCompleted: true,
-    id: '3',
-    title: 'Coding',
-  },
-]
-
 export const commentsData: IComment[] = [
   {
     id: 'ad',
@@ -94,69 +75,6 @@ export const commentsData: IComment[] = [
     id: 'adasdasd',
     text: 'Putin Hyilo',
     owner: null,
-  },
-]
-
-export const taskCardsData: ITaskCard[] = [
-  {
-    id: '1',
-    title: 'Task 1',
-    subTasks: [],
-    priority: EnumTaskPriority.low,
-    dueDate: '2024-04-25',
-    createdBy: { id: 'user1', fullName: 'John Doe' },
-    descripton: 'Description for task 1',
-    assigneesers: membersData.slice(0, 2),
-    comments: [],
-    status: EnumTaskStatus.inQueue,
-  },
-  {
-    id: '2',
-    title: 'Task 2',
-    subTasks: [],
-    priority: EnumTaskPriority.normal,
-    dueDate: '2024-04-26',
-    createdBy: { id: 'user2', fullName: 'Jane Doe' },
-    descripton: 'Description for task 2',
-    assigneesers: membersData.slice(0, 4),
-    comments: [],
-    status: EnumTaskStatus.onProgress,
-  },
-  {
-    id: '3',
-    title: 'Task 3',
-    subTasks: [],
-    priority: EnumTaskPriority.high,
-    dueDate: '2024-04-27',
-    createdBy: { id: 'user1', fullName: 'John Doe' },
-    descripton: 'Description for task 3',
-    assigneesers: membersData.slice(0, 1),
-    comments: [],
-    status: EnumTaskStatus.completed,
-  },
-  {
-    id: '4',
-    title: 'Task 4',
-    subTasks: [],
-    priority: EnumTaskPriority.normal,
-    dueDate: '2024-04-28',
-    createdBy: { id: 'user2', fullName: 'Jane Doe' },
-    descripton: 'Description for task 4',
-    assigneesers: membersData.slice(0, 2),
-    comments: [],
-    status: EnumTaskStatus.testing,
-  },
-  {
-    id: '5',
-    title: 'Task 5',
-    subTasks: [],
-    priority: EnumTaskPriority.low,
-    dueDate: '2024-04-29',
-    createdBy: { id: 'user1', fullName: 'John Doe' },
-    descripton: 'Description for task 5',
-    assigneesers: membersData,
-    comments: [],
-    status: EnumTaskStatus.inQueue,
   },
 ]
 

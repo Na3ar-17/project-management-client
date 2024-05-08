@@ -5,5 +5,4 @@ export interface IStatisticsResponse extends Omit<IBase, 'id'> {
   tasksCompleted: number
   tasksCreated: number
   tasksDeleted: number
-  members: number
 }

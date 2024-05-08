@@ -43,34 +43,6 @@ export const sideBarElementData: ISideBarElement[] = [
     text: 'Projects',
     Icon: LayoutGrid,
     href: DASHBOARD_PAGES.PROJECTS,
-    childrens: [
-      {
-        text: 'Chat App',
-        href: '',
-        childrens: [
-          {
-            text: 'Dashboard',
-            href: ``,
-            Icon: LayoutDashboard,
-          },
-          {
-            text: 'Members',
-            href: ``,
-            Icon: UsersRound,
-          },
-          {
-            text: 'Team chat',
-            Icon: MessageCircleMore,
-            href: ``,
-          },
-          {
-            text: 'Tasks',
-            Icon: ListTodo,
-            href: ``,
-          },
-        ],
-      },
-    ],
   },
   {
     text: 'Profile',

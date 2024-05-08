@@ -1,4 +1,3 @@
-import { membersData } from '@/data/members.data'
 import { cn } from '@/lib/utils'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { Plus } from 'lucide-react'

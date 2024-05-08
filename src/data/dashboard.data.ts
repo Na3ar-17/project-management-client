@@ -29,14 +29,6 @@ export const generateBlockStatisticsData = (props: IStatisticsResponse) => {
       value: props.tasksDeleted,
       iconColor: COLORS['dark-orange'],
     },
-    {
-      id: 'asdasd',
-      background: COLORS['light-blue'],
-      Icon: Users,
-      title: 'Members',
-      value: props.members,
-      iconColor: COLORS.blue,
-    },
   ]
 
   return blockStatisticsData

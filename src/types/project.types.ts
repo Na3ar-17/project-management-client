@@ -1,5 +1,4 @@
 import { IBase } from './base.type'
-import { IMembers } from './members.type'
 
 export interface IProjectResponse extends IBase {
   name: string
@@ -8,7 +7,6 @@ export interface IProjectResponse extends IBase {
   end: string
   ownerId: string
   userId: string
-  members: IMembers[]
 }
 
 export type TypeSideBarSubMenuElement = Omit<

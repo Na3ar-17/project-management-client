@@ -5,7 +5,6 @@ import UserBadge from '@/components/ui/badges/user-badge/UserBadge'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
 import TabsComponent from '@/components/ui/tabs-component/TabsComponent'
-import { membersData } from '@/data/members.data'
 import { cn } from '@/lib/utils'
 import { Plus } from 'lucide-react'
 import { Control, Controller } from 'react-hook-form'
@@ -19,11 +18,7 @@ interface IProps {
 }
 
 const Body: NextPage<IProps> = ({ control, data }) => {
-  const {
-    id,
-    projectId,
-    project: { members },
-  } = data
+  const { id, projectId } = data
 
   const { isFetching, isSuccess, subtaskData, setSubtaskData } = useGetAll(id)
 
@@ -78,12 +73,6 @@ const Body: NextPage<IProps> = ({ control, data }) => {
             )}
           />
         </div>
-        {members.length >= 2 && (
-          <div className={styles.block}>
-            <p className={styles.label}>Created By</p>
-            <UserBadge fullName="Nazar Gavrylyk" imgLink={''} />
-          </div>
-        )}
       </div>
       <TabsComponent data={data} control={control} />
       {!isSuccess || !subtaskData ? (
