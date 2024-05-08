@@ -8,6 +8,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeViewType } from '@/types/tasks.types'
 import ViewType from './view-type/ViewType'
 import { useCreateTask } from '@/api/hooks/tasks/useCreateTask'
+import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 interface IProps {
   projectId: string
 }
@@ -19,6 +20,7 @@ const Panel: NextPage<IProps> = ({ projectId }) => {
   })
 
   const { createTaskMutation } = useCreateTask()
+  const { isOwner } = useProjectOwner({ projectId })
 
   return (
     <div className={styles.panel}>
@@ -33,23 +35,25 @@ const Panel: NextPage<IProps> = ({ projectId }) => {
         ))}
       </div>
 
-      <div className={styles.actions}>
-        <div className={styles.action}>
-          <ArrowUpDown className={styles.icon} />
-          <p>Sort</p>
+      {isOwner && (
+        <div className={styles.actions}>
+          <div className={styles.action}>
+            <ArrowUpDown className={styles.icon} />
+            <p>Sort</p>
+          </div>
+          <div className={styles.action}>
+            <ListFilter className={styles.icon} />
+            <p>More filters</p>
+          </div>
+          <div
+            onClick={() => createTaskMutation(projectId)}
+            className={cn(styles.action, styles['add-task'])}
+          >
+            <Plus className={styles.icon} />
+            <p>Add Task</p>
+          </div>
         </div>
-        <div className={styles.action}>
-          <ListFilter className={styles.icon} />
-          <p>More filters</p>
-        </div>
-        <div
-          onClick={() => createTaskMutation(projectId)}
-          className={cn(styles.action, styles['add-task'])}
-        >
-          <Plus className={styles.icon} />
-          <p>Add Task</p>
-        </div>
-      </div>
+      )}
     </div>
   )
 }

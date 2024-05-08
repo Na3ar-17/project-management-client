@@ -16,14 +16,7 @@ const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      'disabled:cursor-not-allowed disabled:opacity-50 ',
-      className
-    )}
-    {...props}
-  >
+  <SelectPrimitive.Trigger ref={ref} className={cn(className)} {...props}>
     {children}
   </SelectPrimitive.Trigger>
 ))

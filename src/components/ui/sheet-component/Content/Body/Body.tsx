@@ -12,6 +12,7 @@ import { Control, Controller } from 'react-hook-form'
 import TasksBlock from '../../TasksBlock/TasksBlock'
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
+import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 
 interface IProps {
   control: Control<TypeUpdateTaskCard>
@@ -19,9 +20,11 @@ interface IProps {
 }
 
 const Body: NextPage<IProps> = ({ control, data }) => {
-  const { isFetching, isSuccess, subtaskData, setSubtaskData } = useGetAll(
-    data.id
-  )
+  const { id, projectId } = data
+
+  const { isFetching, isSuccess, subtaskData, setSubtaskData } = useGetAll(id)
+  const { isOwner } = useProjectOwner({ projectId })
+
   return (
     <div className={styles.body}>
       <div className={styles.info}>
@@ -32,7 +35,11 @@ const Body: NextPage<IProps> = ({ control, data }) => {
               name="priority"
               control={control}
               render={({ field: { onChange, value } }) => (
-                <SimpleSelect value={value || ''} onChange={onChange} />
+                <SimpleSelect
+                  disabled={!isOwner}
+                  value={value || ''}
+                  onChange={onChange}
+                />
               )}
             />
           </div>
@@ -66,6 +73,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
             name="dueDate"
             render={({ field: { onChange, value } }) => (
               <DatePickerComponent
+                disabled={!isOwner}
                 isSingle
                 onChange={onChange}
                 deadLine={value || ''}
@@ -80,7 +88,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
           </div>
         )}
       </div>
-      <TabsComponent data={data} control={control} />
+      <TabsComponent isOwner={isOwner} data={data} control={control} />
       {!isSuccess || !subtaskData ? (
         //TODO handle errors
         <div>Error</div>
@@ -89,6 +97,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
           subTasksData={subtaskData}
           setSubTaskData={setSubtaskData}
           taskId={data.id}
+          isOwner={isOwner}
         />
       )}
     </div>

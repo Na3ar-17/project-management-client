@@ -11,6 +11,7 @@ interface IProps {
   provided: DraggableProvided
   isDragging: boolean
   onTaskDelete: () => void
+  isOwner: boolean
 }
 
 const Header: NextPage<IProps> = ({
@@ -19,6 +20,7 @@ const Header: NextPage<IProps> = ({
   isDragging,
   provided,
   onTaskDelete,
+  isOwner,
 }) => {
   const { onOpen, setExpectedTaskId } = useSheet()
 
@@ -40,19 +42,24 @@ const Header: NextPage<IProps> = ({
           isDragging && 'opacity-100 visible'
         )}
       >
-        <div className="flex items-center gap-3" {...provided.dragHandleProps}>
-          <Trash2
-            className={cn(
-              styles.icon,
-              styles.delete,
-              isDragging && 'size-5 text-light-red'
-            )}
-            onClick={onTaskDelete}
-          />
-          <GripVertical
-            className={cn(styles.icon, styles.drag, isDragging && 'size-5')}
-          />
-        </div>
+        {isOwner && (
+          <div
+            className="flex items-center gap-3"
+            {...provided.dragHandleProps}
+          >
+            <Trash2
+              className={cn(
+                styles.icon,
+                styles.delete,
+                isDragging && 'size-5 text-light-red'
+              )}
+              onClick={onTaskDelete}
+            />
+            <GripVertical
+              className={cn(styles.icon, styles.drag, isDragging && 'size-5')}
+            />
+          </div>
+        )}
       </div>
     </div>
   )

@@ -15,11 +15,16 @@ import { simpleSelectData } from '@/data/tasks.data'
 interface IProps {
   value: string
   onChange: (value: string) => void
+  disabled?: boolean
 }
 
-const SimpleSelect: NextPage<IProps> = ({ onChange, value }) => {
+const SimpleSelect: NextPage<IProps> = ({
+  onChange,
+  value,
+  disabled = false,
+}) => {
   return (
-    <Select onValueChange={onChange} defaultValue={value}>
+    <Select disabled={disabled} onValueChange={onChange} defaultValue={value}>
       <SelectTrigger>
         {value ? <TaskPriorityBadge text={value} /> : 'select'}
       </SelectTrigger>

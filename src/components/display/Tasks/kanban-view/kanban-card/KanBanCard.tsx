@@ -15,6 +15,7 @@ import { MessageSquareText } from 'lucide-react'
 import { NextPage } from 'next'
 import Header from './Header/Header'
 import styles from './KanBanCard.module.scss'
+import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 interface IProps {
   data: ITaskCard
   provided: DraggableProvided
@@ -38,6 +39,7 @@ const KanBanCard: NextPage<IProps> = ({
   } = data
 
   const { deleteTaskMutation } = useDeleteTask()
+  const { isOwner } = useProjectOwner({ projectId })
 
   return (
     <>
@@ -48,6 +50,7 @@ const KanBanCard: NextPage<IProps> = ({
           provided={provided}
           isDragging={isDragging}
           onTaskDelete={() => deleteTaskMutation({ projectId, taskId: id })}
+          isOwner={isOwner}
         />
         <div className={styles['task_info']}>
           {taskBadgeStyleFormat(priority || '')}
