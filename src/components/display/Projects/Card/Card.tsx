@@ -32,17 +32,15 @@ interface IProps {
 }
 
 const Card: NextPage<IProps> = ({ data }) => {
-  const { end, id, name, ownerId, userId, createdAt, image, slug } = data
-  const { register, control, setError, watch } = useForm<TypeUpdateProjectCard>(
-    {
-      mode: 'onChange',
-      defaultValues: {
-        name: name,
-        image: image,
-        end: end,
-      },
-    }
-  )
+  const { end, id, name, createdAt, image, slug } = data
+  const { register, control, watch } = useForm<TypeUpdateProjectCard>({
+    mode: 'onChange',
+    defaultValues: {
+      name: name,
+      image: image,
+      end: end,
+    },
+  })
 
   const { deleteProjectMutation } = useDeleteProject()
 
@@ -53,7 +51,7 @@ const Card: NextPage<IProps> = ({ data }) => {
   const { uploadProjectImageMutation } = useUploadProjectImage(id)
   const { handleUploadImage, imgFile } = useImageUploader()
   const { deleteProjectImageMutation } = useDeleteProjectImage(id)
-  const { onOpen } = useDialog()
+  const { onOpen, setIdToDelete, idToDelete } = useDialog()
 
   useEffect(() => {
     if (imgFile) {
@@ -130,11 +128,19 @@ const Card: NextPage<IProps> = ({ data }) => {
             >
               <ExternalLink className={styles.icon} />
             </Link>
-            <Trash2 onClick={onOpen} className={styles.delete} />
+            <Trash2
+              onClick={() => {
+                setIdToDelete(id)
+                onOpen()
+              }}
+              className={styles.delete}
+            />
           </div>
         </div>
       </div>
-      <AlertDialogComponent onDelete={() => deleteProjectMutation(id)} />
+      <AlertDialogComponent
+        onDelete={() => deleteProjectMutation(idToDelete)}
+      />
     </div>
   )
 }
