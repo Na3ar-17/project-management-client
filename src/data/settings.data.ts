@@ -79,9 +79,7 @@ export const accountSettingsContentData: ISettingsContentData[] = [
         text: 'Permanently delete the account and remove access from all workspaces.',
         actions: EnumSettingsContentActions.chevron,
         subTitleStyle: `text-red-text`,
-        chevronAction() {
-          console.log(1)
-        },
+        chevronAction() {},
       },
     ],
   },

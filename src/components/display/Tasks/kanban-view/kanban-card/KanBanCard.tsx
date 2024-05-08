@@ -27,8 +27,6 @@ const KanBanCard: NextPage<IProps> = ({
   provided,
   snapshot: { isDragging },
 }) => {
-  console.log(data)
-
   const {
     id,
     assigneesers,

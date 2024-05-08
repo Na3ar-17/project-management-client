@@ -34,7 +34,6 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
 }) => {
   const [selected, setSelected] = useState<Date>()
   const { isShow, setIsShow, ref } = useOutside(false)
-  console.log()
 
   const handleDaySelect: SelectSingleEventHandler = (date) => {
     const ISOdate = date?.toISOString()

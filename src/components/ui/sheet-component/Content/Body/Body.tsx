@@ -17,13 +17,17 @@ import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 interface IProps {
   control: Control<TypeUpdateTaskCard>
   data: ITaskCard
+  isOwner: boolean
 }
 
-const Body: NextPage<IProps> = ({ control, data }) => {
-  const { id, projectId } = data
+const Body: NextPage<IProps> = ({ control, data, isOwner }) => {
+  const {
+    id,
+    projectId,
+    project: { members },
+  } = data
 
   const { isFetching, isSuccess, subtaskData, setSubtaskData } = useGetAll(id)
-  const { isOwner } = useProjectOwner({ projectId })
 
   return (
     <div className={styles.body}>
@@ -81,7 +85,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
             )}
           />
         </div>
-        {data.assigneesers && (
+        {members.length >= 2 && (
           <div className={styles.block}>
             <p className={styles.label}>Created By</p>
             <UserBadge fullName="Nazar Gavrylyk" imgLink={''} />

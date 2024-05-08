@@ -13,8 +13,6 @@ export const useGetOneTask = (projectId: string, taskId: string) => {
     queryKey: [tasksKeys.GET_ALL + taskId],
     queryFn: () => tasksService.getOne(projectId, taskId),
     select: (data) => {
-      console.log(data)
-
       return {
         ...data,
         dueDate: dateFormatter(data.dueDate),

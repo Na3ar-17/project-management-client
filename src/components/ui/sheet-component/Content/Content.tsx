@@ -17,6 +17,7 @@ import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
 import Header from './Header/Header'
 import Body from './Body/Body'
+import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 
 interface IProps {
   data: ITaskCard
@@ -37,13 +38,14 @@ const Content: NextPage<IProps> = ({ data, expectedTaskId }) => {
   })
 
   useUpdateTaskDebounce({ watch, projectId: data.projectId, taskId: data.id })
+  const { isOwner } = useProjectOwner({ projectId: data.projectId })
 
   return (
     data.id === expectedTaskId && (
       <SheetContent className={styles.content}>
         <ScrollArea className="w-full h-full">
-          <Header control={control} key={expectedTaskId} />
-          <Body control={control} data={data} />
+          <Header isOwner={isOwner} control={control} key={expectedTaskId} />
+          <Body isOwner={isOwner} control={control} data={data} />
         </ScrollArea>
       </SheetContent>
     )

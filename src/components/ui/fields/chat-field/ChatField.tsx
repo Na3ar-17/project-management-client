@@ -17,7 +17,6 @@ export const ChatField = forwardRef<HTMLInputElement, IProps>(
     const fileRef = useRef<HTMLInputElement>(null)
 
     const handleFile = () => {
-      console.log(1)
       fileRef.current?.click()
     }
 
