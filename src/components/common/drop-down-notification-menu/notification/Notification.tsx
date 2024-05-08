@@ -11,7 +11,6 @@ import {
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import ButtonReject from '@/components/ui/buttons/button-reject/Button'
 import { useDeleteNotification } from '@/api/hooks/notifications/useDeleteNotification'
-import { useRejectInvitation } from '@/api/hooks/notifications/useRejectInvitation'
 interface IProps {
   data: INotifications
 }
@@ -33,7 +32,6 @@ const Notification: NextPage<IProps> = ({ data }) => {
   } = data
 
   const { deleteNotificationMutation } = useDeleteNotification()
-  const { rejectInvitationMutation } = useRejectInvitation()
 
   const isSimpleNotification =
     type == EnumNotificationType.DeadlineReminder ||
@@ -90,9 +88,6 @@ const Notification: NextPage<IProps> = ({ data }) => {
                 text="Reject"
                 type="button"
                 className="text-center"
-                onClick={() =>
-                  rejectInvitationMutation({ id, ownerId, recipientId })
-                }
               />
             </>
           )}

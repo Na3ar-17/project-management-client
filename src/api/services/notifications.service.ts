@@ -27,25 +27,6 @@ class NotificationsService {
       throw error
     }
   }
-
-  async createInvitation(dto: TypeCreateNotificationDto) {
-    try {
-      await axiosWithAuth.post(`${this.URL}/invitation`, dto)
-    } catch (error) {
-      errorHandler(error)
-      throw error
-    }
-  }
-
-  async rejectInvitation(dto: TypeRejectInvitation) {
-    try {
-      const { data } = await axiosWithAuth.post(`${this.URL}/reject`, dto)
-      return data
-    } catch (error) {
-      errorHandler(error)
-      throw error
-    }
-  }
 }
 
 export const notificationsService = new NotificationsService()
