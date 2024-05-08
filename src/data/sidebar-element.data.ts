@@ -25,16 +25,6 @@ export const generateProjectPagesData = ({
       Icon: LayoutDashboard,
     },
     {
-      text: 'Members',
-      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/members`,
-      Icon: UsersRound,
-    },
-    {
-      text: 'Team chat',
-      Icon: MessageCircleMore,
-      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/chat`,
-    },
-    {
       text: 'Tasks',
       Icon: ListTodo,
       href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/tasks`,

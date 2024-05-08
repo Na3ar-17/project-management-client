@@ -23,8 +23,8 @@ const FormLogin: NextPage<IProps> = ({}) => {
   } = useForm<TypeAuthFormLogin>({
     mode: 'onChange',
     defaultValues: {
-      email: 'test@gmail.com',
-      password: '123456',
+      email: 'gavruluknazar0210@gmail.com',
+      password: 'AJSHDJASHDJ',
     },
   })
 

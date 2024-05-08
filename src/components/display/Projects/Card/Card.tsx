@@ -24,11 +24,8 @@ import { useUploadProjectImage } from '@/api/hooks/file/useUploadProjectImage'
 import { useImageUploader } from '@/hooks/useImageUploader'
 import { useDeleteProjectImage } from '@/api/hooks/file/useDeleteProjectImage'
 import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
-import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import { useDialog } from '@/zustand/useDialog'
 import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
-import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
-import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 
 interface IProps {
   data: IProjectResponse
@@ -58,8 +55,6 @@ const Card: NextPage<IProps> = ({ data }) => {
   const { deleteProjectImageMutation } = useDeleteProjectImage(id)
   const { onOpen } = useDialog()
 
-  const { isOwner } = useProjectOwner({ projectId: id })
-
   useEffect(() => {
     if (imgFile) {
       uploadProjectImageMutation(imgFile)
@@ -67,44 +62,37 @@ const Card: NextPage<IProps> = ({ data }) => {
   }, [imgFile])
 
   return (
-    <div className={cn(styles.card, !isOwner && styles.notOwner)}>
+    <div className={cn(styles.card)}>
       {image ? (
         <>
           <ImageComponent
             onImageDelete={deleteProjectImageMutation}
             alt={name}
             image={image}
-            isOwner={isOwner}
           />
         </>
       ) : (
         <div className={styles['no-image']}>
-          {!isOwner ? (
-            <ImageIcon strokeWidth={1.5} className={'size-12 text-border'} />
-          ) : (
-            <>
-              <ImageIcon strokeWidth={1.5} className={styles.icon} />
-              <div className={styles.action}>
-                {!image && (
-                  <TooltipComponent text="Upload image">
-                    <div className={styles.group}>
-                      <ImageUp
-                        strokeWidth={1.8}
-                        className={styles['icon-action']}
-                        onClick={() => inputRef?.current?.click()}
-                      />
-                      <input
-                        onChange={handleUploadImage}
-                        type="file"
-                        hidden
-                        ref={inputRef}
-                      />
-                    </div>
-                  </TooltipComponent>
-                )}
-              </div>
-            </>
-          )}
+          <ImageIcon strokeWidth={1.5} className={styles.icon} />
+          <div className={styles.action}>
+            {!image && (
+              <TooltipComponent text="Upload image">
+                <div className={styles.group}>
+                  <ImageUp
+                    strokeWidth={1.8}
+                    className={styles['icon-action']}
+                    onClick={() => inputRef?.current?.click()}
+                  />
+                  <input
+                    onChange={handleUploadImage}
+                    type="file"
+                    hidden
+                    ref={inputRef}
+                  />
+                </div>
+              </TooltipComponent>
+            )}
+          </div>
         </div>
       )}
       <div className={styles.content}>
@@ -119,7 +107,6 @@ const Card: NextPage<IProps> = ({ data }) => {
                 className="text-xl w-full"
                 value={value}
                 onInputChange={onChange}
-                disabled={!isOwner}
               />
             )
           }}
@@ -133,7 +120,6 @@ const Card: NextPage<IProps> = ({ data }) => {
                 onChange={onChange}
                 deadLine={value ? value : end || ''}
                 date={createdAt || ''}
-                disabled={!isOwner}
               />
             )}
           />
@@ -144,7 +130,7 @@ const Card: NextPage<IProps> = ({ data }) => {
             >
               <ExternalLink className={styles.icon} />
             </Link>
-            {isOwner && <Trash2 onClick={onOpen} className={styles.delete} />}
+            <Trash2 onClick={onOpen} className={styles.delete} />
           </div>
         </div>
       </div>

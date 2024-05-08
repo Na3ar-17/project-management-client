@@ -27,7 +27,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const { projects, isFetching, isSuccess } = useGetProjects()
-  if (!isSuccess) {
+  if (!isSuccess || !projects) {
     return <div>Error</div>
   }
 
@@ -40,13 +40,15 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
             {textAbstract(text, 10)}
           </Link>
         </span>
-        <ChevronDown
-          onClick={() => setIsOpen(!isOpen)}
-          className={cn(
-            styles.toggle,
-            isHidden === 'true' ? styles['toogle-hidden'] : ''
-          )}
-        />
+        {projects.length > 0 && (
+          <ChevronDown
+            onClick={() => setIsOpen(!isOpen)}
+            className={cn(
+              styles.toggle,
+              isHidden === 'true' ? styles['toogle-hidden'] : ''
+            )}
+          />
+        )}
       </div>
       <div className={styles.content}>
         {projects?.map((el, index) => (

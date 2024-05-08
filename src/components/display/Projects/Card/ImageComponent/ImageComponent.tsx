@@ -7,15 +7,9 @@ interface IProps {
   alt: string
   image: string
   onImageDelete: (imageName: string) => void
-  isOwner?: boolean
 }
 
-const ImageComponent: NextPage<IProps> = ({
-  alt,
-  image,
-  onImageDelete,
-  isOwner,
-}) => {
+const ImageComponent: NextPage<IProps> = ({ alt, image, onImageDelete }) => {
   return (
     <div className={styles.image}>
       <Image
@@ -26,15 +20,13 @@ const ImageComponent: NextPage<IProps> = ({
         height={100}
         layout="responsive"
       />
-      {isOwner && (
-        <>
-          <Trash2
-            className={styles.delete}
-            onClick={() => onImageDelete(image)}
-          />
-          <div className={styles.overlay}></div>
-        </>
-      )}
+      <>
+        <Trash2
+          className={styles.delete}
+          onClick={() => onImageDelete(image)}
+        />
+        <div className={styles.overlay}></div>
+      </>
     </div>
   )
 }

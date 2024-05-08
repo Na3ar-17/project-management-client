@@ -6,10 +6,9 @@ import { Control, Controller } from 'react-hook-form'
 
 interface IProps {
   control: Control<TypeUpdateTaskCard>
-  isOwner: boolean
 }
 
-const Header: NextPage<IProps> = ({ control, isOwner }) => {
+const Header: NextPage<IProps> = ({ control }) => {
   return (
     <SheetHeader>
       <SheetTitle className="text-2xl">
@@ -21,7 +20,6 @@ const Header: NextPage<IProps> = ({ control, isOwner }) => {
               className="w-full"
               value={value}
               onInputChange={onChange}
-              disabled={!isOwner}
             />
           )}
         />

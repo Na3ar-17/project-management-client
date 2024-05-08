@@ -12,10 +12,9 @@ import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 interface IProps {
   control: Control<TypeUpdateTaskCard>
   data: ITaskCard
-  isOwner: boolean
 }
 
-const TabsComponent: NextPage<IProps> = ({ control, data, isOwner }) => {
+const TabsComponent: NextPage<IProps> = ({ control, data }) => {
   const [isActive, setIsActive] = useState<'Description' | 'Comments'>(
     'Description'
   )
@@ -59,7 +58,6 @@ const TabsComponent: NextPage<IProps> = ({ control, data, isOwner }) => {
             <TextAreaComponent
               value={value || ''}
               onTextAreaChange={onChange}
-              disabled={!isOwner}
             />
           )}
         />

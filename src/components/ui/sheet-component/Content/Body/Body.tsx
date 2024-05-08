@@ -12,15 +12,13 @@ import { Control, Controller } from 'react-hook-form'
 import TasksBlock from '../../TasksBlock/TasksBlock'
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
-import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
 
 interface IProps {
   control: Control<TypeUpdateTaskCard>
   data: ITaskCard
-  isOwner: boolean
 }
 
-const Body: NextPage<IProps> = ({ control, data, isOwner }) => {
+const Body: NextPage<IProps> = ({ control, data }) => {
   const {
     id,
     projectId,
@@ -39,11 +37,7 @@ const Body: NextPage<IProps> = ({ control, data, isOwner }) => {
               name="priority"
               control={control}
               render={({ field: { onChange, value } }) => (
-                <SimpleSelect
-                  disabled={!isOwner}
-                  value={value || ''}
-                  onChange={onChange}
-                />
+                <SimpleSelect value={value || ''} onChange={onChange} />
               )}
             />
           </div>
@@ -77,7 +71,6 @@ const Body: NextPage<IProps> = ({ control, data, isOwner }) => {
             name="dueDate"
             render={({ field: { onChange, value } }) => (
               <DatePickerComponent
-                disabled={!isOwner}
                 isSingle
                 onChange={onChange}
                 deadLine={value || ''}
@@ -92,7 +85,7 @@ const Body: NextPage<IProps> = ({ control, data, isOwner }) => {
           </div>
         )}
       </div>
-      <TabsComponent isOwner={isOwner} data={data} control={control} />
+      <TabsComponent data={data} control={control} />
       {!isSuccess || !subtaskData ? (
         //TODO handle errors
         <div>Error</div>
@@ -101,7 +94,6 @@ const Body: NextPage<IProps> = ({ control, data, isOwner }) => {
           subTasksData={subtaskData}
           setSubTaskData={setSubtaskData}
           taskId={data.id}
-          isOwner={isOwner}
         />
       )}
     </div>

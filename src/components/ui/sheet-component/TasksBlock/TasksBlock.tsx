@@ -10,14 +10,12 @@ interface IProps {
   subTasksData: ISubTask[]
   setSubTaskData: Dispatch<SetStateAction<ISubTask[] | undefined>>
   taskId: string
-  isOwner: boolean
 }
 
 const TasksBlock: NextPage<IProps> = ({
   subTasksData,
   setSubTaskData,
   taskId,
-  isOwner,
 }) => {
   const addSubTask = () => {
     setSubTaskData((prev) => {
@@ -43,7 +41,7 @@ const TasksBlock: NextPage<IProps> = ({
           {subTasksData.map((el, index) => (
             <TaskRow setSubTaskData={setSubTaskData} key={index} data={el} />
           ))}
-          {!subTasksData?.some((el) => !el.id) && isOwner && (
+          {!subTasksData?.some((el) => !el.id) && (
             <button onClick={addSubTask}>Title here ...</button>
           )}
         </ScrollArea>
