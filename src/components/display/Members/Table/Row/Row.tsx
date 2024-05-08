@@ -22,7 +22,10 @@ const Row: NextPage<IProps> = ({ isOwner, data, currentUserId, projectId }) => {
   const { kickMemberMutation } = useKickMember()
   return (
     <div
-      className={cn(styles.row, currentUserId === id && 'bg-accent-gray2/50')}
+      className={cn(
+        styles.row,
+        currentUserId === userId && 'bg-accent-gray2/40'
+      )}
     >
       <p className={styles.fullname}>{fullName}</p>
       <p className={styles.email}>{email}</p>

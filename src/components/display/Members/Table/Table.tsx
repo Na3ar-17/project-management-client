@@ -1,13 +1,9 @@
 import { NextPage } from 'next'
 import styles from './Table.module.scss'
 import { IMembers } from '@/types/members.type'
-import { userRoleFormat } from '../utils'
-import { DropdownMenu } from '@/components/ui/shadcn/ui/dropdown-menu'
-import DropdownMenuComponent from '@/components/ui/dropdown-menu-component/DropdownMenuComponent'
 import Columns from './Columns/Columns'
 import { tableColumnsData } from '@/data/members.data'
 import { useProjectOwner } from '@/api/hooks/project/useProjectOwner'
-import cn from 'clsx'
 import Row from './Row/Row'
 
 interface IProps {

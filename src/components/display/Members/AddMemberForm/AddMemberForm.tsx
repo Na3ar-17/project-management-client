@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const AddMemberForm: NextPage<IProps> = ({ projectId }) => {
-  const { control, watch, register } = useForm<{ email: string }>({
+  const { watch, register } = useForm<{ email: string }>({
     mode: 'onChange',
   })
 

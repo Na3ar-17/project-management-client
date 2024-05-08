@@ -30,9 +30,10 @@ const DropdownMenuComponent: NextPage<IProps> = ({ onKick }) => {
         <DropdownMenuItem onClick={onOpen} className={styles.item}>
           Kick
         </DropdownMenuItem>
-        <DropdownMenuItem className={styles.item}>
+        {/* TODO */}
+        {/* <DropdownMenuItem className={styles.item}>
           Raise the rank
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
       </DropdownMenuContent>
       <AlertDialogComponent onDelete={onKick ? onKick : () => {}} />
     </DropdownMenu>
