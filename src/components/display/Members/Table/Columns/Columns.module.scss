@@ -1,8 +1,0 @@
-.columns {
-  @apply grid  place-items-center px-3 py-1;
-  grid-template-columns: 1fr 1fr 1fr 50px;
-
-  .lable {
-    @apply text-lg text-menu-text font-semibold;
-  }
-}
