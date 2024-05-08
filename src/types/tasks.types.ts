@@ -2,8 +2,6 @@ import type { CSSProperties } from 'react'
 import { IBase } from './base.type'
 import { IProjectResponse } from './project.types'
 
-//TODO create user type
-
 export interface ICategory {
   value: EnumTaskStatus
   styles: CSSProperties
@@ -14,11 +12,6 @@ export interface ISubTask extends IBase {
   title: string
   isCompleted: boolean
   taskId: string
-}
-
-export interface IComment extends IBase {
-  text: string
-  owner: any
 }
 
 export enum EnumTaskPriority {
@@ -40,7 +33,6 @@ export interface ITaskCard extends IBase {
   priority?: EnumTaskPriority
   dueDate: string
   description: string
-  comments?: IComment[]
   status: EnumTaskStatus
   projectId: string
   progressPercent: number

@@ -1,16 +1,13 @@
 import { NextPage } from 'next'
 import styles from './Body.module.scss'
 import TaskStatusBadge from '@/components/ui/badges/task-status-badge/TaskStatusBadge'
-import UserBadge from '@/components/ui/badges/user-badge/UserBadge'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
-import TabsComponent from '@/components/ui/tabs-component/TabsComponent'
-import { cn } from '@/lib/utils'
-import { Plus } from 'lucide-react'
 import { Control, Controller } from 'react-hook-form'
 import TasksBlock from '../../TasksBlock/TasksBlock'
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
+import TextAreaComponent from '@/components/ui/fields/text-area-component/TextAreaComponent'
 
 interface IProps {
   control: Control<TypeUpdateTaskCard>
@@ -22,6 +19,10 @@ const Body: NextPage<IProps> = ({ control, data }) => {
 
   const { isFetching, isSuccess, subtaskData, setSubtaskData } = useGetAll(id)
 
+  if (!isSuccess || !subtaskData) {
+    // TODO handle this
+    return <div>Error</div>
+  }
   return (
     <div className={styles.body}>
       <div className={styles.info}>
@@ -37,23 +38,6 @@ const Body: NextPage<IProps> = ({ control, data }) => {
             />
           </div>
         </div>
-        {data.assigneesers && (
-          <div className={cn(styles.block, styles.users)}>
-            <p className={styles.label}>Assigneesers</p>
-            {data.assigneesers.map((el, index) => {
-              return (
-                <UserBadge
-                  fullName={el.user.fullName}
-                  imgLink={el.user.imgLink || ''}
-                  key={index}
-                />
-              )
-            })}
-            <span className={styles.icons}>
-              <Plus className={styles.icon} />
-            </span>
-          </div>
-        )}
 
         <div className={styles.block}>
           <p className={styles.label}>Status</p>
@@ -74,17 +58,23 @@ const Body: NextPage<IProps> = ({ control, data }) => {
           />
         </div>
       </div>
-      <TabsComponent data={data} control={control} />
-      {!isSuccess || !subtaskData ? (
-        //TODO handle errors
-        <div>Error</div>
-      ) : (
-        <TasksBlock
-          subTasksData={subtaskData}
-          setSubTaskData={setSubtaskData}
-          taskId={data.id}
+      <div>
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { value, onChange } }) => (
+            <TextAreaComponent
+              value={value || ''}
+              onTextAreaChange={onChange}
+            />
+          )}
         />
-      )}
+      </div>
+      <TasksBlock
+        subTasksData={subtaskData}
+        setSubTaskData={setSubtaskData}
+        taskId={data.id}
+      />
     </div>
   )
 }

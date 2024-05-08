@@ -3,7 +3,6 @@ import {
   EnumTaskPriority,
   EnumTaskStatus,
   ICategory,
-  IComment,
   ISubTask,
   ITaskCard,
   IViewType,
@@ -53,29 +52,6 @@ export const simpleSelectData: { lable: string; value: EnumTaskPriority }[] = [
   { value: EnumTaskPriority.low, lable: 'Low' },
   { value: EnumTaskPriority.normal, lable: 'Normal' },
   { value: EnumTaskPriority.high, lable: 'High' },
-]
-
-export const commentsData: IComment[] = [
-  {
-    id: 'ad',
-    text: 'Hello word',
-    owner: null,
-  },
-  {
-    id: 'ada',
-    text: 'Some comment',
-    owner: null,
-  },
-  {
-    id: 'asasd',
-    text: 'I will do layout',
-    owner: null,
-  },
-  {
-    id: 'adasdasd',
-    text: 'Putin Hyilo',
-    owner: null,
-  },
 ]
 
 export const viewTypesData: IViewType[] = [

@@ -111,12 +111,6 @@ const FormRegister: NextPage<IProps> = ({}) => {
           },
         })}
       />
-      <AuthField
-        placeholder="Company Name"
-        type="text"
-        Icon={Building2}
-        {...register('companyName', { required: false })}
-      />
       <Button text="Sign Up" type="submit" />
     </form>
   )

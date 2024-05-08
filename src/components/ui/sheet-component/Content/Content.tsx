@@ -9,7 +9,6 @@ import DatePickerComponent from '../../date-picker-component/DatePickerComponent
 import TransparentField from '../../fields/transparent-field/TransparentField'
 import SimpleSelect from '../../selectors/simple-select/SimpleSelect'
 import { SheetContent, SheetHeader, SheetTitle } from '../../shadcn/ui/sheet'
-import TabsComponent from '../../tabs-component/TabsComponent'
 import TasksBlock from '../TasksBlock/TasksBlock'
 import styles from './Content.module.scss'
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
@@ -29,7 +28,6 @@ const Content: NextPage<IProps> = ({ data, expectedTaskId }) => {
       priority: data.priority,
       title: data.title,
       status: data.status,
-      assigneesers: data.assigneesers,
       dueDate: data.dueDate,
       description: data.description,
     },

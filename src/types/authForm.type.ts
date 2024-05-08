@@ -3,7 +3,6 @@ export type TypeAuthFormRegister = {
   email: string
   password: string
   repeatPassword?: string
-  companyName?: string
 }
 
 export type TypeAuthFormLogin = Omit<
