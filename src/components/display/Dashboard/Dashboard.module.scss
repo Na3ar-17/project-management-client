@@ -2,7 +2,7 @@
   .statistics {
     @apply pt-8 pl-3;
     .row {
-      @apply grid grid-cols-4;
+      @apply grid grid-cols-3 place-items-center;
     }
   }
 }

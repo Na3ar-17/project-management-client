@@ -22,10 +22,6 @@ const FormLogin: NextPage<IProps> = ({}) => {
     setError,
   } = useForm<TypeAuthFormLogin>({
     mode: 'onChange',
-    defaultValues: {
-      email: 'gavruluknazar0210@gmail.com',
-      password: 'AJSHDJASHDJ',
-    },
   })
 
   const onSubmit: SubmitHandler<TypeAuthFormLogin> = (values) => {

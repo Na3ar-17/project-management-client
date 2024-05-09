@@ -5,6 +5,7 @@ import Heading from '@/components/ui/heading/Heading'
 import { generateBlockStatisticsData } from '@/data/dashboard.data'
 import StatisticsBlock from './statistics-block/StatisticsBlock'
 import { useGetStatistics } from '@/api/hooks/statistics/useGetStatistics'
+import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
 interface IProps {
   params: {
     slug: string
@@ -16,15 +17,15 @@ const Dashboard: NextPage<IProps> = ({ params }) => {
   const { id, slug } = params
   const { isFetching, isSuccess, statisticsData } = useGetStatistics(id)
 
-  if (!isSuccess) {
+  if (!isSuccess || !statisticsData) {
+    // TODO handle this
     return <div>Errro</div>
   }
 
-  if (!statisticsData) {
-    return <div>Error</div>
-  }
+  const data = generateBlockStatisticsData({
+    stastistics: statisticsData,
+  })
 
-  const data = generateBlockStatisticsData(statisticsData)
   return (
     <div className={styles.container}>
       <Heading text="Statistics" styles="py-0 pb-2" />

@@ -24,9 +24,7 @@ interface IProps {
 }
 
 const DialogComponent: NextPage<IProps> = ({ children, userData }) => {
-  const [userEmail, setUserEmail] = useState<string>(
-    'gavruluknazar0210@gmail.com'
-  )
+  const [userEmail, setUserEmail] = useState<string>('')
   const { deleteUserMutation } = useDeleteUser()
 
   return (

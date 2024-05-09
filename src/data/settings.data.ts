@@ -60,7 +60,8 @@ export const accountSettingsContentData: ISettingsContentData[] = [
       {
         subTitle: '2-step verification',
         text: 'Add an additional layer of security to your account during login.',
-        actions: EnumSettingsContentActions.switch,
+        actions: EnumSettingsContentActions.commingSoon,
+        disabled: true,
       },
     ],
   },
@@ -92,12 +93,14 @@ export const mySettingsContentData: ISettingsContentData[] = [
       {
         subTitle: 'Set timezone automatically using your location',
         text: 'Reminders, notifications and emails are delivered based on your time zone.',
-        actions: EnumSettingsContentActions.switch,
+        actions: EnumSettingsContentActions.commingSoon,
+        disabled: true,
       },
       {
         subTitle: 'Time Zone',
         text: 'Current time zone setting.',
-        actions: EnumSettingsContentActions.timeZone,
+        actions: EnumSettingsContentActions.commingSoon,
+        disabled: true,
       },
     ],
   },
@@ -113,7 +116,8 @@ export const mySettingsContentData: ISettingsContentData[] = [
       {
         subTitle: 'Profile discoverability',
         text: 'Users with your email can see your name and profile picture when inviting you to a new workspace.',
-        actions: EnumSettingsContentActions.switch,
+        actions: EnumSettingsContentActions.commingSoon,
+        disabled: true,
       },
     ],
   },

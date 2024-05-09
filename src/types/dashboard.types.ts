@@ -2,7 +2,7 @@ import { LucideProps } from 'lucide-react'
 import { ForwardRefExoticComponent } from 'react'
 
 export interface IBlockStatistics {
-  id: string
+  id?: string
   Icon: ForwardRefExoticComponent<LucideProps>
   iconColor: string
   background: string
