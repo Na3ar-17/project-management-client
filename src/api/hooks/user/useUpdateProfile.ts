@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 export const useUpdateProfile = () => {
   const queryClient = useQueryClient()
   const { mutate: updateProfileMutation } = useMutation({
-    mutationKey: [userKeys.USER],
+    mutationKey: [userKeys.USER + 'update_profile'],
     mutationFn: (dto: TypeUpdateProfile) => userService.update(dto),
     onSuccess: () => {
       toast.success('Successfully updated profile')

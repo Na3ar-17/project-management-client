@@ -15,7 +15,7 @@ export interface IAuthResponse {
 
 export type TypeUserSearchResponse = Omit<
   IUser,
-  'createdAt' | 'updatedAt' | 'companyName' | 'projects'
+  'createdAt' | 'updatedAt' | 'projects'
 >
 
 export type TypeUpdateProfile = Partial<

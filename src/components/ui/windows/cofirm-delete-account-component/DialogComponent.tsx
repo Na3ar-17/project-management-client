@@ -13,12 +13,22 @@ import SimpleField from '../../fields/simple-field/SimpleField'
 import ButtonCancel from '../../buttons/button-cancel/ButtonCancel'
 import ButtonDelete from '../../buttons/button-delete/ButtonDelete'
 import { DialogClose } from '@radix-ui/react-dialog'
+import { useDeleteUser } from '@/api/hooks/user/useDeleteUser'
+import { useGetProfile } from '@/api/hooks/user/useGetProfile'
+import { IUser } from '@/types/user.type'
+import { useState } from 'react'
 
 interface IProps {
   children: React.ReactNode
+  userData: IUser
 }
 
-const DialogComponent: NextPage<IProps> = ({ children }) => {
+const DialogComponent: NextPage<IProps> = ({ children, userData }) => {
+  const [userEmail, setUserEmail] = useState<string>(
+    'gavruluknazar0210@gmail.com'
+  )
+  const { deleteUserMutation } = useDeleteUser()
+
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
@@ -37,7 +47,11 @@ const DialogComponent: NextPage<IProps> = ({ children }) => {
           <div className={styles.confirmEmail}>
             <SimpleField
               className="bg-secondary w-full h-10"
-              placeholder="gavruluknazar0210@gmail.com"
+              placeholder={userData.email}
+              defaultValue={userEmail}
+              onInputChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setUserEmail(e.currentTarget.value)
+              }
             />
           </div>
         </div>
@@ -45,7 +59,10 @@ const DialogComponent: NextPage<IProps> = ({ children }) => {
           <DialogClose className="w-full">
             <ButtonCancel />
           </DialogClose>
-          <ButtonDelete />
+          <ButtonDelete
+            onClick={() => deleteUserMutation()}
+            disabled={userEmail !== userData.email}
+          />
         </DialogFooter>
       </DialogContent>
     </Dialog>

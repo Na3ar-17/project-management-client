@@ -7,5 +7,5 @@ export type TypeAuthFormRegister = {
 
 export type TypeAuthFormLogin = Omit<
   TypeAuthFormRegister,
-  'fullName' | 'repeatPassword' | 'companyName'
+  'fullName' | 'repeatPassword'
 >

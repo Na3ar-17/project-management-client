@@ -15,10 +15,10 @@ const axiosClassic = axios.create(options)
 const axiosWithAuth = axios.create(options)
 
 axiosWithAuth.interceptors.request.use((config) => {
-  const accesToken = getAccessToken()
+  const accessToken = getAccessToken()
 
-  if (config?.headers && accesToken) {
-    config.headers.Authorization = `Bearer ${accesToken}`
+  if (config?.headers && accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`
   }
 
   return config
@@ -39,7 +39,6 @@ axiosWithAuth.interceptors.response.use(
 
       try {
         await authService.getNewTokens()
-
         return axiosWithAuth.request(originalRequest)
       } catch (error) {
         if (errorCatch(error) === 'jwt expired') removeFromStorage()

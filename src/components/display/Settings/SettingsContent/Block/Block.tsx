@@ -18,11 +18,13 @@ import ThemeSelect from '@/components/ui/selectors/theme-select/ThemeSelect'
 import DialogComponent from '@/components/ui/windows/cofirm-delete-account-component/DialogComponent'
 import { useLogout } from '@/api/hooks/auth/useLogout'
 import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
+import { IUser } from '@/types/user.type'
 interface IProps {
   data: ISettingsContentData
+  userData: IUser
 }
 
-const Block: NextPage<IProps> = ({ data }) => {
+const Block: NextPage<IProps> = ({ data, userData }) => {
   const { content, title } = data
   const { logoutMutation, isPending } = useLogout()
 
@@ -64,7 +66,7 @@ const Block: NextPage<IProps> = ({ data }) => {
                 <SimpleSwitch />
               )}
               {el.actions == EnumSettingsContentActions.chevron && (
-                <DialogComponent>
+                <DialogComponent userData={userData}>
                   <ChevronRight
                     onClick={el.chevronAction}
                     className={styles.chevron}

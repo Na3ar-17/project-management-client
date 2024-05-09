@@ -5,7 +5,7 @@ export interface INotifications extends IBase {
   content: string
   type: EnumNotificationType
   recipientId: string
-  owner?: Omit<IUser, 'companyName' | 'createdAt' | 'updatedAt'>
+  owner?: Omit<IUser, 'createdAt' | 'updatedAt'>
   projectId?: string
   hasSeen: boolean
 }

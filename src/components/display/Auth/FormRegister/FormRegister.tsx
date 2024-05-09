@@ -26,24 +26,21 @@ const FormRegister: NextPage<IProps> = ({}) => {
     const { repeatPassword, ...dto } = values
 
     if (!isValidEmail(dto.email)) {
-      setError('email', { type: 'onChange', message: 'Invalid email' })
-      return
+      return setError('email', { type: 'onChange', message: 'Invalid email' })
     }
 
     if (repeatPassword !== dto.password) {
-      setError('repeatPassword', {
+      return setError('repeatPassword', {
         type: 'onChange',
         message: 'Passwords must match',
       })
-      return
     }
 
     if (!isFullnameValid(dto.fullName)) {
-      setError('fullName', {
+      return setError('fullName', {
         type: 'onChange',
         message: 'Must contains only one space',
       })
-      return
     }
 
     registerMutation(dto)

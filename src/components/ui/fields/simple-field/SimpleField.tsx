@@ -8,20 +8,29 @@ interface IProps {
   defaultValue?: string
   placeholder?: string
   onInputChange?: ChangeEventHandler<HTMLInputElement>
+  disabled?: boolean
 }
 
 const SimpleField = forwardRef<HTMLInputElement, IProps>(
-  ({ className, defaultValue, placeholder, onInputChange, ...rest }, ref) => {
+  (
+    { className, defaultValue, placeholder, onInputChange, disabled, ...rest },
+    ref
+  ) => {
     return (
       <input
         ref={ref}
         type="text"
         value={defaultValue}
-        className={cn(styles.input, className ? className : 'bg-border')}
+        className={cn(
+          styles.input,
+          className ? className : 'bg-border',
+          disabled && 'opacity-30 cursor-not-allowed'
+        )}
         placeholder={placeholder}
         onChange={onInputChange}
         {...rest}
         autoComplete="off"
+        disabled={disabled}
       />
     )
   }

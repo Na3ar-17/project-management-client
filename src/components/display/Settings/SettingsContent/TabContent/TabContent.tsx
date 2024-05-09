@@ -78,7 +78,7 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
         </>
       )}
       {childrens.map((el, index) => (
-        <Block data={el} key={index} />
+        <Block userData={userData} data={el} key={index} />
       ))}
     </TabsContent>
   )
