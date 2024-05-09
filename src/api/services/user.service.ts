@@ -29,6 +29,15 @@ class UserService {
     }
   }
 
+  async delete() {
+    try {
+      await axiosWithAuth.delete(this.URL)
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
   async searchByEmail(dto: {
     email: string
   }): Promise<TypeUserSearchResponse[]> {

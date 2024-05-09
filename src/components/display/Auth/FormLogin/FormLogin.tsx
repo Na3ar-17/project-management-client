@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { isValidEmail } from '../utils'
 import { useLogin } from '@/api/hooks/auth/useLogin'
-import toast from 'react-hot-toast'
+import { cn } from '@/lib/utils'
 
 interface IProps {}
 
@@ -17,7 +17,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValid },
     reset,
     setError,
   } = useForm<TypeAuthFormLogin>({
@@ -41,7 +41,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles.form} ${styles.formLeft}`}
+      className={cn(styles.form, styles.formLeft, styles.submitting)}
     >
       <h1>Sing In</h1>
 

@@ -5,9 +5,9 @@ import { ChangeEventHandler, forwardRef } from 'react'
 
 interface IProps {
   className?: string
-  defaultValue: string
+  defaultValue?: string
   placeholder?: string
-  onInputChange: ChangeEventHandler<HTMLInputElement>
+  onInputChange?: ChangeEventHandler<HTMLInputElement>
 }
 
 const SimpleField = forwardRef<HTMLInputElement, IProps>(

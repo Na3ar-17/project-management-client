@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import styles from './Button.module.scss'
-import cn from 'clsx'
+import { cn } from '@/lib/utils'
 interface IProps {
   text: string
   type: 'submit' | 'reset' | 'button'
@@ -8,11 +8,21 @@ interface IProps {
   width?: number
   height?: number
   onClick?: () => void
+  disabled?: boolean
 }
 
 const Button = forwardRef<HTMLButtonElement, IProps>(
   (
-    { height = 36, width = 150, text, type, className, onClick, ...rest },
+    {
+      height = 36,
+      width = 150,
+      text,
+      type,
+      disabled = false,
+      className,
+      onClick,
+      ...rest
+    },
     ref
   ) => {
     return (
@@ -25,7 +35,8 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
         ref={ref}
         {...rest}
         type={type}
-        className={cn(styles.button, className)}
+        className={cn(styles.button, className, disabled && styles.disabled)}
+        disabled={disabled}
       >
         {text}
       </button>
