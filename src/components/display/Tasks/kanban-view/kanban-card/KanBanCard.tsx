@@ -28,7 +28,6 @@ const KanBanCard: NextPage<IProps> = ({
 }) => {
   const {
     id,
-    assigneesers,
     description,
     dueDate,
     title,
@@ -55,27 +54,6 @@ const KanBanCard: NextPage<IProps> = ({
         </div>
         <p className={styles.description}>{textAbstract(description, 50)}</p>
         <ProgressComponent progressNumber={progressPercent} />
-        {assigneesers && (
-          <div className={styles.users}>
-            <div className={styles.group}>
-              {assigneesers.map((el, index) => {
-                return (
-                  <div className={styles.user} key={index}>
-                    <AvatarComponent
-                      fullName={el.user.fullName}
-                      imgLink={el.user.imgLink}
-                      size={30}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-            <div className={styles.icons}>
-              <MessageSquareText className={styles.icon} />
-              <span className={styles['messages-count']}>3</span>
-            </div>
-          </div>
-        )}
       </div>
       <SheetComponent taskData={data} />
     </>

@@ -4,6 +4,7 @@ import { useSheet } from '@/zustand/useSheet'
 import cn from 'clsx'
 import type { DraggableProvided } from '@hello-pangea/dnd'
 import { GripVertical, Trash2 } from 'lucide-react'
+import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
 
 interface IProps {
   title: string
@@ -37,22 +38,30 @@ const Header: NextPage<IProps> = ({
       <div
         className={cn(
           !isDragging && styles.actions,
-          isDragging && 'opacity-100 visible'
+          isDragging && 'opacity-100 visible',
+          'flex items-center gap-3'
         )}
       >
-        <div className="flex items-center gap-3" {...provided.dragHandleProps}>
-          <Trash2
-            className={cn(
-              styles.icon,
-              styles.delete,
-              isDragging && 'size-5 text-light-red'
-            )}
-            onClick={onTaskDelete}
-          />
-          <GripVertical
-            className={cn(styles.icon, styles.drag, isDragging && 'size-5')}
-          />
-        </div>
+        <Trash2
+          className={cn(
+            styles.icon,
+            styles.delete,
+            isDragging && 'size-5 text-light-red'
+          )}
+          onClick={onTaskDelete}
+        />
+        <TooltipComponent text="Drag to move">
+          <div className="" {...provided.dragHandleProps}>
+            <GripVertical
+              className={cn(
+                styles.icon,
+                styles.drag,
+                'cursor-grab',
+                isDragging && 'size-5'
+              )}
+            />
+          </div>
+        </TooltipComponent>
       </div>
     </div>
   )

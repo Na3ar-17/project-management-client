@@ -18,11 +18,11 @@
       @apply transition-all;
 
       .icon {
-        @apply size-5 text-menu-text cursor-grab transition-all;
+        @apply size-5 text-menu-text  transition-all;
       }
 
       .delete {
-        @apply text-light-red;
+        @apply text-light-red cursor-pointer;
       }
     }
   }
@@ -32,23 +32,6 @@
 
   .description {
     @apply text-menu-text text-[15px];
-  }
-
-  .users {
-    @apply flex justify-between items-center;
-    .group {
-      @apply flex;
-      .user {
-        @apply w-[12%];
-      }
-    }
-
-    .icons {
-      @apply flex items-center gap-1 text-menu-text;
-      .icon {
-        @apply size-5;
-      }
-    }
   }
 
   &:hover {
