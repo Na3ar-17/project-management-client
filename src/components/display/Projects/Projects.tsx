@@ -9,6 +9,7 @@ import { useCreateProject } from '@/api/hooks/project/useCreateProject'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
 import Image from 'next/image'
 import Cookie from 'js-cookie'
+import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSkeleton'
 
 const Projects: NextPage = () => {
   const { projects, isFetching, isSuccess } = useGetProjects()
@@ -17,7 +18,7 @@ const Projects: NextPage = () => {
   //TODO create loader
 
   if (isFetching) {
-    return <div>Loading</div>
+    return <ProjectSkeleton />
   }
 
   if (!isSuccess || !projects) {
