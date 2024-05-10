@@ -11,7 +11,7 @@ export const useUpdateSubTask = () => {
     mutationKey: [subTasksKeys.UPDATE],
     mutationFn: (dto: TypeUpdateSubTask) => subTasksService.update(dto),
     onSuccess: () => {
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: [subTasksKeys.GET_ALL] })
       toast.success('Successfully updated')
     },
   })

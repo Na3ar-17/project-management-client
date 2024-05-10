@@ -1,11 +1,18 @@
 import type { CSSProperties } from 'react'
 import { IBase } from './base.type'
 import { IProjectResponse } from './project.types'
+import { DropResult } from '@hello-pangea/dnd'
 
 export interface ICategory {
   value: EnumTaskStatus
   styles: CSSProperties
   label: string
+}
+
+export interface IViewTypesPros {
+  projectId: string
+  onDragEnd: (result: DropResult) => void
+  tasksState: ITaskCard[]
 }
 
 export interface ISubTask extends IBase {

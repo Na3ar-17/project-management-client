@@ -10,7 +10,7 @@ export const useUpdateTask = () => {
     mutationKey: [tasksKeys.UPDATE],
     mutationFn: (dto: TypeUpdateTaskCard) => tasksService.update(dto),
     onSuccess: () => {
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: [tasksKeys.GET_ALL] })
       toast.success('Successfully updated task')
     },
   })

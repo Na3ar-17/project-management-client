@@ -13,7 +13,7 @@ export const useDeleteAvatar = () => {
       updateProfileMutation({
         imgLink: '',
       })
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: [fileKeys.UPLOAD] })
     },
   })
 

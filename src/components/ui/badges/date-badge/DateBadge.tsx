@@ -21,7 +21,9 @@ const DateBadge: NextPage<IProps> = ({
     <p className={cn(className, styles.badge)}>
       <CalendarDays className={styles.icon} />
       {isSingle ? (
-        <span className={styles.date}>{deadLine}</span>
+        <span className={styles.date}>
+          {deadLine === '' ? 'Select dead line' : deadLine}
+        </span>
       ) : (
         <span className={styles.date}>
           {date ? date : ''} - {deadLine ? deadLine : ''}

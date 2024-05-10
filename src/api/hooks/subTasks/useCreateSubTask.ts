@@ -10,7 +10,7 @@ export const useCreateSubTask = () => {
     mutationKey: [subTasksKeys.CREATE],
     mutationFn: (dto: TypeCreateSubTask) => subTasksService.create(dto),
     onSuccess: () => {
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: [subTasksKeys.GET_ALL] })
     },
   })
 

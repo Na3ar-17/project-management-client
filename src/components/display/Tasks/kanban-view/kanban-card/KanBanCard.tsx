@@ -4,7 +4,7 @@ import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
 import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
-import { ITaskCard } from '@/types/tasks.types'
+import { EnumTaskStatus, ITaskCard } from '@/types/tasks.types'
 import { textAbstract } from '@/utils/textAbstract'
 import type {
   DraggableProvided,
@@ -34,13 +34,20 @@ const KanBanCard: NextPage<IProps> = ({
     priority,
     projectId,
     progressPercent,
+    status,
   } = data
 
   const { deleteTaskMutation } = useDeleteTask()
 
   return (
     <>
-      <div className={cn(styles.task, isDragging && styles.dragging)}>
+      <div
+        className={cn(
+          styles.task,
+          isDragging && styles.dragging,
+          status === EnumTaskStatus.completed && styles.completed
+        )}
+      >
         <Header
           id={id}
           title={title}

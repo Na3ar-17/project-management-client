@@ -11,7 +11,7 @@ export const useDeleteSubTask = () => {
     mutationFn: ({ taskId, id }: { taskId: string; id: string }) =>
       subTasksService.delete({ taskId, id }),
     onSuccess: () => {
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: [subTasksKeys.GET_ALL] })
       toast.success('Successfully deleted')
     },
   })

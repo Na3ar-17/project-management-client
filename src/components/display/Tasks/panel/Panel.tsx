@@ -9,16 +9,14 @@ import { TypeViewType } from '@/types/tasks.types'
 import ViewType from './view-type/ViewType'
 import { useCreateTask } from '@/api/hooks/tasks/useCreateTask'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
+import { Dispatch, SetStateAction } from 'react'
 interface IProps {
   projectId: string
+  type: TypeViewType
+  setType: Dispatch<SetStateAction<TypeViewType>>
 }
 
-const Panel: NextPage<IProps> = ({ projectId }) => {
-  const [type, setType, isLoading] = useLocalStorage<TypeViewType>({
-    defaultValue: 'board',
-    key: 'ViewType',
-  })
-
+const Panel: NextPage<IProps> = ({ projectId, type, setType }) => {
   const { createTaskMutation } = useCreateTask()
 
   return (

@@ -1,18 +1,50 @@
+'use client'
 import { NextPage } from 'next'
 import styles from './Tasks.module.scss'
 import Heading from '@/components/ui/heading/Heading'
 import KanbanView from './kanban-view/KanbanView'
 import Panel from './panel/Panel'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { TypeViewType } from '@/types/tasks.types'
+import ListView from './list-view/ListView'
+import { useTasksEnd } from '@/api/hooks/tasks/useTasksEnd'
+import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
 export interface IProps {
   projectId: string
 }
 
 const Tasks: NextPage<IProps> = ({ projectId }) => {
+  const [viewType, setViewType, isLoading] = useLocalStorage<TypeViewType>({
+    defaultValue: 'board',
+    key: 'ViewType',
+  })
+
+  const { tasksData, isFetching, isSuccess, setTasksState, tasksState } =
+    useGetTasks(projectId)
+
+  const { onDragEnd } = useTasksEnd({ projectId, setTasksState })
+
+  if (!tasksData || !tasksState) {
+    return <div>Error</div>
+  }
   return (
     <main className={styles.container}>
       <Heading text="Tasks" />
-      <Panel projectId={projectId} />
-      <KanbanView projectId={projectId} />
+      <Panel setType={setViewType} type={viewType} projectId={projectId} />
+      {viewType === 'board' && (
+        <KanbanView
+          tasksState={tasksState}
+          onDragEnd={onDragEnd}
+          projectId={projectId}
+        />
+      )}
+      {viewType === 'list' && (
+        <ListView
+          tasksState={tasksState}
+          onDragEnd={onDragEnd}
+          projectId={projectId}
+        />
+      )}
     </main>
   )
 }

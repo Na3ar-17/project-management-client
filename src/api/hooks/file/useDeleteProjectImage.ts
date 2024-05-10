@@ -15,7 +15,7 @@ export const useDeleteProjectImage = (id: string) => {
         id,
         image: '',
       })
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: [fileKeys.UPLOAD] })
     },
   })
 
