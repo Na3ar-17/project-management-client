@@ -15,6 +15,11 @@ export interface IViewTypesPros {
   tasksState: ITaskCard[]
 }
 
+export interface IListAndKanbanProps {
+  category: ICategory
+  tasks: ITaskCard[]
+}
+
 export interface ISubTask extends IBase {
   title: string
   isCompleted: boolean

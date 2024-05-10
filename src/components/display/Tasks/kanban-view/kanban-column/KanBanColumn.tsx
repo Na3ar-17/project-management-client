@@ -1,17 +1,13 @@
 import { NextPage } from 'next'
 import styles from './KanBanColumn.module.scss'
-import { ICategory, ITaskCard } from '@/types/tasks.types'
+import { IListAndKanbanProps } from '@/types/tasks.types'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
 import KanBanCard from '../kanban-card/KanBanCard'
 import { filterTasks } from '../../utils/filter-tasks'
 import { Columns2 } from 'lucide-react'
-import cn from 'clsx'
-interface IProps {
-  category: ICategory
-  tasks: ITaskCard[]
-}
+import { cn } from '@/lib/utils'
 
-const KanBanColumn: NextPage<IProps> = ({ category, tasks }) => {
+const KanBanColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
   return (
     <>
       <Droppable droppableId={category.value}>
