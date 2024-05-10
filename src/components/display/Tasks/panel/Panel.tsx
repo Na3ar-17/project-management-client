@@ -8,6 +8,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeViewType } from '@/types/tasks.types'
 import ViewType from './view-type/ViewType'
 import { useCreateTask } from '@/api/hooks/tasks/useCreateTask'
+import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
 interface IProps {
   projectId: string
 }
@@ -41,13 +42,10 @@ const Panel: NextPage<IProps> = ({ projectId }) => {
           <ListFilter className={styles.icon} />
           <p>More filters</p>
         </div>
-        <div
+        <ButtonCreate
+          text="Add Task"
           onClick={() => createTaskMutation(projectId)}
-          className={cn(styles.action, styles['add-task'])}
-        >
-          <Plus className={styles.icon} />
-          <p>Add Task</p>
-        </div>
+        />
       </div>
     </div>
   )

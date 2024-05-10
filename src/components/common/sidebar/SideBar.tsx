@@ -5,23 +5,23 @@ import { Dispatch, SetStateAction } from 'react'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { sideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
 import cn from 'clsx'
+import SideBarSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarSkeleton'
+import { useGetProjects } from '@/api/hooks/project/useGetProjects'
+
 interface IProps {
-  setIsHidden: Dispatch<SetStateAction<TypeIsHidden>>
   isHidden: TypeIsHidden
+  isLoading: boolean
 }
 
-const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
-  const [sideBarElText, setSideBarElText, isLoading] = useLocalStorage<string>({
-    defaultValue: 'home',
-    key: 'sideBarTest',
-  })
+const SideBar: NextPage<IProps> = ({ isHidden, isLoading }) => {
+  const { projects, isFetching, isSuccess } = useGetProjects()
 
+  if (isLoading || isFetching) {
+    return <SideBarSkeleton />
+  }
   return (
-    <aside
-      className={cn(styles.sidebar, isHidden === 'true' ? styles.hidden : '')}
-    >
+    <aside className={cn(styles.aside, isHidden === 'true' && styles.hidden)}>
       <div className={styles.body}>
         <div className={styles.items}>
           {sideBarElementData.map((item, index) => (
@@ -31,9 +31,10 @@ const SideBar: NextPage<IProps> = ({ setIsHidden, isHidden }) => {
               text={item.text}
               key={index}
               isHidden={isHidden}
-              isActive={item.text === sideBarElText}
-              setIsActive={() => setSideBarElText(item.text)}
               childrens={item.childrens}
+              isFetching={isFetching}
+              isSuccess={isSuccess}
+              projects={projects || []}
             />
           ))}
         </div>

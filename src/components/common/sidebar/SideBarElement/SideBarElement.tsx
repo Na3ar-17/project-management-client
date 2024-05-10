@@ -10,11 +10,16 @@ import { textAbstract } from '@/utils/textAbstract'
 import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import cn from 'clsx'
 import { generateProjectPagesData } from '@/data/sidebar-element.data'
+import SideBarElementSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarElementSkeleton'
+import { IProjectResponse } from '@/types/project.types'
 
 interface IProps {
   isHidden?: TypeIsHidden
   isActive?: boolean
   setIsActive?: () => void
+  isFetching: boolean
+  projects: IProjectResponse[]
+  isSuccess: boolean
 }
 
 const SideBarElement: NextPage<ISideBarElement & IProps> = ({
@@ -23,14 +28,15 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   text,
   isHidden,
   childrens,
+  isFetching,
+  projects,
+  isSuccess,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const { projects, isFetching, isSuccess } = useGetProjects()
   if (!isSuccess || !projects) {
     return <div>Error</div>
   }
-
   return text === 'Projects' ? (
     <div className={cn(styles.element, isOpen ? styles.open : '')}>
       <div className={styles.title}>
@@ -59,6 +65,9 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
               slug: el.slug || '',
               id: el.id,
             })}
+            isFetching={isFetching}
+            isSuccess={isSuccess}
+            projects={projects || []}
           />
         ))}
       </div>
@@ -91,6 +100,9 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
               text={child.text}
               key={index}
               childrens={child.childrens}
+              isFetching={isFetching}
+              isSuccess={isSuccess}
+              projects={projects || []}
             />
           ))}
         </div>

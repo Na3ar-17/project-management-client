@@ -5,25 +5,12 @@ import SideBar from '@/components/common/sidebar/SideBar'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { ChevronDown } from 'lucide-react'
-import { usePathname } from 'next/navigation'
-import { useLayoutEffect, useState } from 'react'
 
 export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const pathname = usePathname()
-  const [isChatPage, setIsChatPage] = useState<boolean>(false)
-
-  useLayoutEffect(() => {
-    if (pathname.includes('/chat')) {
-      setIsChatPage(true)
-    } else {
-      setIsChatPage(false)
-    }
-  }, [pathname])
-
   const [isHidden, setIsHidden, isLoading] = useLocalStorage<TypeIsHidden>({
     defaultValue: 'false',
     key: 'isHidden',
@@ -39,17 +26,12 @@ export default function Layout({
       <div className={styles.navbar}>
         <NavBar isHidden={isHidden} />
       </div>
+
       <div className={styles.sidebar}>
-        <SideBar isHidden={isHidden} setIsHidden={setIsHidden} />
+        <SideBar isLoading={isLoading} isHidden={isHidden} />
       </div>
 
-      <div
-        className={`${styles.content} ${
-          isChatPage ? styles['chat-page-content'] : ''
-        }`}
-      >
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
       <div
         className={styles['toggle-box']}
         style={{
@@ -57,7 +39,7 @@ export default function Layout({
         }}
       >
         <ChevronDown
-          onClick={() => setIsHidden(isHidden == 'false' ? 'true' : 'false')}
+          onClick={() => setIsHidden(isHidden === 'false' ? 'true' : 'false')}
           style={{
             transform: `rotate(${isHidden === 'true' ? '270deg' : '90deg'})`,
           }}

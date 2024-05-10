@@ -1,0 +1,8 @@
+.create {
+  @apply cursor-pointer transition-all hover:bg-blue/80 hover:border-blue/80 flex items-center font-[500] bg-blue text-text border-blue gap-1  rounded-lg px-2 py-1 border-2 border-solid;
+  p {
+  }
+  .icon {
+    @apply size-[18px];
+  }
+}

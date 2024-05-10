@@ -1,7 +1,7 @@
-.sidebar {
+.aside {
   @apply w-[190px] bg-secondary fixed flex left-0 flex-col items-center;
   height: 100%;
-  border-right: 2px solid rgb(55 55 55);
+  border-right: 1px solid rgb(55 55 55);
   transition: all 0.3s ease;
   overflow-y: scroll;
   overflow-x: hidden;
