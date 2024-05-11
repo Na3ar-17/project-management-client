@@ -4,7 +4,11 @@ import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
 import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
-import { EnumTaskStatus, ITaskCard } from '@/types/tasks.types'
+import {
+  EnumTaskStatus,
+  IListAndTaskCardProps,
+  ITaskCard,
+} from '@/types/tasks.types'
 import { textAbstract } from '@/utils/textAbstract'
 import type {
   DraggableProvided,
@@ -15,13 +19,8 @@ import { MessageSquareText } from 'lucide-react'
 import { NextPage } from 'next'
 import Header from './Header/Header'
 import styles from './KanBanCard.module.scss'
-interface IProps {
-  data: ITaskCard
-  provided: DraggableProvided
-  snapshot: DraggableStateSnapshot
-}
 
-const KanBanCard: NextPage<IProps> = ({
+const KanBanCard: NextPage<IListAndTaskCardProps> = ({
   data,
   provided,
   snapshot: { isDragging },

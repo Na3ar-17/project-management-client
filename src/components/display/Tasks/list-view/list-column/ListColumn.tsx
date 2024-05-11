@@ -4,6 +4,7 @@ import { NextPage } from 'next'
 import styles from './ListColumn.module.scss'
 import { Columns2, List } from 'lucide-react'
 import { filterTasks } from '../../utils/filter-tasks'
+import ListCard from '../list-card/ListCard'
 
 const ListColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
   return (
@@ -15,10 +16,11 @@ const ListColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
               <div className={styles.tab}>
                 <div className={styles['tab-title']}>
                   <span style={category.styles} className={styles.mark}></span>
-                  <p>{category.label}</p>
+                  <p className={styles.value}>{category.label}</p>
                 </div>
                 <List className={styles.icon} />
               </div>
+
               <div ref={provided.innerRef}>
                 <div className={styles.tasks}>
                   {filterTasks(tasks, category.value)?.map((task, index) => (
@@ -32,7 +34,12 @@ const ListColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                         >
-                          <div className={styles.card}>{task.title}</div>
+                          <ListCard
+                            data={task}
+                            provided={provided}
+                            snapshot={snapshot}
+                            key={index}
+                          />
                         </div>
                       )}
                     </Draggable>

@@ -1,0 +1,50 @@
+.row {
+  @apply w-full border-2 border-solid transition-all border-border grid rounded-md py-1.5 bg-primary;
+  grid-template-columns: 55% 20% 20% 5%;
+
+  .elemenet {
+    @apply px-2.5 flex items-center gap-2;
+
+    .title {
+      @apply transition-all text-[17px];
+
+      &:hover {
+        @apply underline cursor-pointer;
+      }
+    }
+
+    .actions {
+      @apply flex items-center gap-1;
+    }
+
+    .delete {
+      @apply size-5 text-red-text cursor-pointer transition-all;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &:hover {
+    @apply bg-accent-gray2/40;
+    .elemenet {
+      .delete {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.completed {
+  @apply border-green opacity-75;
+
+  .elemenet {
+    .title {
+      @apply line-through;
+
+      &:hover {
+        @apply line-through cursor-pointer;
+      }
+    }
+  }
+}

@@ -1,7 +1,11 @@
 import type { CSSProperties } from 'react'
 import { IBase } from './base.type'
 import { IProjectResponse } from './project.types'
-import { DropResult } from '@hello-pangea/dnd'
+import {
+  DraggableProvided,
+  DraggableStateSnapshot,
+  DropResult,
+} from '@hello-pangea/dnd'
 
 export interface ICategory {
   value: EnumTaskStatus
@@ -18,6 +22,12 @@ export interface IViewTypesPros {
 export interface IListAndKanbanProps {
   category: ICategory
   tasks: ITaskCard[]
+}
+
+export interface IListAndTaskCardProps {
+  data: ITaskCard
+  provided: DraggableProvided
+  snapshot: DraggableStateSnapshot
 }
 
 export interface ISubTask extends IBase {
@@ -48,7 +58,8 @@ export interface ITaskCard extends IBase {
   status: EnumTaskStatus
   projectId: string
   progressPercent: number
-  project: IProjectResponse
+  isCompleted: boolean
+  project?: IProjectResponse | undefined
 }
 
 export interface IViewType {
