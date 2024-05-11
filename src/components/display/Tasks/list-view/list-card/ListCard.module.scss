@@ -1,6 +1,6 @@
 .row {
   @apply w-full border-2 border-solid transition-all border-border grid rounded-md py-1.5 bg-primary;
-  grid-template-columns: 55% 20% 20% 5%;
+  grid-template-columns: 25% 25% 20% 20% 4%;
 
   .elemenet {
     @apply px-2.5 flex items-center gap-2;
@@ -43,4 +43,8 @@
       @apply line-through;
     }
   }
+}
+
+.dragging {
+  scale: (0.99);
 }

@@ -21,26 +21,32 @@ import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
 import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
 import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
 import { useSheet } from '@/zustand/useSheet'
+import ProgressComponent from '@/components/ui/progress/ProgressComponent'
 
 const ListCard: NextPage<IListAndTaskCardProps> = ({
   data,
   provided,
   snapshot: { isDragging },
 }) => {
-  const { id, title, dueDate, priority, status, projectId, isCompleted } = data
-
   const {
-    control,
-    watch,
-    register,
-    formState: { errors },
-  } = useForm<TypeUpdateTaskCard>({
+    id,
+    title,
+    dueDate,
+    priority,
+    status,
+    projectId,
+    isCompleted,
+    progressPercent,
+  } = data
+
+  const { control, watch, register } = useForm<TypeUpdateTaskCard>({
     defaultValues: {
       status,
       title,
       isCompleted,
       dueDate,
       priority,
+      progressPercent,
     },
   })
   const { deleteTaskMutation } = useDeleteTask()
@@ -48,7 +54,13 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
   const { onOpen, setExpectedTaskId } = useSheet()
 
   return (
-    <div className={cn(styles.row, isCompleted && styles.completed)}>
+    <div
+      className={cn(
+        styles.row,
+        isCompleted && styles.completed,
+        isDragging && styles.dragging
+      )}
+    >
       <div className={styles.elemenet}>
         <div className={styles.actions}>
           <div {...provided.dragHandleProps}>
@@ -80,6 +92,13 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
               lableStyle="w-[50%]"
             />
           )}
+        />
+      </div>
+      <div className={styles.elemenet}>
+        <ProgressComponent
+          progressNumber={progressPercent}
+          className=" w-full"
+          isSingle
         />
       </div>
       <div className={styles.elemenet}>

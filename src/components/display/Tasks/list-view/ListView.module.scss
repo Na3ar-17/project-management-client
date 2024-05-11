@@ -2,18 +2,18 @@
   @apply mt-3 flex flex-col gap-3 justify-start;
   .info {
     @apply w-full grid border-border border-solid border-2  px-3 rounded-md;
-    grid-template-columns: 55% 20% 20%;
+    grid-template-columns: 25% 25% 20% 20% 4%;
 
     .title {
       @apply text-[17px] font-[500] text-text2;
       line-height: 40px;
 
       &:not(:first-child) {
-        @apply border-2 border-border border-solid border-t-0 border-b-0 px-3;
+        @apply border-2 border-border border-r-0 border-solid border-t-0 border-b-0 px-3;
       }
 
       &:last-child {
-        @apply border-l-0;
+        @apply border-r-2;
       }
     }
   }

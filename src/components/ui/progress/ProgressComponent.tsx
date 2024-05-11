@@ -2,19 +2,25 @@
 import { Progress } from '@/components/ui/shadcn/ui/progress'
 import { NextPage } from 'next'
 import styles from './ProgressComponent.module.scss'
-import { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
 interface IProps {
   progressNumber: number
+  className?: string
+  isSingle?: boolean
 }
 
-const ProgressComponent: NextPage<IProps> = ({ progressNumber }) => {
+const ProgressComponent: NextPage<IProps> = ({
+  progressNumber,
+  className,
+  isSingle = false,
+}) => {
   return (
-    <div>
+    <div className={className}>
       <Progress
         value={Math.floor(progressNumber)}
-        className={styles.progress}
+        className={cn(styles.progress)}
       />
-      <p className="text-sm text-menu-text">On Progress</p>
+      {!isSingle && <p className="text-sm text-menu-text">On Progress</p>}
     </div>
   )
 }

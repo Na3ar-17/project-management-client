@@ -15,6 +15,7 @@ const ListView: NextPage<IViewTypesPros> = ({
       <div className={styles.content}>
         <div className={styles.info}>
           <p className={styles.title}>Task title</p>
+          <p className={styles.title}>Task progres</p>
           <p className={styles.title}>Due date</p>
           <p className={styles.title}>Priority</p>
         </div>
