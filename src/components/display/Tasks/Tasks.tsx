@@ -7,8 +7,8 @@ import Panel from './panel/Panel'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { TypeViewType } from '@/types/tasks.types'
 import ListView from './list-view/ListView'
-import { useTasksEnd } from '@/api/hooks/tasks/useTasksEnd'
 import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
+import { useTasksEnd } from './hooks/useTasksEnd'
 export interface IProps {
   projectId: string
 }
@@ -22,7 +22,11 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
   const { tasksData, isFetching, isSuccess, setTasksState, tasksState } =
     useGetTasks(projectId)
 
-  const { onDragEnd } = useTasksEnd({ projectId, setTasksState })
+  const { onDragEnd } = useTasksEnd({
+    projectId,
+    setTasksState,
+    tasks: tasksState,
+  })
 
   if (!tasksData || !tasksState) {
     return <div>Error</div>

@@ -59,6 +59,7 @@ export interface ITaskCard extends IBase {
   projectId: string
   progressPercent: number
   isCompleted: boolean
+  index: number
   project?: IProjectResponse | undefined
 }
 
