@@ -11,7 +11,9 @@ export const useUpdateTask = () => {
     mutationKey: [tasksKeys.UPDATE],
     mutationFn: (dto: TypeUpdateTaskCard) => tasksService.update(dto),
     onSuccess: () => {
-      queryClient.refetchQueries()
+      queryClient.invalidateQueries({
+        queryKey: [tasksKeys.GET_ALL],
+      })
       toast.success('Successfully updated task')
     },
   })

@@ -48,6 +48,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
       priority,
       progressPercent,
     },
+    mode: 'onChange',
   })
   const { deleteTaskMutation } = useDeleteTask()
   useUpdateTaskDebounce({ projectId, taskId: id, watch })
