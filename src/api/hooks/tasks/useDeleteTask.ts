@@ -15,7 +15,7 @@ export const useDeleteTask = () => {
       taskId: string
     }) => tasksService.delete(projectId, taskId),
     onSuccess: () => {
-      queryClient.invalidateQueries()
+      queryClient.invalidateQueries({ queryKey: [tasksKeys.GET_ALL] })
       toast.success('Successfully deleted task')
     },
   })

@@ -7,7 +7,7 @@ import {
 } from '@/types/tasks.types'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import TaskPriorityBadge from '@/components/ui/badges/task-priority-badge/TaskPriorityBadge'
-import { Trash2 } from 'lucide-react'
+import { SquareArrowOutUpRight, Trash2 } from 'lucide-react'
 import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
 import DragIcon from '@/components/ui/icons/DragIcon'
 import { useDialog } from '@/zustand/useDialog'
@@ -15,6 +15,12 @@ import { Controller, useForm } from 'react-hook-form'
 import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import { cn } from '@/lib/utils'
+import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
+import { useState } from 'react'
+import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
+import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
+import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
+import { useSheet } from '@/zustand/useSheet'
 
 const ListCard: NextPage<IListAndTaskCardProps> = ({
   data,
@@ -22,19 +28,24 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
   snapshot: { isDragging },
 }) => {
   const { id, title, dueDate, priority, status, projectId, isCompleted } = data
-  console.log(dueDate)
 
-  const { control, watch } = useForm<TypeUpdateTaskCard>({
+  const {
+    control,
+    watch,
+    register,
+    formState: { errors },
+  } = useForm<TypeUpdateTaskCard>({
     defaultValues: {
       status,
       title,
       isCompleted,
       dueDate,
+      priority,
     },
   })
-  const { onOpen } = useDialog()
-
+  const { deleteTaskMutation } = useDeleteTask()
   useUpdateTaskDebounce({ projectId, taskId: id, watch })
+  const { onOpen, setExpectedTaskId } = useSheet()
 
   return (
     <div className={cn(styles.row, isCompleted && styles.completed)}>
@@ -47,11 +58,29 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
             control={control}
             name="isCompleted"
             render={({ field: { value, onChange } }) => (
-              <CheckBox checked={isCompleted} onCheckedChange={onChange} />
+              <CheckBox checked={value} onCheckedChange={onChange} />
             )}
           />
+          <SquareArrowOutUpRight
+            onClick={() => {
+              setExpectedTaskId(id)
+              onOpen()
+            }}
+            className={styles.icon}
+          />
         </div>
-        <p className={styles.title}>{title}</p>
+        <Controller
+          control={control}
+          name="title"
+          render={({ field: { value, onChange } }) => (
+            <TransparentField
+              className={styles.title}
+              value={value}
+              onInputChange={onChange}
+              lableStyle="w-[50%]"
+            />
+          )}
+        />
       </div>
       <div className={styles.elemenet}>
         <Controller
@@ -67,11 +96,21 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
         />
       </div>
       <div className={styles.elemenet}>
-        <TaskPriorityBadge text={priority || ''} />
+        <Controller
+          control={control}
+          name="priority"
+          render={({ field: { value, onChange } }) => (
+            <SimpleSelect value={value || ''} onChange={onChange} />
+          )}
+        />
       </div>
       <div className={styles.elemenet}>
-        <Trash2 className={styles.delete} />
+        <Trash2
+          onClick={() => deleteTaskMutation({ projectId, taskId: id })}
+          className={styles.delete}
+        />
       </div>
+      <SheetComponent taskData={data} />
     </div>
   )
 }

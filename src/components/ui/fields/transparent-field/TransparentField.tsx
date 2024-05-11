@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { type CSSProperties, forwardRef } from 'react'
 import cn from 'clsx'
 interface IProps {
   className?: string
@@ -6,16 +6,28 @@ interface IProps {
   value?: string
   onInputChange?: () => void
   disabled?: boolean
+  style?: CSSProperties
+  lableStyle?: string
 }
 
 const TransparentField = forwardRef<HTMLInputElement, IProps>(
   (
-    { className, placeholder, value, onInputChange, disabled, ...rest },
+    {
+      className,
+      placeholder,
+      lableStyle,
+      value,
+      onInputChange,
+      style,
+      disabled,
+      ...rest
+    },
     ref
   ) => {
     return (
-      <label>
+      <label className={lableStyle}>
         <input
+          style={style}
           disabled={disabled}
           onChange={onInputChange}
           type="text"

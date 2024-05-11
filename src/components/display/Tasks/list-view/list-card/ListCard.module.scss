@@ -6,11 +6,11 @@
     @apply px-2.5 flex items-center gap-2;
 
     .title {
-      @apply transition-all text-[17px];
+      @apply transition-all text-[17px] w-full;
+    }
 
-      &:hover {
-        @apply underline cursor-pointer;
-      }
+    .icon {
+      @apply size-5 text-menu-text transition-all cursor-pointer hover:text-text;
     }
 
     .actions {
@@ -41,10 +41,6 @@
   .elemenet {
     .title {
       @apply line-through;
-
-      &:hover {
-        @apply line-through cursor-pointer;
-      }
     }
   }
 }

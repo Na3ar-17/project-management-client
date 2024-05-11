@@ -5,6 +5,7 @@ import cn from 'clsx'
 import type { DraggableProvided } from '@hello-pangea/dnd'
 import { GripVertical, Trash2 } from 'lucide-react'
 import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
+import { textAbstract } from '@/utils/textAbstract'
 
 interface IProps {
   title: string
@@ -32,7 +33,7 @@ const Header: NextPage<IProps> = ({
           onOpen()
         }}
       >
-        {title}
+        {textAbstract(title, 20)}
       </p>
 
       <div
