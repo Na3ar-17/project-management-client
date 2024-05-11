@@ -39,7 +39,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
     progressPercent,
   } = data
 
-  const { control, watch, register } = useForm<TypeUpdateTaskCard>({
+  const { control, watch } = useForm<TypeUpdateTaskCard>({
     defaultValues: {
       status,
       title,
@@ -69,9 +69,9 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
           <Controller
             control={control}
             name="isCompleted"
-            render={({ field: { value, onChange } }) => (
-              <CheckBox checked={value} onCheckedChange={onChange} />
-            )}
+            render={({ field: { value, onChange } }) => {
+              return <CheckBox checked={value} onCheckedChange={onChange} />
+            }}
           />
           <SquareArrowOutUpRight
             onClick={() => {
@@ -89,7 +89,8 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
               className={styles.title}
               value={value}
               onInputChange={onChange}
-              lableStyle="w-[50%]"
+              lableStyle="w-[100%]"
+              disabled={isCompleted}
             />
           )}
         />
@@ -97,7 +98,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
       <div className={styles.elemenet}>
         <ProgressComponent
           progressNumber={progressPercent}
-          className=" w-full"
+          className="w-full"
           isSingle
         />
       </div>
@@ -110,6 +111,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
               onChange={onChange}
               deadLine={value || ''}
               isSingle
+              disabled={isCompleted}
             />
           )}
         />
@@ -119,7 +121,11 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
           control={control}
           name="priority"
           render={({ field: { value, onChange } }) => (
-            <SimpleSelect value={value || ''} onChange={onChange} />
+            <SimpleSelect
+              disabled={isCompleted}
+              value={value || ''}
+              onChange={onChange}
+            />
           )}
         />
       </div>

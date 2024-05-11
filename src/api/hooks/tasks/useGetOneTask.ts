@@ -10,7 +10,7 @@ export const useGetOneTask = (projectId: string, taskId: string) => {
     isSuccess,
     isFetching,
   } = useQuery({
-    queryKey: [tasksKeys.GET_ALL + taskId],
+    queryKey: [tasksKeys.GET_ONE + taskId],
     queryFn: () => tasksService.getOne(projectId, taskId),
     select: (data) => {
       return {

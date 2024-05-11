@@ -1,4 +1,5 @@
 import { subTasksKeys } from '@/api/keys/subTasks.keys'
+import { tasksKeys } from '@/api/keys/tasks.keys'
 import { subTasksService } from '@/api/services/subTasks.service'
 import { TypeUpdateSubTask } from '@/types/tasks.types'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -11,7 +12,12 @@ export const useUpdateSubTask = () => {
     mutationKey: [subTasksKeys.UPDATE],
     mutationFn: (dto: TypeUpdateSubTask) => subTasksService.update(dto),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [subTasksKeys.GET_ALL] })
+      queryClient.invalidateQueries({
+        queryKey: [subTasksKeys.GET_ALL],
+      })
+      // queryClient.invalidateQueries({
+      //   queryKey: [tasksKeys.GET_ALL],
+      // })
       toast.success('Successfully updated')
     },
   })

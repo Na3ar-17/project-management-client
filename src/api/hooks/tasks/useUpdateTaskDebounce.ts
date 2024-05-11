@@ -31,8 +31,6 @@ export const useUpdateTaskDebounce = ({
         projectId,
         id: taskId,
         project: undefined,
-        isCompleted: dto.isCompleted,
-        dueDate: dto.dueDate,
       })
     })
 

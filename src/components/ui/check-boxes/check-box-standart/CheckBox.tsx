@@ -1,29 +1,18 @@
 'use client'
 import { NextPage } from 'next'
-import { ChangeEventHandler, useState } from 'react'
 import './CheckBox.scss'
 
 interface IProps {
   onCheckedChange?: (value: any) => void
-  checked?: boolean | 'indeterminate'
+  checked: boolean | undefined
 }
 
 const CheckBox: NextPage<IProps> = ({ onCheckedChange, checked }) => {
-  const [isChecked, setIsChecked] = useState(checked)
-
-  const handleCheckboxChange: ChangeEventHandler<HTMLInputElement> = () => {
-    const newValue = !isChecked
-    setIsChecked(newValue)
-    if (onCheckedChange) {
-      onCheckedChange(newValue)
-    }
-  }
-
   return (
     <label className="flex justify-center items-center">
       <input
-        checked={!!checked}
-        onChange={handleCheckboxChange}
+        checked={checked}
+        onChange={onCheckedChange}
         type="checkbox"
         className="ui-checkbox"
       />
