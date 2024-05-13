@@ -8,6 +8,7 @@ export default function Layout({
   return (
     <main className={styles.main}>
       <div className={styles.gradient}></div>
+      <div className={styles.container}></div>
       {children}
     </main>
   )

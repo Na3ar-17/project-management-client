@@ -1,4 +1,4 @@
-import { EnumTaskStatus, TypeUpdateTaskCard } from '@/types/tasks.types'
+import { TypeUpdateTaskCard } from '@/types/tasks.types'
 import { UseFormWatch } from 'react-hook-form'
 import { useUpdateTask } from './useUpdateTask'
 import { useCallback, useEffect } from 'react'
@@ -26,6 +26,8 @@ export const useUpdateTaskDebounce = ({
 
   useEffect(() => {
     const { unsubscribe } = watch((dto) => {
+      if (dto.title == '') return
+
       debouncedUpdateTask({
         ...dto,
         projectId,

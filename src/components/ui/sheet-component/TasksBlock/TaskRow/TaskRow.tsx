@@ -50,6 +50,7 @@ const TaskRow: NextPage<IProps> = ({ data, setSubTaskData }) => {
       />
       <TransparentField
         {...register('title')}
+        lableStyle="w-full"
         className={cn(isCompleted && styles.completed, styles.title)}
       />
     </li>

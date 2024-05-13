@@ -5,7 +5,6 @@ import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { NextPage } from 'next'
 import KanBanColumn from './kanban-column/KanBanColumn'
 import styles from './KanbanView.module.scss'
-import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
 import { ITaskCard, IViewTypesPros } from '@/types/tasks.types'
 
 const KanbanView: NextPage<IViewTypesPros> = ({

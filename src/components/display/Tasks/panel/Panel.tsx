@@ -32,14 +32,14 @@ const Panel: NextPage<IProps> = ({ projectId, type, setType }) => {
         ))}
       </div>
       <div className={styles.actions}>
-        <div className={styles.action}>
+        {/* <div className={styles.action}>
           <ArrowUpDown className={styles.icon} />
           <p>Sort</p>
         </div>
         <div className={styles.action}>
           <ListFilter className={styles.icon} />
           <p>More filters</p>
-        </div>
+        </div> */}
         <ButtonCreate
           text="Add Task"
           onClick={() => createTaskMutation(projectId)}

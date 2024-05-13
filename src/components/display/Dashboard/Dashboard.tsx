@@ -5,7 +5,6 @@ import Heading from '@/components/ui/heading/Heading'
 import { generateBlockStatisticsData } from '@/data/dashboard.data'
 import StatisticsBlock from './statistics-block/StatisticsBlock'
 import { useGetStatistics } from '@/api/hooks/statistics/useGetStatistics'
-import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
 interface IProps {
   params: {
     slug: string

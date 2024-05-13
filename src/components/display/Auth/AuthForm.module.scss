@@ -1,5 +1,5 @@
 .container {
-  @apply w-[900px] relative grid grid-cols-2 h-[480px] bg-secondary/60 rounded-md;
+  @apply w-[900px] relative grid grid-cols-2 h-[480px] bg-secondary rounded-md;
 
   .form-container {
     @apply flex justify-center items-center;

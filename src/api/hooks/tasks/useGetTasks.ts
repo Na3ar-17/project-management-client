@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import { isMatch } from 'date-fns'
 import { useEffect, useState } from 'react'
 
-export const useGetTasks = (projectId: string) => {
+export const useGetTasks = ({ projectId }: { projectId: string }) => {
   const {
     data: tasksData,
     isFetching,

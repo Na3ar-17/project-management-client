@@ -20,7 +20,7 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
   })
 
   const { tasksData, isFetching, isSuccess, setTasksState, tasksState } =
-    useGetTasks(projectId)
+    useGetTasks({ projectId })
 
   const { onDragEnd } = useTasksEnd({
     projectId,
