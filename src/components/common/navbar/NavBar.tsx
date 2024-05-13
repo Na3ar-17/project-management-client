@@ -9,6 +9,7 @@ import DropDownNotificationMenu from '../drop-down-notification-menu/DropDownNot
 import { useGetAll } from '@/api/hooks/notifications/useGetAll'
 import cn from 'clsx'
 import NavBarSkeleton from '@/components/ui/skeletons/NavBarSkeleton/NavBarSkeleton'
+
 interface IProps {
   isHidden: TypeIsHidden
 }

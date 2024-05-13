@@ -10,8 +10,8 @@ export const useUpdateProfile = () => {
     mutationKey: [userKeys.USER + 'update_profile'],
     mutationFn: (dto: TypeUpdateProfile) => userService.update(dto),
     onSuccess: () => {
-      toast.success('Successfully updated profile')
       queryClient.invalidateQueries({ queryKey: ['profile'] })
+      toast.success('Successfully updated profile')
     },
   })
 

@@ -1,13 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { EnumTokens } from './api/services/auth-toke.service'
 import { DASHBOARD_PAGES } from './config/pages-url-config'
+import createIntlMiddleware from 'next-intl/middleware'
+
+const intlMiddleware = createIntlMiddleware({
+  locales: ['en', 'ua'],
+  defaultLocale: 'en',
+})
 
 export default async function middleware(
   request: NextRequest,
   response: NextResponse
 ) {
-  const { url, cookies } = request
+  await intlMiddleware(request)
 
+  const { url, cookies } = request
   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
 
   const isAuthPage = url.includes(DASHBOARD_PAGES.AUTH)
@@ -33,5 +40,9 @@ export default async function middleware(
 }
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: [
+    '/(ua|en)/:path*',
+    '/((?!.+\\.[\\w]+$|_next).*)',
+    '/(api|trpc)(.*)',
+  ],
 }

@@ -1,14 +1,13 @@
+import createNextIntlPlugin from 'next-intl/plugin'
+
+const withNextIntl = createNextIntlPlugin()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'images.unsplash.com',
-      'i.pinimg.com',
-      't3.ftcdn.net',
-      'localhost',
-    ],
+    domains: ['localhost'],
   },
 }
 
-export default nextConfig
+export default withNextIntl(nextConfig)

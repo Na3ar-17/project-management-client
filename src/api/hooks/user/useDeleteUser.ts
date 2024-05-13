@@ -4,7 +4,6 @@ import { userService } from '@/api/services/user.service'
 import { DASHBOARD_PAGES } from '@/config/pages-url-config'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import toast from 'react-hot-toast'
 
 export const useDeleteUser = () => {
   const { replace } = useRouter()
@@ -14,7 +13,6 @@ export const useDeleteUser = () => {
     onSuccess: () => {
       replace(DASHBOARD_PAGES.AUTH)
       removeFromStorage()
-      toast.success('Account deleted successfully')
     },
   })
   return { deleteUserMutation }

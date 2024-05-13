@@ -20,6 +20,7 @@ export const useProfileDebounce = ({ watch }: IUserProfileDebounce) => {
 
   useEffect(() => {
     const { unsubscribe } = watch((dto) => {
+      if (dto.fullName === '') return
       debouncedUpdateProfile({
         ...dto,
         fullName: dto.fullName,

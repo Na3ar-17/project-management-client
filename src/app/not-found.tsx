@@ -1,7 +1,11 @@
-import { NextPage } from 'next'
+'use client'
 
-const notFound: NextPage = () => {
-  return <div>Not found</div>
+export default function NotFound() {
+  return (
+    <html>
+      <body>
+        <h1>Not found</h1>
+      </body>
+    </html>
+  )
 }
-
-export default notFound

@@ -8,7 +8,6 @@ import toast from 'react-hot-toast'
 
 export const useLogin = () => {
   const { push } = useRouter()
-
   const { mutate: loginMutation } = useMutation({
     mutationKey: [authKeys.AUTH],
     mutationFn: (dto: TypeAuthFormLogin) => authService.login(dto),

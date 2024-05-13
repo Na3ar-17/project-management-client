@@ -35,7 +35,11 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
         ref={ref}
         {...rest}
         type={type}
-        className={cn(styles.button, className, disabled && styles.disabled)}
+        className={cn(
+          styles.button,
+          className,
+          disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+        )}
         disabled={disabled}
       >
         {text}

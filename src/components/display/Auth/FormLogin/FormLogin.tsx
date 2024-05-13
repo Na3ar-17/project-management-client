@@ -1,3 +1,5 @@
+'use client'
+
 import { AuthField } from '@/components/ui/fields/auth-field/AuthField'
 import { NextPage } from 'next'
 import { Lock, AtSign } from 'lucide-react'
@@ -18,13 +20,16 @@ const FormLogin: NextPage<IProps> = ({}) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
-    reset,
     setError,
   } = useForm<TypeAuthFormLogin>({
     mode: 'onChange',
+    defaultValues: {
+      email: 'test@gmail.com',
+      password: '123456',
+    },
   })
 
-  const onSubmit: SubmitHandler<TypeAuthFormLogin> = (values) => {
+  const onSubmit: SubmitHandler<TypeAuthFormLogin> = async (values) => {
     const { email } = values
     if (!isValidEmail(email)) {
       setError('email', { type: 'onChange', message: 'Invalid email' })
@@ -70,7 +75,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
         })}
       />
       <p>Forgot Your Password?</p>
-      <Button type="submit" text="Sing In" />
+      <Button disabled={isSubmitting} type="submit" text="Sing In" />
     </form>
   )
 }
