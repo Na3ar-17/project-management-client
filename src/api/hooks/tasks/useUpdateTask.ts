@@ -1,3 +1,4 @@
+import { statisticsKeys } from '@/api/keys/statistics.keys'
 import { tasksKeys } from '@/api/keys/tasks.keys'
 import { tasksService } from '@/api/services/tasks.service'
 import { TypeUpdateTaskCard } from '@/types/tasks.types'
@@ -14,6 +15,10 @@ export const useUpdateTask = () => {
       queryClient.invalidateQueries({
         queryKey: [tasksKeys.GET_ALL],
       })
+      queryClient.invalidateQueries({
+        queryKey: [statisticsKeys.GET_ONE],
+      })
+
       toast.success('Successfully updated task')
     },
   })

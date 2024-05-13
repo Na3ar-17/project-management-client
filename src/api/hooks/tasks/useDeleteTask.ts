@@ -1,3 +1,4 @@
+import { statisticsKeys } from '@/api/keys/statistics.keys'
 import { tasksKeys } from '@/api/keys/tasks.keys'
 import { tasksService } from '@/api/services/tasks.service'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
@@ -16,6 +17,9 @@ export const useDeleteTask = () => {
     }) => tasksService.delete(projectId, taskId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [tasksKeys.GET_ALL] })
+      queryClient.invalidateQueries({
+        queryKey: [statisticsKeys.GET_ONE],
+      })
       toast.success('Successfully deleted task')
     },
   })

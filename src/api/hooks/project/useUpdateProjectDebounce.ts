@@ -25,6 +25,7 @@ export const useUpdateProjectDebounce = ({
 
   useEffect(() => {
     const { unsubscribe } = watch((dto) => {
+      if (dto.name === '') return
       debouncedUpdateProject({
         ...dto,
         id: projectId,

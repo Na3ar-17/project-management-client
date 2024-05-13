@@ -15,9 +15,9 @@ export const useUpdateSubTask = () => {
       queryClient.invalidateQueries({
         queryKey: [subTasksKeys.GET_ALL],
       })
-      // queryClient.invalidateQueries({
-      //   queryKey: [tasksKeys.GET_ALL],
-      // })
+      queryClient.invalidateQueries({
+        queryKey: [tasksKeys.GET_ALL],
+      })
       toast.success('Successfully updated')
     },
   })
