@@ -23,6 +23,7 @@ interface IProps {
 
 const RootLayout = ({ children, params: { locale } }: IProps) => {
   const messages = useMessages()
+
   return (
     <html lang={locale}>
       <body suppressHydrationWarning={true} className={figtree.className}>
