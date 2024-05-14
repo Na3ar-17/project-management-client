@@ -12,6 +12,7 @@ export default async function middleware(
   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
 
   const isAuthPage = url.includes(DASHBOARD_PAGES.AUTH)
+  const isMainPage = url === 'http://localhost:3000/'
 
   if (isAuthPage && refreshToken) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
@@ -23,6 +24,10 @@ export default async function middleware(
 
   if (!refreshToken) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.AUTH, request.url))
+  }
+
+  if (refreshToken && isMainPage) {
+    return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, request.url))
   }
 
   return NextResponse.next()

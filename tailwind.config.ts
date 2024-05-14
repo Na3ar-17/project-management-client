@@ -19,11 +19,7 @@ const config = {
         '2xl': '1400px',
       },
     },
-    extend: {
-      backgroundImage: {
-        'gradient-base': 'linear-gradient(#268bff, hsl(252, 82, 57))',
-      },
-    },
+    extend: {},
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config
