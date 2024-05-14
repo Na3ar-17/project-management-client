@@ -7,12 +7,10 @@ import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import { useCreateProject } from '@/api/hooks/project/useCreateProject'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
 import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSkeleton'
-import { useTranslations } from 'next-intl'
 
 const Projects: NextPage = () => {
   const { projects, isFetching, isSuccess } = useGetProjects()
   const { createProjectMutation } = useCreateProject()
-  const t = useTranslations('Projects')
 
   //TODO create loader
 
@@ -26,7 +24,7 @@ const Projects: NextPage = () => {
 
   return (
     <main>
-      <Heading text={t('heading')} />
+      <Heading text={'My projects'} />
       <div className="flex justify-end">
         <ButtonCreate
           onClick={createProjectMutation}

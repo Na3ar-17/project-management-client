@@ -1,5 +1,7 @@
-import { redirect } from 'next/navigation'
+import { NextPage } from 'next'
 
-export default function RootPage() {
-  redirect('/en')
+const page: NextPage = () => {
+  return <div></div>
 }
+
+export default page

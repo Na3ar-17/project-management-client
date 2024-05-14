@@ -26,7 +26,6 @@ import { useDeleteProjectImage } from '@/api/hooks/file/useDeleteProjectImage'
 import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
 import { useDialog } from '@/zustand/useDialog'
 import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
-import { useLocale } from 'next-intl'
 import { useDashboard } from '@/hooks/useDashboard'
 
 interface IProps {

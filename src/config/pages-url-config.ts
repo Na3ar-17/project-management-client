@@ -1,5 +1,4 @@
 export class DASHBOARD {
-  private locale: string
   private root = '/'
 
   MAIN: string
@@ -8,12 +7,11 @@ export class DASHBOARD {
   PROJECTS: string
   SETTINGS: string
 
-  constructor(locale: string) {
-    this.locale = locale
+  constructor() {
     this.MAIN = this.root
-    this.AUTH = `${this.root}${this.locale}/authorization`
-    this.HOME = `${this.root}${this.locale}/home`
-    this.PROJECTS = `${this.root}${this.locale}/projects`
-    this.SETTINGS = `${this.root}${this.locale}/settings`
+    this.AUTH = `${this.root}authorization`
+    this.HOME = `${this.root}home`
+    this.PROJECTS = `${this.root}projects`
+    this.SETTINGS = `${this.root}settings`
   }
 }
