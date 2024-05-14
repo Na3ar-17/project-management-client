@@ -30,7 +30,7 @@ const SettingsContent: NextPage<IProps> = ({}) => {
   }
   return (
     <div className={styles.content}>
-      <Tabs defaultValue="my-account" className={styles.tabs}>
+      <Tabs defaultValue="language" className={styles.tabs}>
         <TabsList className={styles.list}>
           <p className={styles.title}>Account</p>
           <FullUserAvatar data={data} className="ml-2" />

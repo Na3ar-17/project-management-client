@@ -9,16 +9,34 @@ import {
   SelectValue,
 } from '@/components/ui/shadcn/ui/select'
 import styles from './LanguageSelect.module.scss'
-import { languagesData } from '@/data/settings.data'
-import { useState } from 'react'
+import { generateLanguagesData } from '@/data/settings.data'
+import { useState, useTransition } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 interface IProps {}
 
 const LanguageSelect: NextPage<IProps> = ({}) => {
+  const { languagesData } = generateLanguagesData()
   const [lang, setLang] = useState<string>('English')
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
+  const [isPending, startTransition] = useTransition()
+
+  const onChange = (value: string) => {
+    const newUrl = pathname.replace(/^\/(\w{2})\/(.*)$/, `/${value}/$2`)
+    console.log(newUrl)
+
+    startTransition(() => {
+      router.replace(`${newUrl}`)
+    })
+  }
 
   return (
-    <Select onOpenChange={() => setIsOpen(!isOpen)}>
+    <Select
+      disabled={isPending}
+      onValueChange={onChange}
+      onOpenChange={() => setIsOpen(!isOpen)}
+    >
       <SelectTrigger className={styles.trigger}>
         <SelectValue placeholder={lang} />
       </SelectTrigger>
@@ -29,9 +47,9 @@ const LanguageSelect: NextPage<IProps> = ({}) => {
               className={styles.item}
               onClick={() => setLang(el.label)}
               value={el.value}
+              key={index}
             >
               <p className="text-base">{el.label}</p>
-              {isOpen && <p className="text-sm">{el.value}</p>}
             </SelectItem>
           ))}
         </SelectGroup>

@@ -13,6 +13,11 @@
         "language": "Language",
         "settings": "Settings"
       }
+    },
+
+    "Language": {
+      "locale": "English",
+      "locale2": "Ukrainian"
     }
   },
 

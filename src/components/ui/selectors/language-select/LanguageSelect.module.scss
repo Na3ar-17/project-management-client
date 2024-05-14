@@ -10,6 +10,6 @@
   }
 
   .item {
-    @apply text-menu-text p-0 py-2 px-1 hover:bg-primary/40 cursor-pointer;
+    @apply text-menu-text p-0 p-1 hover:bg-primary/40 cursor-pointer;
   }
 }

@@ -15,6 +15,7 @@ import {
   Settings,
   ChevronRight,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export const tabsTriggerData: ITabTriggerData[] = [
   {
@@ -148,8 +149,7 @@ export const languageContentData: ISettingsContentData[] = [
       {
         subTitle: 'Language',
         text: 'Change the language used in the user interface.',
-        actions: EnumSettingsContentActions.commingSoon,
-        disabled: true,
+        actions: EnumSettingsContentActions.language,
       },
     ],
   },
@@ -207,18 +207,13 @@ export const timeZoneData: { value: string }[] = [
   },
 ]
 
-export const languagesData: ILanguagesData[] = [
-  { label: 'English', value: 'English' },
-  { label: 'Español', value: 'Spanish' },
-  { label: 'Français', value: 'French' },
-  { label: 'Deutsch', value: 'German' },
-  { label: '中文', value: 'Chinese' },
-  { label: '日本語', value: 'Japanese' },
-  { label: '한국어', value: 'Korean' },
-  { label: 'العربية', value: 'Arabic' },
-  { label: 'Português', value: 'Portuguese' },
-  { label: 'Italiano', value: 'Italian' },
-  { label: 'Nederlands', value: 'Dutch' },
-  { label: 'Svenska', value: 'Swedish' },
-  { label: 'Українська', value: 'Ukrainian' },
-]
+export const generateLanguagesData = () => {
+  const t = useTranslations('Settings')
+
+  const languagesData: ILanguagesData[] = [
+    { label: `${t('Language.locale')}`, value: 'en' },
+    { label: `${t('Language.locale2')}`, value: 'ua' },
+  ]
+
+  return { languagesData }
+}
