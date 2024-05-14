@@ -6,6 +6,7 @@ import { COLORS } from '@/constants/colors.constans'
 import { Toaster } from 'react-hot-toast'
 import { Metadata } from 'next'
 import { SITE_NAME } from '@/constants/seo.constants'
+import { useMessages, NextIntlClientProvider } from 'next-intl'
 const figtree = Figtree({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -17,14 +18,20 @@ export const metadata: Metadata = {
 }
 interface IProps {
   children: React.ReactNode
+  params: { locale: string }
 }
 
-const RootLayout = ({ children }: IProps) => {
+const RootLayout = ({ children, params: { locale } }: IProps) => {
+  const messages = useMessages()
   return (
-    <html>
+    <html lang={locale}>
       <body suppressHydrationWarning={true} className={figtree.className}>
         <Suspense>
-          <Providers>{children}</Providers>
+          <Providers>
+            <NextIntlClientProvider messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </Providers>
         </Suspense>
         <Toaster
           position="top-center"
