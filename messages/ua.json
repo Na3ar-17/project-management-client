@@ -1,5 +1,22 @@
 {
   "Index": {
     "title": "Привіт Світ"
+  },
+  "Settings": {
+    "LeftSide": {
+      "placeholder1": "Обліковий запис",
+      "placeholder2": "Робоче серидовище",
+      "menu-items": {
+        "my-account": "Обліковий запис",
+        "my-settings": "Налаштування",
+        "my-notifications": "Сповіщення",
+        "language": "Мова",
+        "settings": "Налаштування"
+      }
+    }
+  },
+
+  "Projects": {
+    "heading": "Мої Проекти"
   }
 }

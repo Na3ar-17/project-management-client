@@ -1,5 +1,22 @@
 {
   "Index": {
-    "title": "Hello world!"
+    "title": "Hello World"
+  },
+  "Settings": {
+    "LeftSide": {
+      "placeholder1": "Accunt",
+      "placeholder2": "Workspace",
+      "menu-items": {
+        "my-account": "My Account",
+        "my-settings": "My Settings",
+        "my-notifications": "My Notifications",
+        "language": "Language",
+        "settings": "Settings"
+      }
+    }
+  },
+
+  "Projects": {
+    "heading": "My Projects"
   }
 }

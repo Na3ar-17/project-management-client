@@ -1,11 +1,19 @@
-class DASHBOARD {
+export class DASHBOARD {
+  private locale: string
   private root = '/'
 
-  MAIN = this.root
-  AUTH = `${this.root}authorization`
-  HOME = `${this.root}home`
-  PROJECTS = `${this.root}projects`
-  SETTINGS = `${this.root}settings`
-}
+  MAIN: string
+  AUTH: string
+  HOME: string
+  PROJECTS: string
+  SETTINGS: string
 
-export const DASHBOARD_PAGES = new DASHBOARD()
+  constructor(locale: string) {
+    this.locale = locale
+    this.MAIN = this.root
+    this.AUTH = `${this.root}${this.locale}/authorization`
+    this.HOME = `${this.root}${this.locale}/home`
+    this.PROJECTS = `${this.root}${this.locale}/projects`
+    this.SETTINGS = `${this.root}${this.locale}/settings`
+  }
+}

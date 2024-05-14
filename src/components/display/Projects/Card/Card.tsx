@@ -1,5 +1,5 @@
 'use client'
-import { DASHBOARD_PAGES } from '@/config/pages-url-config'
+import { DASHBOARD } from '@/config/pages-url-config'
 import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import cn from 'clsx'
 import {
@@ -26,6 +26,8 @@ import { useDeleteProjectImage } from '@/api/hooks/file/useDeleteProjectImage'
 import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
 import { useDialog } from '@/zustand/useDialog'
 import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
+import { useLocale } from 'next-intl'
+import { useDashboard } from '@/hooks/useDashboard'
 
 interface IProps {
   data: IProjectResponse
@@ -33,6 +35,7 @@ interface IProps {
 
 const Card: NextPage<IProps> = ({ data }) => {
   const { end, id, name, createdAt, image, slug } = data
+  const { DASHBOARD_PAGES } = useDashboard()
   const { register, control, watch } = useForm<TypeUpdateProjectCard>({
     mode: 'onChange',
     defaultValues: {

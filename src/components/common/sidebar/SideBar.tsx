@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import styles from './SideBar.module.scss'
 import { Dispatch, SetStateAction } from 'react'
 import { TypeIsHidden } from '@/types/sideBar.type'
-import { sideBarElementData } from '@/data/sidebar-element.data'
+import { gererateSideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
 import cn from 'clsx'
 import SideBarSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarSkeleton'
@@ -16,6 +16,7 @@ interface IProps {
 
 const SideBar: NextPage<IProps> = ({ isHidden, isLoading }) => {
   const { projects, isFetching, isSuccess } = useGetProjects()
+  const { sideBarElementData } = gererateSideBarElementData()
 
   if (isLoading || isFetching) {
     return <SideBarSkeleton />

@@ -1,4 +1,5 @@
-import { DASHBOARD_PAGES } from '@/config/pages-url-config'
+import { DASHBOARD } from '@/config/pages-url-config'
+import { useDashboard } from '@/hooks/useDashboard'
 import { ISideBarElement } from '@/types/sidebar-element.type'
 import {
   Home,
@@ -18,6 +19,7 @@ export const generateProjectPagesData = ({
   slug: string
   id: string
 }) => {
+  const { DASHBOARD_PAGES } = useDashboard()
   const projectPagesData: ISideBarElement[] = [
     {
       text: 'Dashboard',
@@ -33,26 +35,56 @@ export const generateProjectPagesData = ({
   return projectPagesData
 }
 
-export const sideBarElementData: ISideBarElement[] = [
-  {
-    text: 'Home',
-    Icon: Home,
-    href: DASHBOARD_PAGES.HOME,
-  },
-  {
-    text: 'Projects',
-    Icon: LayoutGrid,
-    href: DASHBOARD_PAGES.PROJECTS,
-  },
-  {
-    text: 'Profile',
-    Icon: User,
-    href: '/profile',
-  },
+export const gererateSideBarElementData = () => {
+  const { DASHBOARD_PAGES } = useDashboard()
 
-  {
-    text: 'Settings',
-    Icon: Settings,
-    href: DASHBOARD_PAGES.SETTINGS,
-  },
-]
+  const sideBarElementData: ISideBarElement[] = [
+    {
+      text: 'Home',
+      Icon: Home,
+      href: DASHBOARD_PAGES.HOME,
+    },
+    {
+      text: 'Projects',
+      Icon: LayoutGrid,
+      href: DASHBOARD_PAGES.PROJECTS,
+    },
+    {
+      text: 'Profile',
+      Icon: User,
+      href: '/profile',
+    },
+
+    {
+      text: 'Settings',
+      Icon: Settings,
+      href: DASHBOARD_PAGES.SETTINGS,
+    },
+  ]
+
+  return { sideBarElementData }
+}
+
+// export const sideBarElementData: ISideBarElement[] = [
+//   {
+//     text: 'Home',
+//     Icon: Home,
+//     href: DASHBOARD_PAGES.HOME,
+//   },
+//   {
+//     text: 'Projects',
+//     Icon: LayoutGrid,
+//     href: DASHBOARD_PAGES.PROJECTS,
+//   },
+//   {
+//     text: 'Profile',
+//     Icon: User,
+//     href: '/profile',
+//   },
+
+//   {
+//     text: 'Settings',
+//     Icon: Settings,
+//     href: DASHBOARD_PAGES.SETTINGS,
+//   },
+// ]
