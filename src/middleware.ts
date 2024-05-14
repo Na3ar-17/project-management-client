@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { EnumTokens } from './api/services/auth-toke.service'
 import { DASHBOARD } from './config/pages-url-config'
-
+import createMiddleware from 'next-intl/middleware'
 export default async function middleware(
   request: NextRequest,
   response: NextResponse
@@ -30,9 +30,22 @@ export default async function middleware(
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, request.url))
   }
 
-  return NextResponse.next()
+  const nextIntlMiddleware = createMiddleware({
+    locales: ['en', 'ua'],
+
+    // Used when no locale matches
+    defaultLocale: 'en',
+  })
+
+  return NextResponse.next(), nextIntlMiddleware(request)
 }
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: [
+    '/((?!.+\\.[\\w]+$|_next).*)',
+    '/',
+    '/(api|trpc)(.*)',
+    '/',
+    '/(de|en)/:path*',
+  ],
 }
