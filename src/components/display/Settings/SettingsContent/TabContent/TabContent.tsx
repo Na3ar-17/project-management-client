@@ -14,6 +14,7 @@ import styles from './TabContent.module.scss'
 import { useCallback, useEffect } from 'react'
 import { useDeleteAvatar } from '@/api/hooks/file/useDeleteAvatar'
 import { useUploadAvatar } from '@/api/hooks/file/useUploadAvatar'
+import { useTranslations } from 'next-intl'
 
 interface IProps {
   data: ITabContentData
@@ -23,6 +24,7 @@ interface IProps {
 const TabContent: NextPage<IProps> = ({ data, userData }) => {
   const { fullName, imgLink } = userData
   const { childrens, value } = data
+  const t = useTranslations('Settings.rightSide')
 
   const { handleUploadImage, imgFile } = useImageUploader()
   const { uploadAvatarMutation } = useUploadAvatar()
@@ -47,7 +49,9 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
     <TabsContent className={styles.item} value={value}>
       {value === EnumSettingsTabsValue.myAccount && (
         <>
-          <p className={styles.title}>My profile </p>
+          <p className={styles.title}>
+            {t('accountSettingsContentData.title')}
+          </p>
           <Separator className={styles.separator} />
           <div className={styles.info}>
             <AvatarComponent
@@ -61,7 +65,7 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
             />
 
             <div className={styles.group}>
-              <span>Preferred name</span>
+              <span>{t('Preferred-name')}</span>
               <Controller
                 name="fullName"
                 control={control}

@@ -102,36 +102,32 @@ export const generateAccountSettingsContentData = () => {
 }
 
 export const generateMySettingsContentData = () => {
+  const t = useTranslations('Settings.rightSide.mySettingsContentData')
+
   const mySettingsContentData: ISettingsContentData[] = [
     {
-      title: 'Date & time',
+      title: `${t('1.title')}`,
       content: [
         {
-          subTitle: 'Set timezone automatically using your location',
-          text: 'Reminders, notifications and emails are delivered based on your time zone.',
+          subTitle: `${t('1.content.1.subTitle')}`,
+          text: `${t('1.content.1.text')}`,
           actions: EnumSettingsContentActions.commingSoon,
           disabled: true,
         },
         {
-          subTitle: 'Time Zone',
-          text: 'Current time zone setting.',
+          subTitle: `${t('1.content.2.subTitle')}`,
+          text: `${t('1.content.2.text')}`,
           actions: EnumSettingsContentActions.commingSoon,
           disabled: true,
         },
       ],
     },
     {
-      title: 'Privacy',
+      title: `${t('2.title')}`,
       content: [
         {
-          subTitle: 'Cookie settings',
-          text: 'Customize cookies. See {link to cookie notice} for details.',
-          actions: EnumSettingsContentActions.commingSoon,
-          disabled: true,
-        },
-        {
-          subTitle: 'Profile discoverability',
-          text: 'Users with your email can see your name and profile picture when inviting you to a new workspace.',
+          subTitle: `${t('2.content.1.subTitle')}`,
+          text: `${t('2.content.1.text')}`,
           actions: EnumSettingsContentActions.commingSoon,
           disabled: true,
         },
@@ -143,19 +139,21 @@ export const generateMySettingsContentData = () => {
 }
 
 export const generateNotificationsContentData = () => {
+  const t = useTranslations('Settings.rightSide.notificationsContentData')
+
   const notificationsContentData: ISettingsContentData[] = [
     {
-      title: 'Email notifications',
+      title: `${t('1.title')}`,
       content: [
         {
-          subTitle: 'Activity in your workspace',
-          text: 'Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes',
+          subTitle: `${t('1.content.1.subTitle')}`,
+          text: `${t('1.content.1.text')}`,
           actions: EnumSettingsContentActions.commingSoon,
           disabled: true,
         },
         {
-          subTitle: 'Always send email notifications',
-          text: "Receive emails about activity in your workspace, even when you're active on the app",
+          subTitle: `${t('1.content.2.subTitle')}`,
+          text: `${t('1.content.2.text')}`,
           actions: EnumSettingsContentActions.commingSoon,
           disabled: true,
         },
@@ -167,13 +165,15 @@ export const generateNotificationsContentData = () => {
 }
 
 export const generateLanguageContentData = () => {
+  const t = useTranslations('Settings.rightSide.languageContentData')
+
   const languageContentData: ISettingsContentData[] = [
     {
-      title: 'Language & region',
+      title: `${t('1.title')}`,
       content: [
         {
-          subTitle: 'Language',
-          text: 'Change the language used in the user interface.',
+          subTitle: `${t('1.content.1.subTitle')}`,
+          text: `${t('1.content.1.text')}`,
           actions: EnumSettingsContentActions.language,
         },
       ],
@@ -184,13 +184,15 @@ export const generateLanguageContentData = () => {
 }
 
 export const generateWorkspaceSettingsData = () => {
+  const t = useTranslations('Settings.rightSide.workspaceSettingsData')
+
   const workspaceSettingsData: ISettingsContentData[] = [
     {
-      title: 'Workspace settings',
+      title: `${t('1.title')}`,
       content: [
         {
-          subTitle: 'Theme',
-          text: 'Customize how Proquill looks on your device.',
+          subTitle: `${t('1.content.1.subTitle')}`,
+          text: `${t('1.content.1.text')}`,
           actions: EnumSettingsContentActions.commingSoon,
           disabled: true,
         },
