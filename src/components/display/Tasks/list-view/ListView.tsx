@@ -4,6 +4,8 @@ import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { IViewTypesPros } from '@/types/tasks.types'
 import { tasksCategoryData } from '@/data/tasks.data'
 import ListColumn from './list-column/ListColumn'
+import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
+import Spinner from '@/components/ui/loaders/spinner/Spinner'
 
 const ListView: NextPage<IViewTypesPros> = ({
   onDragEnd,
@@ -21,7 +23,11 @@ const ListView: NextPage<IViewTypesPros> = ({
         </div>
         {tasksState.length <= 0 ? (
           // Create cool message about empty tasks
-          <div>No elenemts</div>
+          <EmptyMessage
+            title="You don't have any tasks"
+            subTitle=""
+            Loader={Spinner}
+          />
         ) : (
           tasksCategoryData.map((category, index) => (
             <ListColumn key={index} category={category} tasks={tasksState} />

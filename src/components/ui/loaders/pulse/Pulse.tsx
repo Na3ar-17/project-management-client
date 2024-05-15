@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
-import './SimpleLoader.scss'
+import './Pulse.scss'
 interface IProps {}
 
-const SimpleLoader: NextPage<IProps> = ({}) => {
+const Pulse: NextPage<IProps> = ({}) => {
   return (
     <div className="loading">
       <svg width="64px" height="48px">
@@ -19,4 +19,4 @@ const SimpleLoader: NextPage<IProps> = ({}) => {
   )
 }
 
-export default SimpleLoader
+export default Pulse

@@ -8,7 +8,6 @@ import { useCreateProject } from '@/api/hooks/project/useCreateProject'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
 import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSkeleton'
 import Image from 'next/image'
-import SimpleLoader from '@/components/ui/loaders/simple-loader/SimpleLoader'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 

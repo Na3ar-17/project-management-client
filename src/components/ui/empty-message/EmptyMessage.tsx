@@ -29,9 +29,13 @@ const EmptyMessage: NextPage<IProps> = ({
         <p className={cn('text-menu-text text-2xl font-semibold', titleStyles)}>
           {title}
         </p>
-        <p className={cn('text-text2 text-xl mt-2 font-[500]', subTitleStyles)}>
-          {subTitle}
-        </p>
+        {subTitle && (
+          <p
+            className={cn('text-text2 text-xl mt-2 font-[500]', subTitleStyles)}
+          >
+            {subTitle}
+          </p>
+        )}
       </div>
       {Loader && <Loader />}
     </div>
