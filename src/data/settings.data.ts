@@ -17,36 +17,46 @@ import {
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-export const tabsTriggerData: ITabTriggerData[] = [
-  {
-    lable: 'My Account',
-    value: EnumSettingsTabsValue.myAccount,
-    Icon: CircleUserRound,
-  },
-  {
-    lable: 'My Settings',
-    value: EnumSettingsTabsValue.mySettings,
-    Icon: SlidersHorizontal,
-  },
-  {
-    lable: 'My Notifications',
-    value: EnumSettingsTabsValue.myNotifications,
-    Icon: Bell,
-  },
-  {
-    lable: 'Language',
-    value: EnumSettingsTabsValue.language,
-    Icon: Globe,
-  },
-]
+export const generateTabsTriggerData = () => {
+  const t = useTranslations('Settings')
+  const tabsTriggerData: ITabTriggerData[] = [
+    {
+      lable: `${t('LeftSide.menu-items.my-account')}`,
+      value: EnumSettingsTabsValue.myAccount,
+      Icon: CircleUserRound,
+    },
+    {
+      lable: `${t('LeftSide.menu-items.my-settings')}`,
+      value: EnumSettingsTabsValue.mySettings,
+      Icon: SlidersHorizontal,
+    },
+    {
+      lable: `${t('LeftSide.menu-items.my-notifications')}`,
+      value: EnumSettingsTabsValue.myNotifications,
+      Icon: Bell,
+    },
+    {
+      lable: `${t('LeftSide.menu-items.language')}`,
+      value: EnumSettingsTabsValue.language,
+      Icon: Globe,
+    },
+  ]
 
-export const workspaceTabsTriggerData: ITabTriggerData[] = [
-  {
-    Icon: Settings,
-    lable: 'Settings',
-    value: EnumSettingsTabsValue.settings,
-  },
-]
+  return { tabsTriggerData }
+}
+
+export const generateWorkspaceTabsTriggerData = () => {
+  const t = useTranslations('Settings')
+
+  const workspaceTabsTriggerData: ITabTriggerData[] = [
+    {
+      Icon: Settings,
+      lable: `${t('LeftSide.menu-items.settings')}`,
+      value: EnumSettingsTabsValue.settings,
+    },
+  ]
+  return { workspaceTabsTriggerData }
+}
 
 export const accountSettingsContentData: ISettingsContentData[] = [
   {
@@ -55,8 +65,9 @@ export const accountSettingsContentData: ISettingsContentData[] = [
       {
         subTitle: 'Email',
         text: 'gavruluknazar0210@gmail.com',
-        actions: EnumSettingsContentActions.button,
+        actions: EnumSettingsContentActions.commingSoon,
         buttonText: 'Change email',
+        disabled: true,
       },
       {
         subTitle: '2-step verification',

@@ -50,12 +50,6 @@ export const gererateSideBarElementData = () => {
       href: DASHBOARD_PAGES.PROJECTS,
     },
     {
-      text: 'Profile',
-      Icon: User,
-      href: '/profile',
-    },
-
-    {
       text: 'Settings',
       Icon: Settings,
       href: DASHBOARD_PAGES.SETTINGS,

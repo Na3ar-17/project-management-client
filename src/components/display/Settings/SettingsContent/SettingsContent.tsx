@@ -3,8 +3,8 @@ import FullUserAvatar from '@/components/ui/avatar/FullUserAvatar/FullUserAvatar
 import { Tabs, TabsList } from '@/components/ui/shadcn/ui/tabs'
 import {
   tabsContentData,
-  tabsTriggerData,
-  workspaceTabsTriggerData,
+  generateTabsTriggerData,
+  generateWorkspaceTabsTriggerData,
 } from '@/data/settings.data'
 import { NextPage } from 'next'
 import styles from './SettingsContent.module.scss'
@@ -13,12 +13,16 @@ import TabContent from './TabContent/TabContent'
 import { useState } from 'react'
 import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
+import { useTranslations } from 'next-intl'
 
 interface IProps {}
 
 const SettingsContent: NextPage<IProps> = ({}) => {
   const [active, setActive] = useState<string>('my-account')
   const { data, isFetching, isSuccess } = useGetProfile()
+  const { tabsTriggerData } = generateTabsTriggerData()
+  const { workspaceTabsTriggerData } = generateWorkspaceTabsTriggerData()
+  const t = useTranslations('Settings.LeftSide')
 
   //TODO Create loader skeleton and handle if !isSuccess
   if (isFetching) {
@@ -30,9 +34,9 @@ const SettingsContent: NextPage<IProps> = ({}) => {
   }
   return (
     <div className={styles.content}>
-      <Tabs defaultValue="language" className={styles.tabs}>
+      <Tabs defaultValue="my-account" className={styles.tabs}>
         <TabsList className={styles.list}>
-          <p className={styles.title}>Account</p>
+          <p className={styles.title}>{t('placeholder1')}</p>
           <FullUserAvatar data={data} className="ml-2" />
           {tabsTriggerData.map((el, index) => (
             <TabsTriggerComponent
@@ -42,7 +46,7 @@ const SettingsContent: NextPage<IProps> = ({}) => {
               key={index}
             />
           ))}
-          <p className={styles.title}>Workspace</p>
+          <p className={styles.title}>{t('placeholder2')}</p>
           {workspaceTabsTriggerData.map((el, index) => (
             <TabsTriggerComponent
               isActive={active === el.value}
