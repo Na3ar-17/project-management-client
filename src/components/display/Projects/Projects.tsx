@@ -10,6 +10,7 @@ import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSk
 import Image from 'next/image'
 import SimpleLoader from '@/components/ui/loaders/simple-loader/SimpleLoader'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
+import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 
 const Projects: NextPage = () => {
   const { projects, isFetching, isSuccess } = useGetProjects()
@@ -43,17 +44,7 @@ const Projects: NextPage = () => {
           ))}
         </div>
       ) : (
-        <div className="flex items-center text-center justify-center flex-col gap-5 mt-20">
-          <div>
-            <p className="text-menu-text text-2xl font-semibold">
-              You don't have any projects yet.
-            </p>
-            <p className="text-text2 text-xl mt-2 font-[500]">
-              Start to create one!
-            </p>
-          </div>
-          <Spinner />
-        </div>
+        <EmptyMessage Loader={Spinner} />
       )}
     </main>
   )

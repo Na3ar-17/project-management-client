@@ -11,7 +11,6 @@ export const useDeleteProject = () => {
     mutationFn: (id: string) => projectService.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [projectKeys.GET_ALL] })
-
       toast.success('Successfully deleted project')
     },
   })
