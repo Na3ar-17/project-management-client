@@ -1,7 +1,6 @@
 'use client'
 import { NextPage } from 'next'
 import styles from './SideBar.module.scss'
-import { Dispatch, SetStateAction } from 'react'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import { gererateSideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
@@ -38,6 +37,18 @@ const SideBar: NextPage<IProps> = ({ isHidden, isLoading }) => {
               projects={projects || []}
             />
           ))}
+        </div>
+        <div className="absolute w-[190px] bottom-2 flex justify-start flex-col items-center">
+          <p className="text-sm text-text2">
+            Created by
+            <span className="font-semibold text-[#bfbf07]">
+              {' '}
+              Havrylyk Nazar
+            </span>
+          </p>
+          <p className="text-[16px] text-menu-text">
+            <span className="text-light-blue">ETEON</span> Corporation
+          </p>
         </div>
       </div>
     </aside>
