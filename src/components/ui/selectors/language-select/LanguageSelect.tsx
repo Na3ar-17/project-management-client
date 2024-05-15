@@ -1,5 +1,7 @@
-'use client'
+import React, { useState } from 'react'
 import { NextPage } from 'next'
+import { useTransition } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   Select,
   SelectContent,
@@ -8,52 +10,59 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/shadcn/ui/select'
-import styles from './LanguageSelect.module.scss'
 import { generateLanguagesData } from '@/data/settings.data'
-import { useState, useTransition } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
-interface IProps {}
+import styles from './LanguageSelect.module.scss'
+import useCookie from '@/hooks/useCookie'
 
-const LanguageSelect: NextPage<IProps> = ({}) => {
+interface Language {
+  label: string
+  value: string
+}
+
+interface LanguageSelectProps {}
+
+const LanguageSelect: NextPage<LanguageSelectProps> = ({}) => {
   const { languagesData } = generateLanguagesData()
-  const [lang, setLang] = useState<string>('English')
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
   const [isPending, startTransition] = useTransition()
+  const [valueFromCookie] = useCookie('NEXT_LOCALE', '')
 
-  const onChange = (value: string) => {
-    const newUrl = pathname.replace(/^\/(\w{2})\/(.*)$/, `/${value}/$2`)
-    console.log(newUrl)
-
+  const handleLanguageChange = (value: string) => {
+    const newUrl = `/${value}${pathname.substring(3)}`
     startTransition(() => {
-      router.replace(`${newUrl}`)
+      router.replace(newUrl)
     })
   }
 
   return (
     <Select
       disabled={isPending}
-      onValueChange={onChange}
+      onValueChange={handleLanguageChange}
       onOpenChange={() => setIsOpen(!isOpen)}
     >
       <SelectTrigger className={styles.trigger}>
-        <SelectValue placeholder={lang} />
+        <SelectValue
+          placeholder={valueFromCookie === 'en' ? 'English' : 'Українська'}
+        />
       </SelectTrigger>
-      <SelectContent className={styles.content}>
-        <SelectGroup className={styles.group}>
-          {languagesData.map((el, index) => (
-            <SelectItem
-              className={styles.item}
-              onClick={() => setLang(el.label)}
-              value={el.value}
-              key={index}
-            >
-              <p className="text-base">{el.label}</p>
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
+      {isOpen && (
+        <SelectContent className={styles.content}>
+          <SelectGroup className={styles.group}>
+            {languagesData.map((language: Language, index: number) => (
+              <SelectItem
+                className={styles.item}
+                onClick={() => handleLanguageChange(language.label)}
+                value={language.value}
+                key={index}
+              >
+                <p className="text-base">{language.label}</p>
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      )}
     </Select>
   )
 }
