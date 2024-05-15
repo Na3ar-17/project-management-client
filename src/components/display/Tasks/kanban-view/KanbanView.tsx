@@ -5,7 +5,7 @@ import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { NextPage } from 'next'
 import KanBanColumn from './kanban-column/KanBanColumn'
 import styles from './KanbanView.module.scss'
-import { ITaskCard, IViewTypesPros } from '@/types/tasks.types'
+import { IViewTypesPros } from '@/types/tasks.types'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
 

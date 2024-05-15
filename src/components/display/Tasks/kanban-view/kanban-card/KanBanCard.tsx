@@ -9,6 +9,7 @@ import cn from 'clsx'
 import { NextPage } from 'next'
 import Header from './Header/Header'
 import styles from './KanBanCard.module.scss'
+import TasksLoader from '@/components/ui/loaders/tasks-loader/TasksLoader'
 
 const KanBanCard: NextPage<IListAndTaskCardProps> = ({
   data,
