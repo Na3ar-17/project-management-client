@@ -12,6 +12,7 @@ import { X } from 'lucide-react'
 import './DatePicker.scss'
 import DateBadge from '../badges/date-badge/DateBadge'
 import { isToday, isMatch } from 'date-fns'
+import { cn } from '@/lib/utils'
 
 dayjs.extend(LocalizedFormat)
 
@@ -65,22 +66,28 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
         )}
       </button>
 
-      {isShow && (
-        <div className={'absolute  p-2.5  bg-border z-10 shadow rounded-lg'}>
-          <DayPicker
-            disabled={disabled}
-            fromYear={2024}
-            toYear={2050}
-            initialFocus={isShow}
-            mode="single"
-            defaultMonth={selected}
-            selected={selected}
-            onSelect={handleDaySelect}
-            weekStartsOn={1}
-            formatters={{ formatCaption }}
-          />
-        </div>
-      )}
+      <div
+        className={cn(
+          'absolute  p-2.5  bg-border transition-all  opacity-0 z-10 shadow rounded-lg',
+          isShow && 'opacity-100'
+        )}
+        style={{
+          visibility: isShow ? 'visible' : 'hidden',
+        }}
+      >
+        <DayPicker
+          disabled={disabled}
+          fromYear={2024}
+          toYear={2050}
+          initialFocus={isShow}
+          mode="single"
+          defaultMonth={selected}
+          selected={selected}
+          onSelect={handleDaySelect}
+          weekStartsOn={1}
+          formatters={{ formatCaption }}
+        />
+      </div>
     </div>
   )
 }

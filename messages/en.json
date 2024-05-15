@@ -14,6 +14,103 @@
         "settings": "Settings"
       }
     },
+    "rightSide": {
+      "accountSettingsContentData": [
+        {
+          "title": "Account Security",
+          "content": [
+            {
+              "subTitle": "Email",
+              "text": "gavruluknazar0210@gmail.com",
+              "buttonText": "Change Email"
+            },
+            {
+              "subTitle": "2-step verification",
+              "text": "Add an additional layer of security to your account during login."
+            }
+          ]
+        },
+        {
+          "title": "Support",
+          "content": [
+            {
+              "subTitle": "Log out",
+              "text": "Log out of this device",
+              "buttonText": "Log out"
+            },
+            {
+              "subTitle": "Delete my account",
+              "text": "Permanently delete the account and remove access from all workspaces."
+            }
+          ]
+        }
+      ],
+      "mySettingsContentData": [
+        {
+          "title": "Date & Time",
+          "content": [
+            {
+              "subTitle": "Set timezone automatically using your location",
+              "text": "Reminders, notifications, and emails are delivered based on your time zone."
+            },
+            {
+              "subTitle": "Time Zone",
+              "text": "Current time zone setting."
+            }
+          ]
+        },
+        {
+          "title": "Privacy",
+          "content": [
+            {
+              "subTitle": "Cookie settings",
+              "text": "Customize cookies. See {link to cookie notice} for details."
+            },
+            {
+              "subTitle": "Profile discoverability",
+              "text": "Users with your email can see your name and profile picture when inviting you to a new workspace."
+            }
+          ]
+        }
+      ],
+      "notificationsContentData": [
+        {
+          "title": "Email notifications",
+          "content": [
+            {
+              "subTitle": "Activity in your workspace",
+              "text": "Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes."
+            },
+            {
+              "subTitle": "Always send email notifications",
+              "text": "Receive emails about activity in your workspace, even when you're active on the app."
+            }
+          ]
+        }
+      ],
+      "languageContentData": [
+        {
+          "title": "Language & Region",
+          "content": [
+            {
+              "subTitle": "Language",
+              "text": "Change the language used in the user interface."
+            }
+          ]
+        }
+      ],
+      "workspaceSettingsData": [
+        {
+          "title": "Workspace settings",
+          "content": [
+            {
+              "subTitle": "Theme",
+              "text": "Customize how Proquill looks on your device."
+            }
+          ]
+        }
+      ]
+    },
 
     "Language": {
       "locale": "English",

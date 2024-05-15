@@ -1,4 +1,3 @@
-import { COLORS } from '@/constants/colors.constans'
 import {
   EnumSettingsContentActions,
   EnumSettingsTabsValue,
@@ -13,7 +12,6 @@ import {
   Globe,
   SlidersHorizontal,
   Settings,
-  ChevronRight,
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -58,150 +56,187 @@ export const generateWorkspaceTabsTriggerData = () => {
   return { workspaceTabsTriggerData }
 }
 
-export const accountSettingsContentData: ISettingsContentData[] = [
-  {
-    title: 'Account security',
-    content: [
-      {
-        subTitle: 'Email',
-        text: 'gavruluknazar0210@gmail.com',
-        actions: EnumSettingsContentActions.commingSoon,
-        buttonText: 'Change email',
-        disabled: true,
-      },
-      {
-        subTitle: '2-step verification',
-        text: 'Add an additional layer of security to your account during login.',
-        actions: EnumSettingsContentActions.commingSoon,
-        disabled: true,
-      },
-    ],
-  },
-  {
-    title: 'Support',
-    content: [
-      {
-        subTitle: 'Log out',
-        text: 'Log out of this device',
-        actions: EnumSettingsContentActions.button,
-        buttonText: 'Log out',
-        buttonType: 'logout',
-      },
-      {
-        subTitle: 'Delete my account',
-        text: 'Permanently delete the account and remove access from all workspaces.',
-        actions: EnumSettingsContentActions.chevron,
-        subTitleStyle: `text-red-text`,
-        chevronAction() {},
-      },
-    ],
-  },
-]
+export const generateAccountSettingsContentData = () => {
+  const t = useTranslations('Settings.rightSide.accountSettingsContentData')
+  const accountSettingsContentData: ISettingsContentData[] = [
+    {
+      title: `${t('1.title')}`,
+      content: [
+        {
+          subTitle: `${t('1.content.1.subTitle')}`,
+          text: 'gavruluknazar0210@gmail.com',
+          actions: EnumSettingsContentActions.commingSoon,
+          buttonText: 'Change email',
+          disabled: true,
+        },
+        {
+          subTitle: `${t('1.content.2.subTitle')}`,
+          text: `${t('1.content.2.text')}`,
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+      ],
+    },
+    {
+      title: `${t('2.title')}`,
+      content: [
+        {
+          subTitle: `${t('2.content.1.subTitle')}`,
+          text: `${t('2.content.1.text')}`,
+          actions: EnumSettingsContentActions.button,
+          buttonText: `${t('2.content.1.buttonText')}`,
+          buttonType: 'logout',
+        },
+        {
+          subTitle: `${t('2.content.2.subTitle')}`,
+          text: `${t('2.content.2.text')}`,
+          actions: EnumSettingsContentActions.chevron,
+          subTitleStyle: `text-red-text`,
+          chevronAction() {},
+        },
+      ],
+    },
+  ]
 
-export const mySettingsContentData: ISettingsContentData[] = [
-  {
-    title: 'Date & time',
-    content: [
-      {
-        subTitle: 'Set timezone automatically using your location',
-        text: 'Reminders, notifications and emails are delivered based on your time zone.',
-        actions: EnumSettingsContentActions.commingSoon,
-        disabled: true,
-      },
-      {
-        subTitle: 'Time Zone',
-        text: 'Current time zone setting.',
-        actions: EnumSettingsContentActions.commingSoon,
-        disabled: true,
-      },
-    ],
-  },
-  {
-    title: 'Privacy',
-    content: [
-      {
-        subTitle: 'Cookie settings',
-        text: 'Customize cookies. See {link to cookie notice} for details.',
-        actions: EnumSettingsContentActions.commingSoon,
-        disabled: true,
-      },
-      {
-        subTitle: 'Profile discoverability',
-        text: 'Users with your email can see your name and profile picture when inviting you to a new workspace.',
-        actions: EnumSettingsContentActions.commingSoon,
-        disabled: true,
-      },
-    ],
-  },
-]
+  return { accountSettingsContentData }
+}
 
-export const notificationsContentData: ISettingsContentData[] = [
-  {
-    title: 'Email notifications',
-    content: [
-      {
-        subTitle: 'Activity in your workspace',
-        text: 'Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes',
-        actions: EnumSettingsContentActions.switch,
-      },
-      {
-        subTitle: 'Always send email notifications',
-        text: "Receive emails about activity in your workspace, even when you're active on the app",
-        actions: EnumSettingsContentActions.switch,
-      },
-    ],
-  },
-]
+export const generateMySettingsContentData = () => {
+  const mySettingsContentData: ISettingsContentData[] = [
+    {
+      title: 'Date & time',
+      content: [
+        {
+          subTitle: 'Set timezone automatically using your location',
+          text: 'Reminders, notifications and emails are delivered based on your time zone.',
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+        {
+          subTitle: 'Time Zone',
+          text: 'Current time zone setting.',
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+      ],
+    },
+    {
+      title: 'Privacy',
+      content: [
+        {
+          subTitle: 'Cookie settings',
+          text: 'Customize cookies. See {link to cookie notice} for details.',
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+        {
+          subTitle: 'Profile discoverability',
+          text: 'Users with your email can see your name and profile picture when inviting you to a new workspace.',
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+      ],
+    },
+  ]
 
-export const languageContentData: ISettingsContentData[] = [
-  {
-    title: 'Language & region',
-    content: [
-      {
-        subTitle: 'Language',
-        text: 'Change the language used in the user interface.',
-        actions: EnumSettingsContentActions.language,
-      },
-    ],
-  },
-]
+  return { mySettingsContentData }
+}
 
-export const workspaceSettingsData: ISettingsContentData[] = [
-  {
-    title: 'Workspace settings',
-    content: [
-      {
-        subTitle: 'Theme',
-        text: 'Customize how Proquill looks on your device.',
-        actions: EnumSettingsContentActions.commingSoon,
-        disabled: true,
-      },
-    ],
-  },
-]
+export const generateNotificationsContentData = () => {
+  const notificationsContentData: ISettingsContentData[] = [
+    {
+      title: 'Email notifications',
+      content: [
+        {
+          subTitle: 'Activity in your workspace',
+          text: 'Receive emails when you get comments, mentions, page invites, reminders, access requests, and property changes',
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+        {
+          subTitle: 'Always send email notifications',
+          text: "Receive emails about activity in your workspace, even when you're active on the app",
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+      ],
+    },
+  ]
 
-export const tabsContentData: ITabContentData[] = [
-  {
-    value: EnumSettingsTabsValue.myAccount,
-    childrens: accountSettingsContentData,
-  },
-  {
-    value: EnumSettingsTabsValue.mySettings,
-    childrens: mySettingsContentData,
-  },
-  {
-    value: EnumSettingsTabsValue.myNotifications,
-    childrens: notificationsContentData,
-  },
-  {
-    value: EnumSettingsTabsValue.language,
-    childrens: languageContentData,
-  },
-  {
-    value: EnumSettingsTabsValue.settings,
-    childrens: workspaceSettingsData,
-  },
-]
+  return { notificationsContentData }
+}
+
+export const generateLanguageContentData = () => {
+  const languageContentData: ISettingsContentData[] = [
+    {
+      title: 'Language & region',
+      content: [
+        {
+          subTitle: 'Language',
+          text: 'Change the language used in the user interface.',
+          actions: EnumSettingsContentActions.language,
+        },
+      ],
+    },
+  ]
+
+  return { languageContentData }
+}
+
+export const generateWorkspaceSettingsData = () => {
+  const workspaceSettingsData: ISettingsContentData[] = [
+    {
+      title: 'Workspace settings',
+      content: [
+        {
+          subTitle: 'Theme',
+          text: 'Customize how Proquill looks on your device.',
+          actions: EnumSettingsContentActions.commingSoon,
+          disabled: true,
+        },
+      ],
+    },
+  ]
+  return { workspaceSettingsData }
+}
+
+export const generateTabsContentData = ({
+  myAccount,
+  mySettings,
+  myNotifications,
+  language,
+  settings,
+}: {
+  myAccount: ISettingsContentData[]
+  mySettings: ISettingsContentData[]
+  myNotifications: ISettingsContentData[]
+  language: ISettingsContentData[]
+  settings: ISettingsContentData[]
+}) => {
+  const tabsContentData: ITabContentData[] = [
+    {
+      value: EnumSettingsTabsValue.myAccount,
+      childrens: myAccount,
+    },
+    {
+      value: EnumSettingsTabsValue.mySettings,
+      childrens: mySettings,
+    },
+    {
+      value: EnumSettingsTabsValue.myNotifications,
+      childrens: myNotifications,
+    },
+    {
+      value: EnumSettingsTabsValue.language,
+      childrens: language,
+    },
+    {
+      value: EnumSettingsTabsValue.settings,
+      childrens: settings,
+    },
+  ]
+  return { tabsContentData }
+}
 
 export const timeZoneData: { value: string }[] = [
   {

@@ -2,7 +2,7 @@ import { LucideProps } from 'lucide-react'
 import { ForwardRefExoticComponent } from 'react'
 
 export interface ISettingsContentData {
-  title: string
+  title?: string
   content: IContent[]
 }
 

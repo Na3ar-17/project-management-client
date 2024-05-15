@@ -27,7 +27,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
     <div className={styles.body}>
       <div className={styles.info}>
         <div className={styles.block}>
-          <p className={styles.label}>Label</p>
+          <p className={styles.label}>Priority</p>
           <div className={styles.group}>
             <Controller
               name="priority"

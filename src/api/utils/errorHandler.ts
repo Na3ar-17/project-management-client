@@ -10,7 +10,11 @@ export const errorHandler = (error: any) => {
   if (isAxiosError(error)) {
     if (error.response) {
       const res = error.response.data as IAPIError
-      toast.error(res.message)
+      if (error.response.status === 404) {
+        toast.error('Something went wrong')
+      } else {
+        toast.error(res.message)
+      }
     } else {
       toast.error('Something went wrong')
     }

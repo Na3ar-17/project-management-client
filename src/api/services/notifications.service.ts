@@ -1,8 +1,4 @@
-import {
-  TypeCreateNotificationDto,
-  INotifications,
-  TypeRejectInvitation,
-} from '@/types/notifications.types'
+import { INotifications } from '@/types/notifications.types'
 import { axiosWithAuth } from '../interceptors'
 import { errorHandler } from '../utils/errorHandler'
 

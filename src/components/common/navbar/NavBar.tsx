@@ -23,8 +23,6 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
     notificationsData,
   } = useGetAll()
 
-  //TODO handle isFetching, isSuccess
-
   if (isFetching) {
     return <NavBarSkeleton isHidden={isHidden} />
   }
@@ -44,15 +42,18 @@ const NavBar: NextPage<IProps> = ({ isHidden }) => {
       <div className={styles.user}>
         <DropDownNotificationMenu data={notificationsData}>
           <Bell className={cn(styles.icon)} />
-          {notificationsData.length !== 0 && (
-            <div className={styles['notifications-count']}>
-              <p className={styles.indicator}>
-                {notificationsData.filter((el) => el.hasSeen == false).length}
-              </p>
-            </div>
+          {!isNotificationsDataSuccess || !notificationsData ? (
+            <div>error</div>
+          ) : (
+            notificationsData.length !== 0 && (
+              <div className={styles['notifications-count']}>
+                <p className={styles.indicator}>
+                  {notificationsData.filter((el) => el.hasSeen == false).length}
+                </p>
+              </div>
+            )
           )}
         </DropDownNotificationMenu>
-        <MessageSquareText className={styles.icon} />
         <div className={styles.avatar}>
           <AvatarComponent fullName={data?.fullName} imgLink={data?.imgLink} />
           <p>{data?.fullName.split(' ')[0]}</p>

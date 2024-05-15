@@ -31,7 +31,10 @@
   }
 
   .description {
-    @apply text-menu-text text-[15px];
+    @apply text-menu-text inline-block text-[15px];
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &:hover {

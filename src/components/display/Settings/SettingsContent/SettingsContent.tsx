@@ -2,9 +2,14 @@
 import FullUserAvatar from '@/components/ui/avatar/FullUserAvatar/FullUserAvatar'
 import { Tabs, TabsList } from '@/components/ui/shadcn/ui/tabs'
 import {
-  tabsContentData,
   generateTabsTriggerData,
   generateWorkspaceTabsTriggerData,
+  generateTabsContentData,
+  generateAccountSettingsContentData,
+  generateMySettingsContentData,
+  generateNotificationsContentData,
+  generateLanguageContentData,
+  generateWorkspaceSettingsData,
 } from '@/data/settings.data'
 import { NextPage } from 'next'
 import styles from './SettingsContent.module.scss'
@@ -14,14 +19,17 @@ import { useState } from 'react'
 import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
 import { useTranslations } from 'next-intl'
+import { useTabsContent } from '../hooks/useTabsContent'
 
 interface IProps {}
 
 const SettingsContent: NextPage<IProps> = ({}) => {
   const [active, setActive] = useState<string>('my-account')
   const { data, isFetching, isSuccess } = useGetProfile()
-  const { tabsTriggerData } = generateTabsTriggerData()
-  const { workspaceTabsTriggerData } = generateWorkspaceTabsTriggerData()
+
+  const { tabsContentData, tabsTriggerData, workspaceTabsTriggerData } =
+    useTabsContent()
+
   const t = useTranslations('Settings.LeftSide')
 
   //TODO Create loader skeleton and handle if !isSuccess

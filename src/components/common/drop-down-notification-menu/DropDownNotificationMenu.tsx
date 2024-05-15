@@ -9,7 +9,6 @@ import Notification from './notification/Notification'
 import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
 import { INotifications } from '@/types/notifications.types'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
-import Pulse from '@/components/ui/loaders/pulse/Pulse'
 interface IProps {
   children: React.ReactNode
   data: INotifications[]

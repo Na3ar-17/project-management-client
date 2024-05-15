@@ -11,6 +11,7 @@ export const useGetAll = () => {
   } = useQuery({
     queryKey: [notificationsKeys.GET_ALL],
     queryFn: () => notificationsService.getAll(),
+    retry: 3,
     select: (data) => {
       return data.map((el) => ({
         ...el,
