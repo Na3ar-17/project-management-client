@@ -8,8 +8,8 @@ import {
 import Notification from './notification/Notification'
 import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
 import { INotifications } from '@/types/notifications.types'
-import { useSeeNotifications } from '@/api/hooks/notifications/useSeeNotifications'
-import { useEffect } from 'react'
+import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
+import Pulse from '@/components/ui/loaders/pulse/Pulse'
 interface IProps {
   children: React.ReactNode
   data: INotifications[]
@@ -28,8 +28,11 @@ const DropDownNotificationMenu: NextPage<IProps> = ({ children, data }) => {
           <div className={styles.content}>
             <ScrollArea className="h-[280px]">
               {data.length <= 0 ? (
-                // TODO handle empty array
-                <div>Empty</div>
+                <EmptyMessage
+                  subTitle=""
+                  title="You don't have any notifications yet"
+                  titleStyles="text-xl"
+                />
               ) : (
                 data.map((el, index) => <Notification data={el} key={index} />)
               )}
