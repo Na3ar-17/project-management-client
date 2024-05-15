@@ -9,6 +9,8 @@ import { TypeViewType } from '@/types/tasks.types'
 import ListView from './list-view/ListView'
 import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
 import { useTasksEnd } from './hooks/useTasksEnd'
+import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSkeleton'
+import TasksLoader from '@/components/ui/loaders/tasks-loader/TasksLoader'
 export interface IProps {
   projectId: string
 }
@@ -27,6 +29,10 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
     setTasksState,
     tasks: tasksState,
   })
+
+  if (isFetching) {
+    return <TasksLoader />
+  }
 
   if (!tasksData || !tasksState) {
     return <div>Error</div>

@@ -9,13 +9,7 @@ import { ITaskCard, IViewTypesPros } from '@/types/tasks.types'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
 
-const KanbanView: NextPage<IViewTypesPros> = ({
-  projectId,
-  onDragEnd,
-  tasksState,
-}) => {
-  //TODO create loader and error message
-
+const KanbanView: NextPage<IViewTypesPros> = ({ onDragEnd, tasksState }) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>

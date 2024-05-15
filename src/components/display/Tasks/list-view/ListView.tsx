@@ -7,11 +7,7 @@ import ListColumn from './list-column/ListColumn'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
 
-const ListView: NextPage<IViewTypesPros> = ({
-  onDragEnd,
-  projectId,
-  tasksState,
-}) => {
+const ListView: NextPage<IViewTypesPros> = ({ onDragEnd, tasksState }) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>
@@ -22,7 +18,6 @@ const ListView: NextPage<IViewTypesPros> = ({
           <p className={styles.title}>Priority</p>
         </div>
         {tasksState.length <= 0 ? (
-          // Create cool message about empty tasks
           <EmptyMessage
             title="You don't have any tasks"
             subTitle=""
