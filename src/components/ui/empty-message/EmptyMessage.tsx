@@ -12,8 +12,8 @@ interface IProps {
 
 const EmptyMessage: NextPage<IProps> = ({
   Loader,
-  title = "You don't have any projects yet.",
-  subTitle = 'Start to create one!',
+  title = '',
+  subTitle = '',
   className,
   subTitleStyles,
   titleStyles,

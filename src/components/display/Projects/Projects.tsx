@@ -10,10 +10,12 @@ import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSk
 import Image from 'next/image'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
+import { useTranslations } from 'next-intl'
 
 const Projects: NextPage = () => {
   const { projects, isFetching, isSuccess } = useGetProjects()
   const { createProjectMutation } = useCreateProject()
+  const t = useTranslations('Projects')
 
   //TODO create loader
 
@@ -27,11 +29,11 @@ const Projects: NextPage = () => {
 
   return (
     <main>
-      <Heading text={'My projects'} />
+      <Heading text={t('heading')} />
       <div className="flex justify-end">
         <ButtonCreate
           onClick={createProjectMutation}
-          text="Create new Project"
+          text={t('button')}
           className="mt-3"
         />
       </div>
@@ -43,7 +45,7 @@ const Projects: NextPage = () => {
           ))}
         </div>
       ) : (
-        <EmptyMessage Loader={Spinner} />
+        <EmptyMessage Loader={Spinner} title={t('empty-message')} />
       )}
     </main>
   )

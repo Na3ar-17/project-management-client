@@ -11,6 +11,7 @@ import {
   LayoutGrid,
   ListTodo,
 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export const generateProjectPagesData = ({
   slug,
@@ -19,15 +20,16 @@ export const generateProjectPagesData = ({
   slug: string
   id: string
 }) => {
+  const t = useTranslations('Sidebar')
   const { DASHBOARD_PAGES } = useDashboard()
   const projectPagesData: ISideBarElement[] = [
     {
-      text: 'Dashboard',
+      text: `${t('project.dashboard')}`,
       href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/dashboard`,
       Icon: LayoutDashboard,
     },
     {
-      text: 'Tasks',
+      text: `${t('project.tasks')}`,
       Icon: ListTodo,
       href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/tasks`,
     },
@@ -37,20 +39,21 @@ export const generateProjectPagesData = ({
 
 export const generateSideBarElementData = () => {
   const { DASHBOARD_PAGES } = useDashboard()
+  const t = useTranslations('Sidebar')
 
   const sideBarElementData: ISideBarElement[] = [
     {
-      text: 'Home',
+      text: `${t('1')}`,
       Icon: Home,
       href: DASHBOARD_PAGES.HOME,
     },
     {
-      text: 'Projects',
+      text: `${t('2')}`,
       Icon: LayoutGrid,
       href: DASHBOARD_PAGES.PROJECTS,
     },
     {
-      text: 'Settings',
+      text: `${t('3')}`,
       Icon: Settings,
       href: DASHBOARD_PAGES.SETTINGS,
     },

@@ -37,7 +37,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   if (!isSuccess || !projects) {
     return <div>Error</div>
   }
-  return text === 'Projects' ? (
+  return text === 'Projects' || text === 'Проекти' ? (
     <div className={cn(styles.element, isOpen ? styles.open : '')}>
       <div className={styles.title}>
         <span>
@@ -78,7 +78,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
         <span>
           <Link href={href || ''}>
             {Icon && <Icon className={styles.icon} />}
-            {textAbstract(text, 10)}
+            {textAbstract(text, 15)}
           </Link>
         </span>
         {childrens && (

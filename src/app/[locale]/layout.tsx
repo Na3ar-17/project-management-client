@@ -29,7 +29,7 @@ const RootLayout = ({ children, params: { locale } }: IProps) => {
       <body suppressHydrationWarning={true} className={figtree.className}>
         <Suspense>
           <Providers>
-            <NextIntlClientProvider messages={messages}>
+            <NextIntlClientProvider locale={locale} messages={messages}>
               {children}
             </NextIntlClientProvider>
           </Providers>

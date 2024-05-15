@@ -9,11 +9,9 @@ interface IProps {
 }
 
 const page: NextPage<IProps> = ({ params }) => {
-  return (
-    <main>
-      <Dashboard params={params} />
-    </main>
-  )
+  console.log(1)
+
+  return <Dashboard params={params} />
 }
 
 export default page

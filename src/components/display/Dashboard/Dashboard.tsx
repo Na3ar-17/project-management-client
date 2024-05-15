@@ -5,6 +5,7 @@ import Heading from '@/components/ui/heading/Heading'
 import { generateBlockStatisticsData } from '@/data/dashboard.data'
 import StatisticsBlock from './statistics-block/StatisticsBlock'
 import { useGetStatistics } from '@/api/hooks/statistics/useGetStatistics'
+import { useTranslations } from 'next-intl'
 interface IProps {
   params: {
     slug: string
@@ -15,23 +16,26 @@ interface IProps {
 const Dashboard: NextPage<IProps> = ({ params }) => {
   const { id, slug } = params
   const { isFetching, isSuccess, statisticsData } = useGetStatistics(id)
-
+  const t = useTranslations('Projects.Statistics')
   if (!isSuccess || !statisticsData) {
     // TODO handle this
     return <div>Errro</div>
   }
 
-  const data = generateBlockStatisticsData({
+  const { blockStatisticsData } = generateBlockStatisticsData({
     stastistics: statisticsData,
+    t1: t('tasks-completed'),
+    t2: t('tasks-created'),
+    t3: t('tasks-deleted'),
   })
 
   return (
     <div className={styles.container}>
-      <Heading text="Statistics" styles="py-0 pb-2" />
+      <Heading text={t('title')} styles="py-0 pb-2" />
 
       <div className={styles.statistics}>
         <div className={styles.row}>
-          {data.map((block, index) => (
+          {blockStatisticsData.map((block, index) => (
             <StatisticsBlock
               key={index}
               Icon={block.Icon}

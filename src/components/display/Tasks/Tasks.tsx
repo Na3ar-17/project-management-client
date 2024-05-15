@@ -10,6 +10,7 @@ import ListView from './list-view/ListView'
 import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
 import { useTasksEnd } from './hooks/useTasksEnd'
 import TasksLoader from '@/components/ui/loaders/tasks-loader/TasksLoader'
+import { useTranslations } from 'next-intl'
 export interface IProps {
   projectId: string
 }
@@ -22,6 +23,8 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
 
   const { tasksData, isFetching, isSuccess, setTasksState, tasksState } =
     useGetTasks({ projectId })
+
+  const t = useTranslations('Projects.Tasks')
 
   const { onDragEnd } = useTasksEnd({
     projectId,
@@ -39,7 +42,7 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
 
   return (
     <main className={styles.container}>
-      <Heading text="Tasks" />
+      <Heading text={t('title')} />
       <Panel setType={setViewType} type={viewType} projectId={projectId} />
       {viewType === 'board' && (
         <KanbanView

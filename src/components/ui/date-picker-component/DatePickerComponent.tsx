@@ -13,6 +13,7 @@ import './DatePicker.scss'
 import DateBadge from '../badges/date-badge/DateBadge'
 import { isToday, isMatch } from 'date-fns'
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 dayjs.extend(LocalizedFormat)
 
@@ -35,6 +36,7 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
 }) => {
   const [selected, setSelected] = useState<Date>()
   const { isShow, setIsShow, ref } = useOutside(false)
+  const t = useTranslations('DatePicker')
 
   const handleDaySelect: SelectSingleEventHandler = (date) => {
     const ISOdate = date?.toISOString()
@@ -58,9 +60,7 @@ const DatePickerComponent: NextPage<IDatePicker> = ({
             date={date}
             isSingle={isSingle}
             deadLine={
-              deadLine == ''
-                ? 'Select dead line'
-                : dayjs(deadLine).format('DD.MM.YYYY')
+              deadLine == '' ? t('1') : dayjs(deadLine).format('DD.MM.YYYY')
             }
           />
         )}
