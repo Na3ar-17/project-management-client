@@ -2,7 +2,7 @@
 import { NextPage } from 'next'
 import styles from './SideBar.module.scss'
 import { TypeIsHidden } from '@/types/sideBar.type'
-import { gererateSideBarElementData } from '@/data/sidebar-element.data'
+import { generateSideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
 import cn from 'clsx'
 import SideBarSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarSkeleton'
@@ -15,10 +15,14 @@ interface IProps {
 
 const SideBar: NextPage<IProps> = ({ isHidden, isLoading }) => {
   const { projects, isFetching, isSuccess } = useGetProjects()
-  const { sideBarElementData } = gererateSideBarElementData()
+  const { sideBarElementData } = generateSideBarElementData()
 
   if (isLoading || isFetching) {
     return <SideBarSkeleton />
+  }
+
+  if (!isSuccess || !projects) {
+    return <div>Error</div>
   }
   return (
     <aside className={cn(styles.aside, isHidden === 'true' && styles.hidden)}>
@@ -34,7 +38,7 @@ const SideBar: NextPage<IProps> = ({ isHidden, isLoading }) => {
               childrens={item.childrens}
               isFetching={isFetching}
               isSuccess={isSuccess}
-              projects={projects || []}
+              projects={projects}
             />
           ))}
         </div>

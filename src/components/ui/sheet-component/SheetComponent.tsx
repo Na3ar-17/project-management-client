@@ -5,16 +5,22 @@ import { useSheet } from '@/zustand/useSheet'
 import Content from './Content/Content'
 
 import { ITaskCard } from '@/types/tasks.types'
+import { Dispatch, SetStateAction } from 'react'
 interface IProps {
   taskData: ITaskCard
+  setTasksState: Dispatch<SetStateAction<ITaskCard[] | undefined>>
 }
 
-const SheetComponent: NextPage<IProps> = ({ taskData }) => {
+const SheetComponent: NextPage<IProps> = ({ taskData, setTasksState }) => {
   const { isOpen, onClose, expectedTaskId } = useSheet()
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose} key={expectedTaskId}>
-      <Content data={taskData} expectedTaskId={expectedTaskId} />
+      <Content
+        data={taskData}
+        setTasksState={setTasksState}
+        expectedTaskId={expectedTaskId}
+      />
     </Sheet>
   )
 }

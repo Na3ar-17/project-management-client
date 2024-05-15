@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import type { CSSProperties, Dispatch, SetStateAction } from 'react'
 import { IBase } from './base.type'
 import { IProjectResponse } from './project.types'
 import {
@@ -17,17 +17,20 @@ export interface IViewTypesPros {
   projectId: string
   onDragEnd: (result: DropResult) => void
   tasksState: ITaskCard[]
+  setTasksState: Dispatch<SetStateAction<ITaskCard[] | undefined>>
 }
 
 export interface IListAndKanbanProps {
   category: ICategory
   tasks: ITaskCard[]
+  setTasksState: Dispatch<SetStateAction<ITaskCard[] | undefined>>
 }
 
 export interface IListAndTaskCardProps {
   data: ITaskCard
   provided: DraggableProvided
   snapshot: DraggableStateSnapshot
+  setTasksState: Dispatch<SetStateAction<ITaskCard[] | undefined>>
 }
 
 export interface ISubTask extends IBase {

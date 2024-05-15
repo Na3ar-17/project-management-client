@@ -1,21 +1,11 @@
 import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
-import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
 import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
-import {
-  EnumTaskStatus,
-  IListAndTaskCardProps,
-  ITaskCard,
-} from '@/types/tasks.types'
+import { EnumTaskStatus, IListAndTaskCardProps } from '@/types/tasks.types'
 import { textAbstract } from '@/utils/textAbstract'
-import type {
-  DraggableProvided,
-  DraggableStateSnapshot,
-} from '@hello-pangea/dnd'
 import cn from 'clsx'
-import { MessageSquareText } from 'lucide-react'
 import { NextPage } from 'next'
 import Header from './Header/Header'
 import styles from './KanBanCard.module.scss'
@@ -24,6 +14,7 @@ const KanBanCard: NextPage<IListAndTaskCardProps> = ({
   data,
   provided,
   snapshot: { isDragging },
+  setTasksState,
 }) => {
   const {
     id,
@@ -61,7 +52,7 @@ const KanBanCard: NextPage<IListAndTaskCardProps> = ({
         <p className={styles.description}>{textAbstract(description, 50)}</p>
         <ProgressComponent progressNumber={progressPercent} />
       </div>
-      <SheetComponent taskData={data} />
+      <SheetComponent taskData={data} setTasksState={setTasksState} />
     </>
   )
 }

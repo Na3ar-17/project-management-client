@@ -30,9 +30,9 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
     tasks: tasksState,
   })
 
-  if (isFetching) {
-    return <TasksLoader />
-  }
+  // if (isFetching) {
+  //   return <TasksLoader />
+  // }
 
   if (!tasksData || !tasksState) {
     return <div>Error</div>
@@ -46,6 +46,7 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
           tasksState={tasksState}
           onDragEnd={onDragEnd}
           projectId={projectId}
+          setTasksState={setTasksState}
         />
       )}
       {viewType === 'list' && (
@@ -53,6 +54,7 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
           tasksState={tasksState}
           onDragEnd={onDragEnd}
           projectId={projectId}
+          setTasksState={setTasksState}
         />
       )}
     </main>

@@ -9,7 +9,11 @@ import { ITaskCard, IViewTypesPros } from '@/types/tasks.types'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
 
-const KanbanView: NextPage<IViewTypesPros> = ({ onDragEnd, tasksState }) => {
+const KanbanView: NextPage<IViewTypesPros> = ({
+  onDragEnd,
+  tasksState,
+  setTasksState,
+}) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>
@@ -22,7 +26,12 @@ const KanbanView: NextPage<IViewTypesPros> = ({ onDragEnd, tasksState }) => {
           />
         ) : (
           tasksCategoryData.map((category, index) => (
-            <KanBanColumn key={index} category={category} tasks={tasksState} />
+            <KanBanColumn
+              setTasksState={setTasksState}
+              key={index}
+              category={category}
+              tasks={tasksState}
+            />
           ))
         )}
       </div>

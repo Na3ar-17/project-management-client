@@ -15,13 +15,15 @@ import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
 import Header from './Header/Header'
 import Body from './Body/Body'
+import { Dispatch, SetStateAction } from 'react'
 
 interface IProps {
   data: ITaskCard
   expectedTaskId: string
+  setTasksState: Dispatch<SetStateAction<ITaskCard[] | undefined>>
 }
 
-const Content: NextPage<IProps> = ({ data, expectedTaskId }) => {
+const Content: NextPage<IProps> = ({ data, expectedTaskId, setTasksState }) => {
   const { control, register, watch } = useForm<TypeUpdateTaskCard>({
     mode: 'onChange',
     defaultValues: {
@@ -33,7 +35,12 @@ const Content: NextPage<IProps> = ({ data, expectedTaskId }) => {
     },
   })
 
-  useUpdateTaskDebounce({ watch, projectId: data.projectId, taskId: data.id })
+  useUpdateTaskDebounce({
+    watch,
+    projectId: data.projectId,
+    taskId: data.id,
+    setTasksState,
+  })
 
   return (
     data.id === expectedTaskId && (

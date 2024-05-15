@@ -6,7 +6,11 @@ import { Columns2, List } from 'lucide-react'
 import { filterTasks } from '../../utils/filter-tasks'
 import ListCard from '../list-card/ListCard'
 
-const ListColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
+const ListColumn: NextPage<IListAndKanbanProps> = ({
+  category,
+  tasks,
+  setTasksState,
+}) => {
   return (
     <div>
       <Droppable droppableId={category.value}>
@@ -35,6 +39,7 @@ const ListColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
                           {...provided.draggableProps}
                         >
                           <ListCard
+                            setTasksState={setTasksState}
                             data={task}
                             provided={provided}
                             snapshot={snapshot}

@@ -1,22 +1,14 @@
 import { NextPage } from 'next'
 import styles from './ListCard.module.scss'
-import {
-  EnumTaskStatus,
-  IListAndTaskCardProps,
-  TypeUpdateTaskCard,
-} from '@/types/tasks.types'
-import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
-import TaskPriorityBadge from '@/components/ui/badges/task-priority-badge/TaskPriorityBadge'
+import { IListAndTaskCardProps, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { SquareArrowOutUpRight, Trash2 } from 'lucide-react'
 import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
 import DragIcon from '@/components/ui/icons/DragIcon'
-import { useDialog } from '@/zustand/useDialog'
 import { Controller, useForm } from 'react-hook-form'
 import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import { cn } from '@/lib/utils'
 import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
-import { useState } from 'react'
 import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
 import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
 import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
@@ -26,6 +18,7 @@ import ProgressComponent from '@/components/ui/progress/ProgressComponent'
 const ListCard: NextPage<IListAndTaskCardProps> = ({
   data,
   provided,
+  setTasksState,
   snapshot: { isDragging },
 }) => {
   const {
@@ -51,7 +44,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
     mode: 'onChange',
   })
   const { deleteTaskMutation } = useDeleteTask()
-  useUpdateTaskDebounce({ projectId, taskId: id, watch })
+  useUpdateTaskDebounce({ projectId, taskId: id, watch, setTasksState })
   const { onOpen, setExpectedTaskId } = useSheet()
 
   return (
@@ -136,7 +129,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
           className={styles.delete}
         />
       </div>
-      <SheetComponent taskData={data} />
+      <SheetComponent taskData={data} setTasksState={setTasksState} />
     </div>
   )
 }

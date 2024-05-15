@@ -7,7 +7,11 @@ import ListColumn from './list-column/ListColumn'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
 
-const ListView: NextPage<IViewTypesPros> = ({ onDragEnd, tasksState }) => {
+const ListView: NextPage<IViewTypesPros> = ({
+  onDragEnd,
+  tasksState,
+  setTasksState,
+}) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>
@@ -25,7 +29,12 @@ const ListView: NextPage<IViewTypesPros> = ({ onDragEnd, tasksState }) => {
           />
         ) : (
           tasksCategoryData.map((category, index) => (
-            <ListColumn key={index} category={category} tasks={tasksState} />
+            <ListColumn
+              setTasksState={setTasksState}
+              key={index}
+              category={category}
+              tasks={tasksState}
+            />
           ))
         )}
       </div>

@@ -18,7 +18,6 @@ export const useUpdateTask = () => {
       queryClient.invalidateQueries({
         queryKey: [statisticsKeys.GET_ONE],
       })
-
       toast.success('Successfully updated task')
     },
   })

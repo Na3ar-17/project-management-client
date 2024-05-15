@@ -7,7 +7,11 @@ import { filterTasks } from '../../utils/filter-tasks'
 import { Columns2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const KanBanColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
+const KanBanColumn: NextPage<IListAndKanbanProps> = ({
+  category,
+  tasks,
+  setTasksState,
+}) => {
   return (
     <>
       <Droppable droppableId={category.value}>
@@ -44,6 +48,7 @@ const KanBanColumn: NextPage<IListAndKanbanProps> = ({ category, tasks }) => {
                           {...provided.draggableProps}
                         >
                           <KanBanCard
+                            setTasksState={setTasksState}
                             provided={provided}
                             snapshot={snapshot}
                             data={card}

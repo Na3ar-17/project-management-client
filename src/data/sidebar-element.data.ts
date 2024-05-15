@@ -35,7 +35,7 @@ export const generateProjectPagesData = ({
   return projectPagesData
 }
 
-export const gererateSideBarElementData = () => {
+export const generateSideBarElementData = () => {
   const { DASHBOARD_PAGES } = useDashboard()
 
   const sideBarElementData: ISideBarElement[] = [
