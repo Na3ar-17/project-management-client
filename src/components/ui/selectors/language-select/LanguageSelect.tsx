@@ -43,9 +43,7 @@ const LanguageSelect: NextPage<LanguageSelectProps> = ({}) => {
       onOpenChange={() => setIsOpen(!isOpen)}
     >
       <SelectTrigger className={styles.trigger}>
-        <SelectValue
-          placeholder={valueFromCookie === 'en' ? 'English' : 'Українська'}
-        />
+        <p>{valueFromCookie === 'en' ? 'English' : 'Українська'}</p>
       </SelectTrigger>
       {isOpen && (
         <SelectContent className={styles.content}>
