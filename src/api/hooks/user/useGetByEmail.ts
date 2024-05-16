@@ -7,6 +7,7 @@ export const useGetByEmail = () => {
     mutationKey: [userKeys.GET_BY_EMAIL],
     mutationFn: ({ data }: { data: { email: string } }) =>
       userService.getByEmail(data),
+    onSuccess: (data) => {},
   })
   return { getByEmailMutation }
 }

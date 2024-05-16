@@ -50,7 +50,7 @@ class UserService {
     }
   }
 
-  async getByEmail(data: { email: string }): Promise<IUser> {
+  async getByEmail(data: { email: string }): Promise<{ success: boolean }> {
     try {
       const { data: userData } = await axiosClassic.post(
         `${this.URL}/get-by-email`,
