@@ -3,7 +3,7 @@ import {
   TypeUpdateProfile,
   TypeUserSearchResponse,
 } from '@/types/user.type'
-import { axiosWithAuth } from '../interceptors'
+import { axiosClassic, axiosWithAuth } from '../interceptors'
 import { errorHandler } from '../utils/errorHandler'
 
 class UserService {
@@ -44,6 +44,21 @@ class UserService {
     try {
       const { data } = await axiosWithAuth.post(`${this.URL}/search`, dto)
       return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async getByEmail(data: { email: string }): Promise<IUser> {
+    try {
+      const { data: userData } = await axiosClassic.get(
+        `${this.URL}/get-by-email`,
+        {
+          data,
+        }
+      )
+      return userData
     } catch (error) {
       errorHandler(error)
       throw error

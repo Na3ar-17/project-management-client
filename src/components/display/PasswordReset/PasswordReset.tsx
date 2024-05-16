@@ -6,8 +6,33 @@ import Button from '@/components/ui/buttons/button-confirm/Button'
 import { AuthField } from '@/components/ui/fields/auth-field/AuthField'
 import Link from 'next/link'
 import { useDashboard } from '@/hooks/useDashboard'
+import { useForm } from 'react-hook-form'
+import ErrorMessage from '@/components/ui/error-message/ErrorMessage'
+import { isValidEmail } from '../Auth/utils'
+import { useTranslations } from 'next-intl'
 const PasswordReset: NextPage = () => {
   const { DASHBOARD_PAGES } = useDashboard()
+  const t = useTranslations('Auth')
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isSubmitting },
+  } = useForm<{ email: string }>({
+    mode: 'onChange',
+  })
+
+  const onSubmit = (data: { email: string }) => {
+    if (!isValidEmail(data.email)) {
+      return setError('email', {
+        type: 'onChange',
+        message: t('errors.invalid-email'),
+      })
+    }
+
+    console.log(data)
+  }
+
   return (
     <main className={styles.container}>
       <div className={styles.window}>
@@ -21,10 +46,20 @@ const PasswordReset: NextPage = () => {
           <p className={styles.description}>
             Type here your email ot reset password
           </p>
-          <div className={styles.group}>
-            <AuthField placeholder="Enter your email" Icon={AtSign} />
-            <Button text="Send Email" type="button" />
-          </div>
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <AuthField
+              placeholder="Enter your email"
+              Icon={AtSign}
+              error={errors.email}
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: 'This is required field',
+                },
+              })}
+            />
+            <Button text="Send Email" type="submit" />
+          </form>
         </div>
         <div className={styles.footer}>
           <Link
