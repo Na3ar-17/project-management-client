@@ -17,6 +17,7 @@ export default async function middleware(
   const localeFromCookie = cookies.get('NEXT_LOCALE')?.value
 
   const isAuthPage = url.includes(DASHBOARD_PAGES.AUTH)
+  const isPasswordResetPage = url.includes(DASHBOARD_PAGES.PASSWORD_RESET)
 
   if (!locales.includes(localeFromUrl as any)) {
     return NextResponse.redirect(
@@ -32,7 +33,7 @@ export default async function middleware(
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
   }
 
-  if (!refreshToken && !url.includes('authorization')) {
+  if (!refreshToken && !url.includes('authorization') && !isPasswordResetPage) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.AUTH, url))
   }
 

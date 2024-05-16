@@ -12,7 +12,7 @@
     },
     "inputs": {
       "email": "Email",
-      "pass": "Passwor",
+      "pass": "Password",
       "repeat-pass": "Repear password",
       "fullname": "Full name"
     },

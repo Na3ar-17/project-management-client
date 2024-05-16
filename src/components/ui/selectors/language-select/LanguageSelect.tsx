@@ -13,6 +13,7 @@ import {
 import { generateLanguagesData } from '@/data/settings.data'
 import styles from './LanguageSelect.module.scss'
 import useCookie from '@/hooks/useCookie'
+import Loader from '../../loaders/loader/Loader'
 
 interface Language {
   label: string

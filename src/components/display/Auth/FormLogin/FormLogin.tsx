@@ -11,6 +11,8 @@ import { isValidEmail } from '../utils'
 import { useLogin } from '@/api/hooks/auth/useLogin'
 import { cn } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
+import { useDashboard } from '@/hooks/useDashboard'
 
 interface IProps {}
 
@@ -36,7 +38,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
       loginMutation(values)
     }
   }
-
+  const { DASHBOARD_PAGES } = useDashboard()
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -72,6 +74,12 @@ const FormLogin: NextPage<IProps> = ({}) => {
           },
         })}
       />
+      <Link
+        href={DASHBOARD_PAGES.PASSWORD_RESET}
+        className="cursor-pointer hover:text-light-blue active:translate-y-[2px]  transition-all"
+      >
+        Forgot your password?
+      </Link>
       <Button
         className="mt-2"
         disabled={isSubmitting}
