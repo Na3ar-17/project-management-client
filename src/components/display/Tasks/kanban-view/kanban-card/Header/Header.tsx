@@ -6,6 +6,8 @@ import type { DraggableProvided } from '@hello-pangea/dnd'
 import { GripVertical, Trash2 } from 'lucide-react'
 import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
 import { textAbstract } from '@/utils/textAbstract'
+import { useTransition } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface IProps {
   title: string
@@ -23,6 +25,7 @@ const Header: NextPage<IProps> = ({
   onTaskDelete,
 }) => {
   const { onOpen, setExpectedTaskId } = useSheet()
+  const t = useTranslations('Projects.Tasks')
 
   return (
     <div className={styles.header}>
@@ -51,7 +54,7 @@ const Header: NextPage<IProps> = ({
           )}
           onClick={onTaskDelete}
         />
-        <TooltipComponent text="Drag to move">
+        <TooltipComponent text={t('ui.drag')}>
           <div className="" {...provided.dragHandleProps}>
             <GripVertical
               className={cn(

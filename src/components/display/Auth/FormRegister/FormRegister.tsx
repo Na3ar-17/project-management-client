@@ -7,11 +7,12 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { isFullnameValid, isValidEmail } from '../utils'
 import { useRegister } from '@/api/hooks/auth/useRegister'
+import { useTranslations } from 'next-intl'
+import { useOnSubmit } from '../hooks/useOnSubmit'
 
 interface IProps {}
 
 const FormRegister: NextPage<IProps> = ({}) => {
-  const { registerMutation } = useRegister()
   const {
     register,
     handleSubmit,
@@ -21,31 +22,8 @@ const FormRegister: NextPage<IProps> = ({}) => {
   } = useForm<TypeAuthFormRegister>({
     mode: 'onChange',
   })
-
-  const onSubmit: SubmitHandler<TypeAuthFormRegister> = (values) => {
-    const { repeatPassword, ...dto } = values
-
-    if (!isValidEmail(dto.email)) {
-      return setError('email', { type: 'onChange', message: 'Invalid email' })
-    }
-
-    if (repeatPassword !== dto.password) {
-      return setError('repeatPassword', {
-        type: 'onChange',
-        message: 'Passwords must match',
-      })
-    }
-
-    if (!isFullnameValid(dto.fullName)) {
-      return setError('fullName', {
-        type: 'onChange',
-        message: 'Must contains only one space',
-      })
-    }
-
-    registerMutation(dto)
-  }
-
+  const t = useTranslations('Auth')
+  const { onSubmit } = useOnSubmit({ setError })
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

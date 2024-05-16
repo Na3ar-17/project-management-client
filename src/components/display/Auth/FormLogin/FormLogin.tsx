@@ -10,6 +10,7 @@ import Button from '@/components/ui/buttons/button-confirm/Button'
 import { isValidEmail } from '../utils'
 import { useLogin } from '@/api/hooks/auth/useLogin'
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 interface IProps {}
 
@@ -23,11 +24,8 @@ const FormLogin: NextPage<IProps> = ({}) => {
     setError,
   } = useForm<TypeAuthFormLogin>({
     mode: 'onChange',
-    defaultValues: {
-      email: 'test@gmail.com',
-      password: '123456',
-    },
   })
+  const t = useTranslations('Auth')
 
   const onSubmit: SubmitHandler<TypeAuthFormLogin> = async (values) => {
     const { email } = values
@@ -44,10 +42,10 @@ const FormLogin: NextPage<IProps> = ({}) => {
       onSubmit={handleSubmit(onSubmit)}
       className={cn(styles.form, styles.formLeft, styles.submitting)}
     >
-      <h1>Sing In</h1>
+      <h1>{t('login.sign-in')}</h1>
 
       <AuthField
-        placeholder="Email"
+        placeholder={t('inputs.email')}
         type="text"
         Icon={AtSign}
         error={errors.email}
@@ -59,7 +57,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
         })}
       />
       <AuthField
-        placeholder="Password"
+        placeholder={t('inputs.pass')}
         type="password"
         Icon={Lock}
         error={errors.password}
@@ -74,8 +72,12 @@ const FormLogin: NextPage<IProps> = ({}) => {
           },
         })}
       />
-      <p>Forgot Your Password?</p>
-      <Button disabled={isSubmitting} type="submit" text="Sing In" />
+      <Button
+        className="mt-2"
+        disabled={isSubmitting}
+        type="submit"
+        text={t('login.sign-in')}
+      />
     </form>
   )
 }

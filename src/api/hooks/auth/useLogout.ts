@@ -5,8 +5,11 @@ import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { useDashboard } from '@/hooks/useDashboard'
+import { useTranslations } from 'next-intl'
 
 export const useLogout = () => {
+  const t = useTranslations('toast.auth')
+
   const { push } = useRouter()
   const { DASHBOARD_PAGES } = useDashboard()
   const { mutate: logoutMutation, isPending } = useMutation({
@@ -14,7 +17,7 @@ export const useLogout = () => {
     mutationFn: () => authService.logout(),
     onSuccess: () => {
       push(DASHBOARD_PAGES.AUTH)
-      toast.success('Successfully logout')
+      toast.success(t('log-out'))
     },
   })
 

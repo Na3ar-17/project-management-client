@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import styles from './ListView.module.scss'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { IViewTypesPros } from '@/types/tasks.types'
-import { tasksCategoryData } from '@/data/tasks.data'
+import { generateTasksCategoryData } from '@/data/tasks.data'
 import ListColumn from './list-column/ListColumn'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
@@ -14,6 +14,13 @@ const ListView: NextPage<IViewTypesPros> = ({
   setTasksState,
 }) => {
   const t = useTranslations('Projects.Tasks')
+  const { tasksCategoryData } = generateTasksCategoryData({
+    t1: t('status.queue'),
+    t2: t('status.on-progress'),
+    t3: t('status.testing'),
+    t4: t('status.completed'),
+  })
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.content}>

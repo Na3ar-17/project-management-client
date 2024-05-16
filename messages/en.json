@@ -1,6 +1,15 @@
 {
-  "Index": {
-    "title": "Hello World"
+  "Auth": {
+    "login": {
+      "title": "Welcome Back!",
+      "subTitle": "Enter your personal details to use all of site features",
+      "sign-in": "Sign In"
+    },
+    "register": {
+      "title": "Hello, Friend!",
+      "subTitle": "Register with your personal details to use all of site features",
+      "sign-in": "Sign Up"
+    }
   },
   "Settings": {
     "LeftSide": {
@@ -144,7 +153,21 @@
         "on-progress": "On Progress",
         "testing": "Testing",
         "completed": "Completed"
+      },
+      "sheet-component": {
+        "priority": "Priority",
+        "status": "Status",
+        "date": "Due Date",
+        "description": "Description here...",
+        "tasks-progress": "Tasks Progress",
+        "title-here": "Title here ..."
+      },
+      "ui": {
+        "drag": "Drag to move"
       }
+    },
+    "ui": {
+      "image-upload": "Upload image"
     }
   },
 
@@ -165,5 +188,35 @@
 
   "DatePicker": {
     "1": "Select deadline"
+  },
+
+  "ui": {
+    "delete-component": {
+      "title": "Are you absolutely sure?",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
+  },
+
+  "toast": {
+    "error": "Something went wrong",
+    "auth": {
+      "login": "Successfully login",
+      "log-out": "Successfully logout",
+      "register": "Successfully register"
+    },
+    "projects": {
+      "create": "Successfully created project",
+      "delete": "Successfully deleted project",
+      "update": "Successfully updated project"
+    },
+    "base": {
+      "delete": "Successfully deleted",
+      "update": "Successfully updated",
+      "create": "Successfully created"
+    },
+    "user": {
+      "update": "Успішно оновлено профіль"
+    }
   }
 }

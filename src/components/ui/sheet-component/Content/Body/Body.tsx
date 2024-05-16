@@ -8,6 +8,7 @@ import TasksBlock from '../../TasksBlock/TasksBlock'
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
 import TextAreaComponent from '@/components/ui/fields/text-area-component/TextAreaComponent'
+import { useTranslations } from 'next-intl'
 
 interface IProps {
   control: Control<TypeUpdateTaskCard>
@@ -18,6 +19,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
   const { id, projectId } = data
 
   const { isFetching, isSuccess, subtaskData, setSubtaskData } = useGetAll(id)
+  const t = useTranslations('Projects.Tasks.sheet-component')
 
   if (!isSuccess || !subtaskData) {
     // TODO handle this
@@ -27,7 +29,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
     <div className={styles.body}>
       <div className={styles.info}>
         <div className={styles.block}>
-          <p className={styles.label}>Priority</p>
+          <p className={styles.label}>{t('priority')}</p>
           <div className={styles.group}>
             <Controller
               name="priority"
@@ -40,11 +42,11 @@ const Body: NextPage<IProps> = ({ control, data }) => {
         </div>
 
         <div className={styles.block}>
-          <p className={styles.label}>Status</p>
+          <p className={styles.label}>{t('status')}</p>
           <TaskStatusBadge status={data.status} />
         </div>
         <div className={styles.block}>
-          <p className={styles.label}>Due Date</p>
+          <p className={styles.label}>{t('date')}</p>
           <Controller
             control={control}
             name="dueDate"
@@ -66,6 +68,7 @@ const Body: NextPage<IProps> = ({ control, data }) => {
             <TextAreaComponent
               value={value || ''}
               onTextAreaChange={onChange}
+              placeholder={t('description')}
             />
           )}
         />

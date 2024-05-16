@@ -4,6 +4,7 @@ import { ScrollArea } from '../../shadcn/ui/scroll-area'
 import TaskRow from './TaskRow/TaskRow'
 import { ISubTask } from '@/types/tasks.types'
 import { Dispatch, SetStateAction } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface IProps {
   subTasksData: ISubTask[]
@@ -16,6 +17,8 @@ const TasksBlock: NextPage<IProps> = ({
   setSubTaskData,
   taskId,
 }) => {
+  const t = useTranslations('Projects.Tasks.sheet-component')
+
   const addSubTask = () => {
     setSubTaskData((prev) => {
       if (!prev) return
@@ -34,14 +37,14 @@ const TasksBlock: NextPage<IProps> = ({
 
   return (
     <div className={styles.container}>
-      <p className={styles.title}>Tasks Progress</p>
+      <p className={styles.title}>{t('tasks-progress')}</p>
       <ul className={styles.list}>
         <ScrollArea type="hover" className="h-[290px] w-full">
           {subTasksData.map((el, index) => (
             <TaskRow setSubTaskData={setSubTaskData} key={index} data={el} />
           ))}
           {!subTasksData?.some((el) => !el.id) && (
-            <button onClick={addSubTask}>Title here ...</button>
+            <button onClick={addSubTask}>{t('title-here')}</button>
           )}
         </ScrollArea>
       </ul>

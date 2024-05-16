@@ -53,7 +53,7 @@
       @apply text-lg max-w-[300px] mb-3;
     }
     .button {
-      @apply rounded-md mt-2 cursor-pointer w-[120px] h-[35px] bg-blue  active:scale-95 transition-all;
+      @apply rounded-md mt-2 cursor-pointer px-3 h-[35px] bg-blue  active:scale-95 transition-all;
     }
   }
 

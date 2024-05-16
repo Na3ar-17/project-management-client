@@ -27,6 +27,7 @@ import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
 import { useDialog } from '@/zustand/useDialog'
 import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
 import { useDashboard } from '@/hooks/useDashboard'
+import { useTranslations } from 'next-intl'
 
 interface IProps {
   data: IProjectResponse
@@ -43,6 +44,7 @@ const Card: NextPage<IProps> = ({ data }) => {
       end: end,
     },
   })
+  const t = useTranslations('Projects.ui')
 
   const { deleteProjectMutation } = useDeleteProject()
 
@@ -76,7 +78,7 @@ const Card: NextPage<IProps> = ({ data }) => {
           <ImageIcon strokeWidth={1.5} className={styles.icon} />
           <div className={styles.action}>
             {!image && (
-              <TooltipComponent text="Upload image">
+              <TooltipComponent text={t('image-upload')}>
                 <div className={styles.group}>
                   <ImageUp
                     strokeWidth={1.8}

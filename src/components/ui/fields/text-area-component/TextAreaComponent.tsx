@@ -5,19 +5,21 @@ interface IProps {
   onTextAreaChange?: () => void
   value: string
   disabled?: boolean
+  placeholder?: string
 }
 
 const TextAreaComponent: NextPage<IProps> = ({
   value,
   onTextAreaChange,
   disabled = false,
+  placeholder,
 }) => {
   return (
     <Textarea
       disabled={disabled}
       spellCheck="false"
       className={styles.textarea}
-      placeholder="Description here..."
+      placeholder={placeholder}
       value={value}
       onChange={onTextAreaChange}
     />

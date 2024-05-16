@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import styles from './DateBadge.module.scss'
 import { CalendarDays } from 'lucide-react'
-import { isToday } from 'date-fns'
 import cn from 'clsx'
+import { useTranslations } from 'next-intl'
 
 interface IProps {
   date?: string
@@ -17,12 +17,13 @@ const DateBadge: NextPage<IProps> = ({
   className,
   isSingle = false,
 }) => {
+  const t = useTranslations('DatePicker')
   return (
     <p className={cn(className, styles.badge)}>
       <CalendarDays className={styles.icon} />
       {isSingle ? (
         <span className={styles.date}>
-          {deadLine === '' ? 'Select dead line' : deadLine}
+          {deadLine === '' ? t('1') : deadLine}
         </span>
       ) : (
         <span className={styles.date}>

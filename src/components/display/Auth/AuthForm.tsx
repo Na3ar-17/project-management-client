@@ -5,6 +5,7 @@ import FormLogin from './FormLogin/FormLogin'
 import FormRegister from './FormRegister/FormRegister'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import cn from 'clsx'
+import { useTranslations } from 'next-intl'
 
 type TypeIsFormActive = 'true' | 'false'
 
@@ -13,6 +14,7 @@ const AuthForm: NextPage = () => {
     defaultValue: 'false',
     key: 'form-state',
   })
+  const t = useTranslations('Auth')
 
   const handleRegister = () => {
     setIsActive('true')
@@ -32,21 +34,17 @@ const AuthForm: NextPage = () => {
       </div>
       <div className={styles.toogle}>
         <div className={cn(styles['toggle-panel'], styles['toggle-left'])}>
-          <h1>Hello, Friend!</h1>
-          <p className={styles.description}>
-            Register with your personal details to use all of site features
-          </p>
+          <h1>{t('register.title')}</h1>
+          <p className={styles.description}>{t('register.subTitle')}</p>
           <button onClick={handleLogin} className={styles.button}>
-            Sign In
+            {t('login.sign-in')}
           </button>
         </div>
         <div className={cn(styles['toggle-panel'], styles['toggle-right'])}>
-          <h1>Welcome Back!</h1>
-          <p className={styles.description}>
-            Enter your personal details to use all of site features
-          </p>
+          <h1>{t('login.title')}</h1>
+          <p className={styles.description}>{t('login.subTitle')}</p>
           <button onClick={handleRegister} className={styles.button}>
-            Sign Up
+            {t('register.sign-up')}
           </button>
         </div>
       </div>

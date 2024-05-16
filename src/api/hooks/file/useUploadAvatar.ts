@@ -3,8 +3,11 @@ import { fileService } from '@/api/services/file.service'
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 import { useUpdateProfile } from '../user/useUpdateProfile'
+import { useTranslations } from 'next-intl'
 
 export const useUploadAvatar = () => {
+  const t = useTranslations('toast')
+
   const { updateProfileMutation } = useUpdateProfile()
   const { mutate: uploadAvatarMutation } = useMutation({
     mutationKey: [fileKeys.UPLOAD],
@@ -15,7 +18,7 @@ export const useUploadAvatar = () => {
       })
     },
     onError: () => {
-      toast.error('Something went wrong')
+      toast.error(t('error'))
     },
   })
 
