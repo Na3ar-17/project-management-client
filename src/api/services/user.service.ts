@@ -52,11 +52,9 @@ class UserService {
 
   async getByEmail(data: { email: string }): Promise<IUser> {
     try {
-      const { data: userData } = await axiosClassic.get(
+      const { data: userData } = await axiosClassic.post(
         `${this.URL}/get-by-email`,
-        {
-          data,
-        }
+        data
       )
       return userData
     } catch (error) {
