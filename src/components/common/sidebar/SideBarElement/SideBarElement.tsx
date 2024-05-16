@@ -20,6 +20,7 @@ interface IProps {
   isFetching: boolean
   projects: IProjectResponse[]
   isSuccess: boolean
+  isProjectChildren?: boolean
 }
 
 const SideBarElement: NextPage<ISideBarElement & IProps> = ({
@@ -31,6 +32,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
   isFetching,
   projects,
   isSuccess,
+  isProjectChildren,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -51,7 +53,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
               styles.toggle,
-              isHidden === 'true' ? styles['toogle-hidden'] : ''
+              isHidden === 'true' && styles['toogle-hidden']
             )}
           />
         )}
@@ -68,6 +70,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
             isFetching={isFetching}
             isSuccess={isSuccess}
             projects={projects || []}
+            isProjectChildren={true}
           />
         ))}
       </div>
@@ -78,7 +81,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
         <span>
           <Link href={href || ''}>
             {Icon && <Icon className={styles.icon} />}
-            {textAbstract(text, 15)}
+            {textAbstract(text, isProjectChildren ? 12 : 15)}
           </Link>
         </span>
         {childrens && (
@@ -86,7 +89,7 @@ const SideBarElement: NextPage<ISideBarElement & IProps> = ({
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
               styles.toggle,
-              isHidden === 'true' ? styles['toogle-hidden'] : ''
+              isHidden === 'true' && styles['toogle-hidden']
             )}
           />
         )}

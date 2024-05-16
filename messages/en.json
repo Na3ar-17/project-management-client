@@ -8,7 +8,19 @@
     "register": {
       "title": "Hello, Friend!",
       "subTitle": "Register with your personal details to use all of site features",
-      "sign-in": "Sign Up"
+      "sign-up": "Sign Up"
+    },
+    "inputs": {
+      "email": "Email",
+      "pass": "Passwor",
+      "repeat-pass": "Repear password",
+      "fullname": "Full name"
+    },
+    "errors": {
+      "base": "This is required field",
+      "pass-match": "Passwords must match",
+      "pass": "At least 6 characters",
+      "invalid-email": "Invalid email"
     }
   },
   "Settings": {

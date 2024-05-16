@@ -28,7 +28,7 @@ const SettingsContent: NextPage<IProps> = ({}) => {
   const { data, isFetching, isSuccess } = useGetProfile()
 
   const { tabsContentData, tabsTriggerData, workspaceTabsTriggerData } =
-    useTabsContent()
+    useTabsContent({ email: data?.email || '' })
 
   const t = useTranslations('Settings.LeftSide')
 

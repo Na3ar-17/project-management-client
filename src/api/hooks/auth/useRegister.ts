@@ -8,17 +8,16 @@ import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
 export const useRegister = () => {
-  // const t = useTranslations('toast.auth')
+  const t = useTranslations('toast.auth')
 
   const { push } = useRouter()
   const { DASHBOARD_PAGES } = useDashboard()
-
   const { mutate: registerMutation } = useMutation({
     mutationKey: [authKeys.AUTH],
     mutationFn: (dto: TypeAuthFormRegister) => authService.register(dto),
     onSuccess: () => {
       push(DASHBOARD_PAGES.SETTINGS)
-      toast.success('')
+      toast.success(t('register'))
     },
   })
 

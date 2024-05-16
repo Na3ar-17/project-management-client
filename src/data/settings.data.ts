@@ -56,7 +56,11 @@ export const generateWorkspaceTabsTriggerData = () => {
   return { workspaceTabsTriggerData }
 }
 
-export const generateAccountSettingsContentData = () => {
+export const generateAccountSettingsContentData = ({
+  email,
+}: {
+  email: string
+}) => {
   const t = useTranslations('Settings.rightSide.accountSettingsContentData')
   const accountSettingsContentData: ISettingsContentData[] = [
     {
@@ -64,7 +68,7 @@ export const generateAccountSettingsContentData = () => {
       content: [
         {
           subTitle: `${t('1.content.1.subTitle')}`,
-          text: 'gavruluknazar0210@gmail.com',
+          text: email,
           actions: EnumSettingsContentActions.commingSoon,
           buttonText: 'Change email',
           disabled: true,

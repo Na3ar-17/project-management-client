@@ -9,8 +9,10 @@ import {
   generateWorkspaceTabsTriggerData,
 } from '@/data/settings.data'
 
-export const useTabsContent = () => {
-  const { accountSettingsContentData } = generateAccountSettingsContentData()
+export const useTabsContent = ({ email }: { email: string }) => {
+  const { accountSettingsContentData } = generateAccountSettingsContentData({
+    email,
+  })
   const { mySettingsContentData } = generateMySettingsContentData()
   const { notificationsContentData } = generateNotificationsContentData()
   const { languageContentData } = generateLanguageContentData()

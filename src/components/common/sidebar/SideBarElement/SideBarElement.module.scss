@@ -11,7 +11,7 @@
     span {
       transition: all 0.3s ease;
       a {
-        @apply flex items-center gap-1 text-[18px] w-full;
+        @apply flex items-center gap-1 text-[18px];
         .icon {
           @apply size-5;
         }
@@ -34,6 +34,7 @@
     @apply cursor-pointer;
 
     .element {
+      @apply pl-0;
       white-space: nowrap;
       .title {
         transition: all 0.3s ease;
