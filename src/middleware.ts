@@ -14,10 +14,18 @@ export default async function middleware(
   const DASHBOARD_PAGES = new DASHBOARD(localeFromUrl)
 
   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
+  // const resetPasswordToken = cookies.get(EnumTokens.RESET_PASSWORD_TOKEN)?.value
+  const resetPasswordToken = EnumTokens.RESET_PASSWORD_TOKEN
   const localeFromCookie = cookies.get('NEXT_LOCALE')?.value
 
   const isAuthPage = url.includes(DASHBOARD_PAGES.AUTH)
   const isPasswordResetPage = url.includes(DASHBOARD_PAGES.PASSWORD_RESET)
+  const isPasswordResetConfirmPage = url.includes(
+    DASHBOARD_PAGES.PASSWORD_RESET_CONFIRM
+  )
+  const isPasswordResetNewPassordPage = url.includes(
+    DASHBOARD_PAGES.PASSWORD_RESET_RESET
+  )
 
   if (!locales.includes(localeFromUrl as any)) {
     return NextResponse.redirect(
@@ -27,6 +35,17 @@ export default async function middleware(
 
   if (isAuthPage && refreshToken) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
+  }
+
+  if (refreshToken && isPasswordResetPage) {
+    return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
+  }
+
+  if (
+    !resetPasswordToken &&
+    (isPasswordResetConfirmPage || isPasswordResetNewPassordPage)
+  ) {
+    return NextResponse.redirect(new URL(DASHBOARD_PAGES.PASSWORD_RESET, url))
   }
 
   if ((url.endsWith('ua') || url.endsWith('en')) && refreshToken) {
