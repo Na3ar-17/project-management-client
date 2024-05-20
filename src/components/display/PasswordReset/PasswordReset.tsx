@@ -10,10 +10,11 @@ import { useForm } from 'react-hook-form'
 import ErrorMessage from '@/components/ui/error-message/ErrorMessage'
 import { isValidEmail } from '../Auth/utils'
 import { useTranslations } from 'next-intl'
-import { useGetByEmail } from '@/api/hooks/user/useGetByEmail'
+import { useUser } from '@/api/hooks/user/useUser'
 const PasswordReset: NextPage = () => {
   const { DASHBOARD_PAGES } = useDashboard()
   const t = useTranslations('Auth')
+  const { useGetByEmail } = useUser()
   const { getByEmailMutation } = useGetByEmail()
   const {
     register,

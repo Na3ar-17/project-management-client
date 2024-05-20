@@ -1,5 +1,5 @@
 'use client'
-import { useCreateTask } from '@/api/hooks/tasks/useCreateTask'
+import { useTask } from '@/api/hooks/tasks/useTask'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
 import { generateViewTypesData } from '@/data/tasks.data'
 import { TypeViewType } from '@/types/tasks.types'
@@ -15,6 +15,7 @@ interface IProps {
 }
 
 const Panel: NextPage<IProps> = ({ projectId, type, setType }) => {
+  const { useCreateTask } = useTask()
   const { createTaskMutation } = useCreateTask()
   const t = useTranslations('Projects.Tasks')
   const { viewTypesData } = generateViewTypesData({

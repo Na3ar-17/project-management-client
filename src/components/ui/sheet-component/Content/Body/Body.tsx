@@ -1,4 +1,4 @@
-import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
+import { useSubTask } from '@/api/hooks/subTasks/useSubTask'
 import TaskStatusBadge from '@/components/ui/badges/task-status-badge/TaskStatusBadge'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import TextAreaComponent from '@/components/ui/fields/text-area-component/TextAreaComponent'
@@ -17,6 +17,7 @@ interface IProps {
 
 const Body: NextPage<IProps> = ({ control, data }) => {
   const { id, projectId } = data
+  const { useGetAll } = useSubTask()
 
   const { isFetching, isSuccess, subtaskData, setSubtaskData } = useGetAll(id)
   const t = useTranslations('Projects.Tasks.sheet-component')

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { DropResult } from '@hello-pangea/dnd'
 import { EnumTaskStatus, ITaskCard } from '@/types/tasks.types'
-import { useUpdateTask } from '@/api/hooks/tasks/useUpdateTask'
+import { useTask } from '@/api/hooks/tasks/useTask'
 import { filterStatus } from '../utils/filter-status'
 
 export const useTasksEnd = ({
@@ -13,6 +13,7 @@ export const useTasksEnd = ({
   setTasksState: Dispatch<SetStateAction<ITaskCard[] | undefined>>
   tasks?: ITaskCard[]
 }) => {
+  const { useUpdateTask } = useTask()
   const { updateTaskMutation } = useUpdateTask()
 
   const onDragEnd = (result: DropResult) => {

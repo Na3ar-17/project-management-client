@@ -1,5 +1,5 @@
 'use client'
-import { useGetTasks } from '@/api/hooks/tasks/useGetTasks'
+import { useTask } from '@/api/hooks/tasks/useTask'
 import Heading from '@/components/ui/heading/Heading'
 import TasksLoader from '@/components/ui/loaders/tasks-loader/TasksLoader'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
@@ -20,6 +20,7 @@ const Tasks: NextPage<IProps> = ({ projectId }) => {
     defaultValue: 'board',
     key: 'ViewType',
   })
+  const { useGetTasks } = useTask()
 
   const { tasksData, isFetching, isSuccess, setTasksState, tasksState } =
     useGetTasks({ projectId })

@@ -1,4 +1,4 @@
-import { useDeleteUser } from '@/api/hooks/user/useDeleteUser'
+import { useUser } from '@/api/hooks/user/useUser'
 import {
   Dialog,
   DialogContent,
@@ -24,6 +24,7 @@ interface IProps {
 
 const DialogComponent: NextPage<IProps> = ({ children, userData }) => {
   const [userEmail, setUserEmail] = useState<string>('')
+  const { useDeleteUser } = useUser()
   const { deleteUserMutation } = useDeleteUser()
 
   return (

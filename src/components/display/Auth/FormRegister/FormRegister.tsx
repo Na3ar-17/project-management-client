@@ -1,4 +1,4 @@
-import { useRegister } from '@/api/hooks/auth/useRegister'
+import { useAuth } from '@/api/hooks/auth/useAuth'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { AuthField } from '@/components/ui/fields/auth-field/AuthField'
 import { TypeAuthFormRegister } from '@/types/authForm.type'
@@ -19,6 +19,7 @@ const FormRegister: NextPage = () => {
     mode: 'onChange',
   })
   const t = useTranslations('Auth')
+  const { useRegister } = useAuth()
   const { registerMutation } = useRegister()
 
   const { onSubmit } = useOnSubmit({ setError, registerMutation })

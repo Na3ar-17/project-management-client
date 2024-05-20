@@ -1,7 +1,6 @@
 import { TypeCreateSubTask, TypeUpdateSubTask } from '@/types/tasks.types'
 import { UseFormWatch } from 'react-hook-form'
-import { useUpdateSubTask } from './useUpdateSubTask'
-import { useCreateSubTask } from './useCreateSubTask'
+import { useSubTask } from './useSubTask'
 import { useCallback, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 
@@ -12,6 +11,7 @@ interface IProps {
 }
 
 export const useSubTaskDebounce = ({ watch, taskId, id }: IProps) => {
+  const { useUpdateSubTask, useCreateSubTask } = useSubTask()
   const { updateSubTakMutation } = useUpdateSubTask()
   const { createSubTaskMutation } = useCreateSubTask()
 

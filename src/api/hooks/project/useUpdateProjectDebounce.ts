@@ -2,7 +2,7 @@ import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import debounce from 'lodash.debounce'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
 import { UseFormWatch } from 'react-hook-form'
-import { useUpdateProject } from './useUpdateProject'
+import { useProject } from './useProject'
 import toast from 'react-hot-toast'
 
 interface IProjectDebounce {
@@ -14,6 +14,7 @@ export const useUpdateProjectDebounce = ({
   watch,
   projectId,
 }: IProjectDebounce) => {
+  const { useUpdateProject } = useProject()
   const { updateProjectMutation } = useUpdateProject()
 
   const debouncedUpdateProject = useCallback(

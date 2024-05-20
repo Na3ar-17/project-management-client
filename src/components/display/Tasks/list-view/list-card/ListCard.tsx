@@ -1,4 +1,4 @@
-import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
+import { useTask } from '@/api/hooks/tasks/useTask'
 import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
@@ -25,6 +25,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
     },
     mode: 'onChange',
   })
+  const { useDeleteTask } = useTask()
   const { deleteTaskMutation } = useDeleteTask()
   useUpdateTaskDebounce({
     projectId: data.projectId,

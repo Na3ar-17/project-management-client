@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { TypeUpdateProfile } from '@/types/user.type'
-import { useUpdateProfile } from './useUpdateProfile'
+import { useUser } from './useUser'
 import { UseFormWatch } from 'react-hook-form'
 
 interface IUserProfileDebounce {
@@ -9,6 +9,7 @@ interface IUserProfileDebounce {
 }
 
 export const useProfileDebounce = ({ watch }: IUserProfileDebounce) => {
+  const { useUpdateProfile } = useUser()
   const { updateProfileMutation } = useUpdateProfile()
 
   const debouncedUpdateProfile = useCallback(

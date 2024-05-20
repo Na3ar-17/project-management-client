@@ -1,6 +1,5 @@
 'use client'
 
-import { useLogin } from '@/api/hooks/auth/useLogin'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { AuthField } from '@/components/ui/fields/auth-field/AuthField'
 import { useDashboard } from '@/hooks/useDashboard'
@@ -13,10 +12,12 @@ import Link from 'next/link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import styles from '../AuthForm.module.scss'
 import { isValidEmail } from '../utils'
+import { useAuth } from '@/api/hooks/auth/useAuth'
 
 interface IProps {}
 
 const FormLogin: NextPage<IProps> = ({}) => {
+  const { useLogin } = useAuth()
   const { loginMutation } = useLogin()
 
   const {

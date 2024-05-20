@@ -1,5 +1,5 @@
 'use client'
-import { useGetProjects } from '@/api/hooks/project/useGetProjects'
+import { useProject } from '@/api/hooks/project/useProject'
 import SideBarSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarSkeleton'
 import { generateSideBarElementData } from '@/data/sidebar-element.data'
 import { TypeIsHidden } from '@/types/sideBar.type'
@@ -14,6 +14,7 @@ interface IProps {
 }
 
 const SideBar: NextPage<IProps> = ({ isHidden, isLoading }) => {
+  const { useGetProjects } = useProject()
   const { projects, isFetching, isSuccess } = useGetProjects()
   const { sideBarElementData } = generateSideBarElementData()
 

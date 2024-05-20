@@ -1,5 +1,5 @@
 'use client'
-import { useLogout } from '@/api/hooks/auth/useLogout'
+import { useAuth } from '@/api/hooks/auth/useAuth'
 import ButtonSettings from '@/components/ui/buttons/button-settings/ButtonSettings'
 import LanguageSelect from '@/components/ui/selectors/language-select/LanguageSelect'
 import TimeZoneSelect from '@/components/ui/selectors/timezone-select/TimeZoneSelect'
@@ -24,6 +24,7 @@ interface IProps {
 
 const Block: NextPage<IProps> = ({ data, userData }) => {
   const { content, title } = data
+  const { useLogout } = useAuth()
   const { logoutMutation, isPending } = useLogout()
 
   if (isPending) {

@@ -1,6 +1,5 @@
 'use client'
-import { useCreateProject } from '@/api/hooks/project/useCreateProject'
-import { useGetProjects } from '@/api/hooks/project/useGetProjects'
+import { useProject } from '@/api/hooks/project/useProject'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Heading from '@/components/ui/heading/Heading'
@@ -12,11 +11,10 @@ import Card from './Card/Card'
 import styles from './Projects.module.scss'
 
 const Projects: NextPage = () => {
+  const { useCreateProject, useGetProjects } = useProject()
   const { projects, isFetching, isSuccess } = useGetProjects()
   const { createProjectMutation } = useCreateProject()
   const t = useTranslations('Projects')
-
-  //TODO create loader
 
   if (isFetching) {
     return <ProjectSkeleton />

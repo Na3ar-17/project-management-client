@@ -1,4 +1,4 @@
-import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
+import { useTask } from '@/api/hooks/tasks/useTask'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import { taskBadgeStyleFormat } from '@/components/ui/badges/task-priority-badge/utils'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
@@ -26,7 +26,7 @@ const KanBanCard: NextPage<IListAndTaskCardProps> = ({
     progressPercent,
     status,
   } = data
-
+  const { useDeleteTask } = useTask()
   const { deleteTaskMutation } = useDeleteTask()
 
   return (

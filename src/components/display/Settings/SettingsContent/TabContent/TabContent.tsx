@@ -1,6 +1,5 @@
 'use client'
-import { useDeleteAvatar } from '@/api/hooks/file/useDeleteAvatar'
-import { useUploadAvatar } from '@/api/hooks/file/useUploadAvatar'
+import { useFile } from '@/api/hooks/file/useFile'
 import { useProfileDebounce } from '@/api/hooks/user/useUpdateProfileDebounce'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import SimpleField from '@/components/ui/fields/simple-field/SimpleField'
@@ -27,6 +26,7 @@ const TabContent: NextPage<IProps> = ({ data, userData }) => {
   const t = useTranslations('Settings.rightSide')
 
   const { handleUploadImage, imgFile } = useImageUploader()
+  const { useDeleteAvatar, useUploadAvatar } = useFile()
   const { uploadAvatarMutation } = useUploadAvatar()
   const { deleteAvatarMutation } = useDeleteAvatar()
 

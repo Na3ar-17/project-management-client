@@ -1,6 +1,6 @@
 import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { UseFormWatch } from 'react-hook-form'
-import { useUpdateTask } from './useUpdateTask'
+import { useTask } from './useTask'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 import { dateFormatter } from '@/api/utils/dateFormatter'
@@ -18,6 +18,7 @@ export const useUpdateTaskDebounce = ({
   taskId,
   setTasksState,
 }: ITaskDebounce) => {
+  const { useUpdateTask } = useTask()
   const { updateTaskMutation } = useUpdateTask()
 
   const debouncedUpdateTask = useCallback(

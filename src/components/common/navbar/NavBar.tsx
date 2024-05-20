@@ -1,6 +1,6 @@
 'use client'
 import { useGetAll } from '@/api/hooks/notifications/useGetAll'
-import { useGetProfile } from '@/api/hooks/user/useGetProfile'
+import { useUser } from '@/api/hooks/user/useUser'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import NavBarSkeleton from '@/components/ui/skeletons/NavBarSkeleton/NavBarSkeleton'
 import { TypeIsHidden } from '@/types/sideBar.type'
@@ -15,6 +15,7 @@ interface IProps {
 }
 
 const NavBar: NextPage<IProps> = ({ isHidden }) => {
+  const { useGetProfile } = useUser()
   const { data, isFetching } = useGetProfile()
 
   const { isSuccess: isNotificationsDataSuccess, notificationsData } =

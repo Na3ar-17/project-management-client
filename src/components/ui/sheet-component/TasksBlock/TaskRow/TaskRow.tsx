@@ -1,4 +1,4 @@
-import { useDeleteSubTask } from '@/api/hooks/subTasks/useDeleteSubTask'
+import { useSubTask } from '@/api/hooks/subTasks/useSubTask'
 import { useSubTaskDebounce } from '@/api/hooks/subTasks/useSubTaskDebounce'
 import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
 import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
@@ -25,6 +25,7 @@ const TaskRow: NextPage<IProps> = ({ data, setSubTaskData }) => {
     },
     mode: 'onChange',
   })
+  const { useDeleteSubTask } = useSubTask()
 
   useSubTaskDebounce({ watch, taskId, id })
 

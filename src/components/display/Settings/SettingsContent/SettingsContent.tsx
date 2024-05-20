@@ -1,5 +1,5 @@
 'use client'
-import { useGetProfile } from '@/api/hooks/user/useGetProfile'
+import { useUser } from '@/api/hooks/user/useUser'
 import FullUserAvatar from '@/components/ui/avatar/FullUserAvatar/FullUserAvatar'
 import { Tabs, TabsList } from '@/components/ui/shadcn/ui/tabs'
 import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
@@ -15,7 +15,8 @@ interface IProps {}
 
 const SettingsContent: NextPage<IProps> = ({}) => {
   const [active, setActive] = useState<string>('my-account')
-  const { data, isFetching, isSuccess } = useGetProfile()
+  const { useGetProfile } = useUser()
+  const { data, isFetching } = useGetProfile()
 
   const { tabsContentData, tabsTriggerData, workspaceTabsTriggerData } =
     useTabsContent({ email: data?.email || '' })
