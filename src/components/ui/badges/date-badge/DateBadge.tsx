@@ -1,8 +1,8 @@
-import { NextPage } from 'next'
-import styles from './DateBadge.module.scss'
-import { CalendarDays } from 'lucide-react'
 import cn from 'clsx'
+import { CalendarDays } from 'lucide-react'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import styles from './DateBadge.module.scss'
 
 interface IProps {
   date?: string

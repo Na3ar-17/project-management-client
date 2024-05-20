@@ -1,27 +1,24 @@
 'use client'
-import { NextPage } from 'next'
-import styles from './NavBar.module.scss'
-import { Bell, MessageSquareText } from 'lucide-react'
-import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
-import { TypeIsHidden } from '@/types/sideBar.type'
-import { useGetProfile } from '@/api/hooks/user/useGetProfile'
-import DropDownNotificationMenu from '../drop-down-notification-menu/DropDownNotificationMenu'
 import { useGetAll } from '@/api/hooks/notifications/useGetAll'
-import cn from 'clsx'
+import { useGetProfile } from '@/api/hooks/user/useGetProfile'
+import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import NavBarSkeleton from '@/components/ui/skeletons/NavBarSkeleton/NavBarSkeleton'
+import { TypeIsHidden } from '@/types/sideBar.type'
+import cn from 'clsx'
+import { Bell } from 'lucide-react'
+import { NextPage } from 'next'
+import DropDownNotificationMenu from '../drop-down-notification-menu/DropDownNotificationMenu'
+import styles from './NavBar.module.scss'
 
 interface IProps {
   isHidden: TypeIsHidden
 }
 
 const NavBar: NextPage<IProps> = ({ isHidden }) => {
-  const { data, isFetching, isSuccess } = useGetProfile()
+  const { data, isFetching } = useGetProfile()
 
-  const {
-    isFetching: isNotificationsDataFetching,
-    isSuccess: isNotificationsDataSuccess,
-    notificationsData,
-  } = useGetAll()
+  const { isSuccess: isNotificationsDataSuccess, notificationsData } =
+    useGetAll()
 
   if (isFetching) {
     return <NavBarSkeleton isHidden={isHidden} />

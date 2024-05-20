@@ -1,6 +1,6 @@
+import { cn } from '@/lib/utils'
 import { NextPage } from 'next'
 import styles from './ButtonDelete.module.scss'
-import { cn } from '@/lib/utils'
 interface IProps {
   disabled?: boolean
   onClick?: () => void

@@ -1,13 +1,13 @@
 'use client'
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@radix-ui/react-tooltip'
 import { NextPage } from 'next'
 import styles from './TooltipComponent.module.scss'
-import {
-  TooltipProvider,
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@radix-ui/react-tooltip'
 
 interface IProps {
   children: React.ReactNode

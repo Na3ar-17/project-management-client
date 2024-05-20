@@ -1,14 +1,14 @@
 'use client'
 import { generateTasksCategoryData } from '@/data/tasks.data'
-import { DragDropContext, DropResult } from '@hello-pangea/dnd'
+import { DragDropContext } from '@hello-pangea/dnd'
 
-import { NextPage } from 'next'
-import KanBanColumn from './kanban-column/KanBanColumn'
-import styles from './KanbanView.module.scss'
-import { IViewTypesPros } from '@/types/tasks.types'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
+import { IViewTypesPros } from '@/types/tasks.types'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import styles from './KanbanView.module.scss'
+import KanBanColumn from './kanban-column/KanBanColumn'
 
 const KanbanView: NextPage<IViewTypesPros> = ({
   onDragEnd,

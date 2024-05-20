@@ -1,8 +1,8 @@
-import { NextPage } from 'next'
-import styles from './ImageComponent.module.scss'
-import Image from 'next/image'
-import { Trash2 } from 'lucide-react'
 import { IMAGE_URL } from '@/constants/url.constants'
+import { Trash2 } from 'lucide-react'
+import { NextPage } from 'next'
+import Image from 'next/image'
+import styles from './ImageComponent.module.scss'
 interface IProps {
   alt: string
   image: string

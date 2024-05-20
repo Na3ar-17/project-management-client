@@ -1,4 +1,6 @@
 'use client'
+import { useDeleteAvatar } from '@/api/hooks/file/useDeleteAvatar'
+import { useUploadAvatar } from '@/api/hooks/file/useUploadAvatar'
 import { useProfileDebounce } from '@/api/hooks/user/useUpdateProfileDebounce'
 import AvatarComponent from '@/components/ui/avatar/AvatarComponent'
 import SimpleField from '@/components/ui/fields/simple-field/SimpleField'
@@ -8,13 +10,11 @@ import { EnumSettingsTabsValue, ITabContentData } from '@/types/settings.types'
 import { IUser, TypeUpdateProfile } from '@/types/user.type'
 import { TabsContent } from '@radix-ui/react-tabs'
 import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
+import { useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Block from '../Block/Block'
 import styles from './TabContent.module.scss'
-import { useCallback, useEffect } from 'react'
-import { useDeleteAvatar } from '@/api/hooks/file/useDeleteAvatar'
-import { useUploadAvatar } from '@/api/hooks/file/useUploadAvatar'
-import { useTranslations } from 'next-intl'
 
 interface IProps {
   data: ITabContentData

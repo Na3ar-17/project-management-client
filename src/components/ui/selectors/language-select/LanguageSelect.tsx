@@ -1,19 +1,16 @@
-import React, { useState } from 'react'
-import { NextPage } from 'next'
-import { useTransition } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
 } from '@/components/ui/shadcn/ui/select'
-import { generateLanguagesData } from '@/data/settings.data'
-import styles from './LanguageSelect.module.scss'
+import { useGenerateLanguagesData } from '@/data/settings.data'
 import useCookie from '@/hooks/useCookie'
-import Loader from '../../loaders/loader/Loader'
+import { NextPage } from 'next'
+import { usePathname, useRouter } from 'next/navigation'
+import { useState, useTransition } from 'react'
+import styles from './LanguageSelect.module.scss'
 
 interface Language {
   label: string
@@ -23,7 +20,7 @@ interface Language {
 interface LanguageSelectProps {}
 
 const LanguageSelect: NextPage<LanguageSelectProps> = ({}) => {
-  const { languagesData } = generateLanguagesData()
+  const { languagesData } = useGenerateLanguagesData()
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()

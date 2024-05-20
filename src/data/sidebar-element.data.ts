@@ -61,27 +61,3 @@ export const generateSideBarElementData = () => {
 
   return { sideBarElementData }
 }
-
-// export const sideBarElementData: ISideBarElement[] = [
-//   {
-//     text: 'Home',
-//     Icon: Home,
-//     href: DASHBOARD_PAGES.HOME,
-//   },
-//   {
-//     text: 'Projects',
-//     Icon: LayoutGrid,
-//     href: DASHBOARD_PAGES.PROJECTS,
-//   },
-//   {
-//     text: 'Profile',
-//     Icon: User,
-//     href: '/profile',
-//   },
-
-//   {
-//     text: 'Settings',
-//     Icon: Settings,
-//     href: DASHBOARD_PAGES.SETTINGS,
-//   },
-// ]

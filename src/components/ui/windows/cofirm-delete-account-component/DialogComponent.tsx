@@ -1,5 +1,4 @@
-import { NextPage } from 'next'
-import styles from './DialogComponent.module.scss'
+import { useDeleteUser } from '@/api/hooks/user/useDeleteUser'
 import {
   Dialog,
   DialogContent,
@@ -9,14 +8,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/shadcn/ui/dialog'
-import SimpleField from '../../fields/simple-field/SimpleField'
+import { IUser } from '@/types/user.type'
+import { DialogClose } from '@radix-ui/react-dialog'
+import { NextPage } from 'next'
+import { useState } from 'react'
 import ButtonCancel from '../../buttons/button-cancel/ButtonCancel'
 import ButtonDelete from '../../buttons/button-delete/ButtonDelete'
-import { DialogClose } from '@radix-ui/react-dialog'
-import { useDeleteUser } from '@/api/hooks/user/useDeleteUser'
-import { useGetProfile } from '@/api/hooks/user/useGetProfile'
-import { IUser } from '@/types/user.type'
-import { useState } from 'react'
+import SimpleField from '../../fields/simple-field/SimpleField'
+import styles from './DialogComponent.module.scss'
 
 interface IProps {
   children: React.ReactNode

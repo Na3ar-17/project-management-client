@@ -1,13 +1,12 @@
-import { NextPage } from 'next'
-import styles from '../KanBanCard.module.scss'
-import { useSheet } from '@/zustand/useSheet'
-import cn from 'clsx'
-import type { DraggableProvided } from '@hello-pangea/dnd'
-import { GripVertical, Trash2 } from 'lucide-react'
 import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
 import { textAbstract } from '@/utils/textAbstract'
-import { useTransition } from 'react'
+import { useSheet } from '@/zustand/useSheet'
+import type { DraggableProvided } from '@hello-pangea/dnd'
+import cn from 'clsx'
+import { GripVertical, Trash2 } from 'lucide-react'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import styles from '../KanBanCard.module.scss'
 
 interface IProps {
   title: string

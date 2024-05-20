@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-export const generateTabsTriggerData = () => {
+export const useGenerateTabsTriggerData = () => {
   const t = useTranslations('Settings')
   const tabsTriggerData: ITabTriggerData[] = [
     {
@@ -43,7 +43,7 @@ export const generateTabsTriggerData = () => {
   return { tabsTriggerData }
 }
 
-export const generateWorkspaceTabsTriggerData = () => {
+export const useGenerateWorkspaceTabsTriggerData = () => {
   const t = useTranslations('Settings')
 
   const workspaceTabsTriggerData: ITabTriggerData[] = [
@@ -56,7 +56,7 @@ export const generateWorkspaceTabsTriggerData = () => {
   return { workspaceTabsTriggerData }
 }
 
-export const generateAccountSettingsContentData = ({
+export const useGenerateAccountSettingsContentData = ({
   email,
 }: {
   email: string
@@ -105,7 +105,7 @@ export const generateAccountSettingsContentData = ({
   return { accountSettingsContentData }
 }
 
-export const generateMySettingsContentData = () => {
+export const useGenerateMySettingsContentData = () => {
   const t = useTranslations('Settings.rightSide.mySettingsContentData')
 
   const mySettingsContentData: ISettingsContentData[] = [
@@ -142,7 +142,7 @@ export const generateMySettingsContentData = () => {
   return { mySettingsContentData }
 }
 
-export const generateNotificationsContentData = () => {
+export const useGenerateNotificationsContentData = () => {
   const t = useTranslations('Settings.rightSide.notificationsContentData')
 
   const notificationsContentData: ISettingsContentData[] = [
@@ -168,7 +168,7 @@ export const generateNotificationsContentData = () => {
   return { notificationsContentData }
 }
 
-export const generateLanguageContentData = () => {
+export const useGenerateLanguageContentData = () => {
   const t = useTranslations('Settings.rightSide.languageContentData')
 
   const languageContentData: ISettingsContentData[] = [
@@ -187,7 +187,7 @@ export const generateLanguageContentData = () => {
   return { languageContentData }
 }
 
-export const generateWorkspaceSettingsData = () => {
+export const useGenerateWorkspaceSettingsData = () => {
   const t = useTranslations('Settings.rightSide.workspaceSettingsData')
 
   const workspaceSettingsData: ISettingsContentData[] = [
@@ -206,7 +206,7 @@ export const generateWorkspaceSettingsData = () => {
   return { workspaceSettingsData }
 }
 
-export const generateTabsContentData = ({
+export const useGenerateTabsContentData = ({
   myAccount,
   mySettings,
   myNotifications,
@@ -259,7 +259,7 @@ export const timeZoneData: { value: string }[] = [
   },
 ]
 
-export const generateLanguagesData = () => {
+export const useGenerateLanguagesData = () => {
   const t = useTranslations('Settings')
 
   const languagesData: ILanguagesData[] = [

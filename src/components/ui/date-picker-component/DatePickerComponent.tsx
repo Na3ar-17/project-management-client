@@ -1,19 +1,18 @@
 'use client'
 
-import { NextPage } from 'next'
+import { useOutside } from '@/hooks/useOutside'
+import { cn } from '@/lib/utils'
+import { isMatch } from 'date-fns'
 import dayjs from 'dayjs'
 import LocalizedFormat from 'dayjs/plugin/localizedFormat'
+import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import { DayPicker, type SelectSingleEventHandler } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
-import { formatCaption } from './DatePickerCaption'
-import { useState } from 'react'
-import { useOutside } from '@/hooks/useOutside'
-import { X } from 'lucide-react'
-import './DatePicker.scss'
 import DateBadge from '../badges/date-badge/DateBadge'
-import { isToday, isMatch } from 'date-fns'
-import { cn } from '@/lib/utils'
-import { useTranslations } from 'next-intl'
+import './DatePicker.scss'
+import { formatCaption } from './DatePickerCaption'
 
 dayjs.extend(LocalizedFormat)
 

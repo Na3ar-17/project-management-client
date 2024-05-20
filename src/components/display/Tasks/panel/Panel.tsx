@@ -1,16 +1,13 @@
 'use client'
-import { NextPage } from 'next'
-import styles from './Panel.module.scss'
-import cn from 'clsx'
-import { ArrowUpDown, ListFilter, Plus } from 'lucide-react'
-import { generateViewTypesData } from '@/data/tasks.data'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { TypeViewType } from '@/types/tasks.types'
-import ViewType from './view-type/ViewType'
 import { useCreateTask } from '@/api/hooks/tasks/useCreateTask'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
-import { Dispatch, SetStateAction } from 'react'
+import { generateViewTypesData } from '@/data/tasks.data'
+import { TypeViewType } from '@/types/tasks.types'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import { Dispatch, SetStateAction } from 'react'
+import styles from './Panel.module.scss'
+import ViewType from './view-type/ViewType'
 interface IProps {
   projectId: string
   type: TypeViewType

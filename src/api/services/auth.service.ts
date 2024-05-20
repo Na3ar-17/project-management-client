@@ -7,8 +7,6 @@ import { errorHandler } from '../utils/errorHandler'
 class AuthService {
   private URL = 'auth'
 
-  // TODO handle error with uncorrect url
-
   async register(dto: TypeAuthFormRegister): Promise<IAuthResponse> {
     try {
       const { data } = await axiosClassic.post<IAuthResponse>(

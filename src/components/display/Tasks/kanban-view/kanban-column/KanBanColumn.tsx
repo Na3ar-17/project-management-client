@@ -1,11 +1,11 @@
-import { NextPage } from 'next'
-import styles from './KanBanColumn.module.scss'
+import { cn } from '@/lib/utils'
 import { IListAndKanbanProps } from '@/types/tasks.types'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
-import KanBanCard from '../kanban-card/KanBanCard'
-import { filterTasks } from '../../utils/filter-tasks'
 import { Columns2 } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { NextPage } from 'next'
+import { filterTasks } from '../../utils/filter-tasks'
+import KanBanCard from '../kanban-card/KanBanCard'
+import styles from './KanBanColumn.module.scss'
 
 const KanBanColumn: NextPage<IListAndKanbanProps> = ({
   category,

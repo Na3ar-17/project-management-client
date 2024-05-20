@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
+import { Plus } from 'lucide-react'
 import { NextPage } from 'next'
 import styles from './ButtonCreate.module.scss'
-import { Plus } from 'lucide-react'
 interface IProps {
   onClick?: () => void
   disabled?: boolean

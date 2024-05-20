@@ -1,16 +1,15 @@
+import { useDialog } from '@/zustand/useDialog'
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu'
 import { NextPage } from 'next'
 import { BsThreeDots } from 'react-icons/bs'
-import styles from './DropdownMenuComponent.module.scss'
-import DialogComponent from '../windows/cofirm-delete-account-component/DialogComponent'
 import AlertDialogComponent from '../windows/confirm-delete-component/AlertDialogComponent'
-import { useDialog } from '@/zustand/useDialog'
+import styles from './DropdownMenuComponent.module.scss'
 
 export interface IProps {
   onKick?: () => void
@@ -30,10 +29,6 @@ const DropdownMenuComponent: NextPage<IProps> = ({ onKick }) => {
         <DropdownMenuItem onClick={onOpen} className={styles.item}>
           Kick
         </DropdownMenuItem>
-        {/* TODO */}
-        {/* <DropdownMenuItem className={styles.item}>
-          Raise the rank
-        </DropdownMenuItem> */}
       </DropdownMenuContent>
       <AlertDialogComponent onDelete={onKick ? onKick : () => {}} />
     </DropdownMenu>

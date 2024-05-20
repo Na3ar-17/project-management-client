@@ -1,24 +1,22 @@
 'use client'
-import { NextPage } from 'next'
-import styles from './Block.module.scss'
+import { useLogout } from '@/api/hooks/auth/useLogout'
+import ButtonSettings from '@/components/ui/buttons/button-settings/ButtonSettings'
+import LanguageSelect from '@/components/ui/selectors/language-select/LanguageSelect'
+import TimeZoneSelect from '@/components/ui/selectors/timezone-select/TimeZoneSelect'
 import { Separator } from '@/components/ui/shadcn/ui/separator'
+import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
 import SimpleSwitch from '@/components/ui/switchers/simple-switch/SimpleSwitch'
-import cn from 'clsx'
+import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
+import DialogComponent from '@/components/ui/windows/cofirm-delete-account-component/DialogComponent'
 import {
   EnumSettingsContentActions,
   ISettingsContentData,
 } from '@/types/settings.types'
-import { ChevronRight, Info, Languages } from 'lucide-react'
-import ButtonSettings from '@/components/ui/buttons/button-settings/ButtonSettings'
-import TimeZoneSelect from '@/components/ui/selectors/timezone-select/TimeZoneSelect'
-import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
-import LanguageSelect from '@/components/ui/selectors/language-select/LanguageSelect'
-import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
-import ThemeSelect from '@/components/ui/selectors/theme-select/ThemeSelect'
-import DialogComponent from '@/components/ui/windows/cofirm-delete-account-component/DialogComponent'
-import { useLogout } from '@/api/hooks/auth/useLogout'
-import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
 import { IUser } from '@/types/user.type'
+import cn from 'clsx'
+import { ChevronRight, Info } from 'lucide-react'
+import { NextPage } from 'next'
+import styles from './Block.module.scss'
 interface IProps {
   data: ISettingsContentData
   userData: IUser
@@ -83,9 +81,6 @@ const Block: NextPage<IProps> = ({ data, userData }) => {
               )}
               {el.actions == EnumSettingsContentActions.language && (
                 <LanguageSelect />
-              )}
-              {el.actions == EnumSettingsContentActions.theme && (
-                <ThemeSelect />
               )}
             </div>
           </div>

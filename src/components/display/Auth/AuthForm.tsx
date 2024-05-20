@@ -1,11 +1,11 @@
 'use client'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import cn from 'clsx'
 import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 import styles from './AuthForm.module.scss'
 import FormLogin from './FormLogin/FormLogin'
 import FormRegister from './FormRegister/FormRegister'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
-import cn from 'clsx'
-import { useTranslations } from 'next-intl'
 
 type TypeIsFormActive = 'true' | 'false'
 

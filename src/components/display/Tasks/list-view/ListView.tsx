@@ -1,12 +1,12 @@
-import { NextPage } from 'next'
-import styles from './ListView.module.scss'
-import { DragDropContext, DropResult } from '@hello-pangea/dnd'
-import { IViewTypesPros } from '@/types/tasks.types'
-import { generateTasksCategoryData } from '@/data/tasks.data'
-import ListColumn from './list-column/ListColumn'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import Spinner from '@/components/ui/loaders/spinner/Spinner'
+import { generateTasksCategoryData } from '@/data/tasks.data'
+import { IViewTypesPros } from '@/types/tasks.types'
+import { DragDropContext } from '@hello-pangea/dnd'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import styles from './ListView.module.scss'
+import ListColumn from './list-column/ListColumn'
 
 const ListView: NextPage<IViewTypesPros> = ({
   onDragEnd,

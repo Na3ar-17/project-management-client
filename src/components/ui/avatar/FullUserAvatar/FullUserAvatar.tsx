@@ -1,8 +1,8 @@
-import { NextPage } from 'next'
-import styles from './FullUserAvatar.module.scss'
-import AvatarComponent from '../AvatarComponent'
-import cn from 'clsx'
 import { IUser } from '@/types/user.type'
+import cn from 'clsx'
+import { NextPage } from 'next'
+import AvatarComponent from '../AvatarComponent'
+import styles from './FullUserAvatar.module.scss'
 
 interface IProps {
   className?: string

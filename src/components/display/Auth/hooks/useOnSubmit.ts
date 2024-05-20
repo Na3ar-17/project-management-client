@@ -1,10 +1,9 @@
 import { TypeAuthFormRegister } from '@/types/authForm.type'
-import { SubmitHandler, UseFormSetError } from 'react-hook-form'
-import { isValidEmail, isFullnameValid } from '../utils'
-import { useRegister } from '@/api/hooks/auth/useRegister'
-import { UseMutateFunction } from '@tanstack/react-query'
 import { IAuthResponse } from '@/types/user.type'
+import { UseMutateFunction } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
+import { SubmitHandler, UseFormSetError } from 'react-hook-form'
+import { isFullnameValid, isValidEmail } from '../utils'
 
 interface IProps {
   setError: UseFormSetError<TypeAuthFormRegister>

@@ -1,25 +1,15 @@
 'use client'
+import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import FullUserAvatar from '@/components/ui/avatar/FullUserAvatar/FullUserAvatar'
 import { Tabs, TabsList } from '@/components/ui/shadcn/ui/tabs'
-import {
-  generateTabsTriggerData,
-  generateWorkspaceTabsTriggerData,
-  generateTabsContentData,
-  generateAccountSettingsContentData,
-  generateMySettingsContentData,
-  generateNotificationsContentData,
-  generateLanguageContentData,
-  generateWorkspaceSettingsData,
-} from '@/data/settings.data'
-import { NextPage } from 'next'
-import styles from './SettingsContent.module.scss'
-import TabsTriggerComponent from './TabsTriggerComponent/TabsTriggerComponent'
-import TabContent from './TabContent/TabContent'
-import { useState } from 'react'
-import { useGetProfile } from '@/api/hooks/user/useGetProfile'
 import SettingsSkeleton from '@/components/ui/skeletons/SettingsSkeleton/SettingsSkeleton'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import { useTabsContent } from '../hooks/useTabsContent'
+import styles from './SettingsContent.module.scss'
+import TabContent from './TabContent/TabContent'
+import TabsTriggerComponent from './TabsTriggerComponent/TabsTriggerComponent'
 
 interface IProps {}
 
@@ -32,7 +22,6 @@ const SettingsContent: NextPage<IProps> = ({}) => {
 
   const t = useTranslations('Settings.LeftSide')
 
-  //TODO Create loader skeleton and handle if !isSuccess
   if (isFetching) {
     return <SettingsSkeleton />
   }

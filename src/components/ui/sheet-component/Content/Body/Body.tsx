@@ -1,14 +1,14 @@
-import { NextPage } from 'next'
-import styles from './Body.module.scss'
+import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
 import TaskStatusBadge from '@/components/ui/badges/task-status-badge/TaskStatusBadge'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
+import TextAreaComponent from '@/components/ui/fields/text-area-component/TextAreaComponent'
 import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
+import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
+import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 import { Control, Controller } from 'react-hook-form'
 import TasksBlock from '../../TasksBlock/TasksBlock'
-import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
-import { useGetAll } from '@/api/hooks/subTasks/useGetAll'
-import TextAreaComponent from '@/components/ui/fields/text-area-component/TextAreaComponent'
-import { useTranslations } from 'next-intl'
+import styles from './Body.module.scss'
 
 interface IProps {
   control: Control<TypeUpdateTaskCard>
@@ -22,7 +22,6 @@ const Body: NextPage<IProps> = ({ control, data }) => {
   const t = useTranslations('Projects.Tasks.sheet-component')
 
   if (!isSuccess || !subtaskData) {
-    // TODO handle this
     return <div>Error</div>
   }
   return (

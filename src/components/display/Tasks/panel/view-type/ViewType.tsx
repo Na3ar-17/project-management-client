@@ -1,7 +1,7 @@
-import { NextPage } from 'next'
-import styles from './ViewType.module.scss'
 import { IViewType, TypeViewType } from '@/types/tasks.types'
 import cn from 'clsx'
+import { NextPage } from 'next'
+import styles from './ViewType.module.scss'
 interface IProps {
   data: IViewType
   type: TypeViewType

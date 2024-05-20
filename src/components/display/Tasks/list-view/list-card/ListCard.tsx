@@ -1,19 +1,16 @@
-import { NextPage } from 'next'
-import styles from './ListCard.module.scss'
-import { IListAndTaskCardProps, TypeUpdateTaskCard } from '@/types/tasks.types'
-import { SquareArrowOutUpRight, Trash2 } from 'lucide-react'
-import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
-import DragIcon from '@/components/ui/icons/DragIcon'
-import { Controller, useForm } from 'react-hook-form'
+import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
 import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
 import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
-import { cn } from '@/lib/utils'
-import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
-import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
-import { useDeleteTask } from '@/api/hooks/tasks/useDeleteTask'
-import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
-import { useSheet } from '@/zustand/useSheet'
 import ProgressComponent from '@/components/ui/progress/ProgressComponent'
+import SimpleSelect from '@/components/ui/selectors/simple-select/SimpleSelect'
+import SheetComponent from '@/components/ui/sheet-component/SheetComponent'
+import { cn } from '@/lib/utils'
+import { IListAndTaskCardProps, TypeUpdateTaskCard } from '@/types/tasks.types'
+import { Trash2 } from 'lucide-react'
+import { NextPage } from 'next'
+import { Controller, useForm } from 'react-hook-form'
+import styles from './ListCard.module.scss'
+import ListCardHeader from './ListCardHeader'
 
 const ListCard: NextPage<IListAndTaskCardProps> = ({
   data,
@@ -21,77 +18,40 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
   setTasksState,
   snapshot: { isDragging },
 }) => {
-  const {
-    id,
-    title,
-    dueDate,
-    priority,
-    status,
-    projectId,
-    isCompleted,
-    progressPercent,
-  } = data
-
+  const { project, index, ...rest } = data
   const { control, watch } = useForm<TypeUpdateTaskCard>({
     defaultValues: {
-      status,
-      title,
-      isCompleted,
-      dueDate,
-      priority,
-      progressPercent,
+      ...rest,
     },
     mode: 'onChange',
   })
   const { deleteTaskMutation } = useDeleteTask()
-  useUpdateTaskDebounce({ projectId, taskId: id, watch, setTasksState })
-  const { onOpen, setExpectedTaskId } = useSheet()
-
+  useUpdateTaskDebounce({
+    projectId: data.projectId,
+    taskId: data.id,
+    watch,
+    setTasksState,
+  })
   return (
     <div
       className={cn(
         styles.row,
-        isCompleted && styles.completed,
+        data.isCompleted && styles.completed,
         isDragging && styles.dragging
       )}
     >
-      <div className={styles.elemenet}>
-        <div className={styles.actions}>
-          <div {...provided.dragHandleProps}>
-            <DragIcon isDragging={isDragging} />
-          </div>
-          <Controller
-            control={control}
-            name="isCompleted"
-            render={({ field: { value, onChange } }) => {
-              return <CheckBox checked={value} onCheckedChange={onChange} />
-            }}
-          />
-          <SquareArrowOutUpRight
-            onClick={() => {
-              setExpectedTaskId(id)
-              onOpen()
-            }}
-            className={styles.icon}
-          />
-        </div>
-        <Controller
-          control={control}
-          name="title"
-          render={({ field: { value, onChange } }) => (
-            <TransparentField
-              className={styles.title}
-              value={value}
-              onInputChange={onChange}
-              lableStyle="w-[100%]"
-              disabled={isCompleted}
-            />
-          )}
-        />
-      </div>
+      <ListCardHeader
+        props={{
+          control,
+          id: data.id,
+          isCompleted: data.isCompleted,
+          isDragging,
+          provided,
+        }}
+      />
       <div className={styles.elemenet}>
         <ProgressComponent
-          progressNumber={progressPercent}
+          progressNumber={data.progressPercent}
           className="w-full"
           isSingle
         />
@@ -105,7 +65,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
               onChange={onChange}
               deadLine={value || ''}
               isSingle
-              disabled={isCompleted}
+              disabled={data.isCompleted}
             />
           )}
         />
@@ -116,7 +76,7 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
           name="priority"
           render={({ field: { value, onChange } }) => (
             <SimpleSelect
-              disabled={isCompleted}
+              disabled={data.isCompleted}
               value={value || ''}
               onChange={onChange}
             />
@@ -125,7 +85,9 @@ const ListCard: NextPage<IListAndTaskCardProps> = ({
       </div>
       <div className={styles.elemenet}>
         <Trash2
-          onClick={() => deleteTaskMutation({ projectId, taskId: id })}
+          onClick={() =>
+            deleteTaskMutation({ projectId: data.projectId, taskId: data.id })
+          }
           className={styles.delete}
         />
       </div>

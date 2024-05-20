@@ -1,10 +1,10 @@
+import { ISubTask } from '@/types/tasks.types'
 import { NextPage } from 'next'
-import styles from './TasksBlock.module.scss'
+import { useTranslations } from 'next-intl'
+import { Dispatch, SetStateAction } from 'react'
 import { ScrollArea } from '../../shadcn/ui/scroll-area'
 import TaskRow from './TaskRow/TaskRow'
-import { ISubTask } from '@/types/tasks.types'
-import { Dispatch, SetStateAction } from 'react'
-import { useTranslations } from 'next-intl'
+import styles from './TasksBlock.module.scss'
 
 interface IProps {
   subTasksData: ISubTask[]

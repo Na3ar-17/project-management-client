@@ -2,9 +2,8 @@ import { COLORS } from '@/constants/colors.constans'
 import { IBlockStatistics } from '@/types/dashboard.types'
 import { IStatisticsResponse } from '@/types/statistics.types'
 import { Check, NotebookPen, BookX } from 'lucide-react'
-import { useTranslations } from 'next-intl/'
 
-export const generateBlockStatisticsData = ({
+export const useGenerateBlockStatisticsData = ({
   stastistics,
   t1,
   t2,

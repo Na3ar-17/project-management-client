@@ -1,23 +1,23 @@
 import {
-  generateAccountSettingsContentData,
-  generateMySettingsContentData,
-  generateNotificationsContentData,
-  generateLanguageContentData,
-  generateWorkspaceSettingsData,
-  generateTabsContentData,
-  generateTabsTriggerData,
-  generateWorkspaceTabsTriggerData,
+  useGenerateAccountSettingsContentData,
+  useGenerateLanguageContentData,
+  useGenerateMySettingsContentData,
+  useGenerateNotificationsContentData,
+  useGenerateTabsContentData,
+  useGenerateTabsTriggerData,
+  useGenerateWorkspaceSettingsData,
+  useGenerateWorkspaceTabsTriggerData,
 } from '@/data/settings.data'
 
 export const useTabsContent = ({ email }: { email: string }) => {
-  const { accountSettingsContentData } = generateAccountSettingsContentData({
+  const { accountSettingsContentData } = useGenerateAccountSettingsContentData({
     email,
   })
-  const { mySettingsContentData } = generateMySettingsContentData()
-  const { notificationsContentData } = generateNotificationsContentData()
-  const { languageContentData } = generateLanguageContentData()
-  const { workspaceSettingsData } = generateWorkspaceSettingsData()
-  const { tabsContentData } = generateTabsContentData({
+  const { mySettingsContentData } = useGenerateMySettingsContentData()
+  const { notificationsContentData } = useGenerateNotificationsContentData()
+  const { languageContentData } = useGenerateLanguageContentData()
+  const { workspaceSettingsData } = useGenerateWorkspaceSettingsData()
+  const { tabsContentData } = useGenerateTabsContentData({
     myAccount: accountSettingsContentData,
     mySettings: mySettingsContentData,
     myNotifications: notificationsContentData,
@@ -25,8 +25,8 @@ export const useTabsContent = ({ email }: { email: string }) => {
     settings: workspaceSettingsData,
   })
 
-  const { tabsTriggerData } = generateTabsTriggerData()
-  const { workspaceTabsTriggerData } = generateWorkspaceTabsTriggerData()
+  const { tabsTriggerData } = useGenerateTabsTriggerData()
+  const { workspaceTabsTriggerData } = useGenerateWorkspaceTabsTriggerData()
 
   return { tabsContentData, tabsTriggerData, workspaceTabsTriggerData }
 }

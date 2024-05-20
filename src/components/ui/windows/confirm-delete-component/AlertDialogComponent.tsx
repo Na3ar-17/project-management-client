@@ -1,5 +1,8 @@
 'use client'
+import { useDialog } from '@/zustand/useDialog'
+import cn from 'clsx'
 import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,10 +12,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '../../shadcn/ui/alert-dialog'
-import { useDialog } from '@/zustand/useDialog'
 import styles from './AlertDialogComponent.module.scss'
-import cn from 'clsx'
-import { useTranslations } from 'next-intl'
 
 interface IProps {
   onDelete: (id: string) => void

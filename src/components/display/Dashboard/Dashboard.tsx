@@ -1,11 +1,11 @@
 'use client'
-import { NextPage } from 'next'
-import styles from './Dashboard.module.scss'
-import Heading from '@/components/ui/heading/Heading'
-import { generateBlockStatisticsData } from '@/data/dashboard.data'
-import StatisticsBlock from './statistics-block/StatisticsBlock'
 import { useGetStatistics } from '@/api/hooks/statistics/useGetStatistics'
+import Heading from '@/components/ui/heading/Heading'
+import { useGenerateBlockStatisticsData } from '@/data/dashboard.data'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import styles from './Dashboard.module.scss'
+import StatisticsBlock from './statistics-block/StatisticsBlock'
 interface IProps {
   params: {
     slug: string
@@ -22,7 +22,7 @@ const Dashboard: NextPage<IProps> = ({ params }) => {
     return <div>Errro</div>
   }
 
-  const { blockStatisticsData } = generateBlockStatisticsData({
+  const { blockStatisticsData } = useGenerateBlockStatisticsData({
     stastistics: statisticsData,
     t1: t('tasks-completed'),
     t2: t('tasks-created'),
@@ -51,5 +51,4 @@ const Dashboard: NextPage<IProps> = ({ params }) => {
     </div>
   )
 }
-
 export default Dashboard

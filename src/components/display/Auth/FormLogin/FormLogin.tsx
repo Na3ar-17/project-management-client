@@ -1,18 +1,18 @@
 'use client'
 
-import { AuthField } from '@/components/ui/fields/auth-field/AuthField'
-import { NextPage } from 'next'
-import { Lock, AtSign } from 'lucide-react'
-import styles from '../AuthForm.module.scss'
-import { TypeAuthFormLogin } from '@/types/authForm.type'
-import { useForm, SubmitHandler } from 'react-hook-form'
-import Button from '@/components/ui/buttons/button-confirm/Button'
-import { isValidEmail } from '../utils'
 import { useLogin } from '@/api/hooks/auth/useLogin'
+import Button from '@/components/ui/buttons/button-confirm/Button'
+import { AuthField } from '@/components/ui/fields/auth-field/AuthField'
+import { useDashboard } from '@/hooks/useDashboard'
 import { cn } from '@/lib/utils'
+import { TypeAuthFormLogin } from '@/types/authForm.type'
+import { AtSign, Lock } from 'lucide-react'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import { useDashboard } from '@/hooks/useDashboard'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import styles from '../AuthForm.module.scss'
+import { isValidEmail } from '../utils'
 
 interface IProps {}
 

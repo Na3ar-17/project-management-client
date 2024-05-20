@@ -1,16 +1,15 @@
 'use client'
-import { NextPage } from 'next'
-import styles from './Projects.module.scss'
-import Heading from '@/components/ui/heading/Heading'
-import Card from './Card/Card'
-import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import { useCreateProject } from '@/api/hooks/project/useCreateProject'
+import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 import ButtonCreate from '@/components/ui/buttons/button-create/ButtonCreate'
-import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSkeleton'
-import Image from 'next/image'
-import Spinner from '@/components/ui/loaders/spinner/Spinner'
 import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
+import Heading from '@/components/ui/heading/Heading'
+import Spinner from '@/components/ui/loaders/spinner/Spinner'
+import ProjectSkeleton from '@/components/ui/skeletons/ProjectSkeleton/ProjectSkeleton'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import Card from './Card/Card'
+import styles from './Projects.module.scss'
 
 const Projects: NextPage = () => {
   const { projects, isFetching, isSuccess } = useGetProjects()

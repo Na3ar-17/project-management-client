@@ -1,15 +1,15 @@
-import { NextPage } from 'next'
-import styles from './DropDownNotificationMenu.module.scss'
+import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
+  DropdownMenuTrigger,
 } from '@/components/ui/shadcn/ui/dropdown-menu'
-import Notification from './notification/Notification'
 import { ScrollArea } from '@/components/ui/shadcn/ui/scroll-area'
 import { INotifications } from '@/types/notifications.types'
-import EmptyMessage from '@/components/ui/empty-message/EmptyMessage'
+import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import styles from './DropDownNotificationMenu.module.scss'
+import Notification from './notification/Notification'
 interface IProps {
   children: React.ReactNode
   data: INotifications[]

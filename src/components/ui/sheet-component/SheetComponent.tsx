@@ -1,7 +1,7 @@
 'use client'
+import { useSheet } from '@/zustand/useSheet'
 import { NextPage } from 'next'
 import { Sheet } from '../shadcn/ui/sheet'
-import { useSheet } from '@/zustand/useSheet'
 import Content from './Content/Content'
 
 import { ITaskCard } from '@/types/tasks.types'

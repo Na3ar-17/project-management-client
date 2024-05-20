@@ -1,14 +1,14 @@
-import { NextPage } from 'next'
-import styles from './TaskRow.module.scss'
+import { useDeleteSubTask } from '@/api/hooks/subTasks/useDeleteSubTask'
+import { useSubTaskDebounce } from '@/api/hooks/subTasks/useSubTaskDebounce'
 import CheckBox from '@/components/ui/check-boxes/check-box-standart/CheckBox'
+import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
 import { ISubTask, TypeUpdateSubTask } from '@/types/tasks.types'
 import cn from 'clsx'
-import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
-import { useSubTaskDebounce } from '@/api/hooks/subTasks/useSubTaskDebounce'
-import { Controller, useForm } from 'react-hook-form'
 import { Trash2 } from 'lucide-react'
-import { useDeleteSubTask } from '@/api/hooks/subTasks/useDeleteSubTask'
+import { NextPage } from 'next'
 import { Dispatch, SetStateAction } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import styles from './TaskRow.module.scss'
 
 interface IProps {
   data: ISubTask

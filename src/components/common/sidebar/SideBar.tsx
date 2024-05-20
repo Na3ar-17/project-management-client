@@ -1,12 +1,12 @@
 'use client'
+import { useGetProjects } from '@/api/hooks/project/useGetProjects'
+import SideBarSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarSkeleton'
+import { generateSideBarElementData } from '@/data/sidebar-element.data'
+import { TypeIsHidden } from '@/types/sideBar.type'
+import cn from 'clsx'
 import { NextPage } from 'next'
 import styles from './SideBar.module.scss'
-import { TypeIsHidden } from '@/types/sideBar.type'
-import { generateSideBarElementData } from '@/data/sidebar-element.data'
 import SideBarElement from './SideBarElement/SideBarElement'
-import cn from 'clsx'
-import SideBarSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarSkeleton'
-import { useGetProjects } from '@/api/hooks/project/useGetProjects'
 
 interface IProps {
   isHidden: TypeIsHidden

@@ -1,16 +1,15 @@
-import { NextPage } from 'next'
-import styles from './Notification.module.scss'
-import { DropdownMenuItem } from '@/components/ui/shadcn/ui/dropdown-menu'
-import { MailQuestion, MailWarning, Trash2 } from 'lucide-react'
+import { useDeleteNotification } from '@/api/hooks/notifications/useDeleteNotification'
 import DateBadge from '@/components/ui/badges/date-badge/DateBadge'
 import UserBadge from '@/components/ui/badges/user-badge/UserBadge'
+import Button from '@/components/ui/buttons/button-confirm/Button'
+import ButtonReject from '@/components/ui/buttons/button-reject/Button'
 import {
   EnumNotificationType,
   INotifications,
 } from '@/types/notifications.types'
-import Button from '@/components/ui/buttons/button-confirm/Button'
-import ButtonReject from '@/components/ui/buttons/button-reject/Button'
-import { useDeleteNotification } from '@/api/hooks/notifications/useDeleteNotification'
+import { MailQuestion, MailWarning, Trash2 } from 'lucide-react'
+import { NextPage } from 'next'
+import styles from './Notification.module.scss'
 interface IProps {
   data: INotifications
 }
@@ -26,9 +25,7 @@ const Notification: NextPage<IProps> = ({ data }) => {
     createdAt,
     type,
     id,
-    projectId,
-    recipientId,
-    owner: { imgLink, fullName, id: ownerId },
+    owner: { imgLink, fullName },
   } = data
 
   const { deleteNotificationMutation } = useDeleteNotification()

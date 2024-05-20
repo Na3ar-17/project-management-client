@@ -1,5 +1,5 @@
-import { type CSSProperties, forwardRef } from 'react'
 import cn from 'clsx'
+import { forwardRef, type CSSProperties } from 'react'
 interface IProps {
   className?: string
   placeholder?: string

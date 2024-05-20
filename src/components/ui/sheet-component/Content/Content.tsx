@@ -1,13 +1,13 @@
+import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
+import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { NextPage } from 'next'
+import { Dispatch, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 import { SheetContent } from '../../shadcn/ui/sheet'
-import styles from './Content.module.scss'
-import { ITaskCard, TypeUpdateTaskCard } from '@/types/tasks.types'
-import { useUpdateTaskDebounce } from '@/api/hooks/tasks/useUpdateTaskDebounce'
-import Header from './Header/Header'
 import Body from './Body/Body'
-import { Dispatch, SetStateAction } from 'react'
+import styles from './Content.module.scss'
+import Header from './Header/Header'
 
 interface IProps {
   data: ITaskCard

@@ -1,9 +1,9 @@
+import cn from 'clsx'
 import { forwardRef } from 'react'
 import type { FieldError } from 'react-hook-form'
-import cn from 'clsx'
 
-import styles from './AuthField.module.scss'
 import ErrorMessage from '../../error-message/ErrorMessage'
+import styles from './AuthField.module.scss'
 
 interface IProps {
   type?: string

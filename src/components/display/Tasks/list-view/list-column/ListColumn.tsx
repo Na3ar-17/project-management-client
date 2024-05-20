@@ -1,10 +1,10 @@
 import { IListAndKanbanProps } from '@/types/tasks.types'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
+import { List } from 'lucide-react'
 import { NextPage } from 'next'
-import styles from './ListColumn.module.scss'
-import { Columns2, List } from 'lucide-react'
 import { filterTasks } from '../../utils/filter-tasks'
 import ListCard from '../list-card/ListCard'
+import styles from './ListColumn.module.scss'
 
 const ListColumn: NextPage<IListAndKanbanProps> = ({
   category,

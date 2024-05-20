@@ -1,17 +1,17 @@
 'use client'
-import { NextPage } from 'next'
 import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
-  ContextMenuTrigger,
   ContextMenuShortcut,
+  ContextMenuTrigger,
 } from '@/components/ui/shadcn/ui/context-menu'
 import { Pencil, Trash } from 'lucide-react'
+import { NextPage } from 'next'
 
-import styles from './ContextMenuComponent.module.scss'
-import AlertDialogComponent from '../windows/confirm-delete-component/AlertDialogComponent'
 import { useDialog } from '@/zustand/useDialog'
+import AlertDialogComponent from '../windows/confirm-delete-component/AlertDialogComponent'
+import styles from './ContextMenuComponent.module.scss'
 
 interface IProps {
   children: React.ReactNode

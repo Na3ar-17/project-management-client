@@ -1,6 +1,6 @@
-import styles from './Button.module.scss'
 import cn from 'clsx'
 import { forwardRef } from 'react'
+import styles from './Button.module.scss'
 
 interface IProps {
   text: string

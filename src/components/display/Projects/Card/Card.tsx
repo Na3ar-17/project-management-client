@@ -1,33 +1,16 @@
 'use client'
-import { DASHBOARD } from '@/config/pages-url-config'
+import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
+import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
 import { IProjectResponse, TypeUpdateProjectCard } from '@/types/project.types'
 import cn from 'clsx'
-import {
-  ExternalLink,
-  ImageIcon,
-  ImageUp,
-  Trash2,
-  UserSquare2Icon,
-} from 'lucide-react'
+import { ImageIcon, ImageUp } from 'lucide-react'
 import { NextPage } from 'next'
-import Link from 'next/link'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useCard } from '../hooks/useCard'
 import styles from './Card.module.scss'
-
-import DatePickerComponent from '@/components/ui/date-picker-component/DatePickerComponent'
-import TransparentField from '@/components/ui/fields/transparent-field/TransparentField'
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
-import { Controller, useForm } from 'react-hook-form'
+import CardContent from './CardContent'
 import ImageComponent from './ImageComponent/ImageComponent'
-import { useUpdateProjectDebounce } from '@/api/hooks/project/useUpdateProjectDebounce'
-import TooltipComponent from '@/components/ui/tooltip-component/TooltipComponent'
-import { useUploadProjectImage } from '@/api/hooks/file/useUploadProjectImage'
-import { useImageUploader } from '@/hooks/useImageUploader'
-import { useDeleteProjectImage } from '@/api/hooks/file/useDeleteProjectImage'
-import { useDeleteProject } from '@/api/hooks/project/useDeleteProject'
-import { useDialog } from '@/zustand/useDialog'
-import AlertDialogComponent from '@/components/ui/windows/confirm-delete-component/AlertDialogComponent'
-import { useDashboard } from '@/hooks/useDashboard'
-import { useTranslations } from 'next-intl'
 
 interface IProps {
   data: IProjectResponse
@@ -35,7 +18,6 @@ interface IProps {
 
 const Card: NextPage<IProps> = ({ data }) => {
   const { end, id, name, createdAt, image, slug } = data
-  const { DASHBOARD_PAGES } = useDashboard()
   const { register, control, watch } = useForm<TypeUpdateProjectCard>({
     mode: 'onChange',
     defaultValues: {
@@ -44,18 +26,16 @@ const Card: NextPage<IProps> = ({ data }) => {
       end: end,
     },
   })
-  const t = useTranslations('Projects.ui')
-
-  const { deleteProjectMutation } = useDeleteProject()
-
-  useUpdateProjectDebounce({ watch, projectId: id })
-
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  const { uploadProjectImageMutation } = useUploadProjectImage(id)
-  const { handleUploadImage, imgFile } = useImageUploader()
-  const { deleteProjectImageMutation } = useDeleteProjectImage(id)
-  const { onOpen, setIdToDelete, idToDelete } = useDialog()
+  const {
+    deleteProjectImageMutation,
+    deleteProjectMutation,
+    handleUploadImage,
+    idToDelete,
+    imgFile,
+    inputRef,
+    t,
+    uploadProjectImageMutation,
+  } = useCard({ id, watch })
 
   useEffect(() => {
     if (imgFile) {
@@ -97,51 +77,16 @@ const Card: NextPage<IProps> = ({ data }) => {
           </div>
         </div>
       )}
-      <div className={styles.content}>
-        <Controller
-          name="name"
-          control={control}
-          defaultValue={name}
-          render={({ field: { onChange, value } }) => {
-            return (
-              <TransparentField
-                {...register('name')}
-                className="text-xl w-full"
-                value={value}
-                onInputChange={onChange}
-              />
-            )
-          }}
-        />
-        <div className={styles.time}>
-          <Controller
-            name="end"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <DatePickerComponent
-                onChange={onChange}
-                deadLine={value ? value : end || ''}
-                date={createdAt || ''}
-              />
-            )}
-          />
-          <div className={styles.actions}>
-            <Link
-              className="w-fit"
-              href={`${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/dashboard`}
-            >
-              <ExternalLink className={styles.icon} />
-            </Link>
-            <Trash2
-              onClick={() => {
-                setIdToDelete(id)
-                onOpen()
-              }}
-              className={styles.delete}
-            />
-          </div>
-        </div>
-      </div>
+      <CardContent
+        props={{
+          id,
+          control,
+          createdAt: createdAt || '',
+          end,
+          name,
+          slug: slug || '',
+        }}
+      />
       <AlertDialogComponent
         onDelete={() => deleteProjectMutation(idToDelete)}
       />

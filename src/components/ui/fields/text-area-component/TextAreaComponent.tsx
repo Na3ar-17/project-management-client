@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
-import styles from './TextAreaComponent.module.scss'
 import { Textarea } from '../../shadcn/ui/textarea'
+import styles from './TextAreaComponent.module.scss'
 interface IProps {
   onTextAreaChange?: () => void
   value: string

@@ -1,7 +1,6 @@
-import { NextPage } from 'next'
-import styles from './SimpleField.module.scss'
 import cn from 'clsx'
 import { ChangeEventHandler, forwardRef } from 'react'
+import styles from './SimpleField.module.scss'
 
 interface IProps {
   className?: string

@@ -1,10 +1,10 @@
 'use client'
 
+import { Mic, Paperclip, Send } from 'lucide-react'
 import { forwardRef, useRef } from 'react'
 import AvatarComponent, { IUserAvatarProps } from '../../avatar/AvatarComponent'
-import styles from './ChatField.module.scss'
-import { File, Mic, Paperclip, Send } from 'lucide-react'
 import TooltipComponent from '../../tooltip-component/TooltipComponent'
+import styles from './ChatField.module.scss'
 
 interface IProps {
   placeholder?: string

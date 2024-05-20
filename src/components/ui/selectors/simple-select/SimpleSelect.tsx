@@ -1,16 +1,14 @@
 'use client'
+import { simpleSelectData } from '@/data/tasks.data'
+import { NextPage } from 'next'
+import TaskPriorityBadge from '../../badges/task-priority-badge/TaskPriorityBadge'
 import {
   Select,
-  SelectTrigger,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectValue,
+  SelectTrigger,
 } from '../../shadcn/ui/select'
-import { NextPage } from 'next'
 import styles from './SimpleSelect.module.scss'
-import TaskPriorityBadge from '../../badges/task-priority-badge/TaskPriorityBadge'
-import { simpleSelectData } from '@/data/tasks.data'
 
 interface IProps {
   value: string

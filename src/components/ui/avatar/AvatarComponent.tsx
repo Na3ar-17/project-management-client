@@ -1,12 +1,12 @@
 'use client'
-import { NextPage } from 'next'
 import { Avatar, AvatarImage } from '@/components/ui/shadcn/ui/avatar'
-import styles from './AvatarComponent.module.scss'
-import { ImageUp, Trash2 } from 'lucide-react'
-import cn from 'clsx'
-import { fullNameToInitials } from './FullUserAvatar/utils'
-import { useRef } from 'react'
 import { IMAGE_URL } from '@/constants/url.constants'
+import cn from 'clsx'
+import { ImageUp, Trash2 } from 'lucide-react'
+import { NextPage } from 'next'
+import { useRef } from 'react'
+import styles from './AvatarComponent.module.scss'
+import { fullNameToInitials } from './FullUserAvatar/utils'
 export interface IUserAvatarProps {
   imgLink?: string
   size?: number
