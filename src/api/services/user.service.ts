@@ -1,5 +1,6 @@
 import {
   IUser,
+  TypeUpdatePasswod,
   TypeUpdateProfile,
   TypeUserSearchResponse,
 } from '@/types/user.type'
@@ -57,6 +58,16 @@ class UserService {
         data
       )
       return userData
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
+
+  async updatePassword(dto: TypeUpdatePasswod): Promise<IUser> {
+    try {
+      const { data } = await axiosClassic.put(`${this.URL}/password`, dto)
+      return data
     } catch (error) {
       errorHandler(error)
       throw error

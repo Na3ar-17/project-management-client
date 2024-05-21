@@ -3,4 +3,5 @@ export const userKeys = {
   SEARCH: 'search',
   DELETE: 'delete_user_account',
   GET_BY_EMAIL: 'get_by_email',
+  UPDATE: 'update',
 }

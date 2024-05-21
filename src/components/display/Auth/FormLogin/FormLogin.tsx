@@ -76,7 +76,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
         })}
       />
       <Link
-        href={DASHBOARD_PAGES.PASSWORD_RESET}
+        href={DASHBOARD_PAGES.RECOVER}
         className="cursor-pointer hover:text-light-blue active:translate-y-[2px]  transition-all"
       >
         Forgot your password?

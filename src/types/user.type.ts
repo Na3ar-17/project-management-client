@@ -21,3 +21,8 @@ export type TypeUserSearchResponse = Omit<
 export type TypeUpdateProfile = Partial<
   Omit<IUser, 'projects' | 'id' | 'createdAt' | 'updatedAt'>
 >
+
+export type TypeUpdatePasswod = TypeUpdateProfile & {
+  token: string
+  password: string
+}

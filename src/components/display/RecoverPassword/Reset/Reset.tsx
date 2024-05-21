@@ -8,9 +8,14 @@ import { useForm } from 'react-hook-form'
 import { ZodType, z as zod } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Lock } from 'lucide-react'
+import { useUser } from '@/api/hooks/user/useUser'
 interface IForm {
   password: string
   repeatPassword: string
+}
+
+interface IProps {
+  token: string
 }
 
 const schema: ZodType<IForm> = zod
@@ -23,7 +28,7 @@ const schema: ZodType<IForm> = zod
     path: ['repeatPassword'],
   })
 
-const Reset: NextPage = () => {
+const Reset: NextPage<IProps> = ({ token }) => {
   const {
     register,
     handleSubmit,
@@ -32,9 +37,14 @@ const Reset: NextPage = () => {
     mode: 'onChange',
     resolver: zodResolver(schema),
   })
+  const { useUpdatePassword } = useUser()
+  const { data, updatePasswordMutation } = useUpdatePassword()
 
   const onSubmit = (values: IForm) => {
-    console.log(values)
+    updatePasswordMutation({
+      password: values.password,
+      token,
+    })
   }
 
   return (

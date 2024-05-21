@@ -14,46 +14,57 @@ export default async function middleware(
   const DASHBOARD_PAGES = new DASHBOARD(localeFromUrl)
 
   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
-  // const resetPasswordToken = cookies.get(EnumTokens.RESET_PASSWORD_TOKEN)?.value
-  const resetPasswordToken = EnumTokens.RESET_PASSWORD_TOKEN
+  const recoverPasswordToken = cookies.get(
+    EnumTokens.RECOVER_PASSWORD_TOKEN
+  )?.value
+
   const localeFromCookie = cookies.get('NEXT_LOCALE')?.value
 
   const isAuthPage = url.includes(DASHBOARD_PAGES.AUTH)
-  const isPasswordResetPage = url.includes(DASHBOARD_PAGES.PASSWORD_RESET)
-  const isPasswordResetConfirmPage = url.includes(
-    DASHBOARD_PAGES.PASSWORD_RESET_CONFIRM
-  )
-  const isPasswordResetNewPassordPage = url.includes(
-    DASHBOARD_PAGES.PASSWORD_RESET_RESET
-  )
+  const isRecoverPage = url.includes(DASHBOARD_PAGES.RECOVER)
+  const isResetPasswordPage = url.split('/')[5]
 
+  // locales
   if (!locales.includes(localeFromUrl as any)) {
     return NextResponse.redirect(
       new URL(new DASHBOARD(localeFromCookie || '').AUTH, url)
     )
   }
 
-  if (isAuthPage && refreshToken) {
-    return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
-  }
-
-  if (refreshToken && isPasswordResetPage) {
-    return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
-  }
-
-  if (
-    !resetPasswordToken &&
-    (isPasswordResetConfirmPage || isPasswordResetNewPassordPage)
-  ) {
-    return NextResponse.redirect(new URL(DASHBOARD_PAGES.PASSWORD_RESET, url))
-  }
-
   if ((url.endsWith('ua') || url.endsWith('en')) && refreshToken) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
   }
 
-  if (!refreshToken && !url.includes('authorization') && !isPasswordResetPage) {
+  //auth
+
+  if (isAuthPage && refreshToken) {
+    return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
+  }
+
+  if (refreshToken && isRecoverPage) {
+    return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
+  }
+
+  if (!refreshToken && !url.includes('authorization') && !isRecoverPage) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.AUTH, url))
+  }
+
+  //recover password
+
+  if (recoverPasswordToken && !isRecoverPage) {
+    return NextResponse.redirect(
+      new URL(DASHBOARD_PAGES.RECOVER + `/${recoverPasswordToken}`, url)
+    )
+  }
+
+  if (!recoverPasswordToken && isResetPasswordPage !== recoverPasswordToken) {
+    return NextResponse.redirect(new URL(DASHBOARD_PAGES.AUTH, url))
+  }
+
+  if (recoverPasswordToken && !url.includes(recoverPasswordToken)) {
+    return NextResponse.redirect(
+      new URL(`${DASHBOARD_PAGES.RECOVER}/${recoverPasswordToken}`, url)
+    )
   }
 
   const nextIntlMiddleware = createMiddleware({

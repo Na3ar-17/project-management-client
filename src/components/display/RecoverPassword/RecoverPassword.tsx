@@ -1,6 +1,6 @@
 'use client'
 import { NextPage } from 'next'
-import styles from './PasswordReset.module.scss'
+import styles from './RecoverPassword.module.scss'
 import { LockKeyhole, AtSign } from 'lucide-react'
 import Button from '@/components/ui/buttons/button-confirm/Button'
 import { AuthField } from '@/components/ui/fields/auth-field/AuthField'
@@ -10,20 +10,28 @@ import { useForm } from 'react-hook-form'
 import { isValidEmail } from '../Auth/utils'
 import { useTranslations } from 'next-intl'
 import { useUser } from '@/api/hooks/user/useUser'
+import { useEffect } from 'react'
 
-const PasswordReset: NextPage = () => {
+const RecoverPassword: NextPage = () => {
   const { DASHBOARD_PAGES } = useDashboard()
   const t = useTranslations('Auth')
   const { useGetByEmail } = useUser()
-  const { getByEmailMutation } = useGetByEmail()
+  const { getByEmailMutation, data: response } = useGetByEmail()
   const {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<{ email: string }>({
     mode: 'onChange',
   })
+
+  useEffect(() => {
+    if (response?.success) {
+      reset()
+    }
+  }, [response])
 
   const onSubmit = (data: { email: string }) => {
     if (!isValidEmail(data.email)) {
@@ -42,11 +50,12 @@ const PasswordReset: NextPage = () => {
         <div className={styles.wrapper}>
           <LockKeyhole className={styles.icon} />
         </div>
-        <p className={styles.title}>Reset your password</p>
+        <p className={styles.title}>Restoring access</p>
       </div>
       <div className={styles.content}>
         <p className={styles.description}>
-          Type here your email ot reset password
+          Enter the email linked to your profile, we will send you an email with
+          a recovery link.
         </p>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <AuthField
@@ -75,4 +84,4 @@ const PasswordReset: NextPage = () => {
   )
 }
 
-export default PasswordReset
+export default RecoverPassword
