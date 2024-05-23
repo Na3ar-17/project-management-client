@@ -25,6 +25,9 @@ const RecoverPassword: NextPage = () => {
     formState: { errors, isSubmitting },
   } = useForm<{ email: string }>({
     mode: 'onChange',
+    defaultValues: {
+      email: 'gavruluknazar0210@gmail.com',
+    },
   })
 
   useEffect(() => {

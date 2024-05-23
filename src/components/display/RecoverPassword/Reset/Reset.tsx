@@ -62,12 +62,14 @@ const Reset: NextPage<IProps> = ({ token }) => {
             error={errors.password}
             placeholder="New Password"
             Icon={Lock}
+            type="password"
           />
           <AuthField
             error={errors.repeatPassword}
             placeholder="Repeat new Password"
             {...register('repeatPassword')}
             Icon={Lock}
+            type="password"
           />
           <Button text="Confirm" type="submit" />
         </form>

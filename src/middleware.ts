@@ -3,6 +3,7 @@ import { EnumTokens } from './api/services/auth-toke.service'
 import { DASHBOARD } from './config/pages-url-config'
 import createMiddleware from 'next-intl/middleware'
 import { locales } from './navigation'
+import { userService } from './api/services/user.service'
 
 export default async function middleware(
   request: NextRequest,
@@ -14,15 +15,13 @@ export default async function middleware(
   const DASHBOARD_PAGES = new DASHBOARD(localeFromUrl)
 
   const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
-  const recoverPasswordToken = cookies.get(
-    EnumTokens.RECOVER_PASSWORD_TOKEN
-  )?.value
 
   const localeFromCookie = cookies.get('NEXT_LOCALE')?.value
 
   const isAuthPage = url.includes(DASHBOARD_PAGES.AUTH)
   const isRecoverPage = url.includes(DASHBOARD_PAGES.RECOVER)
-  const isResetPasswordPage = url.split('/')[5]
+
+  const recoverTokenFromUrl = url.split('/')[5]
 
   // locales
   if (!locales.includes(localeFromUrl as any)) {
@@ -51,20 +50,14 @@ export default async function middleware(
 
   //recover password
 
-  if (recoverPasswordToken && !isRecoverPage) {
-    return NextResponse.redirect(
-      new URL(DASHBOARD_PAGES.RECOVER + `/${recoverPasswordToken}`, url)
-    )
-  }
+  if (recoverTokenFromUrl) {
+    const { email } = await userService.verifyToken({
+      token: recoverTokenFromUrl,
+    })
 
-  if (!recoverPasswordToken && isResetPasswordPage !== recoverPasswordToken) {
-    return NextResponse.redirect(new URL(DASHBOARD_PAGES.AUTH, url))
-  }
-
-  if (recoverPasswordToken && !url.includes(recoverPasswordToken)) {
-    return NextResponse.redirect(
-      new URL(`${DASHBOARD_PAGES.RECOVER}/${recoverPasswordToken}`, url)
-    )
+    if (!email) {
+      return NextResponse.redirect(new URL(DASHBOARD_PAGES.AUTH, url))
+    }
   }
 
   const nextIntlMiddleware = createMiddleware({

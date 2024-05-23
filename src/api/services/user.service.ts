@@ -73,6 +73,26 @@ class UserService {
       throw error
     }
   }
+
+  async verifyToken({ token }: { token: string }): Promise<{ email: string }> {
+    try {
+      const response = await fetch(
+        `http://localhost:4200/api/${this.URL}/verify-token/${token}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+
+      const data = await response.json()
+      return data
+    } catch (error) {
+      errorHandler(error)
+      throw error
+    }
+  }
 }
 
 export const userService = new UserService()
