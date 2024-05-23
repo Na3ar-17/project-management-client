@@ -32,8 +32,8 @@ const DialogComponent: NextPage<IProps> = ({ children, userData }) => {
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className={styles.content}>
         <DialogHeader className={styles.header}>
-          <DialogTitle className="">Are you absolutely sure?</DialogTitle>
-          <DialogDescription className="">
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
             This action cannot be undone. This will permanently delete your
             entire account. All private workspaces will be deleted, and you will
             be removed from all shared workspaces.

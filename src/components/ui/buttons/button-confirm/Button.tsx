@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import styles from './Button.module.scss'
 import { cn } from '@/lib/utils'
+import ButtonLoader from '../../loaders/button-loader/ButtonLoader'
 interface IProps {
   text: string
   type: 'submit' | 'reset' | 'button'
@@ -9,6 +10,7 @@ interface IProps {
   height?: number
   onClick?: () => void
   disabled?: boolean
+  isActionLoading?: boolean
 }
 
 const Button = forwardRef<HTMLButtonElement, IProps>(
@@ -21,6 +23,7 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
       disabled = false,
       className,
       onClick,
+      isActionLoading,
       ...rest
     },
     ref
@@ -42,7 +45,7 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
         )}
         disabled={disabled}
       >
-        {text}
+        {isActionLoading ? <ButtonLoader /> : text}
       </button>
     )
   }

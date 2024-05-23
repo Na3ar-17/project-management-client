@@ -44,13 +44,13 @@ export default async function middleware(
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.SETTINGS, url))
   }
 
-  if (!refreshToken && !url.includes('authorization') && !isRecoverPage) {
+  if (!refreshToken && !isAuthPage && !isRecoverPage) {
     return NextResponse.redirect(new URL(DASHBOARD_PAGES.AUTH, url))
   }
 
   //recover password
 
-  if (recoverTokenFromUrl) {
+  if (recoverTokenFromUrl && isRecoverPage) {
     const { email } = await userService.verifyToken({
       token: recoverTokenFromUrl,
     })

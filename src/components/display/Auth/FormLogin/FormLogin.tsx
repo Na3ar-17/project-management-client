@@ -18,12 +18,12 @@ interface IProps {}
 
 const FormLogin: NextPage<IProps> = ({}) => {
   const { useLogin } = useAuth()
-  const { loginMutation } = useLogin()
+  const { loginMutation, isPending } = useLogin()
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<TypeAuthFormLogin>({
     mode: 'onChange',
@@ -48,6 +48,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
       <h1>{t('login.sign-in')}</h1>
 
       <AuthField
+        disabled={isPending || isSubmitting}
         placeholder={t('inputs.email')}
         type="text"
         Icon={AtSign}
@@ -60,6 +61,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
         })}
       />
       <AuthField
+        disabled={isPending || isSubmitting}
         placeholder={t('inputs.pass')}
         type="password"
         Icon={Lock}
@@ -82,8 +84,9 @@ const FormLogin: NextPage<IProps> = ({}) => {
         Forgot your password?
       </Link>
       <Button
+        disabled={isPending || isSubmitting}
+        isActionLoading={isPending || isSubmitting}
         className="mt-2"
-        disabled={isSubmitting}
         type="submit"
         text={t('login.sign-in')}
       />

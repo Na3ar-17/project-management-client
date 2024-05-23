@@ -1,5 +1,5 @@
 .button {
-  @apply w-[150px] h-[36px] rounded-md  text-base text-center;
+  @apply w-[150px] h-[36px] rounded-md  text-base text-center flex justify-center items-center;
 
   background-image: linear-gradient(#268bff, hsl(252, 82, 57));
   transition: all 0.3s ease;

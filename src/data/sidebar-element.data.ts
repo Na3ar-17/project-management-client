@@ -22,6 +22,7 @@ export const generateProjectPagesData = ({
 }) => {
   const t = useTranslations('Sidebar')
   const { DASHBOARD_PAGES } = useDashboard()
+
   const projectPagesData: ISideBarElement[] = [
     {
       text: `${t('project.dashboard')}`,

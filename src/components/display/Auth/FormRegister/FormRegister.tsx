@@ -13,14 +13,14 @@ const FormRegister: NextPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<TypeAuthFormRegister>({
     mode: 'onChange',
   })
   const t = useTranslations('Auth')
   const { useRegister } = useAuth()
-  const { registerMutation } = useRegister()
+  const { registerMutation, isPending } = useRegister()
 
   const { onSubmit } = useOnSubmit({ setError, registerMutation })
   return (
@@ -30,6 +30,7 @@ const FormRegister: NextPage = () => {
     >
       <h1>{t('register.sign-up')}</h1>
       <AuthField
+        disabled={isPending || isSubmitting}
         placeholder={t('inputs.email')}
         type="text"
         Icon={AtSign}
@@ -42,6 +43,7 @@ const FormRegister: NextPage = () => {
         })}
       />
       <AuthField
+        disabled={isPending || isSubmitting}
         placeholder={t('inputs.pass')}
         type="password"
         Icon={Lock}
@@ -58,6 +60,7 @@ const FormRegister: NextPage = () => {
         })}
       />
       <AuthField
+        disabled={isPending || isSubmitting}
         placeholder={t('inputs.repeat-pass')}
         type="password"
         Icon={Repeat2}
@@ -74,6 +77,7 @@ const FormRegister: NextPage = () => {
         })}
       />
       <AuthField
+        disabled={isPending || isSubmitting}
         error={errors.fullName}
         placeholder={t('inputs.fullname')}
         type="text"
@@ -85,7 +89,12 @@ const FormRegister: NextPage = () => {
           },
         })}
       />
-      <Button text={t('register.sign-up')} type="submit" />
+      <Button
+        disabled={isPending || isSubmitting}
+        isActionLoading={isPending || isSubmitting}
+        text={t('register.sign-up')}
+        type="submit"
+      />
     </form>
   )
 }

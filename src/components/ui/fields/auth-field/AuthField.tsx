@@ -13,11 +13,22 @@ interface IProps {
   iconStyles?: string
   error?: FieldError
   Icon?: React.ElementType
+  disabled?: boolean
 }
 
 export const AuthField = forwardRef<HTMLInputElement, IProps>(
   (
-    { type, placeholder, extra, style, iconStyles, Icon, error, ...props },
+    {
+      type,
+      placeholder,
+      extra,
+      style,
+      iconStyles,
+      Icon,
+      error,
+      disabled = false,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -38,11 +49,13 @@ export const AuthField = forwardRef<HTMLInputElement, IProps>(
           className={cn(
             error ? styles.inputError : 'border-border',
             'rounded-md border-solid py-[9px] w-[340px] pl-3 pr-9 text-left',
-            style
+            style,
+            disabled && 'opacity-65 cursor-not-allowed'
           )}
           type={type}
           placeholder={placeholder}
           autoComplete="off"
+          disabled={disabled}
         />
         <ErrorMessage error={error ? error.message : ''} />
       </label>

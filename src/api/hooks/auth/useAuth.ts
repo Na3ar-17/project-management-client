@@ -13,7 +13,7 @@ export const useAuth = () => {
   const { DASHBOARD_PAGES } = useDashboard()
 
   const useLogin = () => {
-    const { mutate: loginMutation } = useMutation({
+    const { mutate: loginMutation, isPending } = useMutation({
       mutationKey: [authKeys.AUTH],
       mutationFn: (dto: TypeAuthFormLogin) => authService.login(dto),
       onSuccess: () => {
@@ -22,7 +22,7 @@ export const useAuth = () => {
       },
     })
 
-    return { loginMutation }
+    return { loginMutation, isPending }
   }
   const useLogout = () => {
     const { mutate: logoutMutation, isPending } = useMutation({
@@ -38,7 +38,7 @@ export const useAuth = () => {
   }
 
   const useRegister = () => {
-    const { mutate: registerMutation } = useMutation({
+    const { mutate: registerMutation, isPending } = useMutation({
       mutationKey: [authKeys.AUTH],
       mutationFn: (dto: TypeAuthFormRegister) => authService.register(dto),
       onSuccess: () => {
@@ -47,7 +47,7 @@ export const useAuth = () => {
       },
     })
 
-    return { registerMutation }
+    return { registerMutation, isPending }
   }
 
   return { useRegister, useLogin, useLogout }
