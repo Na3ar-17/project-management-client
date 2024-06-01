@@ -11,6 +11,7 @@ import { isValidEmail } from '../Auth/utils'
 import { useTranslations } from 'next-intl'
 import { useUser } from '@/api/hooks/user/useUser'
 import { useEffect } from 'react'
+import { any, string } from 'zod'
 
 const RecoverPassword: NextPage = () => {
   const { DASHBOARD_PAGES } = useDashboard()
@@ -50,26 +51,23 @@ const RecoverPassword: NextPage = () => {
         <div className={styles.wrapper}>
           <LockKeyhole className={styles.icon} />
         </div>
-        <p className={styles.title}>Restoring access</p>
+        <p className={styles.title}>{t('recover.title')}</p>
       </div>
       <div className={styles.content}>
-        <p className={styles.description}>
-          Enter the email linked to your profile, we will send you an email with
-          a recovery link.
-        </p>
+        <p className={styles.description}>{t('recover.description')}</p>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <AuthField
-            placeholder="Enter your email"
+            placeholder={t('inputs.email')}
             Icon={AtSign}
             error={errors.email}
             {...register('email', {
               required: {
                 value: true,
-                message: 'This is required field',
+                message: t('errors.base'),
               },
             })}
           />
-          <Button text="Send Email" type="submit" />
+          <Button text={t('recover.button')} type="submit" />
         </form>
       </div>
       <div className={styles.footer}>
@@ -77,7 +75,7 @@ const RecoverPassword: NextPage = () => {
           className="cursor-pointer hover:text-light-blue active:translate-y-[2px]  transition-all"
           href={DASHBOARD_PAGES.AUTH}
         >
-          Back to Sign In
+          {t('recover.return')}
         </Link>
       </div>
     </div>

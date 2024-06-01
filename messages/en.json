@@ -3,7 +3,8 @@
     "login": {
       "title": "Welcome Back!",
       "subTitle": "Enter your personal details to use all of site features",
-      "sign-in": "Sign In"
+      "sign-in": "Sign In",
+      "forgot-password": "Forgot your password?"
     },
     "register": {
       "title": "Hello, Friend!",
@@ -22,7 +23,17 @@
       "pass": "At least 6 characters",
       "invalid-email": "Invalid email",
       "fullname": "Full name must contains 1 only space"
-    }
+    },
+    "recover": {
+      "title": "Restoring access",
+      "description": "Enter the email linked to your profile, we will send you an email with a recovery link.",
+      "button": "Send Email",
+      "return": "Back to Sign In",
+      "reset": {
+        "title": "New Password"
+      }
+    },
+    "button": "Confirm"
   },
   "Settings": {
     "LeftSide": {
@@ -207,7 +218,9 @@
     "delete-component": {
       "title": "Are you absolutely sure?",
       "cancel": "Cancel",
-      "delete": "Delete"
+      "delete": "Delete",
+      "description": "This action cannot be undone. This will permanently delete your  entire account. All private workspaces will be deleted, and you will  be removed from all shared workspaces.",
+      "text1": "Please type in your email to confirm."
     }
   },
 
@@ -229,7 +242,8 @@
       "create": "Successfully created"
     },
     "user": {
-      "update": "Profile updated successfully"
+      "update": "Profile updated successfully",
+      "success-message": "The link has been sent to your email"
     }
   }
 }

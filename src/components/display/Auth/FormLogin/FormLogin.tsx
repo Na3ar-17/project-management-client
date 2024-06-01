@@ -81,7 +81,7 @@ const FormLogin: NextPage<IProps> = ({}) => {
         href={DASHBOARD_PAGES.RECOVER}
         className="cursor-pointer hover:text-light-blue active:translate-y-[2px]  transition-all"
       >
-        Forgot your password?
+        {t('login.forgot-password')}
       </Link>
       <Button
         disabled={isPending || isSubmitting}

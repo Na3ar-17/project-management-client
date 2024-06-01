@@ -9,6 +9,7 @@ import { ZodType, z as zod } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Lock } from 'lucide-react'
 import { useUser } from '@/api/hooks/user/useUser'
+import { useTranslations } from 'next-intl'
 interface IForm {
   password: string
   repeatPassword: string
@@ -39,6 +40,7 @@ const Reset: NextPage<IProps> = ({ token }) => {
   })
   const { useUpdatePassword } = useUser()
   const { data, updatePasswordMutation } = useUpdatePassword()
+  const t = useTranslations('Auth')
 
   const onSubmit = (values: IForm) => {
     updatePasswordMutation({
@@ -53,25 +55,25 @@ const Reset: NextPage<IProps> = ({ token }) => {
         <div className={styles.wrapper}>
           <LockKeyhole className={styles.icon} />
         </div>
-        <p className={styles.title}>New Password</p>
+        <p className={styles.title}>{t('recover.reset.title')}</p>
       </div>
       <div className={styles.content}>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <AuthField
             {...register('password')}
             error={errors.password}
-            placeholder="New Password"
+            placeholder={t('inputs.pass')}
             Icon={Lock}
             type="password"
           />
           <AuthField
             error={errors.repeatPassword}
-            placeholder="Repeat new Password"
+            placeholder={t('inputs.repeat-pass')}
             {...register('repeatPassword')}
             Icon={Lock}
             type="password"
           />
-          <Button text="Confirm" type="submit" />
+          <Button text={t('button')} type="submit" />
         </form>
       </div>
     </div>

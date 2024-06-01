@@ -4,9 +4,10 @@ import styles from './ButtonDelete.module.scss'
 interface IProps {
   disabled?: boolean
   onClick?: () => void
+  text?: string
 }
 
-const ButtonDelete: NextPage<IProps> = ({ disabled, onClick }) => {
+const ButtonDelete: NextPage<IProps> = ({ disabled, onClick, text }) => {
   return (
     <button
       disabled={disabled}
@@ -16,7 +17,7 @@ const ButtonDelete: NextPage<IProps> = ({ disabled, onClick }) => {
         disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'
       )}
     >
-      Delete
+      {text}
     </button>
   )
 }

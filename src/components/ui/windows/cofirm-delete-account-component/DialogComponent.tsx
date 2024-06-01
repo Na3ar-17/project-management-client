@@ -16,6 +16,7 @@ import ButtonCancel from '../../buttons/button-cancel/ButtonCancel'
 import ButtonDelete from '../../buttons/button-delete/ButtonDelete'
 import SimpleField from '../../fields/simple-field/SimpleField'
 import styles from './DialogComponent.module.scss'
+import { useTranslations } from 'next-intl'
 
 interface IProps {
   children: React.ReactNode
@@ -26,20 +27,17 @@ const DialogComponent: NextPage<IProps> = ({ children, userData }) => {
   const [userEmail, setUserEmail] = useState<string>('')
   const { useDeleteUser } = useUser()
   const { deleteUserMutation } = useDeleteUser()
+  const t = useTranslations('ui.delete-component')
 
   return (
     <Dialog>
       <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className={styles.content}>
         <DialogHeader className={styles.header}>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            entire account. All private workspaces will be deleted, and you will
-            be removed from all shared workspaces.
-          </DialogDescription>
+          <DialogTitle>{t('title')}</DialogTitle>
+          <DialogDescription>{t('description')}</DialogDescription>
 
-          <p>Please type in your email to confirm.</p>
+          <p>{t('text1')}</p>
         </DialogHeader>
         <div className={styles.body}>
           <div className={styles.confirmEmail}>
@@ -55,11 +53,12 @@ const DialogComponent: NextPage<IProps> = ({ children, userData }) => {
         </div>
         <DialogFooter className={styles.footer}>
           <DialogClose className="w-full">
-            <ButtonCancel />
+            <ButtonCancel text={t('cancel')} />
           </DialogClose>
           <ButtonDelete
             onClick={() => deleteUserMutation()}
             disabled={userEmail !== userData.email}
+            text={t('delete')}
           />
         </DialogFooter>
       </DialogContent>

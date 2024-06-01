@@ -49,7 +49,6 @@ export default async function middleware(
   }
 
   //recover password
-
   if (recoverTokenFromUrl && isRecoverPage) {
     const { email } = await userService.verifyToken({
       token: recoverTokenFromUrl,

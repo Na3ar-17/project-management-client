@@ -4,7 +4,6 @@ import { userService } from '@/api/services/user.service'
 import { useDashboard } from '@/hooks/useDashboard'
 import { TypeUpdatePasswod, TypeUpdateProfile } from '@/types/user.type'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { error } from 'console'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
@@ -33,7 +32,7 @@ export const useUser = () => {
         userService.getByEmail(data),
       onSuccess: (data) => {
         if (data.success) {
-          toast.success('The link has been sent to your email', {
+          toast.success(t('success-message'), {
             duration: 5000,
           })
         } else {
