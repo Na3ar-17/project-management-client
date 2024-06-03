@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 import styles from './AuthForm.module.scss'
 import FormLogin from './FormLogin/FormLogin'
 import FormRegister from './FormRegister/FormRegister'
+import AuthSkeleton from '@/components/ui/skeletons/auth-skeleton/AuthSkeleton'
 
 type TypeIsFormActive = 'true' | 'false'
 
@@ -22,6 +23,10 @@ const AuthForm: NextPage = () => {
 
   const handleLogin = () => {
     setIsActive('false')
+  }
+
+  if (isLoading) {
+    return <AuthSkeleton />
   }
 
   return (
