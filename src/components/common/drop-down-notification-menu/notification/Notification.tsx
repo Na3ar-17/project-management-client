@@ -15,11 +15,12 @@ interface IProps {
 }
 
 const Notification: NextPage<IProps> = ({ data }) => {
+  const { deleteNotificationMutation } = useDeleteNotification()
+
   //TODO handle this
   if (!data.owner) {
     return <div>Error</div>
   }
-
   const {
     content,
     createdAt,
@@ -27,8 +28,6 @@ const Notification: NextPage<IProps> = ({ data }) => {
     id,
     owner: { imgLink, fullName },
   } = data
-
-  const { deleteNotificationMutation } = useDeleteNotification()
 
   const isSimpleNotification =
     type == EnumNotificationType.DeadlineReminder ||

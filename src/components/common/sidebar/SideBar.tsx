@@ -1,7 +1,7 @@
 'use client'
 import { useProject } from '@/api/hooks/project/useProject'
 import SideBarSkeleton from '@/components/ui/skeletons/SideBarSkeleton/SideBarSkeleton'
-import { generateSideBarElementData } from '@/data/sidebar-element.data'
+import { useGenerateSideBarElementData } from '@/data/sidebar-element.data'
 import { TypeIsHidden } from '@/types/sideBar.type'
 import cn from 'clsx'
 import { NextPage } from 'next'
@@ -16,7 +16,7 @@ interface IProps {
 const SideBar: NextPage<IProps> = ({ isHidden, isLoading }) => {
   const { useGetProjects } = useProject()
   const { projects, isFetching, isSuccess } = useGetProjects()
-  const { sideBarElementData } = generateSideBarElementData()
+  const { sideBarElementData } = useGenerateSideBarElementData()
 
   if (isLoading || isFetching) {
     return <SideBarSkeleton />

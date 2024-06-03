@@ -2,7 +2,7 @@ import { generateTasksCategoryData } from '@/data/tasks.data'
 import styles from './TaskStatusBadge.module.scss'
 import { useTranslations } from 'next-intl'
 
-export const taskStatusBadgeFormat = (status: string) => {
+export const useTaskStatusBadgeFormat = (status: string) => {
   const t = useTranslations('Projects.Tasks')
   const { tasksCategoryData } = generateTasksCategoryData({
     t1: t('status.queue'),

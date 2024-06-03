@@ -1,5 +1,5 @@
 import { UseFormWatch } from 'react-hook-form'
-import { useSearchUsers } from './useSearchUsers'
+import { useUser } from './useUser'
 import { useCallback, useEffect } from 'react'
 import debounce from 'lodash.debounce'
 
@@ -8,6 +8,7 @@ interface IProps {
 }
 
 export const useSearchUsersDebounced = ({ watch }: IProps) => {
+  const { useSearchUsers } = useUser()
   const { data, searchUsersMutation, isPending } = useSearchUsers()
 
   const debouncedSearchUsers = useCallback(

@@ -51,4 +51,6 @@ const Button = forwardRef<HTMLButtonElement, IProps>(
   }
 )
 
+Button.displayName = 'button-confirm'
+
 export default Button

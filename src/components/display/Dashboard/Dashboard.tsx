@@ -17,10 +17,6 @@ const Dashboard: NextPage<IProps> = ({ params }) => {
   const { id, slug } = params
   const { isFetching, isSuccess, statisticsData } = useGetStatistics(id)
   const t = useTranslations('Projects.Statistics')
-  if (!isSuccess || !statisticsData) {
-    // TODO handle this
-    return <div>Errro</div>
-  }
 
   const { blockStatisticsData } = useGenerateBlockStatisticsData({
     stastistics: statisticsData,
@@ -28,6 +24,11 @@ const Dashboard: NextPage<IProps> = ({ params }) => {
     t2: t('tasks-created'),
     t3: t('tasks-deleted'),
   })
+
+  if (!isSuccess || !statisticsData) {
+    // TODO handle this
+    return <div>Errro</div>
+  }
 
   return (
     <div className={styles.container}>

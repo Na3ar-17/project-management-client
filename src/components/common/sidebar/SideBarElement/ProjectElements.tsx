@@ -1,4 +1,3 @@
-import { generateProjectPagesData } from '@/data/sidebar-element.data'
 import { cn } from '@/lib/utils'
 import { IProjectResponse } from '@/types/project.types'
 import { TypeIsHidden } from '@/types/sideBar.type'
@@ -9,6 +8,9 @@ import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 import SideBarElement from './SideBarElement'
 import styles from './SideBarElement.module.scss'
+import { LayoutDashboard, ListTodo } from 'lucide-react' // Assuming these icons are imported like this
+import { useTranslations } from 'next-intl'
+import { useDashboard } from '@/hooks/useDashboard' // Assuming this hook is for fetching dashboard pages
 
 interface IProps {
   isOpen: boolean
@@ -33,6 +35,24 @@ const ProjectElements: NextPage<IProps> = ({
   isSuccess,
   Icon,
 }) => {
+  const t = useTranslations('Sidebar')
+  const { DASHBOARD_PAGES } = useDashboard()
+
+  const generateProjectPagesData = (slug: string, id: string) => {
+    return [
+      {
+        text: `${t('project.dashboard')}`,
+        href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/dashboard`,
+        Icon: LayoutDashboard,
+      },
+      {
+        text: `${t('project.tasks')}`,
+        Icon: ListTodo,
+        href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/tasks`,
+      },
+    ]
+  }
+
   return (
     <div className={cn(styles.element, isOpen ? styles.open : '')}>
       <div className={styles.title}>
@@ -57,14 +77,12 @@ const ProjectElements: NextPage<IProps> = ({
           <SideBarElement
             key={index}
             text={el.name}
-            childrens={generateProjectPagesData({
-              slug: el.slug || '',
-              id: el.id,
-            })}
+            childrens={generateProjectPagesData(el.slug || '', el.id)}
             isFetching={isFetching}
             isSuccess={isSuccess}
             projects={projects || []}
             isProjectChildren={true}
+            href={href}
           />
         ))}
       </div>

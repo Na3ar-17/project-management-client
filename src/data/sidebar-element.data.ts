@@ -1,44 +1,15 @@
-import { DASHBOARD } from '@/config/pages-url-config'
 import { useDashboard } from '@/hooks/useDashboard'
 import { ISideBarElement } from '@/types/sidebar-element.type'
 import {
   Home,
   Settings,
-  MessageCircleMore,
-  User,
-  UsersRound,
   LayoutDashboard,
   LayoutGrid,
   ListTodo,
 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-export const generateProjectPagesData = ({
-  slug,
-  id,
-}: {
-  slug: string
-  id: string
-}) => {
-  const t = useTranslations('Sidebar')
-  const { DASHBOARD_PAGES } = useDashboard()
-
-  const projectPagesData: ISideBarElement[] = [
-    {
-      text: `${t('project.dashboard')}`,
-      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/dashboard`,
-      Icon: LayoutDashboard,
-    },
-    {
-      text: `${t('project.tasks')}`,
-      Icon: ListTodo,
-      href: `${DASHBOARD_PAGES.PROJECTS}/${slug}/${id}/tasks`,
-    },
-  ]
-  return projectPagesData
-}
-
-export const generateSideBarElementData = () => {
+export const useGenerateSideBarElementData = () => {
   const { DASHBOARD_PAGES } = useDashboard()
   const t = useTranslations('Sidebar')
 
